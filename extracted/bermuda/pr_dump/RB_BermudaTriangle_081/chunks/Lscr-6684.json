@@ -1,0 +1,115 @@
+{
+  "totalLength": 1176,
+  "totalLength2": 1176,
+  "headerLength": 92,
+  "scriptNumber": 337,
+  "unk20": 8,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65585,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 1144,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 14,
+  "propertiesOffset": 92,
+  "globalsCount": 6,
+  "globalsOffset": 120,
+  "handlersCount": 2,
+  "handlersOffset": 132,
+  "literalsCount": 6,
+  "literalsOffset": 1040,
+  "literalsDataCount": 56,
+  "literalsDataOffset": 1088,
+  "propertyNameIDs": [
+    20,
+    48,
+    40,
+    38,
+    608,
+    54,
+    342,
+    655,
+    23,
+    787,
+    761,
+    792,
+    895,
+    896
+  ],
+  "globalNameIDs": [
+    47,
+    55,
+    364,
+    180,
+    669,
+    410
+  ],
+  "handlers": [
+    {
+      "nameID": 18,
+      "vectorPos": 65535,
+      "compiledLen": 205,
+      "compiledOffset": 216,
+      "argumentCount": 0,
+      "argumentOffset": 422,
+      "localsCount": 1,
+      "localsOffset": 422,
+      "globalsCount": 0,
+      "globalsOffset": 424,
+      "unknown1": 207,
+      "unknown2": 5,
+      "lineCount": 18,
+      "lineOffset": 424
+    },
+    {
+      "nameID": 19,
+      "vectorPos": 15,
+      "compiledLen": 508,
+      "compiledOffset": 442,
+      "argumentCount": 0,
+      "argumentOffset": 950,
+      "localsCount": 5,
+      "localsOffset": 950,
+      "globalsCount": 0,
+      "globalsOffset": 960,
+      "unknown1": 692,
+      "unknown2": 27,
+      "lineCount": 79,
+      "lineOffset": 960
+    }
+  ],
+  "literals": [
+    {
+      "type": 9,
+      "offset": 0,
+      "value": 0.5
+    },
+    {
+      "type": 1,
+      "offset": 12,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 20,
+      "value": 0.94999999999999996
+    },
+    {
+      "type": 1,
+      "offset": 32,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 40,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 48,
+      "value": "Sfx"
+    }
+  ]
+}

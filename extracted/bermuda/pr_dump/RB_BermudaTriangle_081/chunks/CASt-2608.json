@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 1050,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 273,
+    "scriptSrcText": "property swellList, swellListCounter, swellHeight\rglobal gTileHeightList, gTileIDList\r\ron getPropertyDescriptionList me\r  descriptionList = [:]\r  addProp(descriptionList, #swellHeight, [#default: 0, #format: #sprite, #comment: \"Sea Swell Height\"])\r  return descriptionList\rend\r\ron beginSprite\r  delayCount = 0\r  gSeaFrame = 1\r  swellList = []\r  swellListCounter = 1\r  radians = PI / 180.0\r  repeat with i = 1 to 90\r    swellList.add(swellHeight * sin(i * 4 * radians))\r  end repeat\rend\r\ron exitFrame\r  swellListCounter = swellListCounter + 1\r  if swellListCounter > 90 then\r    swellListCounter = 1\r  end if\r  repeat with i = 1 to gTileIDList.count\r    tempPointer = (i * 10) + swellListCounter\r    tempPointer = tempPointer mod 90\r    if tempPointer = 0 then\r      tempPointer = 1\r    end if\r    case gTileIDList[i] of\r      0, 3, 7:\r        gTileHeightList[i] = swellList[tempPointer]\r    end case\r  end repeat\rend\r",
+    "name": "SeaSwell"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

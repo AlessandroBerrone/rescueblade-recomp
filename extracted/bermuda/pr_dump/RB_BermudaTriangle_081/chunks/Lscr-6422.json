@@ -1,0 +1,132 @@
+{
+  "totalLength": 1222,
+  "totalLength2": 1222,
+  "headerLength": 92,
+  "scriptNumber": 75,
+  "unk20": 8,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65548,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 1190,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 12,
+  "propertiesOffset": 92,
+  "globalsCount": 5,
+  "globalsOffset": 116,
+  "handlersCount": 2,
+  "handlersOffset": 126,
+  "literalsCount": 10,
+  "literalsOffset": 1026,
+  "literalsDataCount": 84,
+  "literalsDataOffset": 1106,
+  "propertyNameIDs": [
+    417,
+    420,
+    422,
+    428,
+    429,
+    432,
+    433,
+    434,
+    436,
+    435,
+    481,
+    924
+  ],
+  "globalNameIDs": [
+    410,
+    430,
+    427,
+    364,
+    923
+  ],
+  "handlers": [
+    {
+      "nameID": 18,
+      "vectorPos": 65535,
+      "compiledLen": 232,
+      "compiledOffset": 210,
+      "argumentCount": 0,
+      "argumentOffset": 442,
+      "localsCount": 1,
+      "localsOffset": 442,
+      "globalsCount": 0,
+      "globalsOffset": 444,
+      "unknown1": 251,
+      "unknown2": 6,
+      "lineCount": 24,
+      "lineOffset": 444
+    },
+    {
+      "nameID": 19,
+      "vectorPos": 15,
+      "compiledLen": 478,
+      "compiledOffset": 468,
+      "argumentCount": 0,
+      "argumentOffset": 946,
+      "localsCount": 4,
+      "localsOffset": 946,
+      "globalsCount": 0,
+      "globalsOffset": 954,
+      "unknown1": 969,
+      "unknown2": 33,
+      "lineCount": 72,
+      "lineOffset": 954
+    }
+  ],
+  "literals": [
+    {
+      "type": 4,
+      "offset": 9999999,
+      "value": 9999999
+    },
+    {
+      "type": 4,
+      "offset": 9999999,
+      "value": 9999999
+    },
+    {
+      "type": 9,
+      "offset": 0,
+      "value": 0.20000000000000001
+    },
+    {
+      "type": 1,
+      "offset": 12,
+      "value": "Gfx"
+    },
+    {
+      "type": 9,
+      "offset": 20,
+      "value": 0.05
+    },
+    {
+      "type": 9,
+      "offset": 32,
+      "value": 100.0
+    },
+    {
+      "type": 1,
+      "offset": 44,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 52,
+      "value": 0.05
+    },
+    {
+      "type": 9,
+      "offset": 64,
+      "value": 100.0
+    },
+    {
+      "type": 1,
+      "offset": 76,
+      "value": "Sfx"
+    }
+  ]
+}

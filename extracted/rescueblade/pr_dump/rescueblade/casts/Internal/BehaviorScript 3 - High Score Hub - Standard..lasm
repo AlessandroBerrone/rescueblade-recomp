@@ -1,0 +1,424 @@
+property pFunction, pScoreMem, pGameID, pTitle1, pScreenW, pScreenH, pMarker, pScoreDes
+global gMapID, gJustSubmitted, gSwScoreSetupList, gSwScoreNetID
+
+on getPropertyDescriptionList me
+  [  0] pushsymb 685 ............................ <#pFunction>
+  [  3] pushsymb 64 ............................. <#comment>
+  [  6] pushcons 0 .............................. <"Submit / View Button?">
+  [  8] pushsymb 70 ............................. <#format>
+  [ 11] pushsymb 65 ............................. <#symbol>
+  [ 14] pushsymb 84 ............................. <#range>
+  [ 17] pushsymb 686 ............................ <#submit>
+  [ 20] pushsymb 687 ............................ <#view>
+  [ 23] pusharglist 2 ........................... <[#submit, #view]>
+  [ 25] pushlist ................................ <[#submit, #view]>
+  [ 26] pushsymb 9 .............................. <#default>
+  [ 28] pushsymb 686 ............................ <#submit>
+  [ 31] pusharglist 8 ........................... <[#comment: "Submit / View Button?", #format: #symbol, #range: [#submit, #view], #default: #submit]>
+  [ 33] pushproplist ............................ <[#comment: "Submit / View Button?", #format: #symbol, #range: [#submit, #view], #default: #submit]>
+  [ 34] pushsymb 688 ............................ <#pScoreMem>
+  [ 37] pushsymb 64 ............................. <#comment>
+  [ 40] pushcons 8 .............................. <"Field or text member holding score:">
+  [ 42] pushsymb 70 ............................. <#format>
+  [ 45] pushsymb 27 ............................. <#member>
+  [ 47] pushsymb 9 .............................. <#default>
+  [ 49] pushcons 16 ............................. <EMPTY>
+  [ 51] pusharglist 6 ........................... <[#comment: "Field or text member holding score:", #format: #member, #default: EMPTY]>
+  [ 53] pushproplist ............................ <[#comment: "Field or text member holding score:", #format: #member, #default: EMPTY]>
+  [ 54] pushsymb 689 ............................ <#pGameID>
+  [ 57] pushsymb 64 ............................. <#comment>
+  [ 60] pushcons 24 ............................. <"Game ID:">
+  [ 62] pushsymb 70 ............................. <#format>
+  [ 65] pushsymb 71 ............................. <#string>
+  [ 68] pushsymb 9 .............................. <#default>
+  [ 70] pushcons 32 ............................. <EMPTY>
+  [ 72] pusharglist 6 ........................... <[#comment: "Game ID:", #format: #string, #default: EMPTY]>
+  [ 74] pushproplist ............................ <[#comment: "Game ID:", #format: #string, #default: EMPTY]>
+  [ 75] pushsymb 690 ............................ <#pTitle1>
+  [ 78] pushsymb 64 ............................. <#comment>
+  [ 81] pushcons 40 ............................. <"Game Title:">
+  [ 83] pushsymb 70 ............................. <#format>
+  [ 86] pushsymb 71 ............................. <#string>
+  [ 89] pushsymb 9 .............................. <#default>
+  [ 91] pushcons 48 ............................. <EMPTY>
+  [ 93] pusharglist 6 ........................... <[#comment: "Game Title:", #format: #string, #default: EMPTY]>
+  [ 95] pushproplist ............................ <[#comment: "Game Title:", #format: #string, #default: EMPTY]>
+  [ 96] pushsymb 691 ............................ <#pScreenW>
+  [ 99] pushsymb 64 ............................. <#comment>
+  [102] pushcons 56 ............................. <"Screen Width">
+  [104] pushsymb 70 ............................. <#format>
+  [107] pushsymb 39 ............................. <#integer>
+  [110] pushsymb 9 .............................. <#default>
+  [112] getmovieprop 0 .......................... <the stage>
+  [114] getobjprop 98 ........................... <(the stage).rect>
+  [117] getobjprop 50 ........................... <(the stage).rect.width>
+  [120] pusharglist 6 ........................... <[#comment: "Screen Width", #format: #integer, #default: (the stage).rect.width]>
+  [122] pushproplist ............................ <[#comment: "Screen Width", #format: #integer, #default: (the stage).rect.width]>
+  [123] pushsymb 692 ............................ <#pScreenH>
+  [126] pushsymb 64 ............................. <#comment>
+  [129] pushcons 64 ............................. <"Screen Height">
+  [131] pushsymb 70 ............................. <#format>
+  [134] pushsymb 39 ............................. <#integer>
+  [137] pushsymb 9 .............................. <#default>
+  [139] getmovieprop 0 .......................... <the stage>
+  [141] getobjprop 98 ........................... <(the stage).rect>
+  [144] getobjprop 97 ........................... <(the stage).rect.height>
+  [147] pusharglist 6 ........................... <[#comment: "Screen Height", #format: #integer, #default: (the stage).rect.height]>
+  [149] pushproplist ............................ <[#comment: "Screen Height", #format: #integer, #default: (the stage).rect.height]>
+  [150] pushsymb 693 ............................ <#pMarker>
+  [153] pushsymb 64 ............................. <#comment>
+  [156] pushcons 72 ............................. <"Marker to wait at while HS Hub downloads:">
+  [158] pushsymb 70 ............................. <#format>
+  [161] pushsymb 694 ............................ <#marker>
+  [164] pushsymb 9 .............................. <#default>
+  [166] pushcons 80 ............................. <EMPTY>
+  [168] pusharglist 6 ........................... <[#comment: "Marker to wait at while HS Hub downloads:", #format: #marker, #default: EMPTY]>
+  [170] pushproplist ............................ <[#comment: "Marker to wait at while HS Hub downloads:", #format: #marker, #default: EMPTY]>
+  [171] pushsymb 695 ............................ <#pScoreDes>
+  [174] pushsymb 64 ............................. <#comment>
+  [177] pushcons 88 ............................. <"Score Descriptor (points, kills, etc.)">
+  [179] pushsymb 70 ............................. <#format>
+  [182] pushsymb 71 ............................. <#string>
+  [185] pushsymb 9 .............................. <#default>
+  [187] pushcons 96 ............................. <"points">
+  [189] pusharglist 6 ........................... <[#comment: "Score Descriptor (points, kills, etc.)", #format: #string, #default: "points"]>
+  [191] pushproplist ............................ <[#comment: "Score Descriptor (points, kills, etc.)", #format: #string, #default: "points"]>
+  [192] pusharglist 16 .......................... <[#pFunction: [#comment: "Submit / View Button?", #format: #symbol, #range: [#submit, #view], #default: #submit], #pScoreMem: [#comment: "Field or text member holding score:", #format: #member, #default: EMPTY], #pGameID: [#comment: "Game ID:", #format: #string, #default: EMPTY], #pTitle1: [#comment: "Game Title:", #format: #string, #default: EMPTY], #pScreenW: [#comment: "Screen Width", #format: #integer, #default: (the stage).rect.width], #pScreenH: [#comment: "Screen Height", #format: #integer, #default: (the stage).rect.height], #pMarker: [#comment: "Marker to wait at while HS Hub downloads:", #format: #marker, #default: EMPTY], #pScoreDes: [#comment: "Score Descriptor (points, kills, etc.)", #format: #string, #default: "points"]]>
+  [194] pushproplist ............................ <[#pFunction: [#comment: "Submit / View Button?", #format: #symbol, #range: [#submit, #view], #default: #submit], #pScoreMem: [#comment: "Field or text member holding score:", #format: #member, #default: EMPTY], #pGameID: [#comment: "Game ID:", #format: #string, #default: EMPTY], #pTitle1: [#comment: "Game Title:", #format: #string, #default: EMPTY], #pScreenW: [#comment: "Screen Width", #format: #integer, #default: (the stage).rect.width], #pScreenH: [#comment: "Screen Height", #format: #integer, #default: (the stage).rect.height], #pMarker: [#comment: "Marker to wait at while HS Hub downloads:", #format: #marker, #default: EMPTY], #pScoreDes: [#comment: "Score Descriptor (points, kills, etc.)", #format: #string, #default: "points"]]>
+  [195] pusharglistnoret 1 ...................... <[#pFunction: [#comment: "Submit / View Button?", #format: #symbol, #range: [#submit, #view], #default: #submit], #pScoreMem: [#comment: "Field or text member holding score:", #format: #member, #default: EMPTY], #pGameID: [#comment: "Game ID:", #format: #string, #default: EMPTY], #pTitle1: [#comment: "Game Title:", #format: #string, #default: EMPTY], #pScreenW: [#comment: "Screen Width", #format: #integer, #default: (the stage).rect.width], #pScreenH: [#comment: "Screen Height", #format: #integer, #default: (the stage).rect.height], #pMarker: [#comment: "Marker to wait at while HS Hub downloads:", #format: #marker, #default: EMPTY], #pScoreDes: [#comment: "Score Descriptor (points, kills, etc.)", #format: #string, #default: "points"]]>
+  [197] extcall 2 ............................... return [#pFunction: [#comment: "Submit / View Button?", #format: #symbol, #range: [#submit, #view], #default: #submit], #pScoreMem: [#comment: "Field or text member holding score:", #format: #member, #default: EMPTY], #pGameID: [#comment: "Game ID:", #format: #string, #default: EMPTY], #pTitle1: [#comment: "Game Title:", #format: #string, #default: EMPTY], #pScreenW: [#comment: "Screen Width", #format: #integer, #default: (the stage).rect.width], #pScreenH: [#comment: "Screen Height", #format: #integer, #default: (the stage).rect.height], #pMarker: [#comment: "Marker to wait at while HS Hub downloads:", #format: #marker, #default: EMPTY], #pScoreDes: [#comment: "Score Descriptor (points, kills, etc.)", #format: #string, #default: "points"]]
+  [199] ret
+end
+
+on getBehaviorDescription
+  [  0] pushcons 104 ............................ <"DESCRIPTION:">
+  [  2] pushcons 112 ............................ <RETURN>
+  [  4] joinstr ................................. <"DESCRIPTION:" & RETURN>
+  [  5] pushcons 120 ............................ <"This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display.">
+  [  7] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display.">
+  [  8] pushcons 128 ............................ <RETURN>
+  [ 10] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN>
+  [ 11] pushcons 136 ............................ <"Additional optional behaviors are required if you want to use more fields or have multiple players.">
+  [ 13] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players.">
+  [ 14] pushcons 144 ............................ <RETURN>
+  [ 16] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN>
+  [ 17] pushcons 152 ............................ <RETURN>
+  [ 19] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN>
+  [ 20] pushcons 160 ............................ <"PARAMETERS:">
+  [ 22] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:">
+  [ 23] pushcons 168 ............................ <RETURN>
+  [ 25] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN>
+  [ 26] pushcons 176 ............................ <"\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?">
+  [ 28] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?">
+  [ 29] pushcons 184 ............................ <RETURN>
+  [ 31] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN>
+  [ 32] pushcons 192 ............................ <"\xA5 Text member holding Score: The text member holding the score.">
+  [ 34] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score.">
+  [ 35] pushcons 200 ............................ <RETURN>
+  [ 37] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN>
+  [ 38] pushcons 208 ............................ <"\xA5 Game ID: Unique ID provided to you by Macromedia.">
+  [ 40] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN & "\xA5 Game ID: Unique ID provided to you by Macromedia.">
+  [ 41] pushcons 216 ............................ <RETURN>
+  [ 43] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN & "\xA5 Game ID: Unique ID provided to you by Macromedia." & RETURN>
+  [ 44] pushcons 224 ............................ <"\xA5 Game Title: Title to display in the HS Hub.">
+  [ 46] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN & "\xA5 Game ID: Unique ID provided to you by Macromedia." & RETURN & "\xA5 Game Title: Title to display in the HS Hub.">
+  [ 47] pushcons 232 ............................ <RETURN>
+  [ 49] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN & "\xA5 Game ID: Unique ID provided to you by Macromedia." & RETURN & "\xA5 Game Title: Title to display in the HS Hub." & RETURN>
+  [ 50] pushcons 240 ............................ <"\xA5 Screen Width: Width of your game's screen.">
+  [ 52] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN & "\xA5 Game ID: Unique ID provided to you by Macromedia." & RETURN & "\xA5 Game Title: Title to display in the HS Hub." & RETURN & "\xA5 Screen Width: Width of your game's screen.">
+  [ 53] pushcons 248 ............................ <RETURN>
+  [ 55] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN & "\xA5 Game ID: Unique ID provided to you by Macromedia." & RETURN & "\xA5 Game Title: Title to display in the HS Hub." & RETURN & "\xA5 Screen Width: Width of your game's screen." & RETURN>
+  [ 56] pushcons 256 ............................ <"\xA5 Screen Height: Height of your game's screen.">
+  [ 59] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN & "\xA5 Game ID: Unique ID provided to you by Macromedia." & RETURN & "\xA5 Game Title: Title to display in the HS Hub." & RETURN & "\xA5 Screen Width: Width of your game's screen." & RETURN & "\xA5 Screen Height: Height of your game's screen.">
+  [ 60] pushcons 264 ............................ <RETURN>
+  [ 63] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN & "\xA5 Game ID: Unique ID provided to you by Macromedia." & RETURN & "\xA5 Game Title: Title to display in the HS Hub." & RETURN & "\xA5 Screen Width: Width of your game's screen." & RETURN & "\xA5 Screen Height: Height of your game's screen." & RETURN>
+  [ 64] pushcons 272 ............................ <"\xA5 Marker to wait at while HS Hub downloads: set up this marker in your game.">
+  [ 67] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN & "\xA5 Game ID: Unique ID provided to you by Macromedia." & RETURN & "\xA5 Game Title: Title to display in the HS Hub." & RETURN & "\xA5 Screen Width: Width of your game's screen." & RETURN & "\xA5 Screen Height: Height of your game's screen." & RETURN & "\xA5 Marker to wait at while HS Hub downloads: set up this marker in your game.">
+  [ 68] pushcons 280 ............................ <RETURN>
+  [ 71] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN & "\xA5 Game ID: Unique ID provided to you by Macromedia." & RETURN & "\xA5 Game Title: Title to display in the HS Hub." & RETURN & "\xA5 Screen Width: Width of your game's screen." & RETURN & "\xA5 Screen Height: Height of your game's screen." & RETURN & "\xA5 Marker to wait at while HS Hub downloads: set up this marker in your game." & RETURN>
+  [ 72] pushcons 288 ............................ <"\xA5 Score descriptor: How would you like your score labeled?">
+  [ 75] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN & "\xA5 Game ID: Unique ID provided to you by Macromedia." & RETURN & "\xA5 Game Title: Title to display in the HS Hub." & RETURN & "\xA5 Screen Width: Width of your game's screen." & RETURN & "\xA5 Screen Height: Height of your game's screen." & RETURN & "\xA5 Marker to wait at while HS Hub downloads: set up this marker in your game." & RETURN & "\xA5 Score descriptor: How would you like your score labeled?">
+  [ 76] pushcons 296 ............................ <RETURN>
+  [ 79] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN & "\xA5 Game ID: Unique ID provided to you by Macromedia." & RETURN & "\xA5 Game Title: Title to display in the HS Hub." & RETURN & "\xA5 Screen Width: Width of your game's screen." & RETURN & "\xA5 Screen Height: Height of your game's screen." & RETURN & "\xA5 Marker to wait at while HS Hub downloads: set up this marker in your game." & RETURN & "\xA5 Score descriptor: How would you like your score labeled?" & RETURN>
+  [ 80] pushcons 304 ............................ <RETURN>
+  [ 83] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN & "\xA5 Game ID: Unique ID provided to you by Macromedia." & RETURN & "\xA5 Game Title: Title to display in the HS Hub." & RETURN & "\xA5 Screen Width: Width of your game's screen." & RETURN & "\xA5 Screen Height: Height of your game's screen." & RETURN & "\xA5 Marker to wait at while HS Hub downloads: set up this marker in your game." & RETURN & "\xA5 Score descriptor: How would you like your score labeled?" & RETURN & RETURN>
+  [ 84] pushcons 312 ............................ <"-- \xA9 kwik 2000">
+  [ 87] joinstr ................................. <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN & "\xA5 Game ID: Unique ID provided to you by Macromedia." & RETURN & "\xA5 Game Title: Title to display in the HS Hub." & RETURN & "\xA5 Screen Width: Width of your game's screen." & RETURN & "\xA5 Screen Height: Height of your game's screen." & RETURN & "\xA5 Marker to wait at while HS Hub downloads: set up this marker in your game." & RETURN & "\xA5 Score descriptor: How would you like your score labeled?" & RETURN & RETURN & "-- \xA9 kwik 2000">
+  [ 88] pusharglistnoret 1 ...................... <"DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN & "\xA5 Game ID: Unique ID provided to you by Macromedia." & RETURN & "\xA5 Game Title: Title to display in the HS Hub." & RETURN & "\xA5 Screen Width: Width of your game's screen." & RETURN & "\xA5 Screen Height: Height of your game's screen." & RETURN & "\xA5 Marker to wait at while HS Hub downloads: set up this marker in your game." & RETURN & "\xA5 Score descriptor: How would you like your score labeled?" & RETURN & RETURN & "-- \xA9 kwik 2000">
+  [ 90] extcall 2 ............................... return "DESCRIPTION:" & RETURN & "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display." & RETURN & "Additional optional behaviors are required if you want to use more fields or have multiple players." & RETURN & RETURN & "PARAMETERS:" & RETURN & "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?" & RETURN & "\xA5 Text member holding Score: The text member holding the score." & RETURN & "\xA5 Game ID: Unique ID provided to you by Macromedia." & RETURN & "\xA5 Game Title: Title to display in the HS Hub." & RETURN & "\xA5 Screen Width: Width of your game's screen." & RETURN & "\xA5 Screen Height: Height of your game's screen." & RETURN & "\xA5 Marker to wait at while HS Hub downloads: set up this marker in your game." & RETURN & "\xA5 Score descriptor: How would you like your score labeled?" & RETURN & RETURN & "-- \xA9 kwik 2000"
+  [ 92] ret
+end
+
+on mouseDown me
+  [  0] getparam 0 .............................. <me>
+  [  2] pusharglistnoret 1 ...................... <me>
+  [  4] localcall 4 ............................. initList(me)
+  [  6] ret
+end
+
+on mouseUp me
+  [  0] getparam 0 .............................. <me>
+  [  2] pusharglistnoret 1 ...................... <me>
+  [  4] localcall 6 ............................. branchToScores(me)
+  [  6] ret
+end
+
+on initList me
+  [  0] getglobal 697 ........................... <gSwScoreSetupList>
+  [  3] pusharglist 1 ........................... <gSwScoreSetupList>
+  [  5] extcall 696 ............................. <listp(gSwScoreSetupList)>
+  [  8] not ..................................... <not listp(gSwScoreSetupList)>
+  [  9] jmpifz [ 26] ............................ if not listp(gSwScoreSetupList) then
+  [ 12] pusharglist 0 ........................... <[:]>
+  [ 14] pushproplist ............................ <[:]>
+  [ 15] setglobal 697 ........................... gSwScoreSetupList = [:]
+  [ 18] getglobal 697 ........................... <gSwScoreSetupList>
+  [ 21] pusharglistnoret 1 ...................... <gSwScoreSetupList>
+  [ 23] extcall 698 ............................. sort(gSwScoreSetupList)
+  [ 26] getparam 0 .............................. <me>
+  [ 28] pushsymb 701 ............................ <#gameid>
+  [ 31] getprop 689 ............................. <pGameID>
+  [ 34] pusharglistnoret 3 ...................... <me, #gameid, pGameID>
+  [ 36] localcall 5 ............................. addToList(me, #gameid, pGameID)
+  [ 38] getparam 0 .............................. <me>
+  [ 40] pushsymb 702 ............................ <#gametitle1>
+  [ 43] getprop 690 ............................. <pTitle1>
+  [ 46] pusharglistnoret 3 ...................... <me, #gametitle1, pTitle1>
+  [ 48] localcall 5 ............................. addToList(me, #gametitle1, pTitle1)
+  [ 50] getparam 0 .............................. <me>
+  [ 52] pushsymb 703 ............................ <#gametitle2>
+  [ 55] pushcons 320 ............................ <EMPTY>
+  [ 58] pusharglistnoret 3 ...................... <me, #gametitle2, EMPTY>
+  [ 60] localcall 5 ............................. addToList(me, #gametitle2, EMPTY)
+  [ 62] getparam 0 .............................. <me>
+  [ 64] pushsymb 50 ............................. <#width>
+  [ 67] getprop 691 ............................. <pScreenW>
+  [ 70] pusharglistnoret 3 ...................... <me, #width, pScreenW>
+  [ 72] localcall 5 ............................. addToList(me, #width, pScreenW)
+  [ 74] getparam 0 .............................. <me>
+  [ 76] pushsymb 97 ............................. <#height>
+  [ 79] getprop 692 ............................. <pScreenH>
+  [ 82] pusharglistnoret 3 ...................... <me, #height, pScreenH>
+  [ 84] localcall 5 ............................. addToList(me, #height, pScreenH)
+  [ 86] getparam 0 .............................. <me>
+  [ 88] pushsymb 704 ............................ <#userName>
+  [ 91] pushcons 328 ............................ <EMPTY>
+  [ 94] pusharglistnoret 3 ...................... <me, #userName, EMPTY>
+  [ 96] localcall 5 ............................. addToList(me, #userName, EMPTY)
+  [ 98] getparam 0 .............................. <me>
+  [100] pushsymb 705 ............................ <#userscore>
+  [103] getprop 688 ............................. <pScoreMem>
+  [106] getobjprop 101 .......................... <pScoreMem.text>
+  [109] pusharglistnoret 3 ...................... <me, #userscore, pScoreMem.text>
+  [111] localcall 5 ............................. addToList(me, #userscore, pScoreMem.text)
+  [113] getparam 0 .............................. <me>
+  [115] pushsymb 706 ............................ <#scoredesc>
+  [118] getprop 695 ............................. <pScoreDes>
+  [121] pusharglistnoret 3 ...................... <me, #scoredesc, pScoreDes>
+  [123] localcall 5 ............................. addToList(me, #scoredesc, pScoreDes)
+  [125] getparam 0 .............................. <me>
+  [127] pushsymb 707 ............................ <#movielocation>
+  [130] getmovieprop 676 ........................ <the moviePath>
+  [133] getmovieprop 708 ........................ <the movieName>
+  [136] joinstr ................................. <the moviePath & the movieName>
+  [137] pusharglistnoret 3 ...................... <me, #movielocation, the moviePath & the movieName>
+  [139] localcall 5 ............................. addToList(me, #movielocation, the moviePath & the movieName)
+  [141] getparam 0 .............................. <me>
+  [143] pushsymb 709 ............................ <#optional1>
+  [146] pusharglist 0 ........................... <[]>
+  [148] pushlist ................................ <[]>
+  [149] pusharglistnoret 3 ...................... <me, #optional1, []>
+  [151] localcall 5 ............................. addToList(me, #optional1, [])
+  [153] getparam 0 .............................. <me>
+  [155] pushsymb 710 ............................ <#optional2>
+  [158] pusharglist 0 ........................... <[]>
+  [160] pushlist ................................ <[]>
+  [161] pusharglistnoret 3 ...................... <me, #optional2, []>
+  [163] localcall 5 ............................. addToList(me, #optional2, [])
+  [165] getparam 0 .............................. <me>
+  [167] pushsymb 711 ............................ <#optional3>
+  [170] pusharglist 0 ........................... <[]>
+  [172] pushlist ................................ <[]>
+  [173] pusharglistnoret 3 ...................... <me, #optional3, []>
+  [175] localcall 5 ............................. addToList(me, #optional3, [])
+  [177] getparam 0 .............................. <me>
+  [179] pushsymb 712 ............................ <#function>
+  [182] getprop 685 ............................. <pFunction>
+  [185] pusharglistnoret 3 ...................... <me, #function, pFunction>
+  [187] localcall 5 ............................. addToList(me, #function, pFunction)
+  [189] getparam 0 .............................. <me>
+  [191] pushsymb 713 ............................ <#status>
+  [194] pushsymb 561 ............................ <#START>
+  [197] pusharglistnoret 3 ...................... <me, #status, #START>
+  [199] localcall 5 ............................. addToList(me, #status, #START)
+  [201] ret
+end
+
+on addToList me, whatProp, whatValue
+  [  0] getglobal 697 ........................... <gSwScoreSetupList>
+  [  3] getparam 8 .............................. <whatProp>
+  [  5] pusharglist 2 ........................... <gSwScoreSetupList, whatProp>
+  [  7] extcall 715 ............................. <getaProp(gSwScoreSetupList, whatProp)>
+  [ 10] pusharglist 1 ........................... <getaProp(gSwScoreSetupList, whatProp)>
+  [ 12] extcall 714 ............................. <voidp(getaProp(gSwScoreSetupList, whatProp))>
+  [ 15] jmpifz [ 33] ............................ if voidp(getaProp(gSwScoreSetupList, whatProp)) then / else
+  [ 18] getglobal 697 ........................... <gSwScoreSetupList>
+  [ 21] getparam 8 .............................. <whatProp>
+  [ 23] getparam 16 ............................. <whatValue>
+  [ 25] pusharglistnoret 3 ...................... <gSwScoreSetupList, whatProp, whatValue>
+  [ 27] extcall 611 ............................. addProp(gSwScoreSetupList, whatProp, whatValue)
+  [ 30] jmp [ 45]
+  [ 33] getglobal 697 ........................... <gSwScoreSetupList>
+  [ 36] getparam 8 .............................. <whatProp>
+  [ 38] getparam 16 ............................. <whatValue>
+  [ 40] pusharglistnoret 3 ...................... <gSwScoreSetupList, whatProp, whatValue>
+  [ 42] extcall 716 ............................. setaProp(gSwScoreSetupList, whatProp, whatValue)
+  [ 45] ret
+end
+
+on branchToScores me
+  [  0] getmovieprop 719 ........................ <the environment>
+  [  3] getobjprop 720 .......................... <(the environment).runMode>
+  [  6] peek 0 .................................. case (the environment).runMode of
+  [  8] pushcons 336 ............................ <"Plugin">
+  [ 11] eq
+  [ 12] jmpifz [ 83] ............................ (case) "Plugin":
+  [ 15] getmovieprop 719 ........................ <the environment>
+  [ 18] getobjprop 721 .......................... <(the environment).shockMachine>
+  [ 21] pushint8 1 .............................. <1>
+  [ 24] eq ...................................... <(the environment).shockMachine = 1>
+  [ 25] jmpifz [ 39] ............................ if (the environment).shockMachine = 1 then / else
+  [ 28] getparam 0 .............................. <me>
+  [ 30] pusharglist 1 ........................... <me>
+  [ 32] localcall 7 ............................. <setupGlobalBranch(me)>
+  [ 34] setlocal 0 .............................. myURL = setupGlobalBranch(me)
+  [ 36] jmp [ 65]
+  [ 39] getmovieprop 676 ........................ <the moviePath>
+  [ 42] pushcons 344 ............................ <"http://">
+  [ 45] containsstr ............................. <the moviePath contains "http://">
+  [ 46] jmpifz [ 60] ............................ if the moviePath contains "http://" then / else
+  [ 49] getparam 0 .............................. <me>
+  [ 51] pusharglist 1 ........................... <me>
+  [ 53] localcall 7 ............................. <setupGlobalBranch(me)>
+  [ 55] setlocal 0 .............................. myURL = setupGlobalBranch(me)
+  [ 57] jmp [ 65]
+  [ 60] pushcons 352 ............................ <EMPTY>
+  [ 63] setlocal 0 .............................. myURL = EMPTY
+  [ 65] getlocal 0 .............................. <myURL>
+  [ 67] pusharglist 1 ........................... <myURL>
+  [ 69] extcall 723 ............................. <gotoNetMovie(myURL)>
+  [ 72] getlocal 0 .............................. <myURL>
+  [ 74] pusharglist 2 ........................... <[gotoNetMovie(myURL), myURL]>
+  [ 76] pushlist ................................ <[gotoNetMovie(myURL), myURL]>
+  [ 77] setglobal 722 ........................... gSwScoreNetID = [gotoNetMovie(myURL), myURL]
+  [ 80] jmp [179]
+  [ 83] peek 0
+  [ 85] pushcons 360 ............................ <"Author">
+  [ 88] eq
+  [ 89] jmpifz [170] ............................ (case) "Author":
+  [ 92] pushint8 1 .............................. <1>
+  [ 95] setlocal 8
+  [ 97] getlocal 8
+  [ 99] getmovieprop 724 ........................ <the windowList>
+  [102] pusharglist 1 ........................... <the windowList>
+  [104] extcall 183 ............................. <count(the windowList)>
+  [107] lteq
+  [108] jmpifz [154] ............................ repeat with n = 1 to count(the windowList)
+  [111] getmovieprop 724 ........................ <the windowList>
+  [114] getlocal 8 .............................. <n>
+  [116] pusharglist 2 ........................... <the windowList, n>
+  [118] objcall 185 ............................. <(the windowList)[n]>
+  [121] getobjprop 69 ........................... <(the windowList)[n].name>
+  [124] pushcons 368 ............................ <"scorez-2000">
+  [127] containsstr ............................. <(the windowList)[n].name contains "scorez-2000">
+  [128] jmpifz [143] ............................ if (the windowList)[n].name contains "scorez-2000" then
+  [131] getlocal 8 .............................. <n>
+  [133] pusharglist 1 ........................... <n>
+  [135] extcall 726 ............................. <window(n)>
+  [138] pusharglistnoret 1 ...................... <window(n)>
+  [140] extcall 725 ............................. forget(window(n))
+  [143] pushint8 1
+  [146] getlocal 8
+  [148] add
+  [149] setlocal 8
+  [151] endrepeat [ 97]
+  [154] pushcons 376 ............................ <"http://www.shockwave.com/content/highscores/nosave/hshub-2000-2.dcr">
+  [157] pusharglist 1 ........................... <"http://www.shockwave.com/content/highscores/nosave/hshub-2000-2.dcr">
+  [159] extcall 726 ............................. <window("http://www.shockwave.com/content/highscores/nosave/hshub-2000-2.dcr")>
+  [162] pusharglistnoret 1 ...................... <window("http://www.shockwave.com/content/highscores/nosave/hshub-2000-2.dcr")>
+  [164] extcall 727 ............................. open(window("http://www.shockwave.com/content/highscores/nosave/hshub-2000-2.dcr"))
+  [167] jmp [179]
+  [170] peek 0
+  [172] pushcons 384 ............................ <"Projector">
+  [175] eq
+  [176] jmpifz [179] ............................ (case) "Projector":
+  [179] pop 1 ................................... end case
+  [181] getprop 693 ............................. <pMarker>
+  [184] pusharglistnoret 1 ...................... <pMarker>
+  [186] extcall 553 ............................. go(pMarker)
+  [189] ret
+end
+
+on setupGlobalBranch me
+  [  0] pushcons 392 ............................ <"swURL">
+  [  3] pusharglist 1 ........................... <"swURL">
+  [  5] extcall 675 ............................. <externalParamValue("swURL")>
+  [  8] pusharglist 1 ........................... <externalParamValue("swURL")>
+  [ 10] extcall 714 ............................. <voidp(externalParamValue("swURL"))>
+  [ 13] not ..................................... <not voidp(externalParamValue("swURL"))>
+  [ 14] jmpifz [ 30] ............................ if not voidp(externalParamValue("swURL")) then / else
+  [ 17] pushcons 400 ............................ <"swURL">
+  [ 20] pusharglist 1 ........................... <"swURL">
+  [ 22] extcall 675 ............................. <externalParamValue("swURL")>
+  [ 25] setlocal 0 .............................. myURL = externalParamValue("swURL")
+  [ 27] jmp [113]
+  [ 30] getmovieprop 676 ........................ <the moviePath>
+  [ 33] setlocal 8 .............................. myGameURL = the moviePath
+  [ 35] pushcons 408 ............................ <"/">
+  [ 38] setmovieprop 556 ........................ the itemDelimiter = "/"
+  [ 41] pushzero ................................ <0>
+  [ 42] pushzero ................................ <0>
+  [ 43] pushzero ................................ <0>
+  [ 44] pushzero ................................ <0>
+  [ 45] pushint8 3 .............................. <3>
+  [ 48] pushzero ................................ <0>
+  [ 49] pushzero ................................ <0>
+  [ 50] pushzero ................................ <0>
+  [ 51] getlocal 8 .............................. <myGameURL>
+  [ 53] getchunk ................................ <item 3 of myGameURL>
+  [ 54] setlocal 16 ............................. mySite = item 3 of myGameURL
+  [ 56] getlocal 8 .............................. <myGameURL>
+  [ 58] pushcons 416 ............................ <"http://">
+  [ 61] containsstr ............................. <myGameURL contains "http://">
+  [ 62] getlocal 16 ............................. <mySite>
+  [ 64] pushcons 424 ............................ <"shockwave.com">
+  [ 67] containsstr ............................. <mySite contains "shockwave.com">
+  [ 68] and ..................................... <(myGameURL contains "http://") and (mySite contains "shockwave.com")>
+  [ 69] jmpifz [108] ............................ if (myGameURL contains "http://") and (mySite contains "shockwave.com") then / else
+  [ 72] pushcons 432 ............................ <".">
+  [ 75] setmovieprop 556 ........................ the itemDelimiter = "."
+  [ 78] pushzero ................................ <0>
+  [ 79] pushzero ................................ <0>
+  [ 80] pushzero ................................ <0>
+  [ 81] pushzero ................................ <0>
+  [ 82] pushint8 1 .............................. <1>
+  [ 85] pushzero ................................ <0>
+  [ 86] pushzero ................................ <0>
+  [ 87] pushzero ................................ <0>
+  [ 88] getlocal 16 ............................. <mySite>
+  [ 90] getchunk ................................ <item 1 of mySite>
+  [ 91] setlocal 24 ............................. myPrefix = item 1 of mySite
+  [ 93] pushcons 440 ............................ <"http://">
+  [ 96] getlocal 24 ............................. <myPrefix>
+  [ 98] joinstr ................................. <"http://" & myPrefix>
+  [ 99] pushcons 448 ............................ <".shockwave.com/content/highscores/scorez-2000.dcr">
+  [102] joinstr ................................. <"http://" & myPrefix & ".shockwave.com/content/highscores/scorez-2000.dcr">
+  [103] setlocal 0 .............................. myURL = "http://" & myPrefix & ".shockwave.com/content/highscores/scorez-2000.dcr"
+  [105] jmp [113]
+  [108] pushcons 456 ............................ <"http://www.shockwave.com/content/highscores/scorez-2000.dcr">
+  [111] setlocal 0 .............................. myURL = "http://www.shockwave.com/content/highscores/scorez-2000.dcr"
+  [113] getlocal 0 .............................. <myURL>
+  [115] pusharglistnoret 1 ...................... <myURL>
+  [117] extcall 2 ............................... return myURL
+  [119] ret
+end

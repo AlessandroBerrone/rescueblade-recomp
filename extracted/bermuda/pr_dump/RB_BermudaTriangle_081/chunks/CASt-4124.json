@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 1644,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 330,
+    "scriptSrcText": "property this, radians, thisFrame, segList, quadList, skewAngle, skewOffset\rglobal gPaused\r\ron beginSprite\r  radians = float(180 / PI)\r  this = sprite(the currentSpriteNum)\r  thisFrame = 1\r  segList = []\r  repeat with i = 0 to 5\r    segList.add(sprite(the currentSpriteNum + i))\r  end repeat\r  quadList = []\r  repeat with i = 1 to 6\r    tempQuadList = [point(0, 0), point(200, 0), point(100, 100), point(0, 100)]\r    quadList.add(tempQuadList)\r  end repeat\r  repeat with i = 1 to 6\r    quadList[i][1].locV = (i - 1) * 55\r    quadList[i][2].locV = (i - 1) * 55\r    quadList[i][3].locV = i * 55\r    quadList[i][4].locV = i * 55\r    sprite(the currentSpriteNum + i - 1).locZ = 2\r    segList[i].quad = quadList[i]\r  end repeat\r  sprite(the currentSpriteNum + 6).locZ = 900\r  skewAngle = 100\r  skewOffset = 0\rend\r\ron exitFrame\r  if gPaused = 0 then\r    thisFrame = thisFrame - 1\r    if thisFrame < 1 then\r      thisFrame = 20\r    end if\r    curveOffset = 300\r    skewAngle = skewAngle + 0.0005\r    if skewAngle > 360 then\r      skewAngle = skewAngle - 360\r    end if\r    skewOffset = 0\r    repeat with i = 1 to 6\r      quadList[i][1].locH = 256 - (curveOffset + 30) + skewOffset\r      quadList[i][2].locH = 256 + (curveOffset + 30) + skewOffset\r      curveOffset = curveOffset * 0.59999999999999998\r      skewOffset = 80 * cos((skewAngle + ((i - 1) * 60)) * radians)\r      quadList[i][3].locH = 256 + (curveOffset + 30) + skewOffset\r      quadList[i][4].locH = 256 - (curveOffset + 30) + skewOffset\r      segList[i].memberNum = 88 + thisFrame\r      segList[i].quad = quadList[i]\r    end repeat\r  end if\rend\r",
+    "name": "Tornado"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

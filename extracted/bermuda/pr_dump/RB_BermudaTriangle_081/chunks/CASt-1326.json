@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 349,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 7,
+    "scriptSrcText": "global gProControls\r\ron exitFrame me\r  go(the frame)\rend\r\ron mouseUp\r  case the rollover of\r    10:\r      gProControls = 0\r      go(\"menuScreen\")\r      puppetSound(2, member(12, \"Sfx\"))\r    11:\r      gProControls = 1\r      go(\"menuScreen\")\r      puppetSound(2, member(12, \"Sfx\"))\r  end case\rend\r",
+    "name": "ControlScreenScript"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

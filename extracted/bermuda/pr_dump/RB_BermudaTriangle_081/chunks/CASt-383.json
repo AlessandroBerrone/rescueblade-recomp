@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2720,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 76,
+    "scriptSrcText": "property numberSpriteList, prevScore, displayScore, fuelBar, damageBar, fuelBarDelay, fuelFlashToggle, displayDamage, damageFlashToggle, damageBarDelay, displayFuel, coconutBar\rglobal gScore, gDamagePercent, gfuelPercent, gPaused, gCoconuts\r\ron beginSprite\r  gScore = 0\r  prevScore = 0\r  displayScore = float(0)\r  sprite(the currentSpriteNum).locZ = 2000\r  numberSpriteList = []\r  repeat with i = 1 to 7\r    numberSpriteList.add(sprite(the currentSpriteNum + i - 1))\r    sprite(the currentSpriteNum + i - 1).locZ = 2000 + 1\r  end repeat\r  fuelBar = sprite(the currentSpriteNum + 9)\r  sprite(the currentSpriteNum + 10).locZ = 2004\r  fuelBar.locZ = 2003\r  coconutBar = sprite(2)\r  coconutBar.locZ = 2003\r  damageBar = sprite(the currentSpriteNum + 7)\r  sprite(the currentSpriteNum + 8).locZ = 2002\r  damageBar.locZ = 2001\r  fuelBarDelay = 0\r  displayFuel = 50\r  fuelFlashToggle = 1\r  displayDamage = 100\r  damageBarDelay = 0\r  damageFlashToggle = 1\rend\r\ron exitFrame\r  if gPaused = 0 then\r    if gScore > 9999999 then\r      gScore = 9999999\r    end if\r    displayScore = displayScore + ((gScore - displayScore) * 0.20000000000000001)\r    calcScore = integer(displayScore)\r    repeat with i = 7 down to 1\r      temp = calcScore mod power(10, i - 1)\r      temp1 = (calcScore - temp) / power(10, i - 1)\r      calcScore = temp\r      numberSpriteList[i].member = member(50 + temp1, \"Gfx\")\r    end repeat\r    if gfuelPercent > 100 then\r      gfuelPercent = 100\r    end if\r    displayFuel = displayFuel + ((gfuelPercent - displayFuel) * 0.05)\r    fuelBar.locH = 512 - (displayFuel / 100.0 * 93)\r    if displayFuel < 30 then\r      fuelBarDelay = fuelBarDelay + 1\r      if fuelBarDelay = 4 then\r        fuelBarDelay = 0\r        fuelBar.blend = 55 + (45 * fuelFlashToggle)\r        if fuelFlashToggle = 1 then\r          fuelBar.locH = 420\r        end if\r        fuelFlashToggle = -fuelFlashToggle\r        if soundBusy(3) = 0 then\r          puppetSound(3, member(13, \"Sfx\"))\r        end if\r      end if\r    else\r      fuelBar.blend = 100\r    end if\r    if gDamagePercent > 100 then\r      gDamagePercent = 100\r    end if\r    displayDamage = displayDamage + ((gDamagePercent - displayDamage) * 0.05)\r    damageBar.locH = displayDamage / 100.0 * 92\r    if gDamagePercent > 80 then\r      damageBarDelay = damageBarDelay + 1\r      if damageBarDelay = 4 then\r        damageBarDelay = 0\r        damageBar.blend = 55 + (45 * damageFlashToggle)\r        damageFlashToggle = -damageFlashToggle\r        if soundBusy(3) = 0 then\r          puppetSound(3, member(13, \"Sfx\"))\r        end if\r      else\r        damageBar.blend = 100\r      end if\r    end if\r    coconutBar.locH = gCoconuts * 9\r  end if\rend\r",
+    "name": "Score&Bars"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

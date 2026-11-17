@@ -1,0 +1,117 @@
+{
+  "totalLength": 1576,
+  "totalLength2": 1576,
+  "headerLength": 92,
+  "scriptNumber": 244,
+  "unk20": 8,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65575,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 1544,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 16,
+  "propertiesOffset": 92,
+  "globalsCount": 11,
+  "globalsOffset": 124,
+  "handlersCount": 2,
+  "handlersOffset": 146,
+  "literalsCount": 5,
+  "literalsOffset": 1456,
+  "literalsDataCount": 48,
+  "literalsDataOffset": 1496,
+  "propertyNameIDs": [
+    20,
+    40,
+    48,
+    608,
+    38,
+    649,
+    341,
+    342,
+    757,
+    660,
+    663,
+    664,
+    54,
+    755,
+    756,
+    23
+  ],
+  "globalNameIDs": [
+    47,
+    55,
+    364,
+    180,
+    430,
+    450,
+    632,
+    453,
+    410,
+    448,
+    669
+  ],
+  "handlers": [
+    {
+      "nameID": 18,
+      "vectorPos": 65535,
+      "compiledLen": 254,
+      "compiledOffset": 230,
+      "argumentCount": 0,
+      "argumentOffset": 484,
+      "localsCount": 4,
+      "localsOffset": 484,
+      "globalsCount": 0,
+      "globalsOffset": 492,
+      "unknown1": 272,
+      "unknown2": 6,
+      "lineCount": 26,
+      "lineOffset": 492
+    },
+    {
+      "nameID": 19,
+      "vectorPos": 15,
+      "compiledLen": 816,
+      "compiledOffset": 518,
+      "argumentCount": 0,
+      "argumentOffset": 1334,
+      "localsCount": 7,
+      "localsOffset": 1334,
+      "globalsCount": 0,
+      "globalsOffset": 1348,
+      "unknown1": 973,
+      "unknown2": 36,
+      "lineCount": 108,
+      "lineOffset": 1348
+    }
+  ],
+  "literals": [
+    {
+      "type": 9,
+      "offset": 0,
+      "value": 0.5
+    },
+    {
+      "type": 1,
+      "offset": 12,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 20,
+      "value": 0.5
+    },
+    {
+      "type": 1,
+      "offset": 32,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 40,
+      "value": "Sfx"
+    }
+  ]
+}

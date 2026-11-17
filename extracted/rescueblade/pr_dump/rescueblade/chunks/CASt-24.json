@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 1891,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 203,
+    "scriptSrcText": "global gCurrentLevel, gTileIDList, gTileHeightList, gSceneryList, gLevel, gLevelResult, gLevelScoreList, gScoreTotal, gFirstTime, gLockOut, gGameName\r\ron startMovie\r  if gFirstTime = VOID then\r    gFirstTime = 1\r    gGameName = \"RBlade\"\r    gCurrentLevel = 1\r    gTileIDList = []\r    gTileHeightList = []\r    gSceneryList = []\r    gLevel = 1\r    gLevelResult = #NULL\r    gLevelScoreList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\r    gScoreTotal = 0\r    gLockOut = 0\r    gLockOut = getPref(gGameName)\r    if gLockOut = VOID then\r      gLockOut = \"0\"\r      setPref(gGameName, gLockOut)\r    end if\r    if (the environment).runMode <> \"Author\" then\r      the allowSaveLocal = 0\r      if not validDomain() then\r        go(\"stolen\")\r      end if\r    end if\r  else\r    go(\"MenuScreen\")\r  end if\rend\r\ron validDomain\r  if externalParamValue(\"src\") starts \"http:\" then\r    return 0\r  end if\r  validDomains = [\"shockwave.com\", \"sticky3d.com\"]\r  repeat with sDomain in validDomains\r    if the moviePath contains sDomain then\r      return 1\r    end if\r  end repeat\r  return 0\rend\r\ron AngleGrind OriginX, OriginY, TargetX, TargetY\r  radians = float(180 / PI)\r  Grind = float(0)\r  X = float(TargetX) - float(OriginX)\r  Y = float(TargetY) - float(OriginY)\r  if (X = 0) and (Y = 0) then\r    Grind = 0\r  end if\r  if (X = 0) or (Y = 0) then\r    if (X = 0) and (Y < 0) then\r      Grind = 270\r    end if\r    if (X = 0) and (Y > 0) then\r      Grind = 90\r    end if\r    if (Y = 0) and (X > 0) then\r      Grind = 0\r    end if\r    if (Y = 0) and (X < 0) then\r      Grind = 180\r    end if\r  end if\r  if (X <> 0) and (Y <> float(0)) then\r    if X > 0 then\r      Grind = atan(Y / X) * radians\r    end if\r    if X < 0 then\r      Grind = 180 + (atan(Y / X) * radians)\r    end if\r    if Grind < 0 then\r      Grind = Grind + 360\r    end if\r  end if\r  return Grind\rend\r",
+    "name": "Initialization"
+  },
+  "member": {
+    "scriptType": 3
+  }
+}

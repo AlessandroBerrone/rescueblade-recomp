@@ -1,0 +1,299 @@
+property this, Xpos, radians, Ypos, loopX, loopWidth, door, cableGuy, distToGuy
+global gXVel, gXOffset, gPaused, gTileIDList, gXVelChange
+
+on beginSprite
+  [  0] pusharglist 0 ........................... <>
+  [  2] extcall 41 .............................. <PI>
+  [  5] pushint8 180 ............................ <180>
+  [  8] div ..................................... <PI / 180>
+  [  9] pusharglist 1 ........................... <PI / 180>
+  [ 11] extcall 33 .............................. <float(PI / 180)>
+  [ 14] setprop 40 .............................. radians = float(PI / 180)
+  [ 17] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 19] pusharglist 1 ........................... <the currentSpriteNum>
+  [ 21] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [ 23] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [ 25] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 27] pushint8 1 .............................. <1>
+  [ 30] sub ..................................... <the currentSpriteNum - 1>
+  [ 31] pusharglist 1 ........................... <the currentSpriteNum - 1>
+  [ 33] extcall 21 .............................. <sprite(the currentSpriteNum - 1)>
+  [ 35] setprop 779 ............................. door = sprite(the currentSpriteNum - 1)
+  [ 38] getprop 779 ............................. <door>
+  [ 41] getprop 20 .............................. <this>
+  [ 43] getobjprop 213 .......................... <this.loc>
+  [ 46] setobjprop 213 .......................... door.loc = this.loc
+  [ 49] getglobal 180 ........................... <gTileIDList>
+  [ 52] getobjprop 183 .......................... <gTileIDList.count>
+  [ 55] pushint8 128 ............................ <128>
+  [ 58] mul ..................................... <gTileIDList.count * 128>
+  [ 59] pushcons 0 .............................. <0.5>
+  [ 61] mul ..................................... <gTileIDList.count * 128 * 0.5>
+  [ 62] setprop 608 ............................. loopX = gTileIDList.count * 128 * 0.5
+  [ 65] getglobal 180 ........................... <gTileIDList>
+  [ 68] getobjprop 183 .......................... <gTileIDList.count>
+  [ 71] pushint8 128 ............................ <128>
+  [ 74] mul ..................................... <gTileIDList.count * 128>
+  [ 75] setprop 54 .............................. loopWidth = gTileIDList.count * 128
+  [ 78] getprop 20 .............................. <this>
+  [ 80] getobjprop 36 ........................... <this.locH>
+  [ 83] pusharglist 1 ........................... <this.locH>
+  [ 85] extcall 33 .............................. <float(this.locH)>
+  [ 88] setprop 48 .............................. Xpos = float(this.locH)
+  [ 91] getprop 20 .............................. <this>
+  [ 93] pushint8 203 ............................ <203>
+  [ 96] setobjprop 178 .......................... this.locZ = 203
+  [ 99] getprop 779 ............................. <door>
+  [102] pushint8 50 ............................. <50>
+  [105] setobjprop 178 .......................... door.locZ = 50
+  [108] pushint8 6 .............................. <6>
+  [111] pusharglist 1 ........................... <6>
+  [113] extcall 21 .............................. <sprite(6)>
+  [115] setprop 342 ............................. cableGuy = sprite(6)
+  [118] ret
+end
+
+on exitFrame
+  [  0] getglobal 364 ........................... <gPaused>
+  [  3] pushzero ................................ <0>
+  [  4] eq ...................................... <gPaused = 0>
+  [  5] jmpifz [553] ............................ if gPaused = 0 then
+  [  8] getprop 48 .............................. <Xpos>
+  [ 11] getglobal 47 ............................ <gXVel>
+  [ 14] add ..................................... <Xpos + gXVel>
+  [ 15] getglobal 55 ............................ <gXOffset>
+  [ 18] add ..................................... <Xpos + gXVel + gXOffset>
+  [ 19] setprop 48 .............................. Xpos = Xpos + gXVel + gXOffset
+  [ 22] getprop 48 .............................. <Xpos>
+  [ 25] getprop 608 ............................. <loopX>
+  [ 28] gt ...................................... <Xpos > loopX>
+  [ 29] jmpifz [ 42] ............................ if Xpos > loopX then
+  [ 32] getprop 48 .............................. <Xpos>
+  [ 35] getprop 54 .............................. <loopWidth>
+  [ 38] sub ..................................... <Xpos - loopWidth>
+  [ 39] setprop 48 .............................. Xpos = Xpos - loopWidth
+  [ 42] getprop 48 .............................. <Xpos>
+  [ 45] getprop 608 ............................. <loopX>
+  [ 48] inv ..................................... <-loopX>
+  [ 49] lt ...................................... <Xpos < -loopX>
+  [ 50] jmpifz [ 63] ............................ if Xpos < -loopX then
+  [ 53] getprop 48 .............................. <Xpos>
+  [ 56] getprop 54 .............................. <loopWidth>
+  [ 59] add ..................................... <Xpos + loopWidth>
+  [ 60] setprop 48 .............................. Xpos = Xpos + loopWidth
+  [ 63] getprop 48 .............................. <Xpos>
+  [ 66] pushzero ................................ <0>
+  [ 67] gt ...................................... <Xpos > 0>
+  [ 68] getprop 48 .............................. <Xpos>
+  [ 71] pushint8 512 ............................ <512>
+  [ 74] lt ...................................... <Xpos < 512>
+  [ 75] and ..................................... <(Xpos > 0) and (Xpos < 512)>
+  [ 76] jmpifz [534] ............................ if (Xpos > 0) and (Xpos < 512) then
+  [ 79] getprop 20 .............................. <this>
+  [ 81] getobjprop 213 .......................... <this.loc>
+  [ 84] pushint8 80 ............................. <80>
+  [ 87] pushint8 10 ............................. <10>
+  [ 90] pusharglist 2 ........................... <80, 10>
+  [ 92] extcall 57 .............................. <point(80, 10)>
+  [ 95] add ..................................... <this.loc + point(80, 10)>
+  [ 96] setlocal 0 .............................. frontPoint = this.loc + point(80, 10)
+  [ 98] getprop 20 .............................. <this>
+  [100] getobjprop 213 .......................... <this.loc>
+  [103] pushint8 100 ............................ <100>
+  [106] inv ..................................... <-100>
+  [107] pushint8 10 ............................. <10>
+  [110] pusharglist 2 ........................... <-100, 10>
+  [112] extcall 57 .............................. <point(-100, 10)>
+  [115] add ..................................... <this.loc + point(-100, 10)>
+  [116] setlocal 8 .............................. backPoint = this.loc + point(-100, 10)
+  [118] getlocal 0 .............................. <frontPoint>
+  [120] getobjprop 36 ........................... <frontPoint.locH>
+  [123] getprop 342 ............................. <cableGuy>
+  [126] getobjprop 36 ........................... <cableGuy.locH>
+  [129] getprop 342 ............................. <cableGuy>
+  [132] getobjprop 44 ........................... <cableGuy.Xvel>
+  [135] add ..................................... <cableGuy.locH + cableGuy.Xvel>
+  [136] sub ..................................... <frontPoint.locH - (cableGuy.locH + cableGuy.Xvel)>
+  [137] pusharglist 1 ........................... <frontPoint.locH - (cableGuy.locH + cableGuy.Xvel)>
+  [139] extcall 33 .............................. <float(frontPoint.locH - (cableGuy.locH + cableGuy.Xvel))>
+  [142] setlocal 16 ............................. xDiff = float(frontPoint.locH - (cableGuy.locH + cableGuy.Xvel))
+  [144] getlocal 0 .............................. <frontPoint>
+  [146] getobjprop 37 ........................... <frontPoint.locV>
+  [149] getprop 342 ............................. <cableGuy>
+  [152] getobjprop 37 ........................... <cableGuy.locV>
+  [155] getprop 342 ............................. <cableGuy>
+  [158] getobjprop 32 ........................... <cableGuy.Yvel>
+  [161] add ..................................... <cableGuy.locV + cableGuy.Yvel>
+  [162] sub ..................................... <frontPoint.locV - (cableGuy.locV + cableGuy.Yvel)>
+  [163] pusharglist 1 ........................... <frontPoint.locV - (cableGuy.locV + cableGuy.Yvel)>
+  [165] extcall 33 .............................. <float(frontPoint.locV - (cableGuy.locV + cableGuy.Yvel))>
+  [168] setlocal 24 ............................. yDiff = float(frontPoint.locV - (cableGuy.locV + cableGuy.Yvel))
+  [170] getlocal 16 ............................. <xDiff>
+  [172] getlocal 16 ............................. <xDiff>
+  [174] mul ..................................... <xDiff * xDiff>
+  [175] getlocal 24 ............................. <yDiff>
+  [177] getlocal 24 ............................. <yDiff>
+  [179] mul ..................................... <yDiff * yDiff>
+  [180] add ..................................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [181] pusharglist 1 ........................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [183] extcall 343 ............................. <sqrt((xDiff * xDiff) + (yDiff * yDiff))>
+  [186] pusharglist 1 ........................... <sqrt((xDiff * xDiff) + (yDiff * yDiff))>
+  [188] extcall 33 .............................. <float(sqrt((xDiff * xDiff) + (yDiff * yDiff)))>
+  [191] setprop 655 ............................. distToGuy = float(sqrt((xDiff * xDiff) + (yDiff * yDiff)))
+  [194] getlocal 16 ............................. <xDiff>
+  [196] getlocal 24 ............................. <yDiff>
+  [198] pusharglist 2 ........................... <xDiff, yDiff>
+  [200] extcall 57 .............................. <point(xDiff, yDiff)>
+  [203] setlocal 32 ............................. toGuyVector = point(xDiff, yDiff)
+  [205] getprop 655 ............................. <distToGuy>
+  [208] pushint8 80 ............................. <80>
+  [211] lt ...................................... <distToGuy < 80>
+  [212] jmpifz [279] ............................ if distToGuy < 80 then
+  [215] getprop 655 ............................. <distToGuy>
+  [218] pushzero ................................ <0>
+  [219] nteq .................................... <distToGuy <> 0>
+  [220] jmpifz [279] ............................ if distToGuy <> 0 then
+  [223] getlocal 32 ............................. <toGuyVector>
+  [225] getprop 655 ............................. <distToGuy>
+  [228] div ..................................... <toGuyVector / distToGuy>
+  [229] setlocal 40 ............................. normToGuyVector = toGuyVector / distToGuy
+  [231] getlocal 40 ............................. <normToGuyVector>
+  [233] pushint8 80 ............................. <80>
+  [236] getprop 655 ............................. <distToGuy>
+  [239] sub ..................................... <80 - distToGuy>
+  [240] mul ..................................... <normToGuyVector * (80 - distToGuy)>
+  [241] setlocal 48 ............................. pushVector = normToGuyVector * (80 - distToGuy)
+  [243] getprop 342 ............................. <cableGuy>
+  [246] getprop 342 ............................. <cableGuy>
+  [249] getobjprop 44 ........................... <cableGuy.Xvel>
+  [252] getlocal 48 ............................. <pushVector>
+  [254] getobjprop 36 ........................... <pushVector.locH>
+  [257] sub ..................................... <cableGuy.Xvel - pushVector.locH>
+  [258] setobjprop 44 ........................... cableGuy.Xvel = cableGuy.Xvel - pushVector.locH
+  [261] getprop 342 ............................. <cableGuy>
+  [264] getprop 342 ............................. <cableGuy>
+  [267] getobjprop 32 ........................... <cableGuy.Yvel>
+  [270] getlocal 48 ............................. <pushVector>
+  [272] getobjprop 37 ........................... <pushVector.locV>
+  [275] sub ..................................... <cableGuy.Yvel - pushVector.locV>
+  [276] setobjprop 32 ........................... cableGuy.Yvel = cableGuy.Yvel - pushVector.locV
+  [279] getlocal 8 .............................. <backPoint>
+  [281] getobjprop 36 ........................... <backPoint.locH>
+  [284] getprop 342 ............................. <cableGuy>
+  [287] getobjprop 36 ........................... <cableGuy.locH>
+  [290] getprop 342 ............................. <cableGuy>
+  [293] getobjprop 44 ........................... <cableGuy.Xvel>
+  [296] add ..................................... <cableGuy.locH + cableGuy.Xvel>
+  [297] sub ..................................... <backPoint.locH - (cableGuy.locH + cableGuy.Xvel)>
+  [298] pusharglist 1 ........................... <backPoint.locH - (cableGuy.locH + cableGuy.Xvel)>
+  [300] extcall 33 .............................. <float(backPoint.locH - (cableGuy.locH + cableGuy.Xvel))>
+  [303] setlocal 16 ............................. xDiff = float(backPoint.locH - (cableGuy.locH + cableGuy.Xvel))
+  [305] getlocal 8 .............................. <backPoint>
+  [307] getobjprop 37 ........................... <backPoint.locV>
+  [310] getprop 342 ............................. <cableGuy>
+  [313] getobjprop 37 ........................... <cableGuy.locV>
+  [316] getprop 342 ............................. <cableGuy>
+  [319] getobjprop 32 ........................... <cableGuy.Yvel>
+  [322] add ..................................... <cableGuy.locV + cableGuy.Yvel>
+  [323] sub ..................................... <backPoint.locV - (cableGuy.locV + cableGuy.Yvel)>
+  [324] pusharglist 1 ........................... <backPoint.locV - (cableGuy.locV + cableGuy.Yvel)>
+  [326] extcall 33 .............................. <float(backPoint.locV - (cableGuy.locV + cableGuy.Yvel))>
+  [329] setlocal 24 ............................. yDiff = float(backPoint.locV - (cableGuy.locV + cableGuy.Yvel))
+  [331] getlocal 16 ............................. <xDiff>
+  [333] getlocal 16 ............................. <xDiff>
+  [335] mul ..................................... <xDiff * xDiff>
+  [336] getlocal 24 ............................. <yDiff>
+  [338] getlocal 24 ............................. <yDiff>
+  [340] mul ..................................... <yDiff * yDiff>
+  [341] add ..................................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [342] pusharglist 1 ........................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [344] extcall 343 ............................. <sqrt((xDiff * xDiff) + (yDiff * yDiff))>
+  [347] pusharglist 1 ........................... <sqrt((xDiff * xDiff) + (yDiff * yDiff))>
+  [349] extcall 33 .............................. <float(sqrt((xDiff * xDiff) + (yDiff * yDiff)))>
+  [352] setprop 655 ............................. distToGuy = float(sqrt((xDiff * xDiff) + (yDiff * yDiff)))
+  [355] getlocal 16 ............................. <xDiff>
+  [357] getlocal 24 ............................. <yDiff>
+  [359] pusharglist 2 ........................... <xDiff, yDiff>
+  [361] extcall 57 .............................. <point(xDiff, yDiff)>
+  [364] setlocal 32 ............................. toGuyVector = point(xDiff, yDiff)
+  [366] getprop 655 ............................. <distToGuy>
+  [369] pushint8 100 ............................ <100>
+  [372] lt ...................................... <distToGuy < 100>
+  [373] jmpifz [440] ............................ if distToGuy < 100 then
+  [376] getprop 655 ............................. <distToGuy>
+  [379] pushzero ................................ <0>
+  [380] nteq .................................... <distToGuy <> 0>
+  [381] jmpifz [440] ............................ if distToGuy <> 0 then
+  [384] getlocal 32 ............................. <toGuyVector>
+  [386] getprop 655 ............................. <distToGuy>
+  [389] div ..................................... <toGuyVector / distToGuy>
+  [390] setlocal 40 ............................. normToGuyVector = toGuyVector / distToGuy
+  [392] getlocal 40 ............................. <normToGuyVector>
+  [394] pushint8 100 ............................ <100>
+  [397] getprop 655 ............................. <distToGuy>
+  [400] sub ..................................... <100 - distToGuy>
+  [401] mul ..................................... <normToGuyVector * (100 - distToGuy)>
+  [402] setlocal 48 ............................. pushVector = normToGuyVector * (100 - distToGuy)
+  [404] getprop 342 ............................. <cableGuy>
+  [407] getprop 342 ............................. <cableGuy>
+  [410] getobjprop 44 ........................... <cableGuy.Xvel>
+  [413] getlocal 48 ............................. <pushVector>
+  [415] getobjprop 36 ........................... <pushVector.locH>
+  [418] sub ..................................... <cableGuy.Xvel - pushVector.locH>
+  [419] setobjprop 44 ........................... cableGuy.Xvel = cableGuy.Xvel - pushVector.locH
+  [422] getprop 342 ............................. <cableGuy>
+  [425] getprop 342 ............................. <cableGuy>
+  [428] getobjprop 32 ........................... <cableGuy.Yvel>
+  [431] getlocal 48 ............................. <pushVector>
+  [433] getobjprop 37 ........................... <pushVector.locV>
+  [436] sub ..................................... <cableGuy.Yvel - pushVector.locV>
+  [437] setobjprop 32 ........................... cableGuy.Yvel = cableGuy.Yvel - pushVector.locV
+  [440] getprop 20 .............................. <this>
+  [442] getobjprop 36 ........................... <this.locH>
+  [445] getprop 342 ............................. <cableGuy>
+  [448] getobjprop 36 ........................... <cableGuy.locH>
+  [451] getprop 342 ............................. <cableGuy>
+  [454] getobjprop 44 ........................... <cableGuy.Xvel>
+  [457] add ..................................... <cableGuy.locH + cableGuy.Xvel>
+  [458] sub ..................................... <this.locH - (cableGuy.locH + cableGuy.Xvel)>
+  [459] pusharglist 1 ........................... <this.locH - (cableGuy.locH + cableGuy.Xvel)>
+  [461] extcall 33 .............................. <float(this.locH - (cableGuy.locH + cableGuy.Xvel))>
+  [464] setlocal 16 ............................. xDiff = float(this.locH - (cableGuy.locH + cableGuy.Xvel))
+  [466] getprop 20 .............................. <this>
+  [468] getobjprop 37 ........................... <this.locV>
+  [471] getprop 342 ............................. <cableGuy>
+  [474] getobjprop 37 ........................... <cableGuy.locV>
+  [477] getprop 342 ............................. <cableGuy>
+  [480] getobjprop 32 ........................... <cableGuy.Yvel>
+  [483] add ..................................... <cableGuy.locV + cableGuy.Yvel>
+  [484] sub ..................................... <this.locV - (cableGuy.locV + cableGuy.Yvel)>
+  [485] pusharglist 1 ........................... <this.locV - (cableGuy.locV + cableGuy.Yvel)>
+  [487] extcall 33 .............................. <float(this.locV - (cableGuy.locV + cableGuy.Yvel))>
+  [490] setlocal 24 ............................. yDiff = float(this.locV - (cableGuy.locV + cableGuy.Yvel))
+  [492] getlocal 16 ............................. <xDiff>
+  [494] pusharglist 1 ........................... <xDiff>
+  [496] extcall 370 ............................. <abs(xDiff)>
+  [499] pushint8 30 ............................. <30>
+  [502] lt ...................................... <abs(xDiff) < 30>
+  [503] jmpifz [534] ............................ if abs(xDiff) < 30 then
+  [506] getlocal 24 ............................. <yDiff>
+  [508] pushint8 30 ............................. <30>
+  [511] lt ...................................... <yDiff < 30>
+  [512] jmpifz [534] ............................ if yDiff < 30 then
+  [515] getprop 342 ............................. <cableGuy>
+  [518] getprop 342 ............................. <cableGuy>
+  [521] getobjprop 32 ........................... <cableGuy.Yvel>
+  [524] pushint8 30 ............................. <30>
+  [527] getlocal 24 ............................. <yDiff>
+  [529] sub ..................................... <30 - yDiff>
+  [530] sub ..................................... <cableGuy.Yvel - (30 - yDiff)>
+  [531] setobjprop 32 ........................... cableGuy.Yvel = cableGuy.Yvel - (30 - yDiff)
+  [534] getprop 20 .............................. <this>
+  [536] getprop 48 .............................. <Xpos>
+  [539] setobjprop 36 ........................... this.locH = Xpos
+  [542] getprop 779 ............................. <door>
+  [545] getprop 20 .............................. <this>
+  [547] getobjprop 213 .......................... <this.loc>
+  [550] setobjprop 213 .......................... door.loc = this.loc
+  [553] ret
+end

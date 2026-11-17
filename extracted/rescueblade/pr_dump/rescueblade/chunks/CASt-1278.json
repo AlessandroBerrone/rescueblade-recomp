@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 1742,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 99,
+    "scriptSrcText": "property this, Xpos, radians, Ypos, mapXPos, swell, swellList, swellListPointer, COPTER, sway, bellRung, loopX, loopWidth\rglobal gXVel, gXOffset, gPaused, gTileIDList, gScore, gFlyingPoints\r\ron beginSprite\r  radians = float(PI / 180)\r  this = sprite(the currentSpriteNum)\r  COPTER = sprite(4)\r  swellList = []\r  flyingPoints = sprite(3)\r  repeat with i = 1 to 90\r    swellAngle = 4 * i\r    swellList.add(5 * cos(swellAngle * radians))\r  end repeat\r  swellListPointer = 1\r  swell = 0\r  loopWidth = gTileIDList.count * 128\r  loopX = gTileIDList.count * 128 * 0.5\r  Xpos = float(this.locH)\r  Ypos = float(this.locV)\r  this.locZ = 50\r  mapXPos = Xpos - 256\r  sway = 0\r  swellAngle = 0\r  bellRung = 0\rend\r\ron exitFrame\r  if gPaused = 0 then\r    Xpos = Xpos + gXVel + gXOffset\r    if Xpos > loopX then\r      Xpos = Xpos - loopWidth\r    end if\r    if Xpos < -loopX then\r      Xpos = Xpos + loopWidth\r    end if\r    if (Xpos > 0) and (Xpos < 512) then\r      xDiff = COPTER.locH - this.locH\r      if abs(xDiff) < 20 then\r        yDiff = COPTER.locV - this.locV\r        if (yDiff > -150) and (yDiff < -60) then\r          sway = sway + 0.16\r        end if\r      end if\r    end if\r    sway = sway - (this.rotation * 0.01)\r    sway = sway * 0.98999999999999999\r    this.rotation = this.rotation + sway\r    if abs(this.rotation) > 20 then\r      if bellRung = 0 then\r        bellRung = 1\r        puppetSound(4, member(26, \"Sfx\"))\r        gScore = gScore + 100\r        gFlyingPoints = 100\r      end if\r    end if\r    swellListPointer = swellListPointer + 1\r    if swellListPointer > 90 then\r      swellListPointer = 1\r    end if\r    this.locH = Xpos\r    this.locV = Ypos + swellList[swellListPointer]\r  end if\rend\r",
+    "name": "Bell Buoy"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

@@ -1,0 +1,115 @@
+property swellList, swellListCounter, swellHeight
+global gTileHeightList, gTileIDList, gUnderSeaHeightList
+
+on getPropertyDescriptionList me
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setlocal 0 .............................. descriptionList = [:]
+  [  5] getlocal 0 .............................. <descriptionList>
+  [  7] pushsymb 775 ............................ <#swellHeight>
+  [ 10] pushsymb 9 .............................. <#default>
+  [ 12] pushzero ................................ <0>
+  [ 13] pushsymb 70 ............................. <#format>
+  [ 16] pushsymb 21 ............................. <#sprite>
+  [ 18] pushsymb 64 ............................. <#comment>
+  [ 21] pushcons 0 .............................. <"Sea Swell Height">
+  [ 23] pusharglist 6 ........................... <[#default: 0, #format: #sprite, #comment: "Sea Swell Height"]>
+  [ 25] pushproplist ............................ <[#default: 0, #format: #sprite, #comment: "Sea Swell Height"]>
+  [ 26] pusharglistnoret 3 ...................... <descriptionList, #swellHeight, [#default: 0, #format: #sprite, #comment: "Sea Swell Height"]>
+  [ 28] extcall 611 ............................. addProp(descriptionList, #swellHeight, [#default: 0, #format: #sprite, #comment: "Sea Swell Height"])
+  [ 31] getlocal 0 .............................. <descriptionList>
+  [ 33] pusharglistnoret 1 ...................... <descriptionList>
+  [ 35] extcall 2 ............................... return descriptionList
+  [ 37] ret
+end
+
+on beginSprite
+  [  0] pushzero ................................ <0>
+  [  1] setlocal 0 .............................. delayCount = 0
+  [  3] pushint8 1 .............................. <1>
+  [  6] setlocal 8 .............................. gSeaFrame = 1
+  [  8] pusharglist 0 ........................... <[]>
+  [ 10] pushlist ................................ <[]>
+  [ 11] setprop 583 ............................. swellList = []
+  [ 14] pushint8 1 .............................. <1>
+  [ 17] setprop 773 ............................. swellListCounter = 1
+  [ 20] pusharglist 0 ........................... <>
+  [ 22] extcall 41 .............................. <PI>
+  [ 25] pushcons 8 .............................. <180.0>
+  [ 27] div ..................................... <PI / 180.0>
+  [ 28] setlocal 16 ............................. radians = PI / 180.0
+  [ 30] pushint8 1 .............................. <1>
+  [ 33] setlocal 24
+  [ 35] getlocal 24
+  [ 37] pushint8 90 ............................. <90>
+  [ 40] lteq
+  [ 41] jmpifz [ 81] ............................ repeat with i = 1 to 90
+  [ 44] getprop 583 ............................. <swellList>
+  [ 47] getprop 775 ............................. <swellHeight>
+  [ 50] getlocal 24 ............................. <i>
+  [ 52] pushint8 4 .............................. <4>
+  [ 55] mul ..................................... <i * 4>
+  [ 56] getlocal 16 ............................. <radians>
+  [ 58] mul ..................................... <i * 4 * radians>
+  [ 59] pusharglist 1 ........................... <i * 4 * radians>
+  [ 61] extcall 43 .............................. <sin(i * 4 * radians)>
+  [ 64] mul ..................................... <swellHeight * sin(i * 4 * radians)>
+  [ 65] pusharglistnoret 2 ...................... <swellList, swellHeight * sin(i * 4 * radians)>
+  [ 67] objcall 418 ............................. swellList.add(swellHeight * sin(i * 4 * radians))
+  [ 70] pushint8 1
+  [ 73] getlocal 24
+  [ 75] add
+  [ 76] setlocal 24
+  [ 78] endrepeat [ 35]
+  [ 81] ret
+end
+
+on exitFrame
+  [  0] getprop 773 ............................. <swellListCounter>
+  [  3] pushint8 1 .............................. <1>
+  [  6] add ..................................... <swellListCounter + 1>
+  [  7] setprop 773 ............................. swellListCounter = swellListCounter + 1
+  [ 10] getprop 773 ............................. <swellListCounter>
+  [ 13] pushint8 90 ............................. <90>
+  [ 16] gt ...................................... <swellListCounter > 90>
+  [ 17] jmpifz [ 26] ............................ if swellListCounter > 90 then
+  [ 20] pushint8 1 .............................. <1>
+  [ 23] setprop 773 ............................. swellListCounter = 1
+  [ 26] pushint8 1 .............................. <1>
+  [ 29] setlocal 0
+  [ 31] getlocal 0
+  [ 33] getglobal 180 ........................... <gTileIDList>
+  [ 36] getobjprop 183 .......................... <gTileIDList.count>
+  [ 39] lteq
+  [ 40] jmpifz [106] ............................ repeat with i = 1 to gTileIDList.count
+  [ 43] getlocal 0 .............................. <i>
+  [ 45] pushint8 10 ............................. <10>
+  [ 48] mul ..................................... <i * 10>
+  [ 49] getprop 773 ............................. <swellListCounter>
+  [ 52] add ..................................... <(i * 10) + swellListCounter>
+  [ 53] setlocal 8 .............................. tempPointer = (i * 10) + swellListCounter
+  [ 55] getlocal 8 .............................. <tempPointer>
+  [ 57] pushint8 90 ............................. <90>
+  [ 60] mod ..................................... <tempPointer mod 90>
+  [ 61] setlocal 8 .............................. tempPointer = tempPointer mod 90
+  [ 63] getlocal 8 .............................. <tempPointer>
+  [ 65] pushzero ................................ <0>
+  [ 66] eq ...................................... <tempPointer = 0>
+  [ 67] jmpifz [ 75] ............................ if tempPointer = 0 then
+  [ 70] pushint8 1 .............................. <1>
+  [ 73] setlocal 8 .............................. tempPointer = 1
+  [ 75] getglobal 996 ........................... <gUnderSeaHeightList>
+  [ 78] getlocal 0 .............................. <i>
+  [ 80] getprop 583 ............................. <swellList>
+  [ 83] getlocal 8 .............................. <tempPointer>
+  [ 85] pusharglist 2 ........................... <swellList, tempPointer>
+  [ 87] objcall 185 ............................. <swellList[tempPointer]>
+  [ 90] pusharglistnoret 3 ...................... <gUnderSeaHeightList, i, swellList[tempPointer]>
+  [ 92] objcall 181 ............................. gUnderSeaHeightList[i] = swellList[tempPointer]
+  [ 95] pushint8 1
+  [ 98] getlocal 0
+  [100] add
+  [101] setlocal 0
+  [103] endrepeat [ 31]
+  [106] ret
+end

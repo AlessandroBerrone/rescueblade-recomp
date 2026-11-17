@@ -1,0 +1,574 @@
+property this, Xpos, swellAngle, radians, Ypos, mapXPos, survivorDelay, thisMember, startMember, Xvel, cableGuy, survivorState, ThisWidth, thisHalfHeight, grabCount, distToHQ, frameDir, pullCount, loopX, loopWidth, COPTER, ship, claw, blackCopter, stolenCount
+global gXVel, gXOffset, gPaused, gTileIDList, gCableItem, gCableLength, gRescueCount, gRescuedList, gScore, gXVelChange
+
+on beginSprite
+  [  0] pusharglist 0 ........................... <>
+  [  2] extcall 41 .............................. <PI>
+  [  5] pushint8 180 ............................ <180>
+  [  8] div ..................................... <PI / 180>
+  [  9] pusharglist 1 ........................... <PI / 180>
+  [ 11] extcall 33 .............................. <float(PI / 180)>
+  [ 14] setprop 40 .............................. radians = float(PI / 180)
+  [ 17] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 19] pusharglist 1 ........................... <the currentSpriteNum>
+  [ 21] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [ 23] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [ 25] getprop 20 .............................. <this>
+  [ 27] getobjprop 477 .......................... <this.memberNum>
+  [ 30] setprop 616 ............................. startMember = this.memberNum
+  [ 33] pushint8 80 ............................. <80>
+  [ 36] pusharglist 1 ........................... <80>
+  [ 38] extcall 21 .............................. <sprite(80)>
+  [ 40] setprop 796 ............................. claw = sprite(80)
+  [ 43] pushint8 4 .............................. <4>
+  [ 46] pusharglist 1 ........................... <4>
+  [ 48] extcall 21 .............................. <sprite(4)>
+  [ 50] setprop 341 ............................. COPTER = sprite(4)
+  [ 53] pushint8 79 ............................. <79>
+  [ 56] pusharglist 1 ........................... <79>
+  [ 58] extcall 21 .............................. <sprite(79)>
+  [ 60] setprop 801 ............................. blackCopter = sprite(79)
+  [ 63] pushint8 59 ............................. <59>
+  [ 66] pusharglist 1 ........................... <59>
+  [ 68] extcall 21 .............................. <sprite(59)>
+  [ 70] setprop 781 ............................. ship = sprite(59)
+  [ 73] getprop 616 ............................. <startMember>
+  [ 76] setprop 26 .............................. thisMember = startMember
+  [ 78] getprop 20 .............................. <this>
+  [ 80] getprop 26 .............................. <thisMember>
+  [ 82] pushcons 0 .............................. <"Gfx">
+  [ 84] pusharglist 2 ........................... <thisMember, "Gfx">
+  [ 86] extcall 27 .............................. <member(thisMember, "Gfx")>
+  [ 88] setobjprop 27 ........................... this.member = member(thisMember, "Gfx")
+  [ 90] getglobal 180 ........................... <gTileIDList>
+  [ 93] getobjprop 183 .......................... <gTileIDList.count>
+  [ 96] pushint8 128 ............................ <128>
+  [ 99] mul ..................................... <gTileIDList.count * 128>
+  [100] setprop 54 .............................. loopWidth = gTileIDList.count * 128
+  [103] getglobal 180 ........................... <gTileIDList>
+  [106] getobjprop 183 .......................... <gTileIDList.count>
+  [109] pushint8 128 ............................ <128>
+  [112] mul ..................................... <gTileIDList.count * 128>
+  [113] pushcons 8 .............................. <0.5>
+  [115] mul ..................................... <gTileIDList.count * 128 * 0.5>
+  [116] setprop 608 ............................. loopX = gTileIDList.count * 128 * 0.5
+  [119] getprop 20 .............................. <this>
+  [121] getobjprop 36 ........................... <this.locH>
+  [124] pusharglist 1 ........................... <this.locH>
+  [126] extcall 33 .............................. <float(this.locH)>
+  [129] setprop 48 .............................. Xpos = float(this.locH)
+  [132] getprop 20 .............................. <this>
+  [134] getobjprop 37 ........................... <this.locV>
+  [137] pusharglist 1 ........................... <this.locV>
+  [139] extcall 33 .............................. <float(this.locV)>
+  [142] setprop 38 .............................. Ypos = float(this.locV)
+  [145] getprop 20 .............................. <this>
+  [147] pushint8 103 ............................ <103>
+  [150] setobjprop 178 .......................... this.locZ = 103
+  [153] pushzero ................................ <0>
+  [154] setprop 44 .............................. Xvel = 0
+  [157] getprop 48 .............................. <Xpos>
+  [160] pushint8 256 ............................ <256>
+  [163] sub ..................................... <Xpos - 256>
+  [164] pushint8 64 ............................. <64>
+  [167] sub ..................................... <Xpos - 256 - 64>
+  [168] setprop 366 ............................. mapXPos = Xpos - 256 - 64
+  [171] pushzero ................................ <0>
+  [172] setprop 440 ............................. survivorDelay = 0
+  [175] pushzero ................................ <0>
+  [176] setprop 62 .............................. swellAngle = 0
+  [179] pushint8 6 .............................. <6>
+  [182] pusharglist 1 ........................... <6>
+  [184] extcall 21 .............................. <sprite(6)>
+  [186] setprop 342 ............................. cableGuy = sprite(6)
+  [189] pushsymb 442 ............................ <#ONGROUND>
+  [192] setprop 441 ............................. survivorState = #ONGROUND
+  [195] getprop 20 .............................. <this>
+  [197] getobjprop 50 ........................... <this.width>
+  [200] setprop 51 .............................. ThisWidth = this.width
+  [203] getprop 20 .............................. <this>
+  [205] getobjprop 97 ........................... <this.height>
+  [208] pushint8 2 .............................. <2>
+  [211] div ..................................... <this.height / 2>
+  [212] setprop 443 ............................. thisHalfHeight = this.height / 2
+  [215] pushzero ................................ <0>
+  [216] setprop 445 ............................. grabCount = 0
+  [219] pushzero ................................ <0>
+  [220] setprop 459 ............................. distToHQ = 0
+  [223] pushint8 1 .............................. <1>
+  [226] setprop 471 ............................. frameDir = 1
+  [229] pushzero ................................ <0>
+  [230] setprop 759 ............................. pullCount = 0
+  [233] pushzero ................................ <0>
+  [234] setprop 803 ............................. stolenCount = 0
+  [237] ret
+end
+
+on exitFrame
+  [  0] getglobal 364 ........................... <gPaused>
+  [  3] pushzero ................................ <0>
+  [  4] eq ...................................... <gPaused = 0>
+  [  5] jmpifz [1087] ........................... if gPaused = 0 then
+  [  8] getprop 441 ............................. <survivorState>
+  [ 11] peek 0 .................................. case survivorState of
+  [ 13] pushsymb 442 ............................ <#ONGROUND>
+  [ 16] eq
+  [ 17] jmpifz [220] ............................ (case) #ONGROUND:
+  [ 20] getprop 48 .............................. <Xpos>
+  [ 23] getglobal 47 ............................ <gXVel>
+  [ 26] getglobal 55 ............................ <gXOffset>
+  [ 29] add ..................................... <gXVel + gXOffset>
+  [ 30] add ..................................... <Xpos + (gXVel + gXOffset)>
+  [ 31] setprop 48 .............................. Xpos = Xpos + (gXVel + gXOffset)
+  [ 34] getprop 48 .............................. <Xpos>
+  [ 37] getprop 608 ............................. <loopX>
+  [ 40] gt ...................................... <Xpos > loopX>
+  [ 41] jmpifz [ 54] ............................ if Xpos > loopX then
+  [ 44] getprop 48 .............................. <Xpos>
+  [ 47] getprop 54 .............................. <loopWidth>
+  [ 50] sub ..................................... <Xpos - loopWidth>
+  [ 51] setprop 48 .............................. Xpos = Xpos - loopWidth
+  [ 54] getprop 48 .............................. <Xpos>
+  [ 57] getprop 608 ............................. <loopX>
+  [ 60] inv ..................................... <-loopX>
+  [ 61] lt ...................................... <Xpos < -loopX>
+  [ 62] jmpifz [ 75] ............................ if Xpos < -loopX then
+  [ 65] getprop 48 .............................. <Xpos>
+  [ 68] getprop 54 .............................. <loopWidth>
+  [ 71] add ..................................... <Xpos + loopWidth>
+  [ 72] setprop 48 .............................. Xpos = Xpos + loopWidth
+  [ 75] getprop 20 .............................. <this>
+  [ 77] getprop 48 .............................. <Xpos>
+  [ 80] setobjprop 36 ........................... this.locH = Xpos
+  [ 83] getprop 20 .............................. <this>
+  [ 85] getprop 38 .............................. <Ypos>
+  [ 88] setobjprop 37 ........................... this.locV = Ypos
+  [ 91] getprop 20 .............................. <this>
+  [ 93] getobjprop 36 ........................... <this.locH>
+  [ 96] getprop 342 ............................. <cableGuy>
+  [ 99] getobjprop 36 ........................... <cableGuy.locH>
+  [102] sub ..................................... <this.locH - cableGuy.locH>
+  [103] pusharglist 1 ........................... <this.locH - cableGuy.locH>
+  [105] extcall 370 ............................. <abs(this.locH - cableGuy.locH)>
+  [108] setlocal 0 .............................. diffX = abs(this.locH - cableGuy.locH)
+  [110] getprop 20 .............................. <this>
+  [112] getobjprop 37 ........................... <this.locV>
+  [115] getprop 342 ............................. <cableGuy>
+  [118] getobjprop 37 ........................... <cableGuy.locV>
+  [121] sub ..................................... <this.locV - cableGuy.locV>
+  [122] pusharglist 1 ........................... <this.locV - cableGuy.locV>
+  [124] extcall 370 ............................. <abs(this.locV - cableGuy.locV)>
+  [127] setlocal 8 .............................. diffY = abs(this.locV - cableGuy.locV)
+  [129] getlocal 0 .............................. <diffX>
+  [131] pushint8 70 ............................. <70>
+  [134] lt ...................................... <diffX < 70>
+  [135] getlocal 8 .............................. <diffY>
+  [137] pushint8 100 ............................ <100>
+  [140] lt ...................................... <diffY < 100>
+  [141] and ..................................... <(diffX < 70) and (diffY < 100)>
+  [142] jmpifz [217] ............................ if (diffX < 70) and (diffY < 100) then
+  [145] getlocal 0 .............................. <diffX>
+  [147] getprop 51 .............................. <ThisWidth>
+  [150] lt ...................................... <diffX < ThisWidth>
+  [151] getlocal 8 .............................. <diffY>
+  [153] getprop 443 ............................. <thisHalfHeight>
+  [156] lt ...................................... <diffY < thisHalfHeight>
+  [157] and ..................................... <(diffX < ThisWidth) and (diffY < thisHalfHeight)>
+  [158] jmpifz [213] ............................ if (diffX < ThisWidth) and (diffY < thisHalfHeight) then / else
+  [161] getprop 445 ............................. <grabCount>
+  [164] pushint8 1 .............................. <1>
+  [167] add ..................................... <grabCount + 1>
+  [168] setprop 445 ............................. grabCount = grabCount + 1
+  [171] getprop 445 ............................. <grabCount>
+  [174] pushint8 2 .............................. <2>
+  [177] gteq .................................... <grabCount >= 2>
+  [178] jmpifz [210] ............................ if grabCount >= 2 then
+  [181] getglobal 448 ........................... <gCableItem>
+  [184] pushzero ................................ <0>
+  [185] eq ...................................... <gCableItem = 0>
+  [186] getglobal 450 ........................... <gCableLength>
+  [189] pushint8 50 ............................. <50>
+  [192] gteq .................................... <gCableLength >= 50>
+  [193] and ..................................... <(gCableItem = 0) and (gCableLength >= 50)>
+  [194] jmpifz [210] ............................ if (gCableItem = 0) and (gCableLength >= 50) then
+  [197] pushsymb 651 ............................ <#GRABBED>
+  [200] setprop 441 ............................. survivorState = #GRABBED
+  [203] pushint8 1 .............................. <1>
+  [206] inv ..................................... <-1>
+  [207] setglobal 448 ........................... gCableItem = -1
+  [210] jmp [217]
+  [213] pushzero ................................ <0>
+  [214] setprop 445 ............................. grabCount = 0
+  [217] jmp [1085]
+  [220] peek 0
+  [222] pushsymb 651 ............................ <#GRABBED>
+  [225] eq
+  [226] jmpifz [644] ............................ (case) #GRABBED:
+  [229] getprop 48 .............................. <Xpos>
+  [232] getglobal 47 ............................ <gXVel>
+  [235] add ..................................... <Xpos + gXVel>
+  [236] getglobal 55 ............................ <gXOffset>
+  [239] add ..................................... <Xpos + gXVel + gXOffset>
+  [240] setprop 48 .............................. Xpos = Xpos + gXVel + gXOffset
+  [243] getprop 48 .............................. <Xpos>
+  [246] getprop 608 ............................. <loopX>
+  [249] gt ...................................... <Xpos > loopX>
+  [250] jmpifz [263] ............................ if Xpos > loopX then
+  [253] getprop 48 .............................. <Xpos>
+  [256] getprop 54 .............................. <loopWidth>
+  [259] sub ..................................... <Xpos - loopWidth>
+  [260] setprop 48 .............................. Xpos = Xpos - loopWidth
+  [263] getprop 48 .............................. <Xpos>
+  [266] getprop 608 ............................. <loopX>
+  [269] inv ..................................... <-loopX>
+  [270] lt ...................................... <Xpos < -loopX>
+  [271] jmpifz [284] ............................ if Xpos < -loopX then
+  [274] getprop 48 .............................. <Xpos>
+  [277] getprop 54 .............................. <loopWidth>
+  [280] add ..................................... <Xpos + loopWidth>
+  [281] setprop 48 .............................. Xpos = Xpos + loopWidth
+  [284] getprop 20 .............................. <this>
+  [286] getprop 48 .............................. <Xpos>
+  [289] setobjprop 36 ........................... this.locH = Xpos
+  [292] getprop 20 .............................. <this>
+  [294] getprop 38 .............................. <Ypos>
+  [297] setobjprop 37 ........................... this.locV = Ypos
+  [300] pushint8 4 .............................. <4>
+  [303] pusharglist 1 ........................... <4>
+  [305] extcall 394 ............................. <soundBusy(4)>
+  [308] pushzero ................................ <0>
+  [309] eq ...................................... <soundBusy(4) = 0>
+  [310] jmpifz [330] ............................ if soundBusy(4) = 0 then
+  [313] pushint8 4 .............................. <4>
+  [316] pushint8 72 ............................. <72>
+  [319] pushcons 16 ............................. <"Sfx">
+  [321] pusharglist 2 ........................... <72, "Sfx">
+  [323] extcall 27 .............................. <member(72, "Sfx")>
+  [325] pusharglistnoret 2 ...................... <4, member(72, "Sfx")>
+  [327] extcall 395 ............................. puppetSound(4, member(72, "Sfx"))
+  [330] getprop 341 ............................. <COPTER>
+  [333] getobjprop 36 ........................... <COPTER.locH>
+  [336] getglobal 47 ............................ <gXVel>
+  [339] sub ..................................... <COPTER.locH - gXVel>
+  [340] getprop 20 .............................. <this>
+  [342] getobjprop 36 ........................... <this.locH>
+  [345] sub ..................................... <COPTER.locH - gXVel - this.locH>
+  [346] pusharglist 1 ........................... <COPTER.locH - gXVel - this.locH>
+  [348] extcall 33 .............................. <float(COPTER.locH - gXVel - this.locH)>
+  [351] setlocal 16 ............................. xDiff = float(COPTER.locH - gXVel - this.locH)
+  [353] getprop 341 ............................. <COPTER>
+  [356] getobjprop 37 ........................... <COPTER.locV>
+  [359] getprop 341 ............................. <COPTER>
+  [362] getobjprop 32 ........................... <COPTER.Yvel>
+  [365] add ..................................... <COPTER.locV + COPTER.Yvel>
+  [366] getprop 20 .............................. <this>
+  [368] getobjprop 37 ........................... <this.locV>
+  [371] sub ..................................... <COPTER.locV + COPTER.Yvel - this.locV>
+  [372] pusharglist 1 ........................... <COPTER.locV + COPTER.Yvel - this.locV>
+  [374] extcall 33 .............................. <float(COPTER.locV + COPTER.Yvel - this.locV)>
+  [377] setlocal 24 ............................. yDiff = float(COPTER.locV + COPTER.Yvel - this.locV)
+  [379] getlocal 16 ............................. <xDiff>
+  [381] getlocal 16 ............................. <xDiff>
+  [383] mul ..................................... <xDiff * xDiff>
+  [384] getlocal 24 ............................. <yDiff>
+  [386] getlocal 24 ............................. <yDiff>
+  [388] mul ..................................... <yDiff * yDiff>
+  [389] add ..................................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [390] pusharglist 1 ........................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [392] extcall 343 ............................. <sqrt((xDiff * xDiff) + (yDiff * yDiff))>
+  [395] setlocal 32 ............................. distToCopter = sqrt((xDiff * xDiff) + (yDiff * yDiff))
+  [397] getprop 20 .............................. <this>
+  [399] getobjprop 213 .......................... <this.loc>
+  [402] getprop 341 ............................. <COPTER>
+  [405] getobjprop 213 .......................... <COPTER.loc>
+  [408] sub ..................................... <this.loc - COPTER.loc>
+  [409] getglobal 47 ............................ <gXVel>
+  [412] inv ..................................... <-gXVel>
+  [413] getprop 341 ............................. <COPTER>
+  [416] getobjprop 32 ........................... <COPTER.Yvel>
+  [419] pusharglist 2 ........................... <-gXVel, COPTER.Yvel>
+  [421] extcall 57 .............................. <point(-gXVel, COPTER.Yvel)>
+  [424] add ..................................... <this.loc - COPTER.loc + point(-gXVel, COPTER.Yvel)>
+  [425] setlocal 40 ............................. toCopterVector = this.loc - COPTER.loc + point(-gXVel, COPTER.Yvel)
+  [427] getlocal 32 ............................. <distToCopter>
+  [429] getglobal 450 ........................... <gCableLength>
+  [432] gt ...................................... <distToCopter > gCableLength>
+  [433] jmpifz [523] ............................ if distToCopter > gCableLength then
+  [436] getlocal 40 ............................. <toCopterVector>
+  [438] getlocal 32 ............................. <distToCopter>
+  [440] pusharglist 1 ........................... <distToCopter>
+  [442] extcall 33 .............................. <float(distToCopter)>
+  [445] div ..................................... <toCopterVector / float(distToCopter)>
+  [446] getlocal 32 ............................. <distToCopter>
+  [448] getglobal 450 ........................... <gCableLength>
+  [451] sub ..................................... <distToCopter - gCableLength>
+  [452] mul ..................................... <toCopterVector / float(distToCopter) * (distToCopter - gCableLength)>
+  [453] setlocal 48 ............................. pullVector = toCopterVector / float(distToCopter) * (distToCopter - gCableLength)
+  [455] getglobal 669 ........................... <gXVelChange>
+  [458] getlocal 48 ............................. <pullVector>
+  [460] getobjprop 36 ........................... <pullVector.locH>
+  [463] sub ..................................... <gXVelChange - pullVector.locH>
+  [464] setglobal 669 ........................... gXVelChange = gXVelChange - pullVector.locH
+  [467] getprop 341 ............................. <COPTER>
+  [470] getprop 341 ............................. <COPTER>
+  [473] getobjprop 32 ........................... <COPTER.Yvel>
+  [476] getlocal 48 ............................. <pullVector>
+  [478] getobjprop 37 ........................... <pullVector.locV>
+  [481] add ..................................... <COPTER.Yvel + pullVector.locV>
+  [482] setobjprop 32 ........................... COPTER.Yvel = COPTER.Yvel + pullVector.locV
+  [485] getprop 342 ............................. <cableGuy>
+  [488] pushsymb 350 ............................ <#GODOWN>
+  [491] setobjprop 347 .......................... cableGuy.cableState = #GODOWN
+  [494] getlocal 48 ............................. <pullVector>
+  [496] getobjprop 37 ........................... <pullVector.locV>
+  [499] pushzero ................................ <0>
+  [500] gt ...................................... <pullVector.locV > 0>
+  [501] jmpifz [523] ............................ if pullVector.locV > 0 then
+  [504] getprop 38 .............................. <Ypos>
+  [507] pushcons 24 ............................. <0.05>
+  [509] sub ..................................... <Ypos - 0.05>
+  [510] setprop 38 .............................. Ypos = Ypos - 0.05
+  [513] getprop 759 ............................. <pullCount>
+  [516] pushint8 1 .............................. <1>
+  [519] add ..................................... <pullCount + 1>
+  [520] setprop 759 ............................. pullCount = pullCount + 1
+  [523] getprop 20 .............................. <this>
+  [525] getobjprop 213 .......................... <this.loc>
+  [528] getprop 342 ............................. <cableGuy>
+  [531] getobjprop 213 .......................... <cableGuy.loc>
+  [534] getprop 342 ............................. <cableGuy>
+  [537] getobjprop 44 ........................... <cableGuy.Xvel>
+  [540] getprop 342 ............................. <cableGuy>
+  [543] getobjprop 32 ........................... <cableGuy.Yvel>
+  [546] pusharglist 2 ........................... <cableGuy.Xvel, cableGuy.Yvel>
+  [548] extcall 57 .............................. <point(cableGuy.Xvel, cableGuy.Yvel)>
+  [551] add ..................................... <cableGuy.loc + point(cableGuy.Xvel, cableGuy.Yvel)>
+  [552] sub ..................................... <this.loc - (cableGuy.loc + point(cableGuy.Xvel, cableGuy.Yvel))>
+  [553] setlocal 56 ............................. toCableGuyVector = this.loc - (cableGuy.loc + point(cableGuy.Xvel, cableGuy.Yvel))
+  [555] getlocal 56 ............................. <toCableGuyVector>
+  [557] setlocal 48 ............................. pullVector = toCableGuyVector
+  [559] getprop 342 ............................. <cableGuy>
+  [562] getprop 342 ............................. <cableGuy>
+  [565] getobjprop 44 ........................... <cableGuy.Xvel>
+  [568] getlocal 48 ............................. <pullVector>
+  [570] getobjprop 36 ........................... <pullVector.locH>
+  [573] add ..................................... <cableGuy.Xvel + pullVector.locH>
+  [574] setobjprop 44 ........................... cableGuy.Xvel = cableGuy.Xvel + pullVector.locH
+  [577] getprop 342 ............................. <cableGuy>
+  [580] getprop 342 ............................. <cableGuy>
+  [583] getobjprop 32 ........................... <cableGuy.Yvel>
+  [586] getlocal 48 ............................. <pullVector>
+  [588] getobjprop 37 ........................... <pullVector.locV>
+  [591] add ..................................... <cableGuy.Yvel + pullVector.locV>
+  [592] setobjprop 32 ........................... cableGuy.Yvel = cableGuy.Yvel + pullVector.locV
+  [595] getprop 759 ............................. <pullCount>
+  [598] pushint8 40 ............................. <40>
+  [601] gt ...................................... <pullCount > 40>
+  [602] jmpifz [641] ............................ if pullCount > 40 then
+  [605] pushsymb 444 ............................ <#ONCABLE>
+  [608] setprop 441 ............................. survivorState = #ONCABLE
+  [611] getprop 20 .............................. <this>
+  [613] pushint8 30 ............................. <30>
+  [616] setobjprop 25 ........................... this.rotation = 30
+  [618] pushint8 2 .............................. <2>
+  [621] setglobal 448 ........................... gCableItem = 2
+  [624] pushint8 4 .............................. <4>
+  [627] pushint8 73 ............................. <73>
+  [630] pushcons 32 ............................. <"Sfx">
+  [632] pusharglist 2 ........................... <73, "Sfx">
+  [634] extcall 27 .............................. <member(73, "Sfx")>
+  [636] pusharglistnoret 2 ...................... <4, member(73, "Sfx")>
+  [638] extcall 395 ............................. puppetSound(4, member(73, "Sfx"))
+  [641] jmp [1085]
+  [644] peek 0
+  [646] pushsymb 444 ............................ <#ONCABLE>
+  [649] eq
+  [650] jmpifz [885] ............................ (case) #ONCABLE:
+  [653] getprop 342 ............................. <cableGuy>
+  [656] pushsymb 350 ............................ <#GODOWN>
+  [659] setobjprop 347 .......................... cableGuy.cableState = #GODOWN
+  [662] getprop 20 .............................. <this>
+  [664] getprop 342 ............................. <cableGuy>
+  [667] getobjprop 213 .......................... <cableGuy.loc>
+  [670] setobjprop 213 .......................... this.loc = cableGuy.loc
+  [673] getprop 20 .............................. <this>
+  [675] getobjprop 36 ........................... <this.locH>
+  [678] getprop 796 ............................. <claw>
+  [681] getobjprop 36 ........................... <claw.locH>
+  [684] sub ..................................... <this.locH - claw.locH>
+  [685] pusharglist 1 ........................... <this.locH - claw.locH>
+  [687] extcall 370 ............................. <abs(this.locH - claw.locH)>
+  [690] setlocal 0 .............................. diffX = abs(this.locH - claw.locH)
+  [692] getprop 20 .............................. <this>
+  [694] getobjprop 37 ........................... <this.locV>
+  [697] getprop 796 ............................. <claw>
+  [700] getobjprop 37 ........................... <claw.locV>
+  [703] sub ..................................... <this.locV - claw.locV>
+  [704] pusharglist 1 ........................... <this.locV - claw.locV>
+  [706] extcall 370 ............................. <abs(this.locV - claw.locV)>
+  [709] setlocal 8 .............................. diffY = abs(this.locV - claw.locV)
+  [711] getlocal 0 .............................. <diffX>
+  [713] pushint8 10 ............................. <10>
+  [716] lt ...................................... <diffX < 10>
+  [717] getlocal 8 .............................. <diffY>
+  [719] pushint8 10 ............................. <10>
+  [722] lt ...................................... <diffY < 10>
+  [723] and ..................................... <(diffX < 10) and (diffY < 10)>
+  [724] getglobal 448 ........................... <gCableItem>
+  [727] pushint8 2 .............................. <2>
+  [730] eq ...................................... <gCableItem = 2>
+  [731] and ..................................... <(diffX < 10) and (diffY < 10) and (gCableItem = 2)>
+  [732] jmpifz [771] ............................ if (diffX < 10) and (diffY < 10) and (gCableItem = 2) then
+  [735] pushsymb 797 ............................ <#ONCLAW>
+  [738] setprop 441 ............................. survivorState = #ONCLAW
+  [741] pushzero ................................ <0>
+  [742] setglobal 448 ........................... gCableItem = 0
+  [745] getprop 801 ............................. <blackCopter>
+  [748] pushint8 1 .............................. <1>
+  [751] setobjprop 800 .......................... blackCopter.gotWarHead = 1
+  [754] pushint8 4 .............................. <4>
+  [757] pushint8 76 ............................. <76>
+  [760] pushcons 40 ............................. <"Sfx">
+  [762] pusharglist 2 ........................... <76, "Sfx">
+  [764] extcall 27 .............................. <member(76, "Sfx")>
+  [766] pusharglistnoret 2 ...................... <4, member(76, "Sfx")>
+  [768] extcall 395 ............................. puppetSound(4, member(76, "Sfx"))
+  [771] getprop 20 .............................. <this>
+  [773] getobjprop 36 ........................... <this.locH>
+  [776] getprop 781 ............................. <ship>
+  [779] getobjprop 36 ........................... <ship.locH>
+  [782] sub ..................................... <this.locH - ship.locH>
+  [783] pusharglist 1 ........................... <this.locH - ship.locH>
+  [785] extcall 370 ............................. <abs(this.locH - ship.locH)>
+  [788] setlocal 0 .............................. diffX = abs(this.locH - ship.locH)
+  [790] getprop 20 .............................. <this>
+  [792] getobjprop 37 ........................... <this.locV>
+  [795] getprop 781 ............................. <ship>
+  [798] getobjprop 37 ........................... <ship.locV>
+  [801] sub ..................................... <this.locV - ship.locV>
+  [802] pusharglist 1 ........................... <this.locV - ship.locV>
+  [804] extcall 370 ............................. <abs(this.locV - ship.locV)>
+  [807] setlocal 8 .............................. diffY = abs(this.locV - ship.locV)
+  [809] getlocal 0 .............................. <diffX>
+  [811] pushint8 100 ............................ <100>
+  [814] lt ...................................... <diffX < 100>
+  [815] getlocal 8 .............................. <diffY>
+  [817] pushint8 40 ............................. <40>
+  [820] lt ...................................... <diffY < 40>
+  [821] and ..................................... <(diffX < 100) and (diffY < 40)>
+  [822] jmpifz [882] ............................ if (diffX < 100) and (diffY < 40) then
+  [825] pushzero ................................ <0>
+  [826] setglobal 448 ........................... gCableItem = 0
+  [829] pushsymb 461 ............................ <#HOME>
+  [832] setprop 441 ............................. survivorState = #HOME
+  [835] getglobal 410 ........................... <gScore>
+  [838] pushint8 500 ............................ <500>
+  [841] add ..................................... <gScore + 500>
+  [842] setglobal 410 ........................... gScore = gScore + 500
+  [845] pushint8 3 .............................. <3>
+  [848] pushint8 8 .............................. <8>
+  [851] pushcons 48 ............................. <"Sfx">
+  [853] pusharglist 2 ........................... <8, "Sfx">
+  [855] extcall 27 .............................. <member(8, "Sfx")>
+  [857] pusharglistnoret 2 ...................... <3, member(8, "Sfx")>
+  [859] extcall 395 ............................. puppetSound(3, member(8, "Sfx"))
+  [862] getglobal 458 ........................... <gRescuedList>
+  [865] getprop 20 .............................. <this>
+  [867] pusharglistnoret 2 ...................... <gRescuedList, this>
+  [869] objcall 418 ............................. gRescuedList.add(this)
+  [872] getglobal 453 ........................... <gRescueCount>
+  [875] pushint8 1 .............................. <1>
+  [878] add ..................................... <gRescueCount + 1>
+  [879] setglobal 453 ........................... gRescueCount = gRescueCount + 1
+  [882] jmp [1085]
+  [885] peek 0
+  [887] pushsymb 461 ............................ <#HOME>
+  [890] eq
+  [891] jmpifz [915] ............................ (case) #HOME:
+  [894] getprop 20 .............................. <this>
+  [896] pushint8 1000 ........................... <1000>
+  [899] inv ..................................... <-1000>
+  [900] setobjprop 36 ........................... this.locH = -1000
+  [903] getprop 20 .............................. <this>
+  [905] pushint8 1000 ........................... <1000>
+  [908] inv ..................................... <-1000>
+  [909] setobjprop 37 ........................... this.locV = -1000
+  [912] jmp [1085]
+  [915] peek 0
+  [917] pushsymb 797 ............................ <#ONCLAW>
+  [920] eq
+  [921] jmpifz [1085] ........................... (case) #ONCLAW:
+  [924] getprop 803 ............................. <stolenCount>
+  [927] pushint8 1 .............................. <1>
+  [930] add ..................................... <stolenCount + 1>
+  [931] setprop 803 ............................. stolenCount = stolenCount + 1
+  [934] getprop 20 .............................. <this>
+  [936] getprop 796 ............................. <claw>
+  [939] getobjprop 213 .......................... <claw.loc>
+  [942] pushzero ................................ <0>
+  [943] pushzero ................................ <0>
+  [944] pusharglist 2 ........................... <0, 0>
+  [946] extcall 57 .............................. <point(0, 0)>
+  [949] add ..................................... <claw.loc + point(0, 0)>
+  [950] setobjprop 213 .......................... this.loc = claw.loc + point(0, 0)
+  [953] getprop 20 .............................. <this>
+  [955] getobjprop 36 ........................... <this.locH>
+  [958] getprop 342 ............................. <cableGuy>
+  [961] getobjprop 36 ........................... <cableGuy.locH>
+  [964] sub ..................................... <this.locH - cableGuy.locH>
+  [965] pusharglist 1 ........................... <this.locH - cableGuy.locH>
+  [967] extcall 370 ............................. <abs(this.locH - cableGuy.locH)>
+  [970] setlocal 0 .............................. diffX = abs(this.locH - cableGuy.locH)
+  [972] getprop 20 .............................. <this>
+  [974] getobjprop 37 ........................... <this.locV>
+  [977] getprop 342 ............................. <cableGuy>
+  [980] getobjprop 37 ........................... <cableGuy.locV>
+  [983] sub ..................................... <this.locV - cableGuy.locV>
+  [984] pusharglist 1 ........................... <this.locV - cableGuy.locV>
+  [986] extcall 370 ............................. <abs(this.locV - cableGuy.locV)>
+  [989] setlocal 8 .............................. diffY = abs(this.locV - cableGuy.locV)
+  [991] getprop 803 ............................. <stolenCount>
+  [994] pushint8 30 ............................. <30>
+  [997] gt ...................................... <stolenCount > 30>
+  [998] jmpifz [1085] ........................... if stolenCount > 30 then
+  [1001] getlocal 0 ............................. <diffX>
+  [1003] pushint8 70 ............................ <70>
+  [1006] lt ..................................... <diffX < 70>
+  [1007] getlocal 8 ............................. <diffY>
+  [1009] pushint8 100 ........................... <100>
+  [1012] lt ..................................... <diffY < 100>
+  [1013] and .................................... <(diffX < 70) and (diffY < 100)>
+  [1014] jmpifz [1085] .......................... if (diffX < 70) and (diffY < 100) then
+  [1017] getlocal 0 ............................. <diffX>
+  [1019] getprop 51 ............................. <ThisWidth>
+  [1022] lt ..................................... <diffX < ThisWidth>
+  [1023] getlocal 8 ............................. <diffY>
+  [1025] getprop 443 ............................ <thisHalfHeight>
+  [1028] lt ..................................... <diffY < thisHalfHeight>
+  [1029] and .................................... <(diffX < ThisWidth) and (diffY < thisHalfHeight)>
+  [1030] jmpifz [1085] .......................... if (diffX < ThisWidth) and (diffY < thisHalfHeight) then
+  [1033] getglobal 448 .......................... <gCableItem>
+  [1036] pushzero ............................... <0>
+  [1037] eq ..................................... <gCableItem = 0>
+  [1038] getglobal 450 .......................... <gCableLength>
+  [1041] pushint8 50 ............................ <50>
+  [1044] gteq ................................... <gCableLength >= 50>
+  [1045] and .................................... <(gCableItem = 0) and (gCableLength >= 50)>
+  [1046] jmpifz [1085] .......................... if (gCableItem = 0) and (gCableLength >= 50) then
+  [1049] pushsymb 444 ........................... <#ONCABLE>
+  [1052] setprop 441 ............................ survivorState = #ONCABLE
+  [1055] pushint8 1 ............................. <1>
+  [1058] setglobal 448 .......................... gCableItem = 1
+  [1061] pushint8 4 ............................. <4>
+  [1064] pushint8 77 ............................ <77>
+  [1067] pushcons 56 ............................ <"Sfx">
+  [1069] pusharglist 2 .......................... <77, "Sfx">
+  [1071] extcall 27 ............................. <member(77, "Sfx")>
+  [1073] pusharglistnoret 2 ..................... <4, member(77, "Sfx")>
+  [1075] extcall 395 ............................ puppetSound(4, member(77, "Sfx"))
+  [1078] getprop 801 ............................ <blackCopter>
+  [1081] pushzero ............................... <0>
+  [1082] setobjprop 800 ......................... blackCopter.gotWarHead = 0
+  [1085] pop 1 .................................. end case
+  [1087] ret
+end

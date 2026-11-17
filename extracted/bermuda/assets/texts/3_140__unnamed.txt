@@ -1,0 +1,6 @@
+INSTRUCTIONS:
+UP/DOWN cursor keys = Climb / Descend
+LEFT/RIGHT cursor keys = Lean Left / Right
+TAP SPACEBAR = Raise / Lower cableGuy
+HOLD SPACEBAR = Spray / Fire / Snapshot 
+P key = Pause / Resume

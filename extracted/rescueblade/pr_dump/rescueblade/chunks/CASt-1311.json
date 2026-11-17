@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 884,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 145,
+    "scriptSrcText": "property this, reflash\rglobal gPaused\r\ron beginSprite\r  this = sprite(the currentSpriteNum)\r  this.locV = -1000\r  puppetSound(2, member(30, \"Sfx\"))\r  reflash = 0\rend\r\ron exitFrame\r  if gPaused = 0 then\r    if this.locV = -1000 then\r      X = random(200)\r      if X = 50 then\r        this.locH = random(512)\r        this.locV = 123 + (random(3) * 50)\r        this.blend = 100\r      end if\r    end if\r    if this.blend > 0 then\r      if (this.blend = 40) and (reflash = 0) then\r        this.blend = 100\r        reflash = 1\r      end if\r      if this.blend > 10 then\r        this.blend = this.blend - 10\r      else\r        puppetSound(2, member(31, \"Sfx\"))\r        this.blend = 0\r        this.locV = -1000\r        reflash = 0\r      end if\r    end if\r    if soundBusy(2) = 0 then\r      puppetSound(2, member(30, \"Sfx\"))\r    end if\r  end if\rend\r",
+    "name": "Lightning"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

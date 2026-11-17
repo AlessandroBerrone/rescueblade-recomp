@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 860,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 353,
+    "scriptSrcText": "property MaxToggle, this\rglobal gShockwave_ResolutionObj, gShockwave_ExitObj\r\ron beginSprite\r  this = sprite(the currentSpriteNum)\r  MaxToggle = 0\r  this.loc = point(0, the stageBottom - the stageTop)\r  if voidp(gShockwave_ResolutionObj) then\r    if (the environment).runMode <> \"Author\" then\r      this.locV = -1000\r    end if\r  end if\r  put \"No Xtra found\"\rend\r\ron mouseLeave\r  this.flipH = 0\r  this.flipV = 0\r  this.blend = 100\rend\r\ron mouseWithin\r  this.flipH = 0\r  this.flipV = 0\r  this.blend = 100\r  if the mouseH <= 11 then\r    if the mouseDown then\r      this.blend = 70\r    end if\r    this.flipH = 1\r    this.flipH = 1\r  end if\rend\r\ron mouseUp\r  if the mouseH <= 11 then\r    if objectp(gShockwave_ResolutionObj) then\r      gShockwave_ExitObj.mExit()\r    end if\r    put \"CallClose\"\r  end if\rend\r",
+    "name": "FullScreenXtra_Buttons"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

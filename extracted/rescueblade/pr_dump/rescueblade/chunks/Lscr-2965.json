@@ -1,0 +1,142 @@
+{
+  "totalLength": 2084,
+  "totalLength2": 2084,
+  "headerLength": 92,
+  "scriptNumber": 223,
+  "unk20": 3,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65572,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 2052,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 15,
+  "propertiesOffset": 92,
+  "globalsCount": 11,
+  "globalsOffset": 122,
+  "handlersCount": 3,
+  "handlersOffset": 144,
+  "literalsCount": 7,
+  "literalsOffset": 1900,
+  "literalsDataCount": 96,
+  "literalsDataOffset": 1956,
+  "propertyNameIDs": [
+    20,
+    40,
+    48,
+    608,
+    38,
+    649,
+    341,
+    342,
+    650,
+    660,
+    663,
+    664,
+    612,
+    615,
+    54
+  ],
+  "globalNameIDs": [
+    47,
+    55,
+    364,
+    180,
+    430,
+    450,
+    632,
+    453,
+    410,
+    448,
+    669
+  ],
+  "handlers": [
+    {
+      "nameID": 610,
+      "vectorPos": 65535,
+      "compiledLen": 73,
+      "compiledOffset": 270,
+      "argumentCount": 1,
+      "argumentOffset": 344,
+      "localsCount": 1,
+      "localsOffset": 346,
+      "globalsCount": 0,
+      "globalsOffset": 348,
+      "unknown1": 288,
+      "unknown2": 5,
+      "lineCount": 4,
+      "lineOffset": 348
+    },
+    {
+      "nameID": 18,
+      "vectorPos": 65535,
+      "compiledLen": 250,
+      "compiledOffset": 352,
+      "argumentCount": 0,
+      "argumentOffset": 602,
+      "localsCount": 4,
+      "localsOffset": 602,
+      "globalsCount": 0,
+      "globalsOffset": 610,
+      "unknown1": 593,
+      "unknown2": 12,
+      "lineCount": 23,
+      "lineOffset": 610
+    },
+    {
+      "nameID": 19,
+      "vectorPos": 15,
+      "compiledLen": 1098,
+      "compiledOffset": 634,
+      "argumentCount": 0,
+      "argumentOffset": 1732,
+      "localsCount": 7,
+      "localsOffset": 1732,
+      "globalsCount": 0,
+      "globalsOffset": 1746,
+      "unknown1": 1284,
+      "unknown2": 39,
+      "lineCount": 154,
+      "lineOffset": 1746
+    }
+  ],
+  "literals": [
+    {
+      "type": 1,
+      "offset": 0,
+      "value": "targetSprite"
+    },
+    {
+      "type": 1,
+      "offset": 18,
+      "value": "offSet from targetSprite"
+    },
+    {
+      "type": 9,
+      "offset": 48,
+      "value": 0.5
+    },
+    {
+      "type": 1,
+      "offset": 60,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 68,
+      "value": 1.30000000000000004
+    },
+    {
+      "type": 1,
+      "offset": 80,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 88,
+      "value": "Sfx"
+    }
+  ]
+}

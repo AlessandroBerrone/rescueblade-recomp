@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 363,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 223,
+    "scriptSrcText": "property this, thisMember\r\ron beginSprite\r  this = sprite(the currentSpriteNum)\r  thisMember = this.memberNum\r  this.locZ = 1500\rend\r\ron exitFrame\r  this.locH = -1000\r  this.locV = -1000\r  thisMember = thisMember + 1\r  if thisMember > 182 then\r    thisMember = 175\r  end if\r  this.member = member(thisMember, \"Gfx\")\rend\r",
+    "name": "SnowBlow"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

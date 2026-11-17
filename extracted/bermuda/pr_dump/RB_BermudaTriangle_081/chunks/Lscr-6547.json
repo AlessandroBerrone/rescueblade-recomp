@@ -1,0 +1,52 @@
+{
+  "totalLength": 188,
+  "totalLength2": 188,
+  "headerLength": 92,
+  "scriptNumber": 200,
+  "unk20": 8,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65540,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 2,
+  "handlerVectorsOffset": 184,
+  "handlerVectorsSize": 2,
+  "propertiesCount": 0,
+  "propertiesOffset": 92,
+  "globalsCount": 0,
+  "globalsOffset": 92,
+  "handlersCount": 1,
+  "handlersOffset": 92,
+  "literalsCount": 1,
+  "literalsOffset": 146,
+  "literalsDataCount": 30,
+  "literalsDataOffset": 154,
+  "propertyNameIDs": [],
+  "globalNameIDs": [],
+  "handlers": [
+    {
+      "nameID": 424,
+      "vectorPos": 1,
+      "compiledLen": 8,
+      "compiledOffset": 134,
+      "argumentCount": 1,
+      "argumentOffset": 142,
+      "localsCount": 0,
+      "localsOffset": 144,
+      "globalsCount": 0,
+      "globalsOffset": 144,
+      "unknown1": 10,
+      "unknown2": 1,
+      "lineCount": 1,
+      "lineOffset": 144
+    }
+  ],
+  "literals": [
+    {
+      "type": 1,
+      "offset": 0,
+      "value": "http://www.shockwave.com"
+    }
+  ]
+}

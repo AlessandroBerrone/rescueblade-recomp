@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 1730,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 161,
+    "scriptSrcText": "property this, Xpos, Ypos, ploshState, Yvel, grav, Xvel\rglobal gXVel, gXOffset, gPaused, gPloshList, gPloshX, gCoconutList\r\ron beginSprite\r  this = sprite(the currentSpriteNum)\r  Xpos = float(-1000)\r  Ypos = float(-1000)\r  Yvel = -2\r  ploshState = #NULL\r  this.locZ = 98\r  gPloshList.add(this)\r  grav = 0.80000000000000004\r  Xvel = 0\r  this.height = 30\r  this.width = 2\r  this.locH = Xpos\r  this.locV = Ypos\rend\r\ron exitFrame\r  if gPaused = 0 then\r    case ploshState of\r      #NULL:\r      #PLOSH:\r        Yvel = Yvel + grav\r        Xpos = Xpos + gXVel + gXOffset + Xvel\r        Ypos = Ypos + Yvel\r        Xvel = Xvel * 0.97999999999999998\r        Yvel = Yvel * 0.94999999999999996\r        this.rotation = this.rotation * 0.90000000000000002\r        if this.memberNum <> 200 then\r          if this.width < 50 then\r            this.width = this.width + 4\r            this.height = this.height + 2\r          end if\r        else\r        end if\r        if this.locV > 280 then\r          if this.memberNum = 126 then\r            gPloshX = this.locH\r          end if\r          ploshState = #NULL\r          gPloshList.add(this)\r          Xpos = -1000\r          Ypos = -1000\r          Xvel = 0\r          Yvel = 0\r          this.locH = Xpos\r          this.locV = Ypos\r          this.member = member(126, \"Gfx\")\r          this.width = 2\r          this.height = 30\r          if gCoconutList.count > 0 then\r            repeat with i = 1 to gCoconutList.count\r              if this = gCoconutList[i] then\r                gCoconutList.deleteAt(i)\r              end if\r            end repeat\r          end if\r        end if\r        this.locH = Xpos\r        this.locV = Ypos\r    end case\r  end if\rend\r",
+    "name": "WaterPlosh"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

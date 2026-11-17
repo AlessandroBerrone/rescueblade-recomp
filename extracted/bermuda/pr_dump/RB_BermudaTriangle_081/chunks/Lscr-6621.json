@@ -1,0 +1,131 @@
+{
+  "totalLength": 1042,
+  "totalLength2": 1042,
+  "headerLength": 92,
+  "scriptNumber": 274,
+  "unk20": 8,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65606,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 1010,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 15,
+  "propertiesOffset": 92,
+  "globalsCount": 5,
+  "globalsOffset": 122,
+  "handlersCount": 3,
+  "handlersOffset": 132,
+  "literalsCount": 6,
+  "literalsOffset": 868,
+  "literalsDataCount": 94,
+  "literalsDataOffset": 916,
+  "propertyNameIDs": [
+    20,
+    48,
+    40,
+    38,
+    366,
+    609,
+    342,
+    583,
+    584,
+    54,
+    608,
+    775,
+    776,
+    974,
+    994
+  ],
+  "globalNameIDs": [
+    47,
+    55,
+    364,
+    180,
+    410
+  ],
+  "handlers": [
+    {
+      "nameID": 610,
+      "vectorPos": 65535,
+      "compiledLen": 66,
+      "compiledOffset": 258,
+      "argumentCount": 1,
+      "argumentOffset": 324,
+      "localsCount": 1,
+      "localsOffset": 326,
+      "globalsCount": 0,
+      "globalsOffset": 328,
+      "unknown1": 236,
+      "unknown2": 5,
+      "lineCount": 4,
+      "lineOffset": 328
+    },
+    {
+      "nameID": 18,
+      "vectorPos": 65535,
+      "compiledLen": 204,
+      "compiledOffset": 332,
+      "argumentCount": 0,
+      "argumentOffset": 536,
+      "localsCount": 2,
+      "localsOffset": 536,
+      "globalsCount": 0,
+      "globalsOffset": 540,
+      "unknown1": 543,
+      "unknown2": 12,
+      "lineCount": 21,
+      "lineOffset": 540
+    },
+    {
+      "nameID": 19,
+      "vectorPos": 15,
+      "compiledLen": 259,
+      "compiledOffset": 562,
+      "argumentCount": 0,
+      "argumentOffset": 822,
+      "localsCount": 2,
+      "localsOffset": 822,
+      "globalsCount": 0,
+      "globalsOffset": 826,
+      "unknown1": 1183,
+      "unknown2": 37,
+      "lineCount": 42,
+      "lineOffset": 826
+    }
+  ],
+  "literals": [
+    {
+      "type": 1,
+      "offset": 0,
+      "value": "Sea Swell Height"
+    },
+    {
+      "type": 1,
+      "offset": 22,
+      "value": "SwellListPointer Start"
+    },
+    {
+      "type": 9,
+      "offset": 50,
+      "value": 0.5
+    },
+    {
+      "type": 1,
+      "offset": 62,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 70,
+      "value": 0.69999999999999996
+    },
+    {
+      "type": 9,
+      "offset": 82,
+      "value": 0.03
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+Simplified controls with fly-by-wire auto-hover.
+Use this mode at first.
+NOVICE

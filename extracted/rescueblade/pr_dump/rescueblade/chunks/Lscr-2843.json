@@ -1,0 +1,449 @@
+{
+  "totalLength": 4668,
+  "totalLength2": 4668,
+  "headerLength": 92,
+  "scriptNumber": 100,
+  "unk20": 3,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65541,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 4636,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 22,
+  "propertiesOffset": 92,
+  "globalsCount": 24,
+  "globalsOffset": 136,
+  "handlersCount": 5,
+  "handlersOffset": 184,
+  "literalsCount": 58,
+  "literalsOffset": 3496,
+  "literalsDataCount": 676,
+  "literalsDataOffset": 3960,
+  "propertyNameIDs": [
+    20,
+    362,
+    23,
+    26,
+    28,
+    29,
+    30,
+    32,
+    34,
+    35,
+    38,
+    40,
+    48,
+    358,
+    366,
+    367,
+    375,
+    379,
+    396,
+    437,
+    462,
+    469
+  ],
+  "globalNameIDs": [
+    47,
+    55,
+    274,
+    364,
+    180,
+    182,
+    410,
+    427,
+    430,
+    448,
+    450,
+    453,
+    458,
+    464,
+    475,
+    510,
+    439,
+    568,
+    572,
+    622,
+    623,
+    628,
+    632,
+    669
+  ],
+  "handlers": [
+    {
+      "nameID": 18,
+      "vectorPos": 65535,
+      "compiledLen": 651,
+      "compiledOffset": 394,
+      "argumentCount": 0,
+      "argumentOffset": 1046,
+      "localsCount": 2,
+      "localsOffset": 1046,
+      "globalsCount": 0,
+      "globalsOffset": 1050,
+      "unknown1": 517,
+      "unknown2": 8,
+      "lineCount": 63,
+      "lineOffset": 1050
+    },
+    {
+      "nameID": 19,
+      "vectorPos": 15,
+      "compiledLen": 31,
+      "compiledOffset": 1114,
+      "argumentCount": 0,
+      "argumentOffset": 1146,
+      "localsCount": 0,
+      "localsOffset": 1146,
+      "globalsCount": 0,
+      "globalsOffset": 1146,
+      "unknown1": 2125,
+      "unknown2": 74,
+      "lineCount": 9,
+      "lineOffset": 1146
+    },
+    {
+      "nameID": 359,
+      "vectorPos": 65535,
+      "compiledLen": 559,
+      "compiledOffset": 1156,
+      "argumentCount": 0,
+      "argumentOffset": 1716,
+      "localsCount": 1,
+      "localsOffset": 1716,
+      "globalsCount": 0,
+      "globalsOffset": 1718,
+      "unknown1": 2323,
+      "unknown2": 88,
+      "lineCount": 88,
+      "lineOffset": 1718
+    },
+    {
+      "nameID": 360,
+      "vectorPos": 65535,
+      "compiledLen": 314,
+      "compiledOffset": 1806,
+      "argumentCount": 0,
+      "argumentOffset": 2120,
+      "localsCount": 1,
+      "localsOffset": 2120,
+      "globalsCount": 0,
+      "globalsOffset": 2122,
+      "unknown1": 4435,
+      "unknown2": 181,
+      "lineCount": 66,
+      "lineOffset": 2122
+    },
+    {
+      "nameID": 365,
+      "vectorPos": 65535,
+      "compiledLen": 1152,
+      "compiledOffset": 2188,
+      "argumentCount": 0,
+      "argumentOffset": 3340,
+      "localsCount": 8,
+      "localsOffset": 3340,
+      "globalsCount": 0,
+      "globalsOffset": 3356,
+      "unknown1": 5682,
+      "unknown2": 250,
+      "lineCount": 139,
+      "lineOffset": 3356
+    }
+  ],
+  "literals": [
+    {
+      "type": 1,
+      "offset": 0,
+      "value": "Maps"
+    },
+    {
+      "type": 1,
+      "offset": 10,
+      "value": "List missmatch !"
+    },
+    {
+      "type": 9,
+      "offset": 32,
+      "value": 0.94999999999999996
+    },
+    {
+      "type": 1,
+      "offset": 44,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 52,
+      "value": 1.19999999999999996
+    },
+    {
+      "type": 9,
+      "offset": 64,
+      "value": 1.19999999999999996
+    },
+    {
+      "type": 9,
+      "offset": 76,
+      "value": 0.94999999999999996
+    },
+    {
+      "type": 9,
+      "offset": 88,
+      "value": 0.94999999999999996
+    },
+    {
+      "type": 9,
+      "offset": 100,
+      "value": 0.90000000000000002
+    },
+    {
+      "type": 9,
+      "offset": 112,
+      "value": 0.90000000000000002
+    },
+    {
+      "type": 9,
+      "offset": 124,
+      "value": 0.5
+    },
+    {
+      "type": 9,
+      "offset": 136,
+      "value": 0.01
+    },
+    {
+      "type": 9,
+      "offset": 148,
+      "value": 0.01
+    },
+    {
+      "type": 9,
+      "offset": 160,
+      "value": 0.94999999999999996
+    },
+    {
+      "type": 9,
+      "offset": 172,
+      "value": 0.94999999999999996
+    },
+    {
+      "type": 9,
+      "offset": 184,
+      "value": 0.29999999999999999
+    },
+    {
+      "type": 9,
+      "offset": 196,
+      "value": 0.29999999999999999
+    },
+    {
+      "type": 9,
+      "offset": 208,
+      "value": 0.01
+    },
+    {
+      "type": 9,
+      "offset": 220,
+      "value": 0.94999999999999996
+    },
+    {
+      "type": 9,
+      "offset": 232,
+      "value": 0.94999999999999996
+    },
+    {
+      "type": 9,
+      "offset": 244,
+      "value": 0.94999999999999996
+    },
+    {
+      "type": 9,
+      "offset": 256,
+      "value": 0.94999999999999996
+    },
+    {
+      "type": 9,
+      "offset": 268,
+      "value": 0.5
+    },
+    {
+      "type": 9,
+      "offset": 280,
+      "value": 0.5
+    },
+    {
+      "type": 9,
+      "offset": 292,
+      "value": 0.94999999999999996
+    },
+    {
+      "type": 9,
+      "offset": 304,
+      "value": 0.94999999999999996
+    },
+    {
+      "type": 9,
+      "offset": 316,
+      "value": 0.05
+    },
+    {
+      "type": 9,
+      "offset": 328,
+      "value": 1.5
+    },
+    {
+      "type": 9,
+      "offset": 340,
+      "value": 1.5
+    },
+    {
+      "type": 9,
+      "offset": 352,
+      "value": 0.05
+    },
+    {
+      "type": 1,
+      "offset": 364,
+      "value": "Gfx"
+    },
+    {
+      "type": 9,
+      "offset": 372,
+      "value": 1.25
+    },
+    {
+      "type": 9,
+      "offset": 384,
+      "value": 1.25
+    },
+    {
+      "type": 9,
+      "offset": 396,
+      "value": 0.90000000000000002
+    },
+    {
+      "type": 9,
+      "offset": 408,
+      "value": 0.96999999999999997
+    },
+    {
+      "type": 9,
+      "offset": 420,
+      "value": 0.5
+    },
+    {
+      "type": 1,
+      "offset": 432,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 440,
+      "value": 0.03
+    },
+    {
+      "type": 9,
+      "offset": 452,
+      "value": 0.90000000000000002
+    },
+    {
+      "type": 9,
+      "offset": 464,
+      "value": 0.5
+    },
+    {
+      "type": 9,
+      "offset": 476,
+      "value": 0.5
+    },
+    {
+      "type": 9,
+      "offset": 488,
+      "value": 0.80000000000000004
+    },
+    {
+      "type": 9,
+      "offset": 500,
+      "value": 0.80000000000000004
+    },
+    {
+      "type": 9,
+      "offset": 512,
+      "value": 0.80000000000000004
+    },
+    {
+      "type": 1,
+      "offset": 524,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 532,
+      "value": 0.80000000000000004
+    },
+    {
+      "type": 1,
+      "offset": 544,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 552,
+      "value": 0.04
+    },
+    {
+      "type": 9,
+      "offset": 564,
+      "value": 0.5
+    },
+    {
+      "type": 9,
+      "offset": 576,
+      "value": 0.80000000000000004
+    },
+    {
+      "type": 9,
+      "offset": 588,
+      "value": 0.80000000000000004
+    },
+    {
+      "type": 9,
+      "offset": 600,
+      "value": 0.80000000000000004
+    },
+    {
+      "type": 9,
+      "offset": 612,
+      "value": 0.80000000000000004
+    },
+    {
+      "type": 9,
+      "offset": 624,
+      "value": 0.80000000000000004
+    },
+    {
+      "type": 1,
+      "offset": 636,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 644,
+      "value": 0.80000000000000004
+    },
+    {
+      "type": 1,
+      "offset": 656,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 664,
+      "value": 0.80000000000000004
+    }
+  ]
+}

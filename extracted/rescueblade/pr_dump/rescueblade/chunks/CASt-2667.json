@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2263,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 288,
+    "scriptSrcText": "property this, Xpos, radians, Ypos, loopX, loopWidth, cableGuy, distToGuy, tiltAngle, whaleState, snowBlow, slapCount\rglobal gXVel, gXOffset, gPaused, gTileIDList, gXVelChange, gScore\r\ron beginSprite\r  radians = float(PI / 180)\r  this = sprite(the currentSpriteNum)\r  loopX = gTileIDList.count * 128 * 0.5\r  loopWidth = gTileIDList.count * 128\r  Xpos = float(this.locH)\r  whaleState = #WAITING\r  this.locZ = 203\r  cableGuy = sprite(6)\r  tiltAngle = 0\r  snowBlow = sprite(56)\r  slapCount = 1\rend\r\ron exitFrame\r  if gPaused = 0 then\r    prevXPos = Xpos\r    Xpos = Xpos + gXVel + gXOffset\r    if Xpos > loopX then\r      Xpos = Xpos - loopWidth\r    end if\r    if Xpos < -loopX then\r      Xpos = Xpos + loopWidth\r    end if\r    if (Xpos > 0) and (Xpos < 512) then\r      if (prevXPos <= 0) or (prevXPos >= 512) then\r        if soundBusy(2) = 0 then\r          puppetSound(2, member(74, \"Sfx\"))\r        end if\r      end if\r      case whaleState of\r        #WAITING:\r          spoutPoint = this.loc + point(-16, -93)\r          snowBlow.loc = spoutPoint\r          snowBlow.rotation = 180\r          xDiff = float(spoutPoint.locH - (cableGuy.locH + cableGuy.Xvel))\r          yDiff = float(spoutPoint.locV - (cableGuy.locV + cableGuy.Yvel))\r          if abs(xDiff) < 10 then\r            if (yDiff < 10) and (yDiff > -10) then\r              whaleState = #ROLL\r              tiltAngle = 360\r            end if\r          end if\r        #ROLL:\r          prevTiltAngle = tiltAngle\r          if tiltAngle > 0 then\r            tiltAngle = tiltAngle * 0.94999999999999996\r          end if\r          if (tiltAngle < 270) and (prevTiltAngle >= 270) then\r            if slapCount mod 2 then\r              puppetSound(4, member(11, \"Sfx\"))\r            else\r              puppetSound(4, member(75, \"Sfx\"))\r            end if\r            cableGuy.Xvel = -50\r            slapCount = slapCount + 1\r            gScore = gScore + 500\r          end if\r          if tiltAngle < 2 then\r            tiltAngle = 0\r            whaleState = #WAITING\r            if soundBusy(2) = 0 then\r              puppetSound(2, member(74, \"Sfx\"))\r            end if\r          end if\r      end case\r    end if\r    this.locH = Xpos\r    this.rotation = tiltAngle\r  end if\rend\r",
+    "name": "Whale"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

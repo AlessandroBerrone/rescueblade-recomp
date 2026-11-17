@@ -1,0 +1,79 @@
+{
+  "totalLength": 356,
+  "totalLength2": 356,
+  "headerLength": 92,
+  "scriptNumber": 2,
+  "unk20": 6,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 262147,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 324,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 0,
+  "propertiesOffset": 92,
+  "globalsCount": 1,
+  "globalsOffset": 92,
+  "handlersCount": 1,
+  "handlersOffset": 94,
+  "literalsCount": 6,
+  "literalsOffset": 208,
+  "literalsDataCount": 68,
+  "literalsDataOffset": 256,
+  "propertyNameIDs": [],
+  "globalNameIDs": [
+    24
+  ],
+  "handlers": [
+    {
+      "nameID": 0,
+      "vectorPos": 15,
+      "compiledLen": 61,
+      "compiledOffset": 136,
+      "argumentCount": 1,
+      "argumentOffset": 198,
+      "localsCount": 0,
+      "localsOffset": 200,
+      "globalsCount": 0,
+      "globalsOffset": 200,
+      "unknown1": 29,
+      "unknown2": 3,
+      "lineCount": 7,
+      "lineOffset": 200
+    }
+  ],
+  "literals": [
+    {
+      "type": 1,
+      "offset": 0,
+      "value": "r"
+    },
+    {
+      "type": 1,
+      "offset": 6,
+      "value": "i"
+    },
+    {
+      "type": 1,
+      "offset": 12,
+      "value": "x"
+    },
+    {
+      "type": 1,
+      "offset": 18,
+      "value": "Rix Cheat"
+    },
+    {
+      "type": 1,
+      "offset": 32,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 38,
+      "value": "Unlocking all levels. . ."
+    }
+  ]
+}

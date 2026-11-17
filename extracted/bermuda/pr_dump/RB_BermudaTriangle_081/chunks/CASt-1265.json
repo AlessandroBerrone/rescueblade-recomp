@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 148,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 107,
+    "scriptSrcText": "property this\r\ron beginSprite\r  this = sprite(the currentSpriteNum)\r  this.locZ = the currentSpriteNum\rend\r",
+    "name": "ZReset"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

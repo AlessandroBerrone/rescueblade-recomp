@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 1551,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 45,
+    "scriptSrcText": "property this, Xpos, leftLoopX, rightLoopX, loopWidth, radians, Ypos, overlayState, startHeight, startWidth, cableGuy, splashHeight, splashVel, grav\rglobal gXVel, gXOffset, gPaused\r\ron beginSprite\r  radians = float(PI / 180)\r  this = sprite(the currentSpriteNum)\r  rightLoopX = 512 + (this.width / 2)\r  leftLoopX = -this.width / 2\r  loopWidth = 512 + this.width\r  Xpos = float(this.locH)\r  Ypos = float(this.locV)\r  this.locZ = 102\r  startHeight = this.height\r  startWidth = this.width\r  this.blend = 0\r  overlayState = #NULL\r  splashHeight = startHeight * 0.5\r  splashVel = 7\r  grav = -0.25\rend\r\ron exitFrame\r  if gPaused = 0 then\r    case overlayState of\r      #NULL:\r        this.locH = Xpos\r        this.locV = Ypos\r      #StartSplash:\r        this.blend = 100\r        this.height = startHeight * 0.5\r        this.width = startWidth\r        overlayState = #SPLASH\r        this.locH = Xpos\r        this.locV = Ypos\r        splashHeight = 0\r        splashVel = 7\r      #SPLASH:\r        splashVel = splashVel + grav\r        splashHeight = splashHeight + splashVel\r        this.height = splashHeight\r        this.width = startWidth + 5 - (splashHeight * 0.10000000000000001)\r        if splashVel < 0 then\r          this.blend = this.blend - 1\r          if this.blend = 0 then\r            overlayState = #NULL\r            Xpos = -1000\r            Ypos = -1000\r          end if\r        end if\r        Xpos = Xpos + gXVel + gXOffset\r        this.locH = Xpos\r        this.locV = Ypos\r    end case\r  end if\rend\r",
+    "name": "GuyOverlay"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

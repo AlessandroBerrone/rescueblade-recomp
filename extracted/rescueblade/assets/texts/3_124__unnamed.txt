@@ -1,0 +1,10 @@
+MISSION 003 Flaming Palm Trees
+
+Now it's time  for your final training session.
+
+Master the water nozzle HOLDING DOWN the SPACEBAR to spray the water jet. The helicopter will not move left or right when spraying. Instead use the cursor keys to aim the water jet left and right.
+
+Douse all the palm trees to complete the level!
+
+WARNING: DON'T FAN THE FLAMES! Avoid hovering directly over the flames, spray at a distance. 
+TIP: To douse the flames much faster, slowly sway the spray back and forth across the base of the fire.

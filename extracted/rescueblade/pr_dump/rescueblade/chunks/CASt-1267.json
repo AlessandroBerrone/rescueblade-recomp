@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 304,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 109,
+    "scriptSrcText": "property thisNum, this\rglobal gLevel\r\ron beginSprite\r  this = sprite(the currentSpriteNum)\r  thisNum = the currentSpriteNum\r  this.blend = 50\rend\r\ron exitFrame\r  if thisNum = the rollover then\r    this.blend = 100\r  else\r    this.blend = 50\r  end if\rend\r",
+    "name": "HiLightRollover"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

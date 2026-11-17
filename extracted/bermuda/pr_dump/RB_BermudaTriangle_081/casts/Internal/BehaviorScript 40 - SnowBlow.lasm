@@ -1,0 +1,43 @@
+property this, thisMember
+
+on beginSprite
+  [  0] getmovieprop 22 ......................... <the currentSpriteNum>
+  [  2] pusharglist 1 ........................... <the currentSpriteNum>
+  [  4] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [  6] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [  8] getprop 20 .............................. <this>
+  [ 10] getobjprop 477 .......................... <this.memberNum>
+  [ 13] setprop 26 .............................. thisMember = this.memberNum
+  [ 15] getprop 20 .............................. <this>
+  [ 17] pushint8 1500 ........................... <1500>
+  [ 20] setobjprop 178 .......................... this.locZ = 1500
+  [ 23] ret
+end
+
+on exitFrame
+  [  0] getprop 20 .............................. <this>
+  [  2] pushint8 1000 ........................... <1000>
+  [  5] inv ..................................... <-1000>
+  [  6] setobjprop 36 ........................... this.locH = -1000
+  [  9] getprop 20 .............................. <this>
+  [ 11] pushint8 1000 ........................... <1000>
+  [ 14] inv ..................................... <-1000>
+  [ 15] setobjprop 37 ........................... this.locV = -1000
+  [ 18] getprop 26 .............................. <thisMember>
+  [ 20] pushint8 1 .............................. <1>
+  [ 23] add ..................................... <thisMember + 1>
+  [ 24] setprop 26 .............................. thisMember = thisMember + 1
+  [ 26] getprop 26 .............................. <thisMember>
+  [ 28] pushint8 182 ............................ <182>
+  [ 31] gt ...................................... <thisMember > 182>
+  [ 32] jmpifz [ 40] ............................ if thisMember > 182 then
+  [ 35] pushint8 175 ............................ <175>
+  [ 38] setprop 26 .............................. thisMember = 175
+  [ 40] getprop 20 .............................. <this>
+  [ 42] getprop 26 .............................. <thisMember>
+  [ 44] pushcons 0 .............................. <"Gfx">
+  [ 46] pusharglist 2 ........................... <thisMember, "Gfx">
+  [ 48] extcall 27 .............................. <member(thisMember, "Gfx")>
+  [ 50] setobjprop 27 ........................... this.member = member(thisMember, "Gfx")
+  [ 52] ret
+end

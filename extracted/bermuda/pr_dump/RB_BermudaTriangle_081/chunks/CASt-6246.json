@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2171,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 275,
+    "scriptSrcText": "property this, Xpos, radians, Ypos, mapXPos, raftFront, cableGuy, swellList, swellListPointer, loopWidth, loopX, swellHeight, swellListPointerStart, beam, abductCableGuy\rglobal gXVel, gXOffset, gPaused, gTileIDList, gScore\r\ron getPropertyDescriptionList me\r  descriptionList = [:]\r  addProp(descriptionList, #swellHeight, [#default: 0, #format: #sprite, #comment: \"Sea Swell Height\"])\r  addProp(descriptionList, #swellListPointerStart, [#default: 1, #format: #sprite, #comment: \"SwellListPointer Start\"])\r  return descriptionList\rend\r\ron beginSprite\r  radians = float(PI / 180)\r  this = sprite(the currentSpriteNum)\r  beam = sprite(the currentSpriteNum - 1)\r  cableGuy = sprite(6)\r  loopWidth = gTileIDList.count * 128\r  loopX = gTileIDList.count * 128 * 0.5\r  Xpos = float(this.locH)\r  Ypos = float(this.locV)\r  this.locZ = 800\r  mapXPos = Xpos - 256\r  swellAngle = random(360)\r  swellList = []\r  swellListPointer = swellListPointerStart\r  repeat with i = 1 to 45\r    swellAngle = i * 8\r    swellList.add(swellHeight * cos(swellAngle * radians))\r  end repeat\r  abductCableGuy = 0\rend\r\ron exitFrame\r  if gPaused = 0 then\r    Xpos = Xpos + gXVel + gXOffset\r    if Xpos > loopX then\r      Xpos = Xpos - loopWidth\r    end if\r    if Xpos < -loopX then\r      Xpos = Xpos + loopWidth\r    end if\r    xDiff = this.locH - cableGuy.locH\r    if abs(xDiff) < 35 then\r      if abductCableGuy = 0 then\r        yDiff = abs(this.locV - cableGuy.locV)\r        if yDiff < 10 then\r          puppetSound(2, member(95, \"Sfx\"))\r          abductCableGuy = 1\r          gScore = gScore + 1000\r        end if\r      end if\r      cableGuy.Yvel = cableGuy.Yvel - 0.69999999999999996\r      cableGuy.Xvel = cableGuy.Xvel + (xDiff * 0.03)\r    end if\r    this.locH = Xpos\r    beam.loc = this.loc\r    swellListPointer = swellListPointer + 1\r    if swellListPointer > 45 then\r      swellListPointer = 1\r    end if\r    this.locV = Ypos - swellList[swellListPointer]\r  end if\rend\r",
+    "name": "MotherShip"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

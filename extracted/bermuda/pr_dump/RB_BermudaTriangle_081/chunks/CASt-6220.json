@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2498,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 385,
+    "scriptSrcText": "property this, Xpos, swellAngle, radians, Ypos, mapXPos, survivorDelay, thisMember, startMember, Xvel, cableGuy, survivorState, ThisWidth, thisHalfHeight, grabCount, distToHQ, targetSprite, targetOffset, frameDir, loopWidth, loopX\rglobal gXVel, gXOffset, gPaused, gTileIDList, gCableItem, gCableLength, gRescueCount, gRescuedList, gScore\r\ron beginSprite\r  radians = float(PI / 180)\r  this = sprite(the currentSpriteNum)\r  startMember = this.memberNum\r  targetSprite = the currentSpriteNum - 1\r  loopWidth = gTileIDList.count * 128\r  loopX = gTileIDList.count * 128 * 0.5\r  Xpos = float(this.locH)\r  Ypos = float(this.locV)\r  this.locZ = sprite(the currentSpriteNum - 1).locZ - 1\r  Xvel = 0\r  mapXPos = Xpos - 256 - 64\r  survivorDelay = 0\r  swellAngle = 0\r  cableGuy = sprite(6)\r  survivorState = #ONGROUND\r  ThisWidth = this.width\r  thisHalfHeight = this.height / 2\r  grabCount = 0\r  distToHQ = 0\r  frameDir = 1\rend\r\ron exitFrame\r  if gPaused = 0 then\r    case survivorState of\r      #ONGROUND:\r        if targetSprite = this.spriteNum then\r          Xpos = Xpos + (gXVel + gXOffset)\r          this.locH = Xpos\r          if Xpos > loopX then\r            Xpos = Xpos - loopWidth\r          end if\r          if Xpos < -loopX then\r            Xpos = Xpos + loopWidth\r          end if\r        else\r          this.loc = sprite(targetSprite).loc + targetOffset\r        end if\r        survivorDelay = survivorDelay + 1\r        if survivorDelay >= 5 then\r          survivorDelay = 0\r        end if\r        diffX = abs(this.locH - cableGuy.locH)\r        diffY = abs(this.locV - cableGuy.locV)\r        if (diffX < ThisWidth) and (diffY < thisHalfHeight) then\r          grabCount = grabCount + 1\r          if (grabCount >= 2) and (sprite(targetSprite).attackMode = #FLEE) then\r            if (gCableItem = 0) and (gCableLength >= 50) then\r              survivorState = #ONCABLE\r              sprite(targetSprite).attackMode = #PILOTLESS\r              puppetSound(2, member(97, \"Sfx\"))\r              gCableItem = 1\r            end if\r          end if\r        else\r          grabCount = 0\r        end if\r      #ONCABLE:\r        this.loc = cableGuy.loc\r        if gCableLength = 0 then\r          gCableItem = 0\r          survivorState = #INCOPTER\r          gRescueCount = gRescueCount + 1\r          gScore = gScore + 500\r          puppetSound(3, member(8, \"Sfx\"))\r        end if\r      #INCOPTER:\r        this.locH = -1000\r        this.locV = -1000\r    end case\r  end if\rend\r",
+    "name": "Gray"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

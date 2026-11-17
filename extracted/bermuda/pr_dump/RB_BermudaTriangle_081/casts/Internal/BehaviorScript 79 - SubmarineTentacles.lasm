@@ -1,0 +1,869 @@
+property this, radians, Xpos, loopX, Ypos, glow, COPTER, cableGuy, towerState, startY, glowList, glowListPointer, loopWidth, grabX, grabY, tiltAngle, thisFrame, frameWait, survivor, tentacleLength, TentacleStretch, stretchVel, startHeight, tiltVel, pullCount, distToCopter, diffAngle, stretchPercent, toCopterVector
+global gXVel, gXOffset, gPaused, gTileIDList, gDamagePercent, gCableLength, gPloshX, gRescueCount, gScore, gCableItem, gXVelChange
+
+on beginSprite
+  [  0] pusharglist 0 ........................... <>
+  [  2] extcall 41 .............................. <PI>
+  [  5] pushint8 180 ............................ <180>
+  [  8] div ..................................... <PI / 180>
+  [  9] pusharglist 1 ........................... <PI / 180>
+  [ 11] extcall 33 .............................. <float(PI / 180)>
+  [ 14] setprop 40 .............................. radians = float(PI / 180)
+  [ 17] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 19] pusharglist 1 ........................... <the currentSpriteNum>
+  [ 21] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [ 23] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [ 25] pushint8 60 ............................. <60>
+  [ 28] pusharglist 1 ........................... <60>
+  [ 30] extcall 408 ............................. <random(60)>
+  [ 33] pushint8 30 ............................. <30>
+  [ 36] sub ..................................... <random(60) - 30>
+  [ 37] setprop 23 .............................. tiltAngle = random(60) - 30
+  [ 39] getprop 23 .............................. <tiltAngle>
+  [ 41] pushzero ................................ <0>
+  [ 42] lt ...................................... <tiltAngle < 0>
+  [ 43] jmpifz [ 54] ............................ if tiltAngle < 0 then
+  [ 46] getprop 23 .............................. <tiltAngle>
+  [ 48] pushint8 360 ............................ <360>
+  [ 51] add ..................................... <tiltAngle + 360>
+  [ 52] setprop 23 .............................. tiltAngle = tiltAngle + 360
+  [ 54] getprop 23 .............................. <tiltAngle>
+  [ 56] pushint8 360 ............................ <360>
+  [ 59] gt ...................................... <tiltAngle > 360>
+  [ 60] jmpifz [ 71] ............................ if tiltAngle > 360 then
+  [ 63] getprop 23 .............................. <tiltAngle>
+  [ 65] pushint8 360 ............................ <360>
+  [ 68] sub ..................................... <tiltAngle - 360>
+  [ 69] setprop 23 .............................. tiltAngle = tiltAngle - 360
+  [ 71] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 73] pushint8 1 .............................. <1>
+  [ 76] sub ..................................... <the currentSpriteNum - 1>
+  [ 77] pusharglist 1 ........................... <the currentSpriteNum - 1>
+  [ 79] extcall 21 .............................. <sprite(the currentSpriteNum - 1)>
+  [ 81] setprop 934 ............................. survivor = sprite(the currentSpriteNum - 1)
+  [ 84] pushint8 4 .............................. <4>
+  [ 87] pusharglist 1 ........................... <4>
+  [ 89] extcall 21 .............................. <sprite(4)>
+  [ 91] setprop 341 ............................. COPTER = sprite(4)
+  [ 94] pushint8 6 .............................. <6>
+  [ 97] pusharglist 1 ........................... <6>
+  [ 99] extcall 21 .............................. <sprite(6)>
+  [101] setprop 342 ............................. cableGuy = sprite(6)
+  [104] getprop 20 .............................. <this>
+  [106] getobjprop 36 ........................... <this.locH>
+  [109] pusharglist 1 ........................... <this.locH>
+  [111] extcall 33 .............................. <float(this.locH)>
+  [114] setprop 48 .............................. Xpos = float(this.locH)
+  [117] getprop 20 .............................. <this>
+  [119] getobjprop 37 ........................... <this.locV>
+  [122] pusharglist 1 ........................... <this.locV>
+  [124] extcall 33 .............................. <float(this.locV)>
+  [127] setprop 38 .............................. Ypos = float(this.locV)
+  [130] getprop 20 .............................. <this>
+  [132] getobjprop 97 ........................... <this.height>
+  [135] setprop 400 ............................. startHeight = this.height
+  [138] getprop 38 .............................. <Ypos>
+  [141] setprop 660 ............................. startY = Ypos
+  [144] pushzero ................................ <0>
+  [145] setprop 795 ............................. tiltVel = 0
+  [148] pushcons 0 .............................. <0.0>
+  [150] setprop 654 ............................. distToCopter = 0.0
+  [153] pushcons 8 .............................. <0.0>
+  [155] setlocal 0 .............................. Dist = 0.0
+  [157] pushcons 16 ............................. <0.0>
+  [159] setprop 817 ............................. diffAngle = 0.0
+  [162] getprop 20 .............................. <this>
+  [164] getmovieprop 22 ......................... <the currentSpriteNum>
+  [166] pushint8 104 ............................ <104>
+  [169] add ..................................... <the currentSpriteNum + 104>
+  [170] setobjprop 178 .......................... this.locZ = the currentSpriteNum + 104
+  [173] pushint8 105 ............................ <105>
+  [176] setprop 935 ............................. tentacleLength = 105
+  [179] pushzero ................................ <0>
+  [180] setprop 936 ............................. TentacleStretch = 0
+  [183] pushint8 10 ............................. <10>
+  [186] pusharglist 1 ........................... <10>
+  [188] extcall 408 ............................. <random(10)>
+  [191] pushint8 5 .............................. <5>
+  [194] sub ..................................... <random(10) - 5>
+  [195] setprop 937 ............................. stretchVel = random(10) - 5
+  [198] getglobal 180 ........................... <gTileIDList>
+  [201] getobjprop 183 .......................... <gTileIDList.count>
+  [204] pushint8 128 ............................ <128>
+  [207] mul ..................................... <gTileIDList.count * 128>
+  [208] pushcons 24 ............................. <0.5>
+  [210] mul ..................................... <gTileIDList.count * 128 * 0.5>
+  [211] setprop 608 ............................. loopX = gTileIDList.count * 128 * 0.5
+  [214] getglobal 180 ........................... <gTileIDList>
+  [217] getobjprop 183 .......................... <gTileIDList.count>
+  [220] pushint8 128 ............................ <128>
+  [223] mul ..................................... <gTileIDList.count * 128>
+  [224] setprop 54 .............................. loopWidth = gTileIDList.count * 128
+  [227] pushint8 3 .............................. <3>
+  [230] setlocal 8 .............................. ouchCount = 3
+  [232] pushzero ................................ <0>
+  [233] setlocal 16 ............................. prevBolt = 0
+  [235] pushint8 60 ............................. <60>
+  [238] inv ..................................... <-60>
+  [239] setlocal 24 ............................. boltOffset = -60
+  [241] pushsymb 399 ............................ <#NULL>
+  [244] setprop 757 ............................. towerState = #NULL
+  [247] pusharglist 0 ........................... <[]>
+  [249] pushlist ................................ <[]>
+  [250] setprop 663 ............................. glowList = []
+  [253] pushint8 1 .............................. <1>
+  [256] setlocal 32
+  [258] getlocal 32
+  [260] pushint8 30 ............................. <30>
+  [263] lteq
+  [264] jmpifz [309] ............................ repeat with i = 1 to 30
+  [267] getprop 663 ............................. <glowList>
+  [270] pushint8 50 ............................. <50>
+  [273] pushint8 50 ............................. <50>
+  [276] getlocal 32 ............................. <i>
+  [278] pushint8 12 ............................. <12>
+  [281] mul ..................................... <i * 12>
+  [282] getprop 40 .............................. <radians>
+  [285] mul ..................................... <i * 12 * radians>
+  [286] pusharglist 1 ........................... <i * 12 * radians>
+  [288] extcall 45 .............................. <cos(i * 12 * radians)>
+  [291] mul ..................................... <50 * cos(i * 12 * radians)>
+  [292] add ..................................... <50 + (50 * cos(i * 12 * radians))>
+  [293] pusharglistnoret 2 ...................... <glowList, 50 + (50 * cos(i * 12 * radians))>
+  [295] objcall 418 ............................. glowList.add(50 + (50 * cos(i * 12 * radians)))
+  [298] pushint8 1
+  [301] getlocal 32
+  [303] add
+  [304] setlocal 32
+  [306] endrepeat [258]
+  [309] pushint8 1 .............................. <1>
+  [312] setprop 664 ............................. glowListPointer = 1
+  [315] pushzero ................................ <0>
+  [316] setprop 755 ............................. grabX = 0
+  [319] pushzero ................................ <0>
+  [320] setprop 756 ............................. grabY = 0
+  [323] pushint8 320 ............................ <320>
+  [326] pushint8 9 .............................. <9>
+  [329] pusharglist 1 ........................... <9>
+  [331] extcall 408 ............................. <random(9)>
+  [334] add ..................................... <320 + random(9)>
+  [335] setprop 878 ............................. thisFrame = 320 + random(9)
+  [338] pushint8 2 .............................. <2>
+  [341] pusharglist 1 ........................... <2>
+  [343] extcall 408 ............................. <random(2)>
+  [346] setprop 932 ............................. frameWait = random(2)
+  [349] pushzero ................................ <0>
+  [350] setprop 759 ............................. pullCount = 0
+  [353] ret
+end
+
+on exitFrame
+  [  0] getglobal 364 ........................... <gPaused>
+  [  3] pushzero ................................ <0>
+  [  4] eq ...................................... <gPaused = 0>
+  [  5] jmpifz [710] ............................ if gPaused = 0 then
+  [  8] getprop 757 ............................. <towerState>
+  [ 11] peek 0 .................................. case towerState of
+  [ 13] pushsymb 399 ............................ <#NULL>
+  [ 16] eq
+  [ 17] jmpifz [445] ............................ (case) #NULL:
+  [ 20] getprop 937 ............................. <stretchVel>
+  [ 23] pusharglist 1 ........................... <stretchVel>
+  [ 25] extcall 370 ............................. <abs(stretchVel)>
+  [ 28] pushint8 1 .............................. <1>
+  [ 31] lt ...................................... <abs(stretchVel) < 1>
+  [ 32] jmpifz [ 48] ............................ if abs(stretchVel) < 1 then / else
+  [ 35] getprop 759 ............................. <pullCount>
+  [ 38] pushint8 1 .............................. <1>
+  [ 41] add ..................................... <pullCount + 1>
+  [ 42] setprop 759 ............................. pullCount = pullCount + 1
+  [ 45] jmp [ 68]
+  [ 48] getprop 759 ............................. <pullCount>
+  [ 51] pushint8 2 .............................. <2>
+  [ 54] gteq .................................... <pullCount >= 2>
+  [ 55] jmpifz [ 68] ............................ if pullCount >= 2 then
+  [ 58] getprop 759 ............................. <pullCount>
+  [ 61] pushint8 2 .............................. <2>
+  [ 64] sub ..................................... <pullCount - 2>
+  [ 65] setprop 759 ............................. pullCount = pullCount - 2
+  [ 68] getprop 759 ............................. <pullCount>
+  [ 71] pushint8 20 ............................. <20>
+  [ 74] gt ...................................... <pullCount > 20>
+  [ 75] jmpifz [ 88] ............................ if pullCount > 20 then
+  [ 78] getprop 937 ............................. <stretchVel>
+  [ 81] pushint8 4 .............................. <4>
+  [ 84] add ..................................... <stretchVel + 4>
+  [ 85] setprop 937 ............................. stretchVel = stretchVel + 4
+  [ 88] getprop 937 ............................. <stretchVel>
+  [ 91] pushcons 32 ............................. <0.98999999999999999>
+  [ 93] mul ..................................... <stretchVel * 0.98999999999999999>
+  [ 94] setprop 937 ............................. stretchVel = stretchVel * 0.98999999999999999
+  [ 97] getprop 937 ............................. <stretchVel>
+  [100] getprop 936 ............................. <TentacleStretch>
+  [103] pushcons 40 ............................. <0.03>
+  [105] mul ..................................... <TentacleStretch * 0.03>
+  [106] sub ..................................... <stretchVel - (TentacleStretch * 0.03)>
+  [107] setprop 937 ............................. stretchVel = stretchVel - (TentacleStretch * 0.03)
+  [110] getprop 936 ............................. <TentacleStretch>
+  [113] getprop 937 ............................. <stretchVel>
+  [116] add ..................................... <TentacleStretch + stretchVel>
+  [117] setprop 936 ............................. TentacleStretch = TentacleStretch + stretchVel
+  [120] getprop 20 .............................. <this>
+  [122] getprop 400 ............................. <startHeight>
+  [125] getprop 936 ............................. <TentacleStretch>
+  [128] pushcons 48 ............................. <1.19999999999999996>
+  [130] mul ..................................... <TentacleStretch * 1.19999999999999996>
+  [131] add ..................................... <startHeight + (TentacleStretch * 1.19999999999999996)>
+  [132] setobjprop 97 ........................... this.height = startHeight + (TentacleStretch * 1.19999999999999996)
+  [135] getprop 48 .............................. <Xpos>
+  [138] getglobal 47 ............................ <gXVel>
+  [141] getglobal 55 ............................ <gXOffset>
+  [144] add ..................................... <gXVel + gXOffset>
+  [145] add ..................................... <Xpos + (gXVel + gXOffset)>
+  [146] setprop 48 .............................. Xpos = Xpos + (gXVel + gXOffset)
+  [149] getprop 48 .............................. <Xpos>
+  [152] getprop 608 ............................. <loopX>
+  [155] gt ...................................... <Xpos > loopX>
+  [156] jmpifz [169] ............................ if Xpos > loopX then
+  [159] getprop 48 .............................. <Xpos>
+  [162] getprop 54 .............................. <loopWidth>
+  [165] sub ..................................... <Xpos - loopWidth>
+  [166] setprop 48 .............................. Xpos = Xpos - loopWidth
+  [169] getprop 48 .............................. <Xpos>
+  [172] getprop 608 ............................. <loopX>
+  [175] inv ..................................... <-loopX>
+  [176] lt ...................................... <Xpos < -loopX>
+  [177] jmpifz [190] ............................ if Xpos < -loopX then
+  [180] getprop 48 .............................. <Xpos>
+  [183] getprop 54 .............................. <loopWidth>
+  [186] add ..................................... <Xpos + loopWidth>
+  [187] setprop 48 .............................. Xpos = Xpos + loopWidth
+  [190] getprop 20 .............................. <this>
+  [192] getprop 48 .............................. <Xpos>
+  [195] setobjprop 36 ........................... this.locH = Xpos
+  [198] getprop 20 .............................. <this>
+  [200] getprop 38 .............................. <Ypos>
+  [203] setobjprop 37 ........................... this.locV = Ypos
+  [206] getprop 20 .............................. <this>
+  [208] getprop 23 .............................. <tiltAngle>
+  [210] setobjprop 25 ........................... this.rotation = tiltAngle
+  [212] getprop 48 .............................. <Xpos>
+  [215] getprop 935 ............................. <tentacleLength>
+  [218] getprop 936 ............................. <TentacleStretch>
+  [221] add ..................................... <tentacleLength + TentacleStretch>
+  [222] getprop 23 .............................. <tiltAngle>
+  [224] pushint8 90 ............................. <90>
+  [227] sub ..................................... <tiltAngle - 90>
+  [228] getprop 40 .............................. <radians>
+  [231] mul ..................................... <(tiltAngle - 90) * radians>
+  [232] pusharglist 1 ........................... <(tiltAngle - 90) * radians>
+  [234] extcall 45 .............................. <cos((tiltAngle - 90) * radians)>
+  [237] mul ..................................... <(tentacleLength + TentacleStretch) * cos((tiltAngle - 90) * radians)>
+  [238] add ..................................... <Xpos + ((tentacleLength + TentacleStretch) * cos((tiltAngle - 90) * radians))>
+  [239] setprop 755 ............................. grabX = Xpos + ((tentacleLength + TentacleStretch) * cos((tiltAngle - 90) * radians))
+  [242] getprop 38 .............................. <Ypos>
+  [245] getprop 935 ............................. <tentacleLength>
+  [248] getprop 936 ............................. <TentacleStretch>
+  [251] add ..................................... <tentacleLength + TentacleStretch>
+  [252] getprop 23 .............................. <tiltAngle>
+  [254] pushint8 90 ............................. <90>
+  [257] sub ..................................... <tiltAngle - 90>
+  [258] getprop 40 .............................. <radians>
+  [261] mul ..................................... <(tiltAngle - 90) * radians>
+  [262] pusharglist 1 ........................... <(tiltAngle - 90) * radians>
+  [264] extcall 43 .............................. <sin((tiltAngle - 90) * radians)>
+  [267] mul ..................................... <(tentacleLength + TentacleStretch) * sin((tiltAngle - 90) * radians)>
+  [268] add ..................................... <Ypos + ((tentacleLength + TentacleStretch) * sin((tiltAngle - 90) * radians))>
+  [269] setprop 756 ............................. grabY = Ypos + ((tentacleLength + TentacleStretch) * sin((tiltAngle - 90) * radians))
+  [272] getprop 342 ............................. <cableGuy>
+  [275] getobjprop 36 ........................... <cableGuy.locH>
+  [278] getprop 755 ............................. <grabX>
+  [281] sub ..................................... <cableGuy.locH - grabX>
+  [282] setlocal 0 .............................. xDiff = cableGuy.locH - grabX
+  [284] getprop 342 ............................. <cableGuy>
+  [287] getobjprop 37 ........................... <cableGuy.locV>
+  [290] getprop 756 ............................. <grabY>
+  [293] sub ..................................... <cableGuy.locV - grabY>
+  [294] setlocal 8 .............................. yDiff = cableGuy.locV - grabY
+  [296] getlocal 0 .............................. <xDiff>
+  [298] getlocal 0 .............................. <xDiff>
+  [300] mul ..................................... <xDiff * xDiff>
+  [301] getlocal 8 .............................. <yDiff>
+  [303] getlocal 8 .............................. <yDiff>
+  [305] mul ..................................... <yDiff * yDiff>
+  [306] add ..................................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [307] pusharglist 1 ........................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [309] extcall 343 ............................. <sqrt((xDiff * xDiff) + (yDiff * yDiff))>
+  [312] setlocal 16 ............................. distToGuy = sqrt((xDiff * xDiff) + (yDiff * yDiff))
+  [314] getlocal 16 ............................. <distToGuy>
+  [316] pushint8 6 .............................. <6>
+  [319] lt ...................................... <distToGuy < 6>
+  [320] getglobal 448 ........................... <gCableItem>
+  [323] pushzero ................................ <0>
+  [324] eq ...................................... <gCableItem = 0>
+  [325] and ..................................... <(distToGuy < 6) and (gCableItem = 0)>
+  [326] jmpifz [407] ............................ if (distToGuy < 6) and (gCableItem = 0) then
+  [329] getglobal 450 ........................... <gCableLength>
+  [332] pushzero ................................ <0>
+  [333] gt ...................................... <gCableLength > 0>
+  [334] jmpifz [407] ............................ if gCableLength > 0 then
+  [337] getprop 20 .............................. <this>
+  [339] getobjprop 36 ........................... <this.locH>
+  [342] getprop 20 .............................. <this>
+  [344] getobjprop 37 ........................... <this.locV>
+  [347] getprop 342 ............................. <cableGuy>
+  [350] getobjprop 36 ........................... <cableGuy.locH>
+  [353] getprop 342 ............................. <cableGuy>
+  [356] getobjprop 37 ........................... <cableGuy.locV>
+  [359] pusharglist 4 ........................... <this.locH, this.locV, cableGuy.locH, cableGuy.locV>
+  [361] extcall 276 ............................. <AngleGrind(this.locH, this.locV, cableGuy.locH, cableGuy.locV)>
+  [364] pushint8 90 ............................. <90>
+  [367] add ..................................... <AngleGrind(this.locH, this.locV, cableGuy.locH, cableGuy.locV) + 90>
+  [368] setprop 23 .............................. tiltAngle = AngleGrind(this.locH, this.locV, cableGuy.locH, cableGuy.locV) + 90
+  [370] getprop 23 .............................. <tiltAngle>
+  [372] pushint8 360 ............................ <360>
+  [375] gt ...................................... <tiltAngle > 360>
+  [376] jmpifz [387] ............................ if tiltAngle > 360 then
+  [379] getprop 23 .............................. <tiltAngle>
+  [381] pushint8 360 ............................ <360>
+  [384] sub ..................................... <tiltAngle - 360>
+  [385] setprop 23 .............................. tiltAngle = tiltAngle - 360
+  [387] pushsymb 651 ............................ <#GRABBED>
+  [390] setprop 757 ............................. towerState = #GRABBED
+  [393] pushint8 1 .............................. <1>
+  [396] setglobal 448 ........................... gCableItem = 1
+  [399] pushzero ................................ <0>
+  [400] setprop 759 ............................. pullCount = 0
+  [403] pushzero ................................ <0>
+  [404] setprop 937 ............................. stretchVel = 0
+  [407] getprop 934 ............................. <survivor>
+  [410] getprop 755 ............................. <grabX>
+  [413] setobjprop 48 ........................... survivor.Xpos = grabX
+  [416] getprop 934 ............................. <survivor>
+  [419] getprop 756 ............................. <grabY>
+  [422] setobjprop 38 ........................... survivor.Ypos = grabY
+  [425] getprop 934 ............................. <survivor>
+  [428] getprop 755 ............................. <grabX>
+  [431] getprop 756 ............................. <grabY>
+  [434] pusharglist 2 ........................... <grabX, grabY>
+  [436] extcall 57 .............................. <point(grabX, grabY)>
+  [439] setobjprop 213 .......................... survivor.loc = point(grabX, grabY)
+  [442] jmp [650]
+  [445] peek 0
+  [447] pushsymb 651 ............................ <#GRABBED>
+  [450] eq
+  [451] jmpifz [513] ............................ (case) #GRABBED:
+  [454] pusharglistnoret 0 ...................... <>
+  [456] localcall 2 ............................. doPositionTentacle()
+  [458] pusharglistnoret 0 ...................... <>
+  [460] localcall 3 ............................. doStretchVelFriction()
+  [462] pusharglistnoret 0 ...................... <>
+  [464] localcall 4 ............................. doStretchVelPullBack()
+  [466] pusharglistnoret 0 ...................... <>
+  [468] localcall 5 ............................. doStretchVelUpdate()
+  [470] pusharglistnoret 0 ...................... <>
+  [472] localcall 6 ............................. doCalcGrabXY()
+  [474] pusharglistnoret 0 ...................... <>
+  [476] localcall 7 ............................. doDiffDistToCopter()
+  [478] pusharglistnoret 0 ...................... <>
+  [480] localcall 8 ............................. doDiffAngle()
+  [482] pusharglistnoret 0 ...................... <>
+  [484] localcall 9 ............................. doTiltAnglePull()
+  [486] pusharglistnoret 0 ...................... <>
+  [488] localcall 10 ............................ doStretchPercent()
+  [490] pusharglistnoret 0 ...................... <>
+  [492] localcall 11 ............................ doStretchVelCopterPull()
+  [494] pusharglistnoret 0 ...................... <>
+  [496] localcall 12 ............................ doCableGuyVelPull()
+  [498] pusharglistnoret 0 ...................... <>
+  [500] localcall 13 ............................ doCopterVelPull()
+  [502] pusharglistnoret 0 ...................... <>
+  [504] localcall 14 ............................ doPositionSurvivor()
+  [506] pusharglistnoret 0 ...................... <>
+  [508] localcall 15 ............................ doPluckConditions()
+  [510] jmp [650]
+  [513] peek 0
+  [515] pushsymb 661 ............................ <#UP>
+  [518] eq
+  [519] jmpifz [650] ............................ (case) #UP:
+  [522] getprop 23 .............................. <tiltAngle>
+  [524] pushcons 56 ............................. <0.97999999999999998>
+  [526] mul ..................................... <tiltAngle * 0.97999999999999998>
+  [527] setprop 23 .............................. tiltAngle = tiltAngle * 0.97999999999999998
+  [529] getprop 48 .............................. <Xpos>
+  [532] getglobal 47 ............................ <gXVel>
+  [535] getglobal 55 ............................ <gXOffset>
+  [538] add ..................................... <gXVel + gXOffset>
+  [539] add ..................................... <Xpos + (gXVel + gXOffset)>
+  [540] setprop 48 .............................. Xpos = Xpos + (gXVel + gXOffset)
+  [543] getprop 48 .............................. <Xpos>
+  [546] getprop 608 ............................. <loopX>
+  [549] gt ...................................... <Xpos > loopX>
+  [550] jmpifz [563] ............................ if Xpos > loopX then
+  [553] getprop 48 .............................. <Xpos>
+  [556] getprop 54 .............................. <loopWidth>
+  [559] sub ..................................... <Xpos - loopWidth>
+  [560] setprop 48 .............................. Xpos = Xpos - loopWidth
+  [563] getprop 48 .............................. <Xpos>
+  [566] getprop 608 ............................. <loopX>
+  [569] inv ..................................... <-loopX>
+  [570] lt ...................................... <Xpos < -loopX>
+  [571] jmpifz [584] ............................ if Xpos < -loopX then
+  [574] getprop 48 .............................. <Xpos>
+  [577] getprop 54 .............................. <loopWidth>
+  [580] add ..................................... <Xpos + loopWidth>
+  [581] setprop 48 .............................. Xpos = Xpos + loopWidth
+  [584] getprop 20 .............................. <this>
+  [586] getprop 23 .............................. <tiltAngle>
+  [588] setobjprop 25 ........................... this.rotation = tiltAngle
+  [590] getprop 20 .............................. <this>
+  [592] getprop 48 .............................. <Xpos>
+  [595] setobjprop 36 ........................... this.locH = Xpos
+  [598] getprop 20 .............................. <this>
+  [600] getprop 38 .............................. <Ypos>
+  [603] setobjprop 37 ........................... this.locV = Ypos
+  [606] getprop 937 ............................. <stretchVel>
+  [609] pushcons 64 ............................. <0.98999999999999999>
+  [611] mul ..................................... <stretchVel * 0.98999999999999999>
+  [612] setprop 937 ............................. stretchVel = stretchVel * 0.98999999999999999
+  [615] getprop 937 ............................. <stretchVel>
+  [618] getprop 936 ............................. <TentacleStretch>
+  [621] pushcons 72 ............................. <0.03>
+  [623] mul ..................................... <TentacleStretch * 0.03>
+  [624] sub ..................................... <stretchVel - (TentacleStretch * 0.03)>
+  [625] setprop 937 ............................. stretchVel = stretchVel - (TentacleStretch * 0.03)
+  [628] getprop 936 ............................. <TentacleStretch>
+  [631] getprop 937 ............................. <stretchVel>
+  [634] add ..................................... <TentacleStretch + stretchVel>
+  [635] setprop 936 ............................. TentacleStretch = TentacleStretch + stretchVel
+  [638] getprop 20 .............................. <this>
+  [640] getprop 400 ............................. <startHeight>
+  [643] getprop 936 ............................. <TentacleStretch>
+  [646] add ..................................... <startHeight + TentacleStretch>
+  [647] setobjprop 97 ........................... this.height = startHeight + TentacleStretch
+  [650] pop 1 ................................... end case
+  [652] getprop 932 ............................. <frameWait>
+  [655] pushint8 1 .............................. <1>
+  [658] add ..................................... <frameWait + 1>
+  [659] setprop 932 ............................. frameWait = frameWait + 1
+  [662] getprop 932 ............................. <frameWait>
+  [665] pushint8 2 .............................. <2>
+  [668] gteq .................................... <frameWait >= 2>
+  [669] jmpifz [702] ............................ if frameWait >= 2 then
+  [672] pushzero ................................ <0>
+  [673] setprop 932 ............................. frameWait = 0
+  [676] getprop 878 ............................. <thisFrame>
+  [679] pushint8 1 .............................. <1>
+  [682] add ..................................... <thisFrame + 1>
+  [683] setprop 878 ............................. thisFrame = thisFrame + 1
+  [686] getprop 878 ............................. <thisFrame>
+  [689] pushint8 329 ............................ <329>
+  [692] gt ...................................... <thisFrame > 329>
+  [693] jmpifz [702] ............................ if thisFrame > 329 then
+  [696] pushint8 320 ............................ <320>
+  [699] setprop 878 ............................. thisFrame = 320
+  [702] getprop 20 .............................. <this>
+  [704] getprop 878 ............................. <thisFrame>
+  [707] setobjprop 477 .......................... this.memberNum = thisFrame
+  [710] ret
+end
+
+on doPositionTentacle
+  [  0] pushint8 4 .............................. <4>
+  [  3] pusharglist 1 ........................... <4>
+  [  5] extcall 394 ............................. <soundBusy(4)>
+  [  8] pushzero ................................ <0>
+  [  9] eq ...................................... <soundBusy(4) = 0>
+  [ 10] jmpifz [ 30] ............................ if soundBusy(4) = 0 then
+  [ 13] pushint8 4 .............................. <4>
+  [ 16] pushint8 39 ............................. <39>
+  [ 19] pushcons 80 ............................. <"Sfx">
+  [ 21] pusharglist 2 ........................... <39, "Sfx">
+  [ 23] extcall 27 .............................. <member(39, "Sfx")>
+  [ 25] pusharglistnoret 2 ...................... <4, member(39, "Sfx")>
+  [ 27] extcall 395 ............................. puppetSound(4, member(39, "Sfx"))
+  [ 30] getprop 48 .............................. <Xpos>
+  [ 33] getglobal 47 ............................ <gXVel>
+  [ 36] getglobal 55 ............................ <gXOffset>
+  [ 39] add ..................................... <gXVel + gXOffset>
+  [ 40] add ..................................... <Xpos + (gXVel + gXOffset)>
+  [ 41] setprop 48 .............................. Xpos = Xpos + (gXVel + gXOffset)
+  [ 44] getprop 48 .............................. <Xpos>
+  [ 47] getprop 608 ............................. <loopX>
+  [ 50] gt ...................................... <Xpos > loopX>
+  [ 51] jmpifz [ 64] ............................ if Xpos > loopX then
+  [ 54] getprop 48 .............................. <Xpos>
+  [ 57] getprop 54 .............................. <loopWidth>
+  [ 60] sub ..................................... <Xpos - loopWidth>
+  [ 61] setprop 48 .............................. Xpos = Xpos - loopWidth
+  [ 64] getprop 48 .............................. <Xpos>
+  [ 67] getprop 608 ............................. <loopX>
+  [ 70] inv ..................................... <-loopX>
+  [ 71] lt ...................................... <Xpos < -loopX>
+  [ 72] jmpifz [ 85] ............................ if Xpos < -loopX then
+  [ 75] getprop 48 .............................. <Xpos>
+  [ 78] getprop 54 .............................. <loopWidth>
+  [ 81] add ..................................... <Xpos + loopWidth>
+  [ 82] setprop 48 .............................. Xpos = Xpos + loopWidth
+  [ 85] getprop 20 .............................. <this>
+  [ 87] getprop 48 .............................. <Xpos>
+  [ 90] setobjprop 36 ........................... this.locH = Xpos
+  [ 93] getprop 20 .............................. <this>
+  [ 95] getprop 38 .............................. <Ypos>
+  [ 98] setobjprop 37 ........................... this.locV = Ypos
+  [101] getprop 20 .............................. <this>
+  [103] getprop 23 .............................. <tiltAngle>
+  [105] setobjprop 25 ........................... this.rotation = tiltAngle
+  [107] ret
+end
+
+on doStretchVelFriction
+  [  0] getprop 937 ............................. <stretchVel>
+  [  3] pushcons 88 ............................. <0.98999999999999999>
+  [  5] mul ..................................... <stretchVel * 0.98999999999999999>
+  [  6] setprop 937 ............................. stretchVel = stretchVel * 0.98999999999999999
+  [  9] ret
+end
+
+on doStretchVelPullBack
+  [  0] getprop 937 ............................. <stretchVel>
+  [  3] getprop 936 ............................. <TentacleStretch>
+  [  6] pushcons 96 ............................. <0.005>
+  [  8] mul ..................................... <TentacleStretch * 0.005>
+  [  9] sub ..................................... <stretchVel - (TentacleStretch * 0.005)>
+  [ 10] setprop 937 ............................. stretchVel = stretchVel - (TentacleStretch * 0.005)
+  [ 13] ret
+end
+
+on doStretchVelUpdate
+  [  0] getprop 936 ............................. <TentacleStretch>
+  [  3] getprop 937 ............................. <stretchVel>
+  [  6] add ..................................... <TentacleStretch + stretchVel>
+  [  7] setprop 936 ............................. TentacleStretch = TentacleStretch + stretchVel
+  [ 10] getprop 20 .............................. <this>
+  [ 12] getprop 400 ............................. <startHeight>
+  [ 15] getprop 936 ............................. <TentacleStretch>
+  [ 18] pushcons 104 ............................ <1.30000000000000004>
+  [ 20] mul ..................................... <TentacleStretch * 1.30000000000000004>
+  [ 21] add ..................................... <startHeight + (TentacleStretch * 1.30000000000000004)>
+  [ 22] setobjprop 97 ........................... this.height = startHeight + (TentacleStretch * 1.30000000000000004)
+  [ 25] ret
+end
+
+on doCalcGrabXY
+  [  0] getprop 48 .............................. <Xpos>
+  [  3] getprop 935 ............................. <tentacleLength>
+  [  6] getprop 936 ............................. <TentacleStretch>
+  [  9] add ..................................... <tentacleLength + TentacleStretch>
+  [ 10] getprop 23 .............................. <tiltAngle>
+  [ 12] pushint8 90 ............................. <90>
+  [ 15] sub ..................................... <tiltAngle - 90>
+  [ 16] getprop 40 .............................. <radians>
+  [ 19] mul ..................................... <(tiltAngle - 90) * radians>
+  [ 20] pusharglist 1 ........................... <(tiltAngle - 90) * radians>
+  [ 22] extcall 45 .............................. <cos((tiltAngle - 90) * radians)>
+  [ 25] mul ..................................... <(tentacleLength + TentacleStretch) * cos((tiltAngle - 90) * radians)>
+  [ 26] add ..................................... <Xpos + ((tentacleLength + TentacleStretch) * cos((tiltAngle - 90) * radians))>
+  [ 27] setprop 755 ............................. grabX = Xpos + ((tentacleLength + TentacleStretch) * cos((tiltAngle - 90) * radians))
+  [ 30] getprop 38 .............................. <Ypos>
+  [ 33] getprop 935 ............................. <tentacleLength>
+  [ 36] getprop 936 ............................. <TentacleStretch>
+  [ 39] add ..................................... <tentacleLength + TentacleStretch>
+  [ 40] getprop 23 .............................. <tiltAngle>
+  [ 42] pushint8 90 ............................. <90>
+  [ 45] sub ..................................... <tiltAngle - 90>
+  [ 46] getprop 40 .............................. <radians>
+  [ 49] mul ..................................... <(tiltAngle - 90) * radians>
+  [ 50] pusharglist 1 ........................... <(tiltAngle - 90) * radians>
+  [ 52] extcall 43 .............................. <sin((tiltAngle - 90) * radians)>
+  [ 55] mul ..................................... <(tentacleLength + TentacleStretch) * sin((tiltAngle - 90) * radians)>
+  [ 56] add ..................................... <Ypos + ((tentacleLength + TentacleStretch) * sin((tiltAngle - 90) * radians))>
+  [ 57] setprop 756 ............................. grabY = Ypos + ((tentacleLength + TentacleStretch) * sin((tiltAngle - 90) * radians))
+  [ 60] ret
+end
+
+on doDiffDistToCopter
+  [  0] getprop 341 ............................. <COPTER>
+  [  3] getobjprop 36 ........................... <COPTER.locH>
+  [  6] getglobal 47 ............................ <gXVel>
+  [  9] sub ..................................... <COPTER.locH - gXVel>
+  [ 10] getprop 755 ............................. <grabX>
+  [ 13] sub ..................................... <COPTER.locH - gXVel - grabX>
+  [ 14] pusharglist 1 ........................... <COPTER.locH - gXVel - grabX>
+  [ 16] extcall 33 .............................. <float(COPTER.locH - gXVel - grabX)>
+  [ 19] setlocal 0 .............................. xDiff = float(COPTER.locH - gXVel - grabX)
+  [ 21] getprop 341 ............................. <COPTER>
+  [ 24] getobjprop 37 ........................... <COPTER.locV>
+  [ 27] getprop 341 ............................. <COPTER>
+  [ 30] getobjprop 32 ........................... <COPTER.Yvel>
+  [ 33] add ..................................... <COPTER.locV + COPTER.Yvel>
+  [ 34] getprop 756 ............................. <grabY>
+  [ 37] sub ..................................... <COPTER.locV + COPTER.Yvel - grabY>
+  [ 38] pusharglist 1 ........................... <COPTER.locV + COPTER.Yvel - grabY>
+  [ 40] extcall 33 .............................. <float(COPTER.locV + COPTER.Yvel - grabY)>
+  [ 43] setlocal 8 .............................. yDiff = float(COPTER.locV + COPTER.Yvel - grabY)
+  [ 45] getlocal 0 .............................. <xDiff>
+  [ 47] getlocal 0 .............................. <xDiff>
+  [ 49] mul ..................................... <xDiff * xDiff>
+  [ 50] getlocal 8 .............................. <yDiff>
+  [ 52] getlocal 8 .............................. <yDiff>
+  [ 54] mul ..................................... <yDiff * yDiff>
+  [ 55] add ..................................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [ 56] pusharglist 1 ........................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [ 58] extcall 343 ............................. <sqrt((xDiff * xDiff) + (yDiff * yDiff))>
+  [ 61] setprop 654 ............................. distToCopter = sqrt((xDiff * xDiff) + (yDiff * yDiff))
+  [ 64] ret
+end
+
+on doDiffAngle
+  [  0] getprop 20 .............................. <this>
+  [  2] getobjprop 25 ........................... <this.rotation>
+  [  4] pushint8 90 ............................. <90>
+  [  7] sub ..................................... <this.rotation - 90>
+  [  8] setlocal 0 .............................. angleA = this.rotation - 90
+  [ 10] getprop 755 ............................. <grabX>
+  [ 13] getprop 756 ............................. <grabY>
+  [ 16] getprop 341 ............................. <COPTER>
+  [ 19] getobjprop 36 ........................... <COPTER.locH>
+  [ 22] getglobal 47 ............................ <gXVel>
+  [ 25] sub ..................................... <COPTER.locH - gXVel>
+  [ 26] getprop 341 ............................. <COPTER>
+  [ 29] getobjprop 37 ........................... <COPTER.locV>
+  [ 32] getprop 341 ............................. <COPTER>
+  [ 35] getobjprop 32 ........................... <COPTER.Yvel>
+  [ 38] add ..................................... <COPTER.locV + COPTER.Yvel>
+  [ 39] pusharglist 4 ........................... <grabX, grabY, COPTER.locH - gXVel, COPTER.locV + COPTER.Yvel>
+  [ 41] extcall 276 ............................. <AngleGrind(grabX, grabY, COPTER.locH - gXVel, COPTER.locV + COPTER.Yvel)>
+  [ 44] setlocal 8 .............................. angleB = AngleGrind(grabX, grabY, COPTER.locH - gXVel, COPTER.locV + COPTER.Yvel)
+  [ 46] getlocal 8 .............................. <angleB>
+  [ 48] getlocal 0 .............................. <angleA>
+  [ 50] sub ..................................... <angleB - angleA>
+  [ 51] setprop 817 ............................. diffAngle = angleB - angleA
+  [ 54] getprop 817 ............................. <diffAngle>
+  [ 57] pushint8 180 ............................ <180>
+  [ 60] gt ...................................... <diffAngle > 180>
+  [ 61] jmpifz [ 74] ............................ if diffAngle > 180 then
+  [ 64] getprop 817 ............................. <diffAngle>
+  [ 67] pushint8 360 ............................ <360>
+  [ 70] sub ..................................... <diffAngle - 360>
+  [ 71] setprop 817 ............................. diffAngle = diffAngle - 360
+  [ 74] getprop 817 ............................. <diffAngle>
+  [ 77] pushint8 180 ............................ <180>
+  [ 80] inv ..................................... <-180>
+  [ 81] lt ...................................... <diffAngle < -180>
+  [ 82] jmpifz [ 95] ............................ if diffAngle < -180 then
+  [ 85] getprop 817 ............................. <diffAngle>
+  [ 88] pushint8 360 ............................ <360>
+  [ 91] add ..................................... <diffAngle + 360>
+  [ 92] setprop 817 ............................. diffAngle = diffAngle + 360
+  [ 95] ret
+end
+
+on doTiltAnglePull
+  [  0] getprop 23 .............................. <tiltAngle>
+  [  2] getprop 817 ............................. <diffAngle>
+  [  5] pushcons 112 ............................ <0.02>
+  [  7] mul ..................................... <diffAngle * 0.02>
+  [  8] add ..................................... <tiltAngle + (diffAngle * 0.02)>
+  [  9] setprop 23 .............................. tiltAngle = tiltAngle + (diffAngle * 0.02)
+  [ 11] getprop 23 .............................. <tiltAngle>
+  [ 13] pushzero ................................ <0>
+  [ 14] lt ...................................... <tiltAngle < 0>
+  [ 15] jmpifz [ 26] ............................ if tiltAngle < 0 then
+  [ 18] getprop 23 .............................. <tiltAngle>
+  [ 20] pushint8 360 ............................ <360>
+  [ 23] add ..................................... <tiltAngle + 360>
+  [ 24] setprop 23 .............................. tiltAngle = tiltAngle + 360
+  [ 26] getprop 23 .............................. <tiltAngle>
+  [ 28] pushint8 360 ............................ <360>
+  [ 31] gt ...................................... <tiltAngle > 360>
+  [ 32] jmpifz [ 43] ............................ if tiltAngle > 360 then
+  [ 35] getprop 23 .............................. <tiltAngle>
+  [ 37] pushint8 360 ............................ <360>
+  [ 40] sub ..................................... <tiltAngle - 360>
+  [ 41] setprop 23 .............................. tiltAngle = tiltAngle - 360
+  [ 43] ret
+end
+
+on doStretchPercent
+  [  0] getprop 817 ............................. <diffAngle>
+  [  3] pusharglist 1 ........................... <diffAngle>
+  [  5] extcall 370 ............................. <abs(diffAngle)>
+  [  8] setprop 939 ............................. stretchPercent = abs(diffAngle)
+  [ 11] getprop 939 ............................. <stretchPercent>
+  [ 14] pushint8 90 ............................. <90>
+  [ 17] gt ...................................... <stretchPercent > 90>
+  [ 18] jmpifz [ 27] ............................ if stretchPercent > 90 then
+  [ 21] pushint8 90 ............................. <90>
+  [ 24] setprop 939 ............................. stretchPercent = 90
+  [ 27] pushint8 1 .............................. <1>
+  [ 30] getprop 939 ............................. <stretchPercent>
+  [ 33] pushint8 90 ............................. <90>
+  [ 36] div ..................................... <stretchPercent / 90>
+  [ 37] sub ..................................... <1 - (stretchPercent / 90)>
+  [ 38] setprop 939 ............................. stretchPercent = 1 - (stretchPercent / 90)
+  [ 41] ret
+end
+
+on doStretchVelCopterPull
+  [  0] getprop 654 ............................. <distToCopter>
+  [  3] getglobal 450 ........................... <gCableLength>
+  [  6] gt ...................................... <distToCopter > gCableLength>
+  [  7] jmpifz [ 28] ............................ if distToCopter > gCableLength then
+  [ 10] getprop 937 ............................. <stretchVel>
+  [ 13] getprop 654 ............................. <distToCopter>
+  [ 16] getglobal 450 ........................... <gCableLength>
+  [ 19] sub ..................................... <distToCopter - gCableLength>
+  [ 20] getprop 939 ............................. <stretchPercent>
+  [ 23] mul ..................................... <(distToCopter - gCableLength) * stretchPercent>
+  [ 24] add ..................................... <stretchVel + ((distToCopter - gCableLength) * stretchPercent)>
+  [ 25] setprop 937 ............................. stretchVel = stretchVel + ((distToCopter - gCableLength) * stretchPercent)
+  [ 28] ret
+end
+
+on doCableGuyVelPull
+  [  0] getprop 755 ............................. <grabX>
+  [  3] getprop 756 ............................. <grabY>
+  [  6] pusharglist 2 ........................... <grabX, grabY>
+  [  8] extcall 57 .............................. <point(grabX, grabY)>
+  [ 11] getprop 342 ............................. <cableGuy>
+  [ 14] getobjprop 213 .......................... <cableGuy.loc>
+  [ 17] getprop 342 ............................. <cableGuy>
+  [ 20] getobjprop 44 ........................... <cableGuy.Xvel>
+  [ 23] getprop 342 ............................. <cableGuy>
+  [ 26] getobjprop 32 ........................... <cableGuy.Yvel>
+  [ 29] pusharglist 2 ........................... <cableGuy.Xvel, cableGuy.Yvel>
+  [ 31] extcall 57 .............................. <point(cableGuy.Xvel, cableGuy.Yvel)>
+  [ 34] add ..................................... <cableGuy.loc + point(cableGuy.Xvel, cableGuy.Yvel)>
+  [ 35] sub ..................................... <point(grabX, grabY) - (cableGuy.loc + point(cableGuy.Xvel, cableGuy.Yvel))>
+  [ 36] setlocal 0 .............................. toCableGuyVector = point(grabX, grabY) - (cableGuy.loc + point(cableGuy.Xvel, cableGuy.Yvel))
+  [ 38] getlocal 0 .............................. <toCableGuyVector>
+  [ 40] setlocal 8 .............................. pullVector = toCableGuyVector
+  [ 42] getprop 342 ............................. <cableGuy>
+  [ 45] getprop 342 ............................. <cableGuy>
+  [ 48] getobjprop 44 ........................... <cableGuy.Xvel>
+  [ 51] getlocal 8 .............................. <pullVector>
+  [ 53] getobjprop 36 ........................... <pullVector.locH>
+  [ 56] add ..................................... <cableGuy.Xvel + pullVector.locH>
+  [ 57] setobjprop 44 ........................... cableGuy.Xvel = cableGuy.Xvel + pullVector.locH
+  [ 60] getprop 342 ............................. <cableGuy>
+  [ 63] getprop 342 ............................. <cableGuy>
+  [ 66] getobjprop 32 ........................... <cableGuy.Yvel>
+  [ 69] getlocal 8 .............................. <pullVector>
+  [ 71] getobjprop 37 ........................... <pullVector.locV>
+  [ 74] add ..................................... <cableGuy.Yvel + pullVector.locV>
+  [ 75] setobjprop 32 ........................... cableGuy.Yvel = cableGuy.Yvel + pullVector.locV
+  [ 78] getprop 755 ............................. <grabX>
+  [ 81] getprop 756 ............................. <grabY>
+  [ 84] pusharglist 2 ........................... <grabX, grabY>
+  [ 86] extcall 57 .............................. <point(grabX, grabY)>
+  [ 89] getprop 341 ............................. <COPTER>
+  [ 92] getobjprop 213 .......................... <COPTER.loc>
+  [ 95] sub ..................................... <point(grabX, grabY) - COPTER.loc>
+  [ 96] setprop 652 ............................. toCopterVector = point(grabX, grabY) - COPTER.loc
+  [ 99] ret
+end
+
+on doCopterVelPull
+  [  0] getprop 654 ............................. <distToCopter>
+  [  3] getglobal 450 ........................... <gCableLength>
+  [  6] gt ...................................... <distToCopter > gCableLength>
+  [  7] jmpifz [ 81] ............................ if distToCopter > gCableLength then
+  [ 10] getprop 759 ............................. <pullCount>
+  [ 13] pushint8 1 .............................. <1>
+  [ 16] add ..................................... <pullCount + 1>
+  [ 17] setprop 759 ............................. pullCount = pullCount + 1
+  [ 20] getprop 652 ............................. <toCopterVector>
+  [ 23] getprop 654 ............................. <distToCopter>
+  [ 26] pusharglist 1 ........................... <distToCopter>
+  [ 28] extcall 33 .............................. <float(distToCopter)>
+  [ 31] div ..................................... <toCopterVector / float(distToCopter)>
+  [ 32] getprop 654 ............................. <distToCopter>
+  [ 35] getglobal 450 ........................... <gCableLength>
+  [ 38] sub ..................................... <distToCopter - gCableLength>
+  [ 39] mul ..................................... <toCopterVector / float(distToCopter) * (distToCopter - gCableLength)>
+  [ 40] setlocal 0 .............................. pullVector = toCopterVector / float(distToCopter) * (distToCopter - gCableLength)
+  [ 42] getglobal 669 ........................... <gXVelChange>
+  [ 45] getlocal 0 .............................. <pullVector>
+  [ 47] getobjprop 36 ........................... <pullVector.locH>
+  [ 50] sub ..................................... <gXVelChange - pullVector.locH>
+  [ 51] setglobal 669 ........................... gXVelChange = gXVelChange - pullVector.locH
+  [ 54] getprop 341 ............................. <COPTER>
+  [ 57] getprop 341 ............................. <COPTER>
+  [ 60] getobjprop 32 ........................... <COPTER.Yvel>
+  [ 63] getlocal 0 .............................. <pullVector>
+  [ 65] getobjprop 37 ........................... <pullVector.locV>
+  [ 68] add ..................................... <COPTER.Yvel + pullVector.locV>
+  [ 69] setobjprop 32 ........................... COPTER.Yvel = COPTER.Yvel + pullVector.locV
+  [ 72] getprop 342 ............................. <cableGuy>
+  [ 75] pushsymb 350 ............................ <#GODOWN>
+  [ 78] setobjprop 347 .......................... cableGuy.cableState = #GODOWN
+  [ 81] ret
+end
+
+on doPositionSurvivor
+  [  0] getprop 934 ............................. <survivor>
+  [  3] getprop 755 ............................. <grabX>
+  [  6] setobjprop 48 ........................... survivor.Xpos = grabX
+  [  9] getprop 934 ............................. <survivor>
+  [ 12] getprop 756 ............................. <grabY>
+  [ 15] setobjprop 38 ........................... survivor.Ypos = grabY
+  [ 18] getprop 934 ............................. <survivor>
+  [ 21] getprop 755 ............................. <grabX>
+  [ 24] getprop 756 ............................. <grabY>
+  [ 27] pusharglist 2 ........................... <grabX, grabY>
+  [ 29] extcall 57 .............................. <point(grabX, grabY)>
+  [ 32] setobjprop 213 .......................... survivor.loc = point(grabX, grabY)
+  [ 35] ret
+end
+
+on doPluckConditions
+  [  0] getprop 936 ............................. <TentacleStretch>
+  [  3] pushint8 60 ............................. <60>
+  [  6] gt ...................................... <TentacleStretch > 60>
+  [  7] getprop 759 ............................. <pullCount>
+  [ 10] pushint8 100 ............................ <100>
+  [ 13] gteq .................................... <pullCount >= 100>
+  [ 14] or ...................................... <(TentacleStretch > 60) or (pullCount >= 100)>
+  [ 15] jmpifz [114] ............................ if (TentacleStretch > 60) or (pullCount >= 100) then
+  [ 18] getglobal 410 ........................... <gScore>
+  [ 21] pushint8 500 ............................ <500>
+  [ 24] add ..................................... <gScore + 500>
+  [ 25] setglobal 410 ........................... gScore = gScore + 500
+  [ 28] pushsymb 661 ............................ <#UP>
+  [ 31] setprop 757 ............................. towerState = #UP
+  [ 34] pushzero ................................ <0>
+  [ 35] setglobal 448 ........................... gCableItem = 0
+  [ 38] pushint8 4 .............................. <4>
+  [ 41] pushint8 40 ............................. <40>
+  [ 44] pushcons 120 ............................ <"Sfx">
+  [ 46] pusharglist 2 ........................... <40, "Sfx">
+  [ 48] extcall 27 .............................. <member(40, "Sfx")>
+  [ 50] pusharglistnoret 2 ...................... <4, member(40, "Sfx")>
+  [ 52] extcall 395 ............................. puppetSound(4, member(40, "Sfx"))
+  [ 55] pushint8 3 .............................. <3>
+  [ 58] pushint8 8 .............................. <8>
+  [ 61] pushcons 128 ............................ <"Sfx">
+  [ 63] pusharglist 2 ........................... <8, "Sfx">
+  [ 65] extcall 27 .............................. <member(8, "Sfx")>
+  [ 67] pusharglistnoret 2 ...................... <3, member(8, "Sfx")>
+  [ 69] extcall 395 ............................. puppetSound(3, member(8, "Sfx"))
+  [ 72] getglobal 453 ........................... <gRescueCount>
+  [ 75] pushint8 1 .............................. <1>
+  [ 78] add ..................................... <gRescueCount + 1>
+  [ 79] setglobal 453 ........................... gRescueCount = gRescueCount + 1
+  [ 82] getprop 934 ............................. <survivor>
+  [ 85] pushsymb 444 ............................ <#ONCABLE>
+  [ 88] setobjprop 441 .......................... survivor.survivorState = #ONCABLE
+  [ 91] pushint8 1 .............................. <1>
+  [ 94] setglobal 448 ........................... gCableItem = 1
+  [ 97] getprop 23 .............................. <tiltAngle>
+  [ 99] pushint8 180 ............................ <180>
+  [102] gt ...................................... <tiltAngle > 180>
+  [103] jmpifz [114] ............................ if tiltAngle > 180 then
+  [106] getprop 23 .............................. <tiltAngle>
+  [108] pushint8 360 ............................ <360>
+  [111] sub ..................................... <tiltAngle - 360>
+  [112] setprop 23 .............................. tiltAngle = tiltAngle - 360
+  [114] ret
+end

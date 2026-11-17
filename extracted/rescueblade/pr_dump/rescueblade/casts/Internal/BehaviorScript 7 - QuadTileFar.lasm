@@ -1,0 +1,452 @@
+property this, Xpos, leftLoopX, rightLoopX, loopWidth, ThisWidth, thisHalfWidth, TR, TL, BR, BL, calc, thisMember, delayCount, tileIDListPointer, thisTileID, leftHeight, rightHeight
+global gXVel, gTileIDList, gTileHeightList, gSeaFrame, gXOffset, gPaused
+
+on beginSprite
+  [  0] getmovieprop 22 ......................... <the currentSpriteNum>
+  [  2] pusharglist 1 ........................... <the currentSpriteNum>
+  [  4] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [  6] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [  8] pushint8 256 ............................ <256>
+  [ 11] getprop 20 .............................. <this>
+  [ 13] getobjprop 50 ........................... <this.width>
+  [ 16] pushcons 0 .............................. <4.5>
+  [ 18] mul ..................................... <this.width * 4.5>
+  [ 19] add ..................................... <256 + (this.width * 4.5)>
+  [ 20] setprop 53 .............................. rightLoopX = 256 + (this.width * 4.5)
+  [ 23] pushint8 256 ............................ <256>
+  [ 26] getprop 20 .............................. <this>
+  [ 28] getobjprop 50 ........................... <this.width>
+  [ 31] pushcons 8 .............................. <4.5>
+  [ 33] mul ..................................... <this.width * 4.5>
+  [ 34] sub ..................................... <256 - (this.width * 4.5)>
+  [ 35] setprop 52 .............................. leftLoopX = 256 - (this.width * 4.5)
+  [ 38] pushint8 512 ............................ <512>
+  [ 41] getprop 20 .............................. <this>
+  [ 43] getobjprop 50 ........................... <this.width>
+  [ 46] pushint8 5 .............................. <5>
+  [ 49] mul ..................................... <this.width * 5>
+  [ 50] add ..................................... <512 + (this.width * 5)>
+  [ 51] setprop 54 .............................. loopWidth = 512 + (this.width * 5)
+  [ 54] getprop 20 .............................. <this>
+  [ 56] getobjprop 36 ........................... <this.locH>
+  [ 59] pusharglist 1 ........................... <this.locH>
+  [ 61] extcall 33 .............................. <float(this.locH)>
+  [ 64] setprop 48 .............................. Xpos = float(this.locH)
+  [ 67] getprop 20 .............................. <this>
+  [ 69] getobjprop 50 ........................... <this.width>
+  [ 72] setprop 51 .............................. ThisWidth = this.width
+  [ 75] getprop 20 .............................. <this>
+  [ 77] getobjprop 50 ........................... <this.width>
+  [ 80] pushint8 2 .............................. <2>
+  [ 83] div ..................................... <this.width / 2>
+  [ 84] setprop 49 .............................. thisHalfWidth = this.width / 2
+  [ 87] pushcons 16 ............................. <0.0>
+  [ 89] pushcons 24 ............................. <256.0>
+  [ 91] pusharglist 2 ........................... <0.0, 256.0>
+  [ 93] extcall 57 .............................. <point(0.0, 256.0)>
+  [ 96] setprop 56 .............................. TR = point(0.0, 256.0)
+  [ 99] pushcons 32 ............................. <0.0>
+  [101] pushcons 40 ............................. <256.0>
+  [103] pusharglist 2 ........................... <0.0, 256.0>
+  [105] extcall 57 .............................. <point(0.0, 256.0)>
+  [108] setprop 58 .............................. TL = point(0.0, 256.0)
+  [111] pushcons 48 ............................. <0.0>
+  [113] pushcons 56 ............................. <280.0>
+  [115] pusharglist 2 ........................... <0.0, 280.0>
+  [117] extcall 57 .............................. <point(0.0, 280.0)>
+  [120] setprop 59 .............................. BR = point(0.0, 280.0)
+  [123] pushcons 64 ............................. <0.0>
+  [125] pushcons 72 ............................. <280.0>
+  [127] pusharglist 2 ........................... <0.0, 280.0>
+  [129] extcall 57 .............................. <point(0.0, 280.0)>
+  [132] setprop 60 .............................. BL = point(0.0, 280.0)
+  [135] pushcons 80 ............................. <0.0>
+  [137] setprop 30 .............................. calc = 0.0
+  [139] pushint8 1 .............................. <1>
+  [142] setprop 26 .............................. thisMember = 1
+  [144] getprop 20 .............................. <this>
+  [146] pusharglist 1 ........................... <this>
+  [148] extcall 21 .............................. <sprite(this)>
+  [150] pushint8 2 .............................. <2>
+  [153] setobjprop 178 .......................... sprite(this).locZ = 2
+  [156] getprop 48 .............................. <Xpos>
+  [159] pushint8 256 ............................ <256>
+  [162] pushint8 64 ............................. <64>
+  [165] sub ..................................... <256 - 64>
+  [166] gt ...................................... <Xpos > (256 - 64)>
+  [167] jmpifz [238] ............................ if Xpos > (256 - 64) then / else
+  [170] getprop 48 .............................. <Xpos>
+  [173] setprop 30 .............................. calc = Xpos
+  [175] getprop 30 .............................. <calc>
+  [177] pushint8 256 ............................ <256>
+  [180] sub ..................................... <calc - 256>
+  [181] pushint8 64 ............................. <64>
+  [184] sub ..................................... <calc - 256 - 64>
+  [185] getprop 20 .............................. <this>
+  [187] getobjprop 50 ........................... <this.width>
+  [190] pushint8 2 .............................. <2>
+  [193] div ..................................... <this.width / 2>
+  [194] add ..................................... <calc - 256 - 64 + (this.width / 2)>
+  [195] setprop 30 .............................. calc = calc - 256 - 64 + (this.width / 2)
+  [197] getglobal 180 ........................... <gTileIDList>
+  [200] getobjprop 183 .......................... <gTileIDList.count>
+  [203] pushint8 2 .............................. <2>
+  [206] div ..................................... <gTileIDList.count / 2>
+  [207] getprop 30 .............................. <calc>
+  [209] pushcons 88 ............................. <128.0>
+  [211] div ..................................... <calc / 128.0>
+  [212] pusharglist 1 ........................... <calc / 128.0>
+  [214] extcall 39 .............................. <integer(calc / 128.0)>
+  [217] add ..................................... <(gTileIDList.count / 2) + integer(calc / 128.0)>
+  [218] setprop 188 ............................. tileIDListPointer = (gTileIDList.count / 2) + integer(calc / 128.0)
+  [221] getglobal 180 ........................... <gTileIDList>
+  [224] getprop 188 ............................. <tileIDListPointer>
+  [227] pusharglist 2 ........................... <gTileIDList, tileIDListPointer>
+  [229] objcall 185 ............................. <gTileIDList[tileIDListPointer]>
+  [232] setprop 184 ............................. thisTileID = gTileIDList[tileIDListPointer]
+  [235] jmp [303]
+  [238] getprop 48 .............................. <Xpos>
+  [241] setprop 30 .............................. calc = Xpos
+  [243] getprop 30 .............................. <calc>
+  [245] pushint8 256 ............................ <256>
+  [248] sub ..................................... <calc - 256>
+  [249] pushint8 64 ............................. <64>
+  [252] sub ..................................... <calc - 256 - 64>
+  [253] getprop 20 .............................. <this>
+  [255] getobjprop 50 ........................... <this.width>
+  [258] pushint8 2 .............................. <2>
+  [261] div ..................................... <this.width / 2>
+  [262] add ..................................... <calc - 256 - 64 + (this.width / 2)>
+  [263] setprop 30 .............................. calc = calc - 256 - 64 + (this.width / 2)
+  [265] getglobal 180 ........................... <gTileIDList>
+  [268] getobjprop 183 .......................... <gTileIDList.count>
+  [271] pushint8 2 .............................. <2>
+  [274] div ..................................... <gTileIDList.count / 2>
+  [275] getprop 30 .............................. <calc>
+  [277] pushcons 96 ............................. <128.0>
+  [279] div ..................................... <calc / 128.0>
+  [280] pusharglist 1 ........................... <calc / 128.0>
+  [282] extcall 39 .............................. <integer(calc / 128.0)>
+  [285] add ..................................... <(gTileIDList.count / 2) + integer(calc / 128.0)>
+  [286] setprop 188 ............................. tileIDListPointer = (gTileIDList.count / 2) + integer(calc / 128.0)
+  [289] getglobal 180 ........................... <gTileIDList>
+  [292] getprop 188 ............................. <tileIDListPointer>
+  [295] pusharglist 2 ........................... <gTileIDList, tileIDListPointer>
+  [297] objcall 185 ............................. <gTileIDList[tileIDListPointer]>
+  [300] setprop 184 ............................. thisTileID = gTileIDList[tileIDListPointer]
+  [303] getprop 188 ............................. <tileIDListPointer>
+  [306] pushint8 1 .............................. <1>
+  [309] add ..................................... <tileIDListPointer + 1>
+  [310] setlocal 0 .............................. tileHeightListPointer = tileIDListPointer + 1
+  [312] getlocal 0 .............................. <tileHeightListPointer>
+  [314] getglobal 182 ........................... <gTileHeightList>
+  [317] getobjprop 183 .......................... <gTileHeightList.count>
+  [320] gt ...................................... <tileHeightListPointer > gTileHeightList.count>
+  [321] jmpifz [335] ............................ if tileHeightListPointer > gTileHeightList.count then
+  [324] getlocal 0 .............................. <tileHeightListPointer>
+  [326] getglobal 182 ........................... <gTileHeightList>
+  [329] getobjprop 183 .......................... <gTileHeightList.count>
+  [332] sub ..................................... <tileHeightListPointer - gTileHeightList.count>
+  [333] setlocal 0 .............................. tileHeightListPointer = tileHeightListPointer - gTileHeightList.count
+  [335] getglobal 182 ........................... <gTileHeightList>
+  [338] getprop 188 ............................. <tileIDListPointer>
+  [341] pusharglist 2 ........................... <gTileHeightList, tileIDListPointer>
+  [343] objcall 185 ............................. <gTileHeightList[tileIDListPointer]>
+  [346] setprop 189 ............................. leftHeight = gTileHeightList[tileIDListPointer]
+  [349] getglobal 182 ........................... <gTileHeightList>
+  [352] getlocal 0 .............................. <tileHeightListPointer>
+  [354] pusharglist 2 ........................... <gTileHeightList, tileHeightListPointer>
+  [356] objcall 185 ............................. <gTileHeightList[tileHeightListPointer]>
+  [359] setprop 191 ............................. rightHeight = gTileHeightList[tileHeightListPointer]
+  [362] ret
+end
+
+on exitFrame
+  [  0] getglobal 364 ........................... <gPaused>
+  [  3] pushzero ................................ <0>
+  [  4] eq ...................................... <gPaused = 0>
+  [  5] jmpifz [693] ............................ if gPaused = 0 then
+  [  8] getprop 48 .............................. <Xpos>
+  [ 11] getglobal 47 ............................ <gXVel>
+  [ 14] add ..................................... <Xpos + gXVel>
+  [ 15] getglobal 55 ............................ <gXOffset>
+  [ 18] add ..................................... <Xpos + gXVel + gXOffset>
+  [ 19] setprop 48 .............................. Xpos = Xpos + gXVel + gXOffset
+  [ 22] getprop 48 .............................. <Xpos>
+  [ 25] pusharglist 1 ........................... <Xpos>
+  [ 27] extcall 39 .............................. <integer(Xpos)>
+  [ 30] getprop 53 .............................. <rightLoopX>
+  [ 33] gt ...................................... <integer(Xpos) > rightLoopX>
+  [ 34] jmpifz [153] ............................ if integer(Xpos) > rightLoopX then
+  [ 37] getprop 48 .............................. <Xpos>
+  [ 40] getprop 54 .............................. <loopWidth>
+  [ 43] sub ..................................... <Xpos - loopWidth>
+  [ 44] setprop 48 .............................. Xpos = Xpos - loopWidth
+  [ 47] getprop 188 ............................. <tileIDListPointer>
+  [ 50] pushint8 9 .............................. <9>
+  [ 53] sub ..................................... <tileIDListPointer - 9>
+  [ 54] setprop 188 ............................. tileIDListPointer = tileIDListPointer - 9
+  [ 57] getprop 188 ............................. <tileIDListPointer>
+  [ 60] pushint8 1 .............................. <1>
+  [ 63] lt ...................................... <tileIDListPointer < 1>
+  [ 64] jmpifz [ 80] ............................ if tileIDListPointer < 1 then
+  [ 67] getprop 188 ............................. <tileIDListPointer>
+  [ 70] getglobal 180 ........................... <gTileIDList>
+  [ 73] getobjprop 183 .......................... <gTileIDList.count>
+  [ 76] add ..................................... <tileIDListPointer + gTileIDList.count>
+  [ 77] setprop 188 ............................. tileIDListPointer = tileIDListPointer + gTileIDList.count
+  [ 80] getglobal 180 ........................... <gTileIDList>
+  [ 83] getprop 188 ............................. <tileIDListPointer>
+  [ 86] pusharglist 2 ........................... <gTileIDList, tileIDListPointer>
+  [ 88] objcall 185 ............................. <gTileIDList[tileIDListPointer]>
+  [ 91] setprop 184 ............................. thisTileID = gTileIDList[tileIDListPointer]
+  [ 94] getprop 188 ............................. <tileIDListPointer>
+  [ 97] pushint8 1 .............................. <1>
+  [100] add ..................................... <tileIDListPointer + 1>
+  [101] setlocal 0 .............................. tileHeightListPointer = tileIDListPointer + 1
+  [103] getlocal 0 .............................. <tileHeightListPointer>
+  [105] getglobal 182 ........................... <gTileHeightList>
+  [108] getobjprop 183 .......................... <gTileHeightList.count>
+  [111] gt ...................................... <tileHeightListPointer > gTileHeightList.count>
+  [112] jmpifz [126] ............................ if tileHeightListPointer > gTileHeightList.count then
+  [115] getlocal 0 .............................. <tileHeightListPointer>
+  [117] getglobal 182 ........................... <gTileHeightList>
+  [120] getobjprop 183 .......................... <gTileHeightList.count>
+  [123] sub ..................................... <tileHeightListPointer - gTileHeightList.count>
+  [124] setlocal 0 .............................. tileHeightListPointer = tileHeightListPointer - gTileHeightList.count
+  [126] getglobal 182 ........................... <gTileHeightList>
+  [129] getprop 188 ............................. <tileIDListPointer>
+  [132] pusharglist 2 ........................... <gTileHeightList, tileIDListPointer>
+  [134] objcall 185 ............................. <gTileHeightList[tileIDListPointer]>
+  [137] setprop 189 ............................. leftHeight = gTileHeightList[tileIDListPointer]
+  [140] getglobal 182 ........................... <gTileHeightList>
+  [143] getlocal 0 .............................. <tileHeightListPointer>
+  [145] pusharglist 2 ........................... <gTileHeightList, tileHeightListPointer>
+  [147] objcall 185 ............................. <gTileHeightList[tileHeightListPointer]>
+  [150] setprop 191 ............................. rightHeight = gTileHeightList[tileHeightListPointer]
+  [153] getprop 48 .............................. <Xpos>
+  [156] pusharglist 1 ........................... <Xpos>
+  [158] extcall 39 .............................. <integer(Xpos)>
+  [161] getprop 52 .............................. <leftLoopX>
+  [164] lt ...................................... <integer(Xpos) < leftLoopX>
+  [165] jmpifz [287] ............................ if integer(Xpos) < leftLoopX then
+  [168] getprop 48 .............................. <Xpos>
+  [171] getprop 54 .............................. <loopWidth>
+  [174] add ..................................... <Xpos + loopWidth>
+  [175] setprop 48 .............................. Xpos = Xpos + loopWidth
+  [178] getprop 188 ............................. <tileIDListPointer>
+  [181] pushint8 9 .............................. <9>
+  [184] add ..................................... <tileIDListPointer + 9>
+  [185] setprop 188 ............................. tileIDListPointer = tileIDListPointer + 9
+  [188] getprop 188 ............................. <tileIDListPointer>
+  [191] getglobal 180 ........................... <gTileIDList>
+  [194] getobjprop 183 .......................... <gTileIDList.count>
+  [197] gt ...................................... <tileIDListPointer > gTileIDList.count>
+  [198] jmpifz [214] ............................ if tileIDListPointer > gTileIDList.count then
+  [201] getprop 188 ............................. <tileIDListPointer>
+  [204] getglobal 180 ........................... <gTileIDList>
+  [207] getobjprop 183 .......................... <gTileIDList.count>
+  [210] sub ..................................... <tileIDListPointer - gTileIDList.count>
+  [211] setprop 188 ............................. tileIDListPointer = tileIDListPointer - gTileIDList.count
+  [214] getglobal 180 ........................... <gTileIDList>
+  [217] getprop 188 ............................. <tileIDListPointer>
+  [220] pusharglist 2 ........................... <gTileIDList, tileIDListPointer>
+  [222] objcall 185 ............................. <gTileIDList[tileIDListPointer]>
+  [225] setprop 184 ............................. thisTileID = gTileIDList[tileIDListPointer]
+  [228] getprop 188 ............................. <tileIDListPointer>
+  [231] pushint8 1 .............................. <1>
+  [234] add ..................................... <tileIDListPointer + 1>
+  [235] setlocal 0 .............................. tileHeightListPointer = tileIDListPointer + 1
+  [237] getlocal 0 .............................. <tileHeightListPointer>
+  [239] getglobal 182 ........................... <gTileHeightList>
+  [242] getobjprop 183 .......................... <gTileHeightList.count>
+  [245] gt ...................................... <tileHeightListPointer > gTileHeightList.count>
+  [246] jmpifz [260] ............................ if tileHeightListPointer > gTileHeightList.count then
+  [249] getlocal 0 .............................. <tileHeightListPointer>
+  [251] getglobal 182 ........................... <gTileHeightList>
+  [254] getobjprop 183 .......................... <gTileHeightList.count>
+  [257] sub ..................................... <tileHeightListPointer - gTileHeightList.count>
+  [258] setlocal 0 .............................. tileHeightListPointer = tileHeightListPointer - gTileHeightList.count
+  [260] getglobal 182 ........................... <gTileHeightList>
+  [263] getprop 188 ............................. <tileIDListPointer>
+  [266] pusharglist 2 ........................... <gTileHeightList, tileIDListPointer>
+  [268] objcall 185 ............................. <gTileHeightList[tileIDListPointer]>
+  [271] setprop 189 ............................. leftHeight = gTileHeightList[tileIDListPointer]
+  [274] getglobal 182 ........................... <gTileHeightList>
+  [277] getlocal 0 .............................. <tileHeightListPointer>
+  [279] pusharglist 2 ........................... <gTileHeightList, tileHeightListPointer>
+  [281] objcall 185 ............................. <gTileHeightList[tileHeightListPointer]>
+  [284] setprop 191 ............................. rightHeight = gTileHeightList[tileHeightListPointer]
+  [287] getprop 20 .............................. <this>
+  [289] getprop 48 .............................. <Xpos>
+  [292] setobjprop 36 ........................... this.locH = Xpos
+  [295] getprop 188 ............................. <tileIDListPointer>
+  [298] pushint8 1 .............................. <1>
+  [301] add ..................................... <tileIDListPointer + 1>
+  [302] setlocal 0 .............................. tileHeightListPointer = tileIDListPointer + 1
+  [304] getlocal 0 .............................. <tileHeightListPointer>
+  [306] getglobal 182 ........................... <gTileHeightList>
+  [309] getobjprop 183 .......................... <gTileHeightList.count>
+  [312] gt ...................................... <tileHeightListPointer > gTileHeightList.count>
+  [313] jmpifz [327] ............................ if tileHeightListPointer > gTileHeightList.count then
+  [316] getlocal 0 .............................. <tileHeightListPointer>
+  [318] getglobal 182 ........................... <gTileHeightList>
+  [321] getobjprop 183 .......................... <gTileHeightList.count>
+  [324] sub ..................................... <tileHeightListPointer - gTileHeightList.count>
+  [325] setlocal 0 .............................. tileHeightListPointer = tileHeightListPointer - gTileHeightList.count
+  [327] getglobal 182 ........................... <gTileHeightList>
+  [330] getprop 188 ............................. <tileIDListPointer>
+  [333] pusharglist 2 ........................... <gTileHeightList, tileIDListPointer>
+  [335] objcall 185 ............................. <gTileHeightList[tileIDListPointer]>
+  [338] setprop 189 ............................. leftHeight = gTileHeightList[tileIDListPointer]
+  [341] getglobal 182 ........................... <gTileHeightList>
+  [344] getlocal 0 .............................. <tileHeightListPointer>
+  [346] pusharglist 2 ........................... <gTileHeightList, tileHeightListPointer>
+  [348] objcall 185 ............................. <gTileHeightList[tileHeightListPointer]>
+  [351] setprop 191 ............................. rightHeight = gTileHeightList[tileHeightListPointer]
+  [354] pushint8 256 ............................ <256>
+  [357] getprop 48 .............................. <Xpos>
+  [360] getprop 49 .............................. <thisHalfWidth>
+  [363] sub ..................................... <Xpos - thisHalfWidth>
+  [364] sub ..................................... <256 - (Xpos - thisHalfWidth)>
+  [365] pushcons 104 ............................ <0.5>
+  [367] mul ..................................... <(256 - (Xpos - thisHalfWidth)) * 0.5>
+  [368] setprop 30 .............................. calc = (256 - (Xpos - thisHalfWidth)) * 0.5
+  [370] getprop 58 .............................. <TL>
+  [373] getprop 48 .............................. <Xpos>
+  [376] getprop 49 .............................. <thisHalfWidth>
+  [379] sub ..................................... <Xpos - thisHalfWidth>
+  [380] getprop 30 .............................. <calc>
+  [382] add ..................................... <Xpos - thisHalfWidth + calc>
+  [383] pusharglist 1 ........................... <Xpos - thisHalfWidth + calc>
+  [385] extcall 39 .............................. <integer(Xpos - thisHalfWidth + calc)>
+  [388] setobjprop 36 ........................... TL.locH = integer(Xpos - thisHalfWidth + calc)
+  [391] pushint8 256 ............................ <256>
+  [394] getprop 48 .............................. <Xpos>
+  [397] getprop 49 .............................. <thisHalfWidth>
+  [400] add ..................................... <Xpos + thisHalfWidth>
+  [401] sub ..................................... <256 - (Xpos + thisHalfWidth)>
+  [402] pushcons 112 ............................ <0.5>
+  [404] mul ..................................... <(256 - (Xpos + thisHalfWidth)) * 0.5>
+  [405] setprop 30 .............................. calc = (256 - (Xpos + thisHalfWidth)) * 0.5
+  [407] getprop 56 .............................. <TR>
+  [410] getprop 48 .............................. <Xpos>
+  [413] getprop 49 .............................. <thisHalfWidth>
+  [416] add ..................................... <Xpos + thisHalfWidth>
+  [417] getprop 30 .............................. <calc>
+  [419] add ..................................... <Xpos + thisHalfWidth + calc>
+  [420] pusharglist 1 ........................... <Xpos + thisHalfWidth + calc>
+  [422] extcall 39 .............................. <integer(Xpos + thisHalfWidth + calc)>
+  [425] setobjprop 36 ........................... TR.locH = integer(Xpos + thisHalfWidth + calc)
+  [428] getprop 60 .............................. <BL>
+  [431] getprop 48 .............................. <Xpos>
+  [434] getprop 49 .............................. <thisHalfWidth>
+  [437] sub ..................................... <Xpos - thisHalfWidth>
+  [438] pusharglist 1 ........................... <Xpos - thisHalfWidth>
+  [440] extcall 39 .............................. <integer(Xpos - thisHalfWidth)>
+  [443] setobjprop 36 ........................... BL.locH = integer(Xpos - thisHalfWidth)
+  [446] getprop 60 .............................. <BL>
+  [449] pushint8 280 ............................ <280>
+  [452] getprop 189 ............................. <leftHeight>
+  [455] sub ..................................... <280 - leftHeight>
+  [456] pusharglist 1 ........................... <280 - leftHeight>
+  [458] extcall 39 .............................. <integer(280 - leftHeight)>
+  [461] setobjprop 37 ........................... BL.locV = integer(280 - leftHeight)
+  [464] getprop 59 .............................. <BR>
+  [467] getprop 48 .............................. <Xpos>
+  [470] getprop 49 .............................. <thisHalfWidth>
+  [473] add ..................................... <Xpos + thisHalfWidth>
+  [474] pusharglist 1 ........................... <Xpos + thisHalfWidth>
+  [476] extcall 39 .............................. <integer(Xpos + thisHalfWidth)>
+  [479] setobjprop 36 ........................... BR.locH = integer(Xpos + thisHalfWidth)
+  [482] getprop 59 .............................. <BR>
+  [485] pushint8 280 ............................ <280>
+  [488] getprop 191 ............................. <rightHeight>
+  [491] sub ..................................... <280 - rightHeight>
+  [492] pusharglist 1 ........................... <280 - rightHeight>
+  [494] extcall 39 .............................. <integer(280 - rightHeight)>
+  [497] setobjprop 37 ........................... BR.locV = integer(280 - rightHeight)
+  [500] getprop 20 .............................. <this>
+  [502] getprop 58 .............................. <TL>
+  [505] getprop 56 .............................. <TR>
+  [508] getprop 59 .............................. <BR>
+  [511] getprop 60 .............................. <BL>
+  [514] pusharglist 4 ........................... <[TL, TR, BR, BL]>
+  [516] pushlist ................................ <[TL, TR, BR, BL]>
+  [517] setobjprop 61 ........................... this.quad = [TL, TR, BR, BL]
+  [520] getprop 184 ............................. <thisTileID>
+  [523] peek 0 .................................. case thisTileID of
+  [525] pushzero ................................ <0>
+  [526] eq
+  [527] jmpifz [538] ............................ (case) 0:
+  [530] getglobal 274 ........................... <gSeaFrame>
+  [533] setprop 26 .............................. thisMember = gSeaFrame
+  [535] jmp [679]
+  [538] peek 0
+  [540] pushint8 1 .............................. <1>
+  [543] eq
+  [544] jmpifz [555] ............................ (case) 1:
+  [547] pushint8 23 ............................. <23>
+  [550] setprop 26 .............................. thisMember = 23
+  [552] jmp [679]
+  [555] peek 0
+  [557] pushint8 2 .............................. <2>
+  [560] eq
+  [561] jmpifz [576] ............................ (case) 2:
+  [564] pushint8 23 ............................. <23>
+  [567] getglobal 274 ........................... <gSeaFrame>
+  [570] add ..................................... <23 + gSeaFrame>
+  [571] setprop 26 .............................. thisMember = 23 + gSeaFrame
+  [573] jmp [679]
+  [576] peek 0
+  [578] pushint8 3 .............................. <3>
+  [581] eq
+  [582] jmpifz [597] ............................ (case) 3:
+  [585] pushint8 43 ............................. <43>
+  [588] getglobal 274 ........................... <gSeaFrame>
+  [591] add ..................................... <43 + gSeaFrame>
+  [592] setprop 26 .............................. thisMember = 43 + gSeaFrame
+  [594] jmp [679]
+  [597] peek 0
+  [599] pushint8 4 .............................. <4>
+  [602] eq
+  [603] jmpifz [614] ............................ (case) 4:
+  [606] pushint8 65 ............................. <65>
+  [609] setprop 26 .............................. thisMember = 65
+  [611] jmp [679]
+  [614] peek 0
+  [616] pushint8 5 .............................. <5>
+  [619] eq
+  [620] jmpifz [631] ............................ (case) 5:
+  [623] pushint8 67 ............................. <67>
+  [626] setprop 26 .............................. thisMember = 67
+  [628] jmp [679]
+  [631] peek 0
+  [633] pushint8 6 .............................. <6>
+  [636] eq
+  [637] jmpifz [648] ............................ (case) 6:
+  [640] pushint8 68 ............................. <68>
+  [643] setprop 26 .............................. thisMember = 68
+  [645] jmp [679]
+  [648] peek 0
+  [650] pushint8 7 .............................. <7>
+  [653] eq
+  [654] jmpifz [665] ............................ (case) 7:
+  [657] pushint8 69 ............................. <69>
+  [660] setprop 26 .............................. thisMember = 69
+  [662] jmp [679]
+  [665] peek 0
+  [667] pushint8 8 .............................. <8>
+  [670] eq
+  [671] jmpifz [679] ............................ (case) 8:
+  [674] pushint8 70 ............................. <70>
+  [677] setprop 26 .............................. thisMember = 70
+  [679] pop 1 ................................... end case
+  [681] getprop 20 .............................. <this>
+  [683] getprop 26 .............................. <thisMember>
+  [685] pushcons 120 ............................ <"Tiles">
+  [687] pusharglist 2 ........................... <thisMember, "Tiles">
+  [689] extcall 27 .............................. <member(thisMember, "Tiles")>
+  [691] setobjprop 27 ........................... this.member = member(thisMember, "Tiles")
+  [693] ret
+end

@@ -1,0 +1,313 @@
+property numberSpriteList, prevScore, displayScore, fuelBar, damageBar, fuelBarDelay, fuelFlashToggle, displayDamage, damageFlashToggle, damageBarDelay, displayFuel, coconutBar
+global gScore, gDamagePercent, gfuelPercent, gPaused, gCoconuts
+
+on beginSprite
+  [  0] pushzero ................................ <0>
+  [  1] setglobal 410 ........................... gScore = 0
+  [  4] pushzero ................................ <0>
+  [  5] setprop 420 ............................. prevScore = 0
+  [  8] pushzero ................................ <0>
+  [  9] pusharglist 1 ........................... <0>
+  [ 11] extcall 33 .............................. <float(0)>
+  [ 14] setprop 422 ............................. displayScore = float(0)
+  [ 17] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 19] pusharglist 1 ........................... <the currentSpriteNum>
+  [ 21] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [ 23] pushint8 2000 ........................... <2000>
+  [ 26] setobjprop 178 .......................... sprite(the currentSpriteNum).locZ = 2000
+  [ 29] pusharglist 0 ........................... <[]>
+  [ 31] pushlist ................................ <[]>
+  [ 32] setprop 417 ............................. numberSpriteList = []
+  [ 35] pushint8 1 .............................. <1>
+  [ 38] setlocal 0
+  [ 40] getlocal 0
+  [ 42] pushint8 7 .............................. <7>
+  [ 45] lteq
+  [ 46] jmpifz [104] ............................ repeat with i = 1 to 7
+  [ 49] getprop 417 ............................. <numberSpriteList>
+  [ 52] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 54] getlocal 0 .............................. <i>
+  [ 56] add ..................................... <the currentSpriteNum + i>
+  [ 57] pushint8 1 .............................. <1>
+  [ 60] sub ..................................... <the currentSpriteNum + i - 1>
+  [ 61] pusharglist 1 ........................... <the currentSpriteNum + i - 1>
+  [ 63] extcall 21 .............................. <sprite(the currentSpriteNum + i - 1)>
+  [ 65] pusharglistnoret 2 ...................... <numberSpriteList, sprite(the currentSpriteNum + i - 1)>
+  [ 67] objcall 418 ............................. numberSpriteList.add(sprite(the currentSpriteNum + i - 1))
+  [ 70] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 72] getlocal 0 .............................. <i>
+  [ 74] add ..................................... <the currentSpriteNum + i>
+  [ 75] pushint8 1 .............................. <1>
+  [ 78] sub ..................................... <the currentSpriteNum + i - 1>
+  [ 79] pusharglist 1 ........................... <the currentSpriteNum + i - 1>
+  [ 81] extcall 21 .............................. <sprite(the currentSpriteNum + i - 1)>
+  [ 83] pushint8 2000 ........................... <2000>
+  [ 86] pushint8 1 .............................. <1>
+  [ 89] add ..................................... <2000 + 1>
+  [ 90] setobjprop 178 .......................... sprite(the currentSpriteNum + i - 1).locZ = 2000 + 1
+  [ 93] pushint8 1
+  [ 96] getlocal 0
+  [ 98] add
+  [ 99] setlocal 0
+  [101] endrepeat [ 40]
+  [104] getmovieprop 22 ......................... <the currentSpriteNum>
+  [106] pushint8 9 .............................. <9>
+  [109] add ..................................... <the currentSpriteNum + 9>
+  [110] pusharglist 1 ........................... <the currentSpriteNum + 9>
+  [112] extcall 21 .............................. <sprite(the currentSpriteNum + 9)>
+  [114] setprop 428 ............................. fuelBar = sprite(the currentSpriteNum + 9)
+  [117] getmovieprop 22 ......................... <the currentSpriteNum>
+  [119] pushint8 10 ............................. <10>
+  [122] add ..................................... <the currentSpriteNum + 10>
+  [123] pusharglist 1 ........................... <the currentSpriteNum + 10>
+  [125] extcall 21 .............................. <sprite(the currentSpriteNum + 10)>
+  [127] pushint8 2004 ........................... <2004>
+  [130] setobjprop 178 .......................... sprite(the currentSpriteNum + 10).locZ = 2004
+  [133] getprop 428 ............................. <fuelBar>
+  [136] pushint8 2003 ........................... <2003>
+  [139] setobjprop 178 .......................... fuelBar.locZ = 2003
+  [142] pushint8 2 .............................. <2>
+  [145] pusharglist 1 ........................... <2>
+  [147] extcall 21 .............................. <sprite(2)>
+  [149] setprop 924 ............................. coconutBar = sprite(2)
+  [152] getprop 924 ............................. <coconutBar>
+  [155] pushint8 2003 ........................... <2003>
+  [158] setobjprop 178 .......................... coconutBar.locZ = 2003
+  [161] getmovieprop 22 ......................... <the currentSpriteNum>
+  [163] pushint8 7 .............................. <7>
+  [166] add ..................................... <the currentSpriteNum + 7>
+  [167] pusharglist 1 ........................... <the currentSpriteNum + 7>
+  [169] extcall 21 .............................. <sprite(the currentSpriteNum + 7)>
+  [171] setprop 429 ............................. damageBar = sprite(the currentSpriteNum + 7)
+  [174] getmovieprop 22 ......................... <the currentSpriteNum>
+  [176] pushint8 8 .............................. <8>
+  [179] add ..................................... <the currentSpriteNum + 8>
+  [180] pusharglist 1 ........................... <the currentSpriteNum + 8>
+  [182] extcall 21 .............................. <sprite(the currentSpriteNum + 8)>
+  [184] pushint8 2002 ........................... <2002>
+  [187] setobjprop 178 .......................... sprite(the currentSpriteNum + 8).locZ = 2002
+  [190] getprop 429 ............................. <damageBar>
+  [193] pushint8 2001 ........................... <2001>
+  [196] setobjprop 178 .......................... damageBar.locZ = 2001
+  [199] pushzero ................................ <0>
+  [200] setprop 432 ............................. fuelBarDelay = 0
+  [203] pushint8 50 ............................. <50>
+  [206] setprop 481 ............................. displayFuel = 50
+  [209] pushint8 1 .............................. <1>
+  [212] setprop 433 ............................. fuelFlashToggle = 1
+  [215] pushint8 100 ............................ <100>
+  [218] setprop 434 ............................. displayDamage = 100
+  [221] pushzero ................................ <0>
+  [222] setprop 435 ............................. damageBarDelay = 0
+  [225] pushint8 1 .............................. <1>
+  [228] setprop 436 ............................. damageFlashToggle = 1
+  [231] ret
+end
+
+on exitFrame
+  [  0] getglobal 364 ........................... <gPaused>
+  [  3] pushzero ................................ <0>
+  [  4] eq ...................................... <gPaused = 0>
+  [  5] jmpifz [477] ............................ if gPaused = 0 then
+  [  8] getglobal 410 ........................... <gScore>
+  [ 11] pushcons 0 .............................. <9999999>
+  [ 13] gt ...................................... <gScore > 9999999>
+  [ 14] jmpifz [ 22] ............................ if gScore > 9999999 then
+  [ 17] pushcons 8 .............................. <9999999>
+  [ 19] setglobal 410 ........................... gScore = 9999999
+  [ 22] getprop 422 ............................. <displayScore>
+  [ 25] getglobal 410 ........................... <gScore>
+  [ 28] getprop 422 ............................. <displayScore>
+  [ 31] sub ..................................... <gScore - displayScore>
+  [ 32] pushcons 16 ............................. <0.20000000000000001>
+  [ 34] mul ..................................... <(gScore - displayScore) * 0.20000000000000001>
+  [ 35] add ..................................... <displayScore + ((gScore - displayScore) * 0.20000000000000001)>
+  [ 36] setprop 422 ............................. displayScore = displayScore + ((gScore - displayScore) * 0.20000000000000001)
+  [ 39] getprop 422 ............................. <displayScore>
+  [ 42] pusharglist 1 ........................... <displayScore>
+  [ 44] extcall 39 .............................. <integer(displayScore)>
+  [ 47] setlocal 0 .............................. calcScore = integer(displayScore)
+  [ 49] pushint8 7 .............................. <7>
+  [ 52] setlocal 8
+  [ 54] getlocal 8
+  [ 56] pushint8 1 .............................. <1>
+  [ 59] gteq
+  [ 60] jmpifz [143] ............................ repeat with i = 7 down to 1
+  [ 63] getlocal 0 .............................. <calcScore>
+  [ 65] pushint8 10 ............................. <10>
+  [ 68] getlocal 8 .............................. <i>
+  [ 70] pushint8 1 .............................. <1>
+  [ 73] sub ..................................... <i - 1>
+  [ 74] pusharglist 2 ........................... <10, i - 1>
+  [ 76] extcall 423 ............................. <power(10, i - 1)>
+  [ 79] mod ..................................... <calcScore mod power(10, i - 1)>
+  [ 80] setlocal 16 ............................. temp = calcScore mod power(10, i - 1)
+  [ 82] getlocal 0 .............................. <calcScore>
+  [ 84] getlocal 16 ............................. <temp>
+  [ 86] sub ..................................... <calcScore - temp>
+  [ 87] pushint8 10 ............................. <10>
+  [ 90] getlocal 8 .............................. <i>
+  [ 92] pushint8 1 .............................. <1>
+  [ 95] sub ..................................... <i - 1>
+  [ 96] pusharglist 2 ........................... <10, i - 1>
+  [ 98] extcall 423 ............................. <power(10, i - 1)>
+  [101] div ..................................... <(calcScore - temp) / power(10, i - 1)>
+  [102] setlocal 24 ............................. temp1 = (calcScore - temp) / power(10, i - 1)
+  [104] getlocal 16 ............................. <temp>
+  [106] setlocal 0 .............................. calcScore = temp
+  [108] getprop 417 ............................. <numberSpriteList>
+  [111] getlocal 8 .............................. <i>
+  [113] pusharglist 2 ........................... <numberSpriteList, i>
+  [115] objcall 185 ............................. <numberSpriteList[i]>
+  [118] pushint8 50 ............................. <50>
+  [121] getlocal 24 ............................. <temp1>
+  [123] add ..................................... <50 + temp1>
+  [124] pushcons 24 ............................. <"Gfx">
+  [126] pusharglist 2 ........................... <50 + temp1, "Gfx">
+  [128] extcall 27 .............................. <member(50 + temp1, "Gfx")>
+  [130] setobjprop 27 ........................... numberSpriteList[i].member = member(50 + temp1, "Gfx")
+  [132] pushint8 -1
+  [135] getlocal 8
+  [137] add
+  [138] setlocal 8
+  [140] endrepeat [ 54]
+  [143] getglobal 427 ........................... <gfuelPercent>
+  [146] pushint8 100 ............................ <100>
+  [149] gt ...................................... <gfuelPercent > 100>
+  [150] jmpifz [159] ............................ if gfuelPercent > 100 then
+  [153] pushint8 100 ............................ <100>
+  [156] setglobal 427 ........................... gfuelPercent = 100
+  [159] getprop 481 ............................. <displayFuel>
+  [162] getglobal 427 ........................... <gfuelPercent>
+  [165] getprop 481 ............................. <displayFuel>
+  [168] sub ..................................... <gfuelPercent - displayFuel>
+  [169] pushcons 32 ............................. <0.05>
+  [171] mul ..................................... <(gfuelPercent - displayFuel) * 0.05>
+  [172] add ..................................... <displayFuel + ((gfuelPercent - displayFuel) * 0.05)>
+  [173] setprop 481 ............................. displayFuel = displayFuel + ((gfuelPercent - displayFuel) * 0.05)
+  [176] getprop 428 ............................. <fuelBar>
+  [179] pushint8 512 ............................ <512>
+  [182] getprop 481 ............................. <displayFuel>
+  [185] pushcons 40 ............................. <100.0>
+  [187] div ..................................... <displayFuel / 100.0>
+  [188] pushint8 93 ............................. <93>
+  [191] mul ..................................... <displayFuel / 100.0 * 93>
+  [192] sub ..................................... <512 - (displayFuel / 100.0 * 93)>
+  [193] setobjprop 36 ........................... fuelBar.locH = 512 - (displayFuel / 100.0 * 93)
+  [196] getprop 481 ............................. <displayFuel>
+  [199] pushint8 30 ............................. <30>
+  [202] lt ...................................... <displayFuel < 30>
+  [203] jmpifz [306] ............................ if displayFuel < 30 then / else
+  [206] getprop 432 ............................. <fuelBarDelay>
+  [209] pushint8 1 .............................. <1>
+  [212] add ..................................... <fuelBarDelay + 1>
+  [213] setprop 432 ............................. fuelBarDelay = fuelBarDelay + 1
+  [216] getprop 432 ............................. <fuelBarDelay>
+  [219] pushint8 4 .............................. <4>
+  [222] eq ...................................... <fuelBarDelay = 4>
+  [223] jmpifz [303] ............................ if fuelBarDelay = 4 then
+  [226] pushzero ................................ <0>
+  [227] setprop 432 ............................. fuelBarDelay = 0
+  [230] getprop 428 ............................. <fuelBar>
+  [233] pushint8 55 ............................. <55>
+  [236] pushint8 45 ............................. <45>
+  [239] getprop 433 ............................. <fuelFlashToggle>
+  [242] mul ..................................... <45 * fuelFlashToggle>
+  [243] add ..................................... <55 + (45 * fuelFlashToggle)>
+  [244] setobjprop 173 .......................... fuelBar.blend = 55 + (45 * fuelFlashToggle)
+  [247] getprop 433 ............................. <fuelFlashToggle>
+  [250] pushint8 1 .............................. <1>
+  [253] eq ...................................... <fuelFlashToggle = 1>
+  [254] jmpifz [266] ............................ if fuelFlashToggle = 1 then
+  [257] getprop 428 ............................. <fuelBar>
+  [260] pushint8 420 ............................ <420>
+  [263] setobjprop 36 ........................... fuelBar.locH = 420
+  [266] getprop 433 ............................. <fuelFlashToggle>
+  [269] inv ..................................... <-fuelFlashToggle>
+  [270] setprop 433 ............................. fuelFlashToggle = -fuelFlashToggle
+  [273] pushint8 3 .............................. <3>
+  [276] pusharglist 1 ........................... <3>
+  [278] extcall 394 ............................. <soundBusy(3)>
+  [281] pushzero ................................ <0>
+  [282] eq ...................................... <soundBusy(3) = 0>
+  [283] jmpifz [303] ............................ if soundBusy(3) = 0 then
+  [286] pushint8 3 .............................. <3>
+  [289] pushint8 13 ............................. <13>
+  [292] pushcons 48 ............................. <"Sfx">
+  [294] pusharglist 2 ........................... <13, "Sfx">
+  [296] extcall 27 .............................. <member(13, "Sfx")>
+  [298] pusharglistnoret 2 ...................... <3, member(13, "Sfx")>
+  [300] extcall 395 ............................. puppetSound(3, member(13, "Sfx"))
+  [303] jmp [315]
+  [306] getprop 428 ............................. <fuelBar>
+  [309] pushint8 100 ............................ <100>
+  [312] setobjprop 173 .......................... fuelBar.blend = 100
+  [315] getglobal 430 ........................... <gDamagePercent>
+  [318] pushint8 100 ............................ <100>
+  [321] gt ...................................... <gDamagePercent > 100>
+  [322] jmpifz [331] ............................ if gDamagePercent > 100 then
+  [325] pushint8 100 ............................ <100>
+  [328] setglobal 430 ........................... gDamagePercent = 100
+  [331] getprop 434 ............................. <displayDamage>
+  [334] getglobal 430 ........................... <gDamagePercent>
+  [337] getprop 434 ............................. <displayDamage>
+  [340] sub ..................................... <gDamagePercent - displayDamage>
+  [341] pushcons 56 ............................. <0.05>
+  [343] mul ..................................... <(gDamagePercent - displayDamage) * 0.05>
+  [344] add ..................................... <displayDamage + ((gDamagePercent - displayDamage) * 0.05)>
+  [345] setprop 434 ............................. displayDamage = displayDamage + ((gDamagePercent - displayDamage) * 0.05)
+  [348] getprop 429 ............................. <damageBar>
+  [351] getprop 434 ............................. <displayDamage>
+  [354] pushcons 64 ............................. <100.0>
+  [356] div ..................................... <displayDamage / 100.0>
+  [357] pushint8 92 ............................. <92>
+  [360] mul ..................................... <displayDamage / 100.0 * 92>
+  [361] setobjprop 36 ........................... damageBar.locH = displayDamage / 100.0 * 92
+  [364] getglobal 430 ........................... <gDamagePercent>
+  [367] pushint8 80 ............................. <80>
+  [370] gt ...................................... <gDamagePercent > 80>
+  [371] jmpifz [464] ............................ if gDamagePercent > 80 then
+  [374] getprop 435 ............................. <damageBarDelay>
+  [377] pushint8 1 .............................. <1>
+  [380] add ..................................... <damageBarDelay + 1>
+  [381] setprop 435 ............................. damageBarDelay = damageBarDelay + 1
+  [384] getprop 435 ............................. <damageBarDelay>
+  [387] pushint8 4 .............................. <4>
+  [390] eq ...................................... <damageBarDelay = 4>
+  [391] jmpifz [455] ............................ if damageBarDelay = 4 then / else
+  [394] pushzero ................................ <0>
+  [395] setprop 435 ............................. damageBarDelay = 0
+  [398] getprop 429 ............................. <damageBar>
+  [401] pushint8 55 ............................. <55>
+  [404] pushint8 45 ............................. <45>
+  [407] getprop 436 ............................. <damageFlashToggle>
+  [410] mul ..................................... <45 * damageFlashToggle>
+  [411] add ..................................... <55 + (45 * damageFlashToggle)>
+  [412] setobjprop 173 .......................... damageBar.blend = 55 + (45 * damageFlashToggle)
+  [415] getprop 436 ............................. <damageFlashToggle>
+  [418] inv ..................................... <-damageFlashToggle>
+  [419] setprop 436 ............................. damageFlashToggle = -damageFlashToggle
+  [422] pushint8 3 .............................. <3>
+  [425] pusharglist 1 ........................... <3>
+  [427] extcall 394 ............................. <soundBusy(3)>
+  [430] pushzero ................................ <0>
+  [431] eq ...................................... <soundBusy(3) = 0>
+  [432] jmpifz [452] ............................ if soundBusy(3) = 0 then
+  [435] pushint8 3 .............................. <3>
+  [438] pushint8 13 ............................. <13>
+  [441] pushcons 72 ............................. <"Sfx">
+  [443] pusharglist 2 ........................... <13, "Sfx">
+  [445] extcall 27 .............................. <member(13, "Sfx")>
+  [447] pusharglistnoret 2 ...................... <3, member(13, "Sfx")>
+  [449] extcall 395 ............................. puppetSound(3, member(13, "Sfx"))
+  [452] jmp [464]
+  [455] getprop 429 ............................. <damageBar>
+  [458] pushint8 100 ............................ <100>
+  [461] setobjprop 173 .......................... damageBar.blend = 100
+  [464] getprop 924 ............................. <coconutBar>
+  [467] getglobal 923 ........................... <gCoconuts>
+  [470] pushint8 9 .............................. <9>
+  [473] mul ..................................... <gCoconuts * 9>
+  [474] setobjprop 36 ........................... coconutBar.locH = gCoconuts * 9
+  [477] ret
+end

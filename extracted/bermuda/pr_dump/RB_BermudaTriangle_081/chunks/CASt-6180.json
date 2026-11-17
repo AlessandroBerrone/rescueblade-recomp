@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 856,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 362,
+    "scriptSrcText": "property this, Xpos, radians, Ypos, podsFront, loopX, loopWidth, Eye, eyeOffset, eyeVel\rglobal gXVel, gXOffset, gPaused, gTileIDList, gXVelChange\r\ron beginSprite\r  radians = float(PI / 180)\r  this = sprite(the currentSpriteNum)\r  Eye = sprite(the currentSpriteNum + 1)\r  loopX = gTileIDList.count * 128 * 0.5\r  loopWidth = gTileIDList.count * 128\r  Xpos = float(this.locH)\r  eyeOffset = 4\r  this.locZ = 103\r  eyeVel = 0\rend\r\ron exitFrame\r  if gPaused = 0 then\r    Xpos = Xpos + gXVel + gXOffset\r    if Xpos > loopX then\r      Xpos = Xpos - loopWidth\r    end if\r    if Xpos < -loopX then\r      Xpos = Xpos + loopWidth\r    end if\r    this.locH = Xpos\r    eyeVel = eyeVel - (eyeOffset * 0.025)\r    eyeOffset = eyeOffset + eyeVel\r    Eye.locH = this.locH + eyeOffset\r    Eye.locV = this.locV - eyeOffset\r  end if\rend\r",
+    "name": "BigSquid"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2060,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 213,
+    "scriptSrcText": "property thisNum, this\rglobal gLevel, gLockOut\r\ron beginSprite\r  this = sprite(the currentSpriteNum)\r  thisNum = the currentSpriteNum\r  this.blend = 50\r  this.locZ = the currentSpriteNum\r  gLockOut = 2\rend\r\ron exitFrame\r  if thisNum = the rollover then\r    this.blend = 100\r  else\r    this.blend = 50\r  end if\rend\r\ron mouseUp\r  case thisNum of\r    8:\r      gLevel = 1\r      go(\"Level\" & gLevel)\r      puppetSound(2, member(12, \"Sfx\"))\r    9:\r      gLevel = 2\r      go(\"Level\" & gLevel)\r      puppetSound(2, member(12, \"Sfx\"))\r    10:\r      gLevel = 3\r      go(\"Level\" & gLevel)\r      puppetSound(2, member(12, \"Sfx\"))\r    11:\r      if integer(gLockOut) > 0 then\r        gLevel = 4\r        go(\"Level\" & gLevel)\r        puppetSound(2, member(12, \"Sfx\"))\r      else\r        puppetSound(2, member(13, \"Sfx\"))\r        sprite(19).blend = 0\r      end if\r    12:\r      if integer(gLockOut) > 0 then\r        gLevel = 5\r        go(\"Level\" & gLevel)\r        puppetSound(2, member(12, \"Sfx\"))\r      else\r        puppetSound(2, member(13, \"Sfx\"))\r        sprite(19).blend = 0\r      end if\r    13:\r      if integer(gLockOut) > 0 then\r        gLevel = 6\r        go(\"Level\" & gLevel)\r        puppetSound(2, member(12, \"Sfx\"))\r      else\r        puppetSound(2, member(13, \"Sfx\"))\r        sprite(19).blend = 0\r      end if\r    14:\r      if integer(gLockOut) > 1 then\r        gLevel = 7\r        go(\"Level\" & gLevel)\r        puppetSound(2, member(12, \"Sfx\"))\r      else\r        puppetSound(2, member(13, \"Sfx\"))\r        sprite(20).blend = 0\r      end if\r    15:\r      if integer(gLockOut) > 1 then\r        gLevel = 8\r        go(\"Level\" & gLevel)\r        puppetSound(2, member(12, \"Sfx\"))\r      else\r        puppetSound(2, member(13, \"Sfx\"))\r        sprite(20).blend = 0\r      end if\r    16:\r      if integer(gLockOut) > 1 then\r        gLevel = 9\r        go(\"Level\" & gLevel)\r        puppetSound(2, member(12, \"Sfx\"))\r      else\r        puppetSound(2, member(13, \"Sfx\"))\r        sprite(20).blend = 0\r      end if\r  end case\rend\r",
+    "name": "ChooseLevelButtons"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

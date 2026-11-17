@@ -1,0 +1,258 @@
+{
+  "totalLength": 3590,
+  "totalLength2": 3590,
+  "headerLength": 92,
+  "scriptNumber": 90,
+  "unk20": 3,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65542,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 3558,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 22,
+  "propertiesOffset": 92,
+  "globalsCount": 9,
+  "globalsOffset": 136,
+  "handlersCount": 4,
+  "handlersOffset": 154,
+  "literalsCount": 26,
+  "literalsOffset": 3080,
+  "literalsDataCount": 270,
+  "literalsDataOffset": 3288,
+  "propertyNameIDs": [
+    20,
+    48,
+    52,
+    53,
+    54,
+    51,
+    49,
+    56,
+    58,
+    59,
+    60,
+    30,
+    26,
+    184,
+    188,
+    189,
+    191,
+    190,
+    455,
+    456,
+    457,
+    476
+  ],
+  "globalNameIDs": [
+    47,
+    179,
+    180,
+    182,
+    274,
+    55,
+    364,
+    439,
+    475
+  ],
+  "handlers": [
+    {
+      "nameID": 18,
+      "vectorPos": 65535,
+      "compiledLen": 417,
+      "compiledOffset": 322,
+      "argumentCount": 0,
+      "argumentOffset": 740,
+      "localsCount": 0,
+      "localsOffset": 740,
+      "globalsCount": 0,
+      "globalsOffset": 740,
+      "unknown1": 351,
+      "unknown2": 6,
+      "lineCount": 40,
+      "lineOffset": 740
+    },
+    {
+      "nameID": 19,
+      "vectorPos": 15,
+      "compiledLen": 13,
+      "compiledOffset": 780,
+      "argumentCount": 0,
+      "argumentOffset": 794,
+      "localsCount": 0,
+      "localsOffset": 794,
+      "globalsCount": 0,
+      "globalsOffset": 794,
+      "unknown1": 1631,
+      "unknown2": 50,
+      "lineCount": 10,
+      "lineOffset": 794
+    },
+    {
+      "nameID": 557,
+      "vectorPos": 65535,
+      "compiledLen": 1634,
+      "compiledOffset": 804,
+      "argumentCount": 0,
+      "argumentOffset": 2438,
+      "localsCount": 0,
+      "localsOffset": 2438,
+      "globalsCount": 0,
+      "globalsOffset": 2438,
+      "unknown1": 1739,
+      "unknown2": 63,
+      "lineCount": 187,
+      "lineOffset": 2438
+    },
+    {
+      "nameID": 558,
+      "vectorPos": 65535,
+      "compiledLen": 409,
+      "compiledOffset": 2626,
+      "argumentCount": 0,
+      "argumentOffset": 3036,
+      "localsCount": 0,
+      "localsOffset": 3036,
+      "globalsCount": 0,
+      "globalsOffset": 3036,
+      "unknown1": 7333,
+      "unknown2": 253,
+      "lineCount": 44,
+      "lineOffset": 3036
+    }
+  ],
+  "literals": [
+    {
+      "type": 9,
+      "offset": 0,
+      "value": 0.0
+    },
+    {
+      "type": 9,
+      "offset": 12,
+      "value": 280.0
+    },
+    {
+      "type": 9,
+      "offset": 24,
+      "value": 0.0
+    },
+    {
+      "type": 9,
+      "offset": 36,
+      "value": 280.0
+    },
+    {
+      "type": 9,
+      "offset": 48,
+      "value": 0.0
+    },
+    {
+      "type": 9,
+      "offset": 60,
+      "value": 330.0
+    },
+    {
+      "type": 9,
+      "offset": 72,
+      "value": 0.0
+    },
+    {
+      "type": 9,
+      "offset": 84,
+      "value": 330.0
+    },
+    {
+      "type": 9,
+      "offset": 96,
+      "value": 0.0
+    },
+    {
+      "type": 9,
+      "offset": 108,
+      "value": 128.0
+    },
+    {
+      "type": 9,
+      "offset": 120,
+      "value": 128.0
+    },
+    {
+      "type": 9,
+      "offset": 132,
+      "value": 0.5
+    },
+    {
+      "type": 9,
+      "offset": 144,
+      "value": 0.5
+    },
+    {
+      "type": 1,
+      "offset": 156,
+      "value": "Gfx"
+    },
+    {
+      "type": 1,
+      "offset": 164,
+      "value": "Gfx"
+    },
+    {
+      "type": 1,
+      "offset": 172,
+      "value": "Gfx"
+    },
+    {
+      "type": 9,
+      "offset": 180,
+      "value": 0.5
+    },
+    {
+      "type": 1,
+      "offset": 192,
+      "value": "Gfx"
+    },
+    {
+      "type": 1,
+      "offset": 200,
+      "value": "Gfx"
+    },
+    {
+      "type": 1,
+      "offset": 208,
+      "value": "Gfx"
+    },
+    {
+      "type": 1,
+      "offset": 216,
+      "value": "Tiles"
+    },
+    {
+      "type": 1,
+      "offset": 226,
+      "value": "Gfx"
+    },
+    {
+      "type": 9,
+      "offset": 234,
+      "value": 0.5
+    },
+    {
+      "type": 1,
+      "offset": 246,
+      "value": "Gfx"
+    },
+    {
+      "type": 1,
+      "offset": 254,
+      "value": "Gfx"
+    },
+    {
+      "type": 1,
+      "offset": 262,
+      "value": "Gfx"
+    }
+  ]
+}

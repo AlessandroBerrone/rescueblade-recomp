@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 653,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 132,
+    "scriptSrcText": "property this, Xpos, Ypos, mapXPos, loopX, loopWidth\rglobal gXVel, gXOffset, gPaused, gTileIDList\r\ron beginSprite\r  this = sprite(the currentSpriteNum)\r  Xpos = float(this.locH)\r  Ypos = float(this.locV)\r  this.locZ = 3\r  mapXPos = Xpos - 256\r  loopX = (gTileIDList.count * 128 * 0.25) - Xpos\r  loopWidth = gTileIDList.count * 128 * 0.25\rend\r\ron exitFrame\r  if gPaused = 0 then\r    Xpos = Xpos + ((gXVel + gXOffset) * 0.25)\r    if Xpos > loopX then\r      Xpos = Xpos - loopWidth\r    end if\r    if Xpos < -loopX then\r      Xpos = Xpos + loopWidth\r    end if\r    this.locH = Xpos\r    this.locV = Ypos\r  end if\rend\r",
+    "name": "OilRig"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

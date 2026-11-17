@@ -1,0 +1,116 @@
+{
+  "totalLength": 610,
+  "totalLength2": 610,
+  "headerLength": 92,
+  "scriptNumber": 352,
+  "unk20": 8,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65603,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 10,
+  "handlerVectorsOffset": 590,
+  "handlerVectorsSize": 770,
+  "propertiesCount": 2,
+  "propertiesOffset": 92,
+  "globalsCount": 2,
+  "globalsOffset": 96,
+  "handlersCount": 4,
+  "handlersOffset": 100,
+  "literalsCount": 3,
+  "literalsOffset": 522,
+  "literalsDataCount": 44,
+  "literalsDataOffset": 546,
+  "propertyNameIDs": [
+    944,
+    20
+  ],
+  "globalNameIDs": [
+    946,
+    949
+  ],
+  "handlers": [
+    {
+      "nameID": 18,
+      "vectorPos": 65535,
+      "compiledLen": 73,
+      "compiledOffset": 268,
+      "argumentCount": 0,
+      "argumentOffset": 342,
+      "localsCount": 0,
+      "localsOffset": 342,
+      "globalsCount": 0,
+      "globalsOffset": 342,
+      "unknown1": 230,
+      "unknown2": 13,
+      "lineCount": 10,
+      "lineOffset": 342
+    },
+    {
+      "nameID": 942,
+      "vectorPos": 8,
+      "compiledLen": 21,
+      "compiledOffset": 352,
+      "argumentCount": 0,
+      "argumentOffset": 374,
+      "localsCount": 0,
+      "localsOffset": 374,
+      "globalsCount": 0,
+      "globalsOffset": 374,
+      "unknown1": 574,
+      "unknown2": 31,
+      "lineCount": 3,
+      "lineOffset": 374
+    },
+    {
+      "nameID": 943,
+      "vectorPos": 9,
+      "compiledLen": 65,
+      "compiledOffset": 378,
+      "argumentCount": 0,
+      "argumentOffset": 444,
+      "localsCount": 0,
+      "localsOffset": 444,
+      "globalsCount": 0,
+      "globalsOffset": 444,
+      "unknown1": 666,
+      "unknown2": 37,
+      "lineCount": 18,
+      "lineOffset": 444
+    },
+    {
+      "nameID": 424,
+      "vectorPos": 1,
+      "compiledLen": 38,
+      "compiledOffset": 462,
+      "argumentCount": 0,
+      "argumentOffset": 500,
+      "localsCount": 0,
+      "localsOffset": 500,
+      "globalsCount": 0,
+      "globalsOffset": 500,
+      "unknown1": 1074,
+      "unknown2": 58,
+      "lineCount": 21,
+      "lineOffset": 500
+    }
+  ],
+  "literals": [
+    {
+      "type": 1,
+      "offset": 0,
+      "value": "Author"
+    },
+    {
+      "type": 1,
+      "offset": 12,
+      "value": "No Xtra found"
+    },
+    {
+      "type": 1,
+      "offset": 30,
+      "value": "CallClose"
+    }
+  ]
+}

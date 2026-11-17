@@ -1,0 +1,25 @@
+property this
+global gPaused
+
+on beginSprite
+  [  0] getmovieprop 22 ......................... <the currentSpriteNum>
+  [  2] pusharglist 1 ........................... <the currentSpriteNum>
+  [  4] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [  6] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [  8] getprop 20 .............................. <this>
+  [ 10] pushint8 1600 ........................... <1600>
+  [ 13] setobjprop 178 .......................... this.locZ = 1600
+  [ 16] ret
+end
+
+on exitFrame
+  [  0] getglobal 364 ........................... <gPaused>
+  [  3] pushzero ................................ <0>
+  [  4] eq ...................................... <gPaused = 0>
+  [  5] jmpifz [ 17] ............................ if gPaused = 0 then
+  [  8] getprop 20 .............................. <this>
+  [ 10] pushint8 1000 ........................... <1000>
+  [ 13] inv ..................................... <-1000>
+  [ 14] setobjprop 36 ........................... this.locH = -1000
+  [ 17] ret
+end

@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2292,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 274,
+    "scriptSrcText": "property this, Xpos, radians, Ypos, loopX, loopWidth, door, cableGuy, distToGuy\rglobal gXVel, gXOffset, gPaused, gTileIDList, gXVelChange\r\ron beginSprite\r  radians = float(PI / 180)\r  this = sprite(the currentSpriteNum)\r  door = sprite(the currentSpriteNum - 1)\r  door.loc = this.loc\r  loopX = gTileIDList.count * 128 * 0.5\r  loopWidth = gTileIDList.count * 128\r  Xpos = float(this.locH)\r  this.locZ = 203\r  door.locZ = 50\r  cableGuy = sprite(6)\rend\r\ron exitFrame\r  if gPaused = 0 then\r    Xpos = Xpos + gXVel + gXOffset\r    if Xpos > loopX then\r      Xpos = Xpos - loopWidth\r    end if\r    if Xpos < -loopX then\r      Xpos = Xpos + loopWidth\r    end if\r    if (Xpos > 0) and (Xpos < 512) then\r      frontPoint = this.loc + point(80, 10)\r      backPoint = this.loc + point(-100, 10)\r      xDiff = float(frontPoint.locH - (cableGuy.locH + cableGuy.Xvel))\r      yDiff = float(frontPoint.locV - (cableGuy.locV + cableGuy.Yvel))\r      distToGuy = float(sqrt((xDiff * xDiff) + (yDiff * yDiff)))\r      toGuyVector = point(xDiff, yDiff)\r      if distToGuy < 80 then\r        if distToGuy <> 0 then\r          normToGuyVector = toGuyVector / distToGuy\r          pushVector = normToGuyVector * (80 - distToGuy)\r          cableGuy.Xvel = cableGuy.Xvel - pushVector.locH\r          cableGuy.Yvel = cableGuy.Yvel - pushVector.locV\r        end if\r      end if\r      xDiff = float(backPoint.locH - (cableGuy.locH + cableGuy.Xvel))\r      yDiff = float(backPoint.locV - (cableGuy.locV + cableGuy.Yvel))\r      distToGuy = float(sqrt((xDiff * xDiff) + (yDiff * yDiff)))\r      toGuyVector = point(xDiff, yDiff)\r      if distToGuy < 100 then\r        if distToGuy <> 0 then\r          normToGuyVector = toGuyVector / distToGuy\r          pushVector = normToGuyVector * (100 - distToGuy)\r          cableGuy.Xvel = cableGuy.Xvel - pushVector.locH\r          cableGuy.Yvel = cableGuy.Yvel - pushVector.locV\r        end if\r      end if\r      xDiff = float(this.locH - (cableGuy.locH + cableGuy.Xvel))\r      yDiff = float(this.locV - (cableGuy.locV + cableGuy.Yvel))\r      if abs(xDiff) < 30 then\r        if yDiff < 30 then\r          cableGuy.Yvel = cableGuy.Yvel - (30 - yDiff)\r        end if\r      end if\r    end if\r    this.locH = Xpos\r    door.loc = this.loc\r  end if\rend\r",
+    "name": "ShipGreenPace"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

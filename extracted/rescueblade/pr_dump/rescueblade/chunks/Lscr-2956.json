@@ -1,0 +1,739 @@
+{
+  "totalLength": 6576,
+  "totalLength2": 6576,
+  "headerLength": 92,
+  "scriptNumber": 214,
+  "unk20": 3,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65554,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 6544,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 4,
+  "propertiesOffset": 92,
+  "globalsCount": 15,
+  "globalsOffset": 100,
+  "handlersCount": 2,
+  "handlersOffset": 130,
+  "literalsCount": 131,
+  "literalsOffset": 3442,
+  "literalsDataCount": 2054,
+  "literalsDataOffset": 4490,
+  "propertyNameIDs": [
+    20,
+    560,
+    565,
+    567
+  ],
+  "globalNameIDs": [
+    510,
+    430,
+    427,
+    180,
+    568,
+    572,
+    410,
+    576,
+    364,
+    578,
+    594,
+    453,
+    458,
+    751,
+    745
+  ],
+  "handlers": [
+    {
+      "nameID": 18,
+      "vectorPos": 65535,
+      "compiledLen": 496,
+      "compiledOffset": 214,
+      "argumentCount": 0,
+      "argumentOffset": 710,
+      "localsCount": 2,
+      "localsOffset": 710,
+      "globalsCount": 0,
+      "globalsOffset": 714,
+      "unknown1": 255,
+      "unknown2": 6,
+      "lineCount": 54,
+      "lineOffset": 714
+    },
+    {
+      "nameID": 19,
+      "vectorPos": 15,
+      "compiledLen": 2413,
+      "compiledOffset": 768,
+      "argumentCount": 0,
+      "argumentOffset": 3182,
+      "localsCount": 2,
+      "localsOffset": 3182,
+      "globalsCount": 0,
+      "globalsOffset": 3186,
+      "unknown1": 2084,
+      "unknown2": 63,
+      "lineCount": 255,
+      "lineOffset": 3186
+    }
+  ],
+  "literals": [
+    {
+      "type": 1,
+      "offset": 0,
+      "value": "Touch down on every HeliPad"
+    },
+    {
+      "type": 1,
+      "offset": 32,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 38,
+      "value": "and ring each Bell Buoy."
+    },
+    {
+      "type": 1,
+      "offset": 68,
+      "value": "Use the cable guy to grab every pickup."
+    },
+    {
+      "type": 1,
+      "offset": 112,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 118,
+      "value": "Quickly TAP SPACEBAR to winch UP / DOWN."
+    },
+    {
+      "type": 1,
+      "offset": 164,
+      "value": "HOLD DOWN SPACEBAR to spray!"
+    },
+    {
+      "type": 1,
+      "offset": 198,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 204,
+      "value": "Extinguish all"
+    },
+    {
+      "type": 1,
+      "offset": 224,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 230,
+      "value": "burning Palm Trees!"
+    },
+    {
+      "type": 1,
+      "offset": 254,
+      "value": "Rescue all the oil rig workers!"
+    },
+    {
+      "type": 1,
+      "offset": 290,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 296,
+      "value": "Avoid Seagulls and other aircraft."
+    },
+    {
+      "type": 1,
+      "offset": 336,
+      "value": "You are cleared for take off."
+    },
+    {
+      "type": 1,
+      "offset": 370,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 376,
+      "value": "Hurry! They can't survive much longer!"
+    },
+    {
+      "type": 1,
+      "offset": 420,
+      "value": "Save the workers."
+    },
+    {
+      "type": 1,
+      "offset": 442,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 448,
+      "value": "PULL UP the three fuel rods,"
+    },
+    {
+      "type": 1,
+      "offset": 482,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 488,
+      "value": "and SPRAY to cool them down!"
+    },
+    {
+      "type": 1,
+      "offset": 522,
+      "value": "Save the researchers and"
+    },
+    {
+      "type": 1,
+      "offset": 552,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 558,
+      "value": "find a way to put out the fires!"
+    },
+    {
+      "type": 1,
+      "offset": 596,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 602,
+      "value": "Save the sailors."
+    },
+    {
+      "type": 1,
+      "offset": 624,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 630,
+      "value": "Unscrew the WarHeads then"
+    },
+    {
+      "type": 1,
+      "offset": 660,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 666,
+      "value": "drop them into the ship's hold!"
+    },
+    {
+      "type": 1,
+      "offset": 702,
+      "value": ""
+    },
+    {
+      "type": 1,
+      "offset": 708,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 714,
+      "value": ""
+    },
+    {
+      "type": 1,
+      "offset": 720,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 726,
+      "value": ""
+    },
+    {
+      "type": 1,
+      "offset": 732,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 740,
+      "value": "MISSION COMPLETE"
+    },
+    {
+      "type": 1,
+      "offset": 762,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 768,
+      "value": "Superb piloting skills!"
+    },
+    {
+      "type": 1,
+      "offset": 796,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 802,
+      "value": "TimeBonus = "
+    },
+    {
+      "type": 1,
+      "offset": 820,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 828,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 834,
+      "value": "NEW HI-SCORE!"
+    },
+    {
+      "type": 1,
+      "offset": 852,
+      "value": "MISSION COMPLETE"
+    },
+    {
+      "type": 1,
+      "offset": 874,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 880,
+      "value": "Great winch control!"
+    },
+    {
+      "type": 1,
+      "offset": 906,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 912,
+      "value": "TimeBonus = "
+    },
+    {
+      "type": 1,
+      "offset": 930,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 938,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 944,
+      "value": "NEW HI-SCORE!"
+    },
+    {
+      "type": 1,
+      "offset": 962,
+      "value": "MISSION COMPLETE"
+    },
+    {
+      "type": 1,
+      "offset": 984,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 990,
+      "value": "Great fire fighting!"
+    },
+    {
+      "type": 1,
+      "offset": 1016,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1022,
+      "value": "TimeBonus = "
+    },
+    {
+      "type": 1,
+      "offset": 1040,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 1048,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1054,
+      "value": "NEW HI-SCORE!"
+    },
+    {
+      "type": 1,
+      "offset": 1072,
+      "value": "MISSION COMPLETE"
+    },
+    {
+      "type": 1,
+      "offset": 1094,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1100,
+      "value": "You saved every single survivor!"
+    },
+    {
+      "type": 1,
+      "offset": 1138,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1144,
+      "value": "TimeBonus = "
+    },
+    {
+      "type": 1,
+      "offset": 1162,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 1170,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1176,
+      "value": "NEW HI-SCORE !"
+    },
+    {
+      "type": 1,
+      "offset": 1196,
+      "value": "MISSION COMPLETE"
+    },
+    {
+      "type": 1,
+      "offset": 1218,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1224,
+      "value": "You saved every single survivor!"
+    },
+    {
+      "type": 1,
+      "offset": 1262,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1268,
+      "value": "TimeBonus = "
+    },
+    {
+      "type": 1,
+      "offset": 1286,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 1294,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1300,
+      "value": "NEW HI-SCORE!"
+    },
+    {
+      "type": 1,
+      "offset": 1318,
+      "value": "MISSION COMPLETE"
+    },
+    {
+      "type": 1,
+      "offset": 1340,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1346,
+      "value": "Incredible bravery!"
+    },
+    {
+      "type": 1,
+      "offset": 1370,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1376,
+      "value": "TimeBonus = "
+    },
+    {
+      "type": 1,
+      "offset": 1394,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 1402,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1408,
+      "value": "NEW HI-SCORE!"
+    },
+    {
+      "type": 1,
+      "offset": 1426,
+      "value": "MISSION COMPLETE"
+    },
+    {
+      "type": 1,
+      "offset": 1448,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1454,
+      "value": "Nice SnowBall!"
+    },
+    {
+      "type": 1,
+      "offset": 1474,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1480,
+      "value": "TimeBonus = "
+    },
+    {
+      "type": 1,
+      "offset": 1498,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 1506,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1512,
+      "value": "NEW HI-SCORE!"
+    },
+    {
+      "type": 1,
+      "offset": 1530,
+      "value": "MISSION COMPLETE"
+    },
+    {
+      "type": 1,
+      "offset": 1552,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1558,
+      "value": "All WarHeads Disarmed!"
+    },
+    {
+      "type": 1,
+      "offset": 1586,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1592,
+      "value": "TimeBonus = "
+    },
+    {
+      "type": 1,
+      "offset": 1610,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 1618,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1624,
+      "value": "NEW HI-SCORE!"
+    },
+    {
+      "type": 1,
+      "offset": 1642,
+      "value": "MISSION COMPLETE"
+    },
+    {
+      "type": 1,
+      "offset": 1664,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1670,
+      "value": "YES! You saved cableGuy!"
+    },
+    {
+      "type": 1,
+      "offset": 1700,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1706,
+      "value": "TRULY SUPERB FLYING!"
+    },
+    {
+      "type": 1,
+      "offset": 1732,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1738,
+      "value": "TimeBonus = "
+    },
+    {
+      "type": 1,
+      "offset": 1756,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 1764,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1770,
+      "value": "NEW HI-SCORE!"
+    },
+    {
+      "type": 1,
+      "offset": 1788,
+      "value": "MISSION FAILED"
+    },
+    {
+      "type": 1,
+      "offset": 1808,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1814,
+      "value": "EXTREME DAMAGE!"
+    },
+    {
+      "type": 1,
+      "offset": 1834,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 1842,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 1850,
+      "value": "MISSION FAILED"
+    },
+    {
+      "type": 1,
+      "offset": 1870,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1876,
+      "value": "OUT OF FUEL!"
+    },
+    {
+      "type": 1,
+      "offset": 1894,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 1902,
+      "value": "MISSION FAILED"
+    },
+    {
+      "type": 1,
+      "offset": 1922,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1928,
+      "value": "Don't dunk your cableGuy!"
+    },
+    {
+      "type": 1,
+      "offset": 1958,
+      "value": "MISSION FAILED"
+    },
+    {
+      "type": 1,
+      "offset": 1978,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1984,
+      "value": "You froze your cableGuy!"
+    },
+    {
+      "type": 1,
+      "offset": 2014,
+      "value": "0"
+    },
+    {
+      "type": 1,
+      "offset": 2020,
+      "value": "1"
+    },
+    {
+      "type": 1,
+      "offset": 2026,
+      "value": "1"
+    },
+    {
+      "type": 1,
+      "offset": 2032,
+      "value": "2"
+    },
+    {
+      "type": 1,
+      "offset": 2038,
+      "value": "MenuScreen"
+    }
+  ]
+}

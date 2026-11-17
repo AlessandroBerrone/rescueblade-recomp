@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2343,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 219,
+    "scriptSrcText": "property this, scoreList, lockFlash, lockOutFlashCount1, lockOutFlashCount2\rglobal gLevelScoreList, gScoreTotal, gLockOut\r\ron beginSprite\r  this = sprite(the currentSpriteNum)\r  scoreList = []\r  gScoreTotal = 0\r  repeat with i = 1 to 9\r    gScoreTotal = gScoreTotal + gLevelScoreList[i]\r    calcScore = gLevelScoreList[i]\r    tempString = EMPTY\r    repeat with j = 7 down to 1\r      temp = calcScore mod power(10, j - 1)\r      temp1 = (calcScore - temp) / power(10, j - 1)\r      calcScore = temp\r      tempString = tempString & string(integer(temp1))\r    end repeat\r    scoreList.add(tempString)\r  end repeat\r  calcScore = gScoreTotal\r  tempString = EMPTY\r  repeat with j = 7 down to 1\r    temp = calcScore mod power(10, j - 1)\r    temp1 = (calcScore - temp) / power(10, j - 1)\r    calcScore = temp\r    tempString = tempString & string(integer(temp1))\r  end repeat\r  scoreList.add(tempString)\r  this.member.text = scoreList[1] & RETURN & scoreList[2] & RETURN & scoreList[3] & RETURN & RETURN & scoreList[4] & RETURN & scoreList[5] & RETURN & scoreList[6] & RETURN & RETURN & scoreList[7] & RETURN & scoreList[8] & RETURN & scoreList[9] & RETURN & RETURN & scoreList[10]\r  member(\"SubmitScore\", \"Gfx\").text = string(gScoreTotal)\r  if gLevelScoreList[1] and gLevelScoreList[2] and gLevelScoreList[3] then\r    if gLockOut = \"0\" then\r      gLockOut = \"1\"\r    end if\r  end if\r  if gLevelScoreList[4] and gLevelScoreList[5] and gLevelScoreList[6] then\r    if gLockOut = \"1\" then\r      gLockOut = \"2\"\r    end if\r  end if\r  if (the environment).runMode = \"Author\" then\r    gLockOut = \"2\"\r  end if\r  case gLockOut of\r    \"0\":\r    \"1\":\r      sprite(19).locV = -1000\r    \"2\":\r      sprite(19).locV = -1000\r      sprite(20).locV = -1000\r  end case\r  lockOutFlashCount2 = 0\r  lockOutFlashCount1 = 0\rend\r\ron exitFrame\r  if (sprite(19).blend = 0) and (lockOutFlashCount1 = 0) then\r    lockOutFlashCount1 = 10\r  end if\r  if lockOutFlashCount1 > 0 then\r    sprite(19).blend = 100 * (lockOutFlashCount1 mod 2)\r    lockOutFlashCount1 = lockOutFlashCount1 - 1\r  end if\r  if (sprite(20).blend = 0) and (lockOutFlashCount2 = 0) then\r    lockOutFlashCount2 = 10\r  end if\r  if lockOutFlashCount2 > 0 then\r    sprite(20).blend = 100 * (lockOutFlashCount2 mod 2)\r    lockOutFlashCount2 = lockOutFlashCount2 - 1\r  end if\rend\r",
+    "name": "Hi-Scores"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

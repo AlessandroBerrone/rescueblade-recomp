@@ -1,0 +1,30 @@
+{
+  "unknown0": 0,
+  "unknown1": 0,
+  "len1": 154,
+  "len2": 154,
+  "namesOffset": 20,
+  "namesCount": 20,
+  "names": [
+    "beginSprite",
+    "exitFrame",
+    "radians",
+    "float",
+    "pi",
+    "this",
+    "sprite",
+    "currentSpriteNum",
+    "rightLoopX",
+    "width",
+    "leftLoopX",
+    "loopWidth",
+    "Xpos",
+    "locH",
+    "Ypos",
+    "locV",
+    "swellAngle",
+    "gXVel",
+    "integer",
+    "cos"
+  ]
+}

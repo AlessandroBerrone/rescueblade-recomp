@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2167,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 384,
+    "scriptSrcText": "property this, radians, Xpos, Ypos, mapXPos, loopX, bolt, COPTER, cableGuy, ouchCount, prevBolt, boltOffset, loopWidth, gun, Yvel, Xvel, startY, yTarget, fireCounter, donkCount, xDonk, UFO, glow, glowBlend\rglobal gXVel, gXOffset, gPaused, gTileIDList, gDamagePercent, gCoconutList, yDonk\r\ron beginSprite\r  radians = float(PI / 180)\r  this = sprite(the currentSpriteNum)\r  bolt = sprite(the currentSpriteNum - 1)\r  UFO = sprite(the currentSpriteNum - 4)\r  glow = sprite(the currentSpriteNum - 2)\r  glow.blend = 0\r  startY = this.locV\r  COPTER = sprite(4)\r  yTarget = 0\r  cableGuy = sprite(6)\r  Xpos = float(this.locH)\r  Ypos = float(this.locV)\r  Yvel = 0\r  Xvel = 0\r  loopX = gTileIDList.count * 128 * 0.5\r  loopWidth = gTileIDList.count * 128\r  this.locZ = 52\r  bolt.locZ = 51\r  glow.locZ = 50\r  mapXPos = Xpos - 256\r  loopX = (gTileIDList.count * 128 * 0.25) - Xpos\r  ouchCount = 0\r  prevBolt = 0\r  boltOffset = -50\r  fireCounter = 0\r  donkCount = 0\r  xDonk = 0\r  yDonk = 0\r  glowBlend = 0\rend\r\ron exitFrame\r  if gPaused = 0 then\r    this.loc = UFO.loc\r    glow.loc = this.loc\r    glow.rotation = this.rotation\r    if (this.locH > 0) and (this.locH < 512) and (this.locV > 0) then\r      fireCounter = fireCounter + 1\r      if fireCounter >= 100 then\r        if glow.blend = 30 then\r          puppetSound(2, member(93, \"Sfx\"))\r        end if\r        if glow.blend >= 100 then\r          if bolt.fireBallState = #NULL then\r            bolt.fireBallState = #FIRED\r            puppetSound(2, member(94, \"Sfx\"))\r            bolt.locH = this.locH + (50 * cos((this.rotation + 180) * radians))\r            bolt.locV = this.locV + (50 * sin((this.rotation + 180) * radians))\r            bolt.rotation = this.rotation - 180\r            glow.blend = 0\r          end if\r        end if\r        if fireCounter >= 150 then\r          fireCounter = 0\r        end if\r        if fireCounter < 200 then\r          if glow.blend < 100 then\r            glow.blend = glow.blend + 2\r          end if\r        end if\r      else\r      end if\r      this.rotation = AngleGrind(this.locH, this.locV, COPTER.locH, COPTER.locV) + 180\r    end if\r  end if\rend\r",
+    "name": "UFOGun"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

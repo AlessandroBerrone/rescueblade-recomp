@@ -1,0 +1,10 @@
+MISSION 007 Ice Station
+You have been sent on assignment to gain experience in the harsh extremes of Iceland. An SOS has been received from the local weather research station.
+
+Your hose will not work in the sub zero temperatures. Find a novel way to extinguish the fires!
+
+Use your down thrust to blow away snow drifts that have burried researchers. Then pull them to safety.
+
+Use cableGuy to pull the comm towers back up into position whilst avoiding the escaped weather balloons!
+
+WARNING: You must work at speed as there is ONLY ONE FUEL BARREL on this level!

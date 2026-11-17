@@ -1,0 +1,118 @@
+{
+  "totalLength": 946,
+  "totalLength2": 946,
+  "headerLength": 92,
+  "scriptNumber": 270,
+  "unk20": 3,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65565,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 914,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 13,
+  "propertiesOffset": 92,
+  "globalsCount": 4,
+  "globalsOffset": 118,
+  "handlersCount": 3,
+  "handlersOffset": 126,
+  "literalsCount": 4,
+  "literalsOffset": 808,
+  "literalsDataCount": 74,
+  "literalsDataOffset": 840,
+  "propertyNameIDs": [
+    20,
+    48,
+    40,
+    38,
+    366,
+    609,
+    342,
+    583,
+    584,
+    54,
+    608,
+    775,
+    776
+  ],
+  "globalNameIDs": [
+    47,
+    55,
+    364,
+    180
+  ],
+  "handlers": [
+    {
+      "nameID": 610,
+      "vectorPos": 65535,
+      "compiledLen": 66,
+      "compiledOffset": 252,
+      "argumentCount": 1,
+      "argumentOffset": 318,
+      "localsCount": 1,
+      "localsOffset": 320,
+      "globalsCount": 0,
+      "globalsOffset": 322,
+      "unknown1": 209,
+      "unknown2": 5,
+      "lineCount": 4,
+      "lineOffset": 322
+    },
+    {
+      "nameID": 18,
+      "vectorPos": 65535,
+      "compiledLen": 209,
+      "compiledOffset": 326,
+      "argumentCount": 0,
+      "argumentOffset": 536,
+      "localsCount": 2,
+      "localsOffset": 536,
+      "globalsCount": 0,
+      "globalsOffset": 540,
+      "unknown1": 516,
+      "unknown2": 12,
+      "lineCount": 20,
+      "lineOffset": 540
+    },
+    {
+      "nameID": 19,
+      "vectorPos": 15,
+      "compiledLen": 207,
+      "compiledOffset": 560,
+      "argumentCount": 0,
+      "argumentOffset": 768,
+      "localsCount": 2,
+      "localsOffset": 768,
+      "globalsCount": 0,
+      "globalsOffset": 772,
+      "unknown1": 1087,
+      "unknown2": 36,
+      "lineCount": 35,
+      "lineOffset": 772
+    }
+  ],
+  "literals": [
+    {
+      "type": 1,
+      "offset": 0,
+      "value": "Sea Swell Height"
+    },
+    {
+      "type": 1,
+      "offset": 22,
+      "value": "SwellListPointer Start"
+    },
+    {
+      "type": 9,
+      "offset": 50,
+      "value": 0.5
+    },
+    {
+      "type": 9,
+      "offset": 62,
+      "value": 0.25
+    }
+  ]
+}

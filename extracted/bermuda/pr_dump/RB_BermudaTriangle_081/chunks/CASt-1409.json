@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2949,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 222,
+    "scriptSrcText": "property this, Xpos, Ypos, mapXPos, loopX, bolt, COPTER, cableGuy, ouchCount, valveState, valveAngle, valve, valveVel, STEAM, valveCounter, onScreen, loopWidth\rglobal gXVel, gXOffset, gPaused, gTileIDList, gDamagePercent, gPloshX\r\ron beginSprite\r  this = sprite(the currentSpriteNum)\r  COPTER = sprite(4)\r  cableGuy = sprite(6)\r  STEAM = sprite(the currentSpriteNum + 2)\r  valve = sprite(the currentSpriteNum + 1)\r  Xpos = float(this.locH)\r  Ypos = float(this.locV)\r  this.locZ = 51\r  STEAM.locZ = 52\r  valve.locZ = 53\r  mapXPos = Xpos - 256\r  loopX = gTileIDList.count * 128 * 0.5\r  loopWidth = gTileIDList.count * 128\r  ouchCount = 0\r  prevBolt = 0\r  boltOffset = -50\r  valveState = #STEAM\r  valveAngle = 90\r  valveVel = 0\r  valveCounter = 0\r  onScreen = 0\rend\r\ron exitFrame\r  if gPaused = 0 then\r    Xpos = Xpos + gXVel + gXOffset\r    if Xpos > loopX then\r      Xpos = Xpos - loopWidth\r    end if\r    if Xpos < -loopX then\r      Xpos = Xpos + loopWidth\r    end if\r    this.locH = Xpos\r    this.locV = Ypos\r    STEAM.locH = this.locH\r    valve.loc = this.loc\r    if (Xpos > -20) and (Xpos < 550) then\r      if onScreen = 0 then\r        onScreen = 1\r        puppetSound(2, member(42, \"Sfx\"))\r      end if\r      case valveState of\r        #STEAM:\r          valveVel = valveVel - 1\r          if valveAngle < 60 then\r            valveVel = valveVel + ((60 - valveAngle) * 0.10000000000000001)\r          end if\r          valveAngle = valveAngle + valveVel\r          valveVel = valveVel * 0.98999999999999999\r          valve.rotation = valveAngle\r          if gPloshX > -1 then\r            xDiff = gPloshX - Xpos - 12\r            if abs(xDiff) < 50 then\r              valveVel = valveVel - 8\r            end if\r            if valveAngle <= 0 then\r              valveState = #closed\r              valveCounter = 0\r              puppetSound(2, member(41, \"Sfx\"))\r            end if\r          end if\r          xDiff = this.locH - 12 - cableGuy.locH\r          if abs(xDiff) < 40 then\r            gDamagePercent = gDamagePercent + 2\r            if soundBusy(4) = 0 then\r              puppetSound(4, member(34 + ouchCount, \"Sfx\"))\r              ouchCount = ouchCount + 1\r              if ouchCount > 3 then\r                ouchCount = 0\r              end if\r            end if\r          end if\r          STEAM.loc = this.loc\r        #closed:\r          STEAM.locV = -1000\r          valveAngle = 0\r          valve.rotation = valveAngle\r          valveCounter = valveCounter + 1\r          if valveCounter >= 70 then\r            valveState = #STEAM\r            valveAngle = 1\r            valveVel = 0\r            puppetSound(2, member(42, \"Sfx\"))\r          end if\r      end case\r      STEAM.height = valveAngle + 70 + random(80)\r    else\r      if onScreen = 1 then\r        if sound(2).member = member(42, \"Sfx\") then\r          puppetSound(2, 0)\r        end if\r        onScreen = 0\r      end if\r    end if\r  end if\rend\r",
+    "name": "SteamValve"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

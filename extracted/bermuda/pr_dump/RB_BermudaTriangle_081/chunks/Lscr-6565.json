@@ -1,0 +1,163 @@
+{
+  "totalLength": 1310,
+  "totalLength2": 1310,
+  "headerLength": 92,
+  "scriptNumber": 218,
+  "unk20": 8,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65559,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 1278,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 5,
+  "propertiesOffset": 92,
+  "globalsCount": 3,
+  "globalsOffset": 102,
+  "handlersCount": 2,
+  "handlersOffset": 108,
+  "literalsCount": 18,
+  "literalsOffset": 1008,
+  "literalsDataCount": 126,
+  "literalsDataOffset": 1152,
+  "propertyNameIDs": [
+    20,
+    579,
+    750,
+    749,
+    748
+  ],
+  "globalNameIDs": [
+    578,
+    672,
+    745
+  ],
+  "handlers": [
+    {
+      "nameID": 18,
+      "vectorPos": 65535,
+      "compiledLen": 586,
+      "compiledOffset": 192,
+      "argumentCount": 0,
+      "argumentOffset": 778,
+      "localsCount": 6,
+      "localsOffset": 778,
+      "globalsCount": 0,
+      "globalsOffset": 790,
+      "unknown1": 132,
+      "unknown2": 5,
+      "lineCount": 64,
+      "lineOffset": 790
+    },
+    {
+      "nameID": 19,
+      "vectorPos": 15,
+      "compiledLen": 133,
+      "compiledOffset": 854,
+      "argumentCount": 0,
+      "argumentOffset": 988,
+      "localsCount": 0,
+      "localsOffset": 988,
+      "globalsCount": 0,
+      "globalsOffset": 988,
+      "unknown1": 1732,
+      "unknown2": 72,
+      "lineCount": 19,
+      "lineOffset": 988
+    }
+  ],
+  "literals": [
+    {
+      "type": 1,
+      "offset": 0,
+      "value": ""
+    },
+    {
+      "type": 1,
+      "offset": 6,
+      "value": ""
+    },
+    {
+      "type": 1,
+      "offset": 12,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 18,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 24,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 30,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 36,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 42,
+      "value": "SubmitScore"
+    },
+    {
+      "type": 1,
+      "offset": 58,
+      "value": "Gfx"
+    },
+    {
+      "type": 1,
+      "offset": 66,
+      "value": "0"
+    },
+    {
+      "type": 1,
+      "offset": 72,
+      "value": "1"
+    },
+    {
+      "type": 1,
+      "offset": 78,
+      "value": "1"
+    },
+    {
+      "type": 1,
+      "offset": 84,
+      "value": "2"
+    },
+    {
+      "type": 1,
+      "offset": 90,
+      "value": "Author"
+    },
+    {
+      "type": 1,
+      "offset": 102,
+      "value": "2"
+    },
+    {
+      "type": 1,
+      "offset": 108,
+      "value": "0"
+    },
+    {
+      "type": 1,
+      "offset": 114,
+      "value": "1"
+    },
+    {
+      "type": 1,
+      "offset": 120,
+      "value": "2"
+    }
+  ]
+}

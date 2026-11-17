@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 1343,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 85,
+    "scriptSrcText": "property this, Xpos, Ypos, smokeState, rotWise, Yvel\rglobal gXVel, gXOffset, gPaused, gSmokeList\r\ron beginSprite\r  this = sprite(the currentSpriteNum)\r  Xpos = float(-1000)\r  Ypos = float(-1000)\r  Yvel = -2\r  smokeState = #NULL\r  this.locZ = 105\r  gSmokeList.add(this)\r  rotWise = random(2)\r  if rotWise = 2 then\r    rotWise = -1\r  end if\rend\r\ron exitFrame\r  if gPaused = 0 then\r    case smokeState of\r      #NULL:\r        Xpos = -1000\r        Ypos = -1000\r        this.locH = Xpos\r        this.locV = Ypos\r        rand = random(10)\r        this.width = rand\r        this.height = rand\r        this.blend = 100\r      #SMOKE:\r        Xpos = Xpos + gXVel + gXOffset\r        Ypos = Ypos + Yvel\r        this.rotation = this.rotation + (rotWise * 3)\r        if this.width < 50 then\r          this.width = this.width + 2\r          this.height = this.height + 2\r        else\r          this.width = this.width + 2\r          this.height = this.height + 2\r        end if\r        this.blend = this.blend - 2\r        if this.blend = 0 then\r          smokeState = #NULL\r          gSmokeList.add(this)\r          Xpos = -1000\r          Ypos = -1000\r          this.width = 1\r          this.height = 1\r          this.blend = 100\r        end if\r        this.locH = Xpos\r        this.locV = Ypos\r    end case\r  end if\rend\r",
+    "name": "Smoke"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

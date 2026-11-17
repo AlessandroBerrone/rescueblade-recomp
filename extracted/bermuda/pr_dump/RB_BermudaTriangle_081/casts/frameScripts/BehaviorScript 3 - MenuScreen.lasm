@@ -1,0 +1,36 @@
+global gLockOut
+
+on exitFrame me
+  [  0] pushcons 0 .............................. <"r">
+  [  2] pusharglist 1 ........................... <"r">
+  [  4] extcall 22 .............................. <keyPressed("r")>
+  [  6] pushcons 8 .............................. <"i">
+  [  8] pusharglist 1 ........................... <"i">
+  [ 10] extcall 22 .............................. <keyPressed("i")>
+  [ 12] and ..................................... <keyPressed("r") and keyPressed("i")>
+  [ 13] pushcons 16 ............................. <"x">
+  [ 15] pusharglist 1 ........................... <"x">
+  [ 17] extcall 22 .............................. <keyPressed("x")>
+  [ 19] and ..................................... <keyPressed("r") and keyPressed("i") and keyPressed("x")>
+  [ 20] jmpifz [ 52] ............................ if keyPressed("r") and keyPressed("i") and keyPressed("x") then
+  [ 23] pushcons 24 ............................. <"Rix Cheat">
+  [ 25] pushcons 32 ............................. <RETURN>
+  [ 27] joinstr ................................. <"Rix Cheat" & RETURN>
+  [ 28] pushcons 40 ............................. <"Unlocking all levels. . .">
+  [ 30] joinstr ................................. <"Rix Cheat" & RETURN & "Unlocking all levels. . .">
+  [ 31] pusharglistnoret 1 ...................... <"Rix Cheat" & RETURN & "Unlocking all levels. . .">
+  [ 33] extcall 23 .............................. alert("Rix Cheat" & RETURN & "Unlocking all levels. . .")
+  [ 35] pushint8 2 .............................. <2>
+  [ 38] setglobal 24 ............................ gLockOut = 2
+  [ 40] pusharglist 0 ........................... <>
+  [ 42] thebuiltin 1 ............................ <the frame>
+  [ 44] pushint8 1 .............................. <1>
+  [ 47] sub ..................................... <the frame - 1>
+  [ 48] pusharglistnoret 1 ...................... <the frame - 1>
+  [ 50] extcall 2 ............................... go(the frame - 1)
+  [ 52] pusharglist 0 ........................... <>
+  [ 54] thebuiltin 1 ............................ <the frame>
+  [ 56] pusharglistnoret 1 ...................... <the frame>
+  [ 58] extcall 2 ............................... go(the frame)
+  [ 60] ret
+end

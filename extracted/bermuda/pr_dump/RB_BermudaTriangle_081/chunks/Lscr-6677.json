@@ -1,0 +1,440 @@
+{
+  "totalLength": 3956,
+  "totalLength2": 3956,
+  "headerLength": 92,
+  "scriptNumber": 330,
+  "unk20": 8,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65554,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 3924,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 4,
+  "propertiesOffset": 92,
+  "globalsCount": 16,
+  "globalsOffset": 100,
+  "handlersCount": 2,
+  "handlersOffset": 132,
+  "literalsCount": 71,
+  "literalsOffset": 2186,
+  "literalsDataCount": 1170,
+  "literalsDataOffset": 2754,
+  "propertyNameIDs": [
+    20,
+    560,
+    565,
+    567
+  ],
+  "globalNameIDs": [
+    510,
+    430,
+    427,
+    180,
+    568,
+    572,
+    410,
+    576,
+    364,
+    578,
+    594,
+    453,
+    458,
+    751,
+    745,
+    923
+  ],
+  "handlers": [
+    {
+      "nameID": 18,
+      "vectorPos": 65535,
+      "compiledLen": 323,
+      "compiledOffset": 216,
+      "argumentCount": 0,
+      "argumentOffset": 540,
+      "localsCount": 2,
+      "localsOffset": 540,
+      "globalsCount": 0,
+      "globalsOffset": 544,
+      "unknown1": 265,
+      "unknown2": 6,
+      "lineCount": 40,
+      "lineOffset": 544
+    },
+    {
+      "nameID": 19,
+      "vectorPos": 15,
+      "compiledLen": 1428,
+      "compiledOffset": 584,
+      "argumentCount": 0,
+      "argumentOffset": 2012,
+      "localsCount": 1,
+      "localsOffset": 2012,
+      "globalsCount": 0,
+      "globalsOffset": 2014,
+      "unknown1": 1472,
+      "unknown2": 49,
+      "lineCount": 171,
+      "lineOffset": 2014
+    }
+  ],
+  "literals": [
+    {
+      "type": 1,
+      "offset": 0,
+      "value": "Rescue all holiday guests!"
+    },
+    {
+      "type": 1,
+      "offset": 32,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 38,
+      "value": "Avoid debris and hazards at all costs."
+    },
+    {
+      "type": 1,
+      "offset": 82,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 90,
+      "value": "Fight off the UFOs."
+    },
+    {
+      "type": 1,
+      "offset": 114,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 120,
+      "value": "Rescue all the guests"
+    },
+    {
+      "type": 1,
+      "offset": 146,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 152,
+      "value": "and return them to the hotel!"
+    },
+    {
+      "type": 1,
+      "offset": 186,
+      "value": "Save all survivors."
+    },
+    {
+      "type": 1,
+      "offset": 210,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 216,
+      "value": "Try to get rid of the Bodzillas!"
+    },
+    {
+      "type": 1,
+      "offset": 254,
+      "value": "Grab as much sunken treasure as you can!"
+    },
+    {
+      "type": 1,
+      "offset": 300,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 306,
+      "value": "HOLD SPACEBAR to snap the plane wrecks!"
+    },
+    {
+      "type": 1,
+      "offset": 350,
+      "value": "MISSION COMPLETE"
+    },
+    {
+      "type": 1,
+      "offset": 372,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 378,
+      "value": "You saved all the guests!"
+    },
+    {
+      "type": 1,
+      "offset": 408,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 414,
+      "value": "TimeBonus = "
+    },
+    {
+      "type": 1,
+      "offset": 432,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 440,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 446,
+      "value": "NEW HI-SCORE!"
+    },
+    {
+      "type": 1,
+      "offset": 464,
+      "value": "MISSION COMPLETE"
+    },
+    {
+      "type": 1,
+      "offset": 486,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 492,
+      "value": "Alien Invaders Repelled! "
+    },
+    {
+      "type": 1,
+      "offset": 522,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 528,
+      "value": " TimeBonus = "
+    },
+    {
+      "type": 1,
+      "offset": 546,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 554,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 560,
+      "value": "NEW HI-SCORE!"
+    },
+    {
+      "type": 1,
+      "offset": 578,
+      "value": "MISSION COMPLETE"
+    },
+    {
+      "type": 1,
+      "offset": 600,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 606,
+      "value": "Brilliant Bodzilla Bonking! "
+    },
+    {
+      "type": 1,
+      "offset": 640,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 646,
+      "value": " TimeBonus = "
+    },
+    {
+      "type": 1,
+      "offset": 664,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 672,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 678,
+      "value": "NEW HI-SCORE!"
+    },
+    {
+      "type": 1,
+      "offset": 696,
+      "value": "MISSION COMPLETE"
+    },
+    {
+      "type": 1,
+      "offset": 718,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 724,
+      "value": "cableGuy has ample holiday cash to splash!"
+    },
+    {
+      "type": 1,
+      "offset": 772,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 778,
+      "value": "Superb submarine skill skipper!"
+    },
+    {
+      "type": 1,
+      "offset": 814,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 820,
+      "value": "TimeBonus = "
+    },
+    {
+      "type": 1,
+      "offset": 838,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 846,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 852,
+      "value": "NEW HI-SCORE !"
+    },
+    {
+      "type": 1,
+      "offset": 872,
+      "value": "MISSION FAILED"
+    },
+    {
+      "type": 1,
+      "offset": 892,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 898,
+      "value": "EXTREME DAMAGE!"
+    },
+    {
+      "type": 1,
+      "offset": 918,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 926,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 934,
+      "value": "MISSION FAILED"
+    },
+    {
+      "type": 1,
+      "offset": 954,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 960,
+      "value": "OUT OF FUEL!"
+    },
+    {
+      "type": 1,
+      "offset": 978,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 986,
+      "value": "MISSION FAILED"
+    },
+    {
+      "type": 1,
+      "offset": 1006,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1012,
+      "value": "A blue Marlin ate cableGuy!"
+    },
+    {
+      "type": 1,
+      "offset": 1044,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1050,
+      "value": "(Nice catch though)"
+    },
+    {
+      "type": 1,
+      "offset": 1074,
+      "value": "MISSION FAILED"
+    },
+    {
+      "type": 1,
+      "offset": 1094,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1100,
+      "value": "You froze your cableGuy!"
+    },
+    {
+      "type": 1,
+      "offset": 1130,
+      "value": "0"
+    },
+    {
+      "type": 1,
+      "offset": 1136,
+      "value": "1"
+    },
+    {
+      "type": 1,
+      "offset": 1142,
+      "value": "1"
+    },
+    {
+      "type": 1,
+      "offset": 1148,
+      "value": "2"
+    },
+    {
+      "type": 1,
+      "offset": 1154,
+      "value": "MenuScreen"
+    }
+  ]
+}

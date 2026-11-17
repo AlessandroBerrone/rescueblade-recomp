@@ -1,0 +1,463 @@
+property this, Xpos, loopX, loopWidth, radians, Ypos, mapXPos, featherXPos, featherYPos, swell, swellList, swellListPointer, swellListPointer1, COPTER, sway, bellRung, feathers, seaGullState, hitRot, bash, featherDelay, cableGuy
+global gXVel, gXOffset, gPaused, gTileIDList, gScore, gDamagePercent, gCableLength, gCableItem
+
+on beginSprite
+  [  0] pusharglist 0 ........................... <>
+  [  2] extcall 41 .............................. <PI>
+  [  5] pushint8 180 ............................ <180>
+  [  8] div ..................................... <PI / 180>
+  [  9] pusharglist 1 ........................... <PI / 180>
+  [ 11] extcall 33 .............................. <float(PI / 180)>
+  [ 14] setprop 40 .............................. radians = float(PI / 180)
+  [ 17] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 19] pusharglist 1 ........................... <the currentSpriteNum>
+  [ 21] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [ 23] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [ 25] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 27] pushint8 1 .............................. <1>
+  [ 30] add ..................................... <the currentSpriteNum + 1>
+  [ 31] pusharglist 1 ........................... <the currentSpriteNum + 1>
+  [ 33] extcall 21 .............................. <sprite(the currentSpriteNum + 1)>
+  [ 35] setprop 595 ............................. feathers = sprite(the currentSpriteNum + 1)
+  [ 38] pushint8 6 .............................. <6>
+  [ 41] pusharglist 1 ........................... <6>
+  [ 43] extcall 21 .............................. <sprite(6)>
+  [ 45] setprop 342 ............................. cableGuy = sprite(6)
+  [ 48] pushint8 4 .............................. <4>
+  [ 51] pusharglist 1 ........................... <4>
+  [ 53] extcall 21 .............................. <sprite(4)>
+  [ 55] setprop 341 ............................. COPTER = sprite(4)
+  [ 58] pusharglist 0 ........................... <[]>
+  [ 60] pushlist ................................ <[]>
+  [ 61] setprop 583 ............................. swellList = []
+  [ 64] pushint8 1 .............................. <1>
+  [ 67] setlocal 0
+  [ 69] getlocal 0
+  [ 71] pushint8 90 ............................. <90>
+  [ 74] lteq
+  [ 75] jmpifz [120] ............................ repeat with i = 1 to 90
+  [ 78] pushint8 4 .............................. <4>
+  [ 81] getlocal 0 .............................. <i>
+  [ 83] mul ..................................... <4 * i>
+  [ 84] setlocal 8 .............................. swellAngle = 4 * i
+  [ 86] getprop 583 ............................. <swellList>
+  [ 89] pushint8 5 .............................. <5>
+  [ 92] getlocal 8 .............................. <swellAngle>
+  [ 94] getprop 40 .............................. <radians>
+  [ 97] mul ..................................... <swellAngle * radians>
+  [ 98] pusharglist 1 ........................... <swellAngle * radians>
+  [100] extcall 45 .............................. <cos(swellAngle * radians)>
+  [103] mul ..................................... <5 * cos(swellAngle * radians)>
+  [104] pusharglistnoret 2 ...................... <swellList, 5 * cos(swellAngle * radians)>
+  [106] objcall 418 ............................. swellList.add(5 * cos(swellAngle * radians))
+  [109] pushint8 1
+  [112] getlocal 0
+  [114] add
+  [115] setlocal 0
+  [117] endrepeat [ 69]
+  [120] pushint8 1 .............................. <1>
+  [123] setprop 584 ............................. swellListPointer = 1
+  [126] pushint8 1 .............................. <1>
+  [129] setprop 597 ............................. swellListPointer1 = 1
+  [132] pushzero ................................ <0>
+  [133] setprop 585 ............................. swell = 0
+  [136] pushzero ................................ <0>
+  [137] setprop 599 ............................. hitRot = 0
+  [140] getglobal 180 ........................... <gTileIDList>
+  [143] getobjprop 183 .......................... <gTileIDList.count>
+  [146] pushint8 128 ............................ <128>
+  [149] mul ..................................... <gTileIDList.count * 128>
+  [150] setprop 54 .............................. loopWidth = gTileIDList.count * 128
+  [153] getglobal 180 ........................... <gTileIDList>
+  [156] getobjprop 183 .......................... <gTileIDList.count>
+  [159] pushint8 128 ............................ <128>
+  [162] mul ..................................... <gTileIDList.count * 128>
+  [163] pushcons 0 .............................. <0.5>
+  [165] mul ..................................... <gTileIDList.count * 128 * 0.5>
+  [166] setprop 608 ............................. loopX = gTileIDList.count * 128 * 0.5
+  [169] getprop 20 .............................. <this>
+  [171] getobjprop 36 ........................... <this.locH>
+  [174] pusharglist 1 ........................... <this.locH>
+  [176] extcall 33 .............................. <float(this.locH)>
+  [179] setprop 48 .............................. Xpos = float(this.locH)
+  [182] getprop 20 .............................. <this>
+  [184] getobjprop 37 ........................... <this.locV>
+  [187] pusharglist 1 ........................... <this.locV>
+  [189] extcall 33 .............................. <float(this.locV)>
+  [192] setprop 38 .............................. Ypos = float(this.locV)
+  [195] getprop 20 .............................. <this>
+  [197] pushint8 50 ............................. <50>
+  [200] setobjprop 178 .......................... this.locZ = 50
+  [203] getprop 48 .............................. <Xpos>
+  [206] pushint8 256 ............................ <256>
+  [209] sub ..................................... <Xpos - 256>
+  [210] setprop 366 ............................. mapXPos = Xpos - 256
+  [213] pushzero ................................ <0>
+  [214] setprop 588 ............................. sway = 0
+  [217] pushzero ................................ <0>
+  [218] setlocal 8 .............................. swellAngle = 0
+  [220] pushsymb 363 ............................ <#FLY>
+  [223] setprop 596 ............................. seaGullState = #FLY
+  [226] pushzero ................................ <0>
+  [227] setprop 600 ............................. bash = 0
+  [230] pushzero ................................ <0>
+  [231] setprop 601 ............................. featherDelay = 0
+  [234] getprop 595 ............................. <feathers>
+  [237] pushint8 110 ............................ <110>
+  [240] setobjprop 178 .......................... feathers.locZ = 110
+  [243] pushint8 1000 ........................... <1000>
+  [246] inv ..................................... <-1000>
+  [247] setprop 602 ............................. featherXPos = -1000
+  [250] pushint8 1000 ........................... <1000>
+  [253] inv ..................................... <-1000>
+  [254] setprop 603 ............................. featherYPos = -1000
+  [257] ret
+end
+
+on exitFrame
+  [  0] getglobal 364 ........................... <gPaused>
+  [  3] pushzero ................................ <0>
+  [  4] eq ...................................... <gPaused = 0>
+  [  5] jmpifz [825] ............................ if gPaused = 0 then
+  [  8] getprop 48 .............................. <Xpos>
+  [ 11] getglobal 47 ............................ <gXVel>
+  [ 14] add ..................................... <Xpos + gXVel>
+  [ 15] getglobal 55 ............................ <gXOffset>
+  [ 18] add ..................................... <Xpos + gXVel + gXOffset>
+  [ 19] setprop 48 .............................. Xpos = Xpos + gXVel + gXOffset
+  [ 22] getprop 48 .............................. <Xpos>
+  [ 25] getprop 608 ............................. <loopX>
+  [ 28] gt ...................................... <Xpos > loopX>
+  [ 29] jmpifz [ 42] ............................ if Xpos > loopX then
+  [ 32] getprop 48 .............................. <Xpos>
+  [ 35] getprop 54 .............................. <loopWidth>
+  [ 38] sub ..................................... <Xpos - loopWidth>
+  [ 39] setprop 48 .............................. Xpos = Xpos - loopWidth
+  [ 42] getprop 48 .............................. <Xpos>
+  [ 45] getprop 608 ............................. <loopX>
+  [ 48] inv ..................................... <-loopX>
+  [ 49] lt ...................................... <Xpos < -loopX>
+  [ 50] jmpifz [ 63] ............................ if Xpos < -loopX then
+  [ 53] getprop 48 .............................. <Xpos>
+  [ 56] getprop 54 .............................. <loopWidth>
+  [ 59] add ..................................... <Xpos + loopWidth>
+  [ 60] setprop 48 .............................. Xpos = Xpos + loopWidth
+  [ 63] getprop 599 ............................. <hitRot>
+  [ 66] pushcons 8 .............................. <0.90000000000000002>
+  [ 68] mul ..................................... <hitRot * 0.90000000000000002>
+  [ 69] setprop 599 ............................. hitRot = hitRot * 0.90000000000000002
+  [ 72] getprop 600 ............................. <bash>
+  [ 75] pushcons 16 ............................. <0.94999999999999996>
+  [ 77] mul ..................................... <bash * 0.94999999999999996>
+  [ 78] setprop 600 ............................. bash = bash * 0.94999999999999996
+  [ 81] getprop 596 ............................. <seaGullState>
+  [ 84] peek 0 .................................. case seaGullState of
+  [ 86] pushsymb 363 ............................ <#FLY>
+  [ 89] eq
+  [ 90] jmpifz [469] ............................ (case) #FLY:
+  [ 93] getprop 48 .............................. <Xpos>
+  [ 96] pushzero ................................ <0>
+  [ 97] gt ...................................... <Xpos > 0>
+  [ 98] getprop 48 .............................. <Xpos>
+  [101] pushint8 512 ............................ <512>
+  [104] lt ...................................... <Xpos < 512>
+  [105] and ..................................... <(Xpos > 0) and (Xpos < 512)>
+  [106] jmpifz [268] ............................ if (Xpos > 0) and (Xpos < 512) then
+  [109] getprop 341 ............................. <COPTER>
+  [112] getobjprop 36 ........................... <COPTER.locH>
+  [115] getprop 20 .............................. <this>
+  [117] getobjprop 36 ........................... <this.locH>
+  [120] sub ..................................... <COPTER.locH - this.locH>
+  [121] setlocal 0 .............................. xDiff = COPTER.locH - this.locH
+  [123] getlocal 0 .............................. <xDiff>
+  [125] pusharglist 1 ........................... <xDiff>
+  [127] extcall 370 ............................. <abs(xDiff)>
+  [130] pushint8 30 ............................. <30>
+  [133] lt ...................................... <abs(xDiff) < 30>
+  [134] jmpifz [268] ............................ if abs(xDiff) < 30 then
+  [137] getprop 341 ............................. <COPTER>
+  [140] getobjprop 37 ........................... <COPTER.locV>
+  [143] getprop 20 .............................. <this>
+  [145] getobjprop 37 ........................... <this.locV>
+  [148] sub ..................................... <COPTER.locV - this.locV>
+  [149] setlocal 8 .............................. yDiff = COPTER.locV - this.locV
+  [151] getlocal 8 .............................. <yDiff>
+  [153] pusharglist 1 ........................... <yDiff>
+  [155] extcall 370 ............................. <abs(yDiff)>
+  [158] pushint8 15 ............................. <15>
+  [161] lt ...................................... <abs(yDiff) < 15>
+  [162] jmpifz [268] ............................ if abs(yDiff) < 15 then
+  [165] pushsymb 598 ............................ <#HIT>
+  [168] setprop 596 ............................. seaGullState = #HIT
+  [171] getprop 48 .............................. <Xpos>
+  [174] setprop 602 ............................. featherXPos = Xpos
+  [177] getprop 38 .............................. <Ypos>
+  [180] setprop 603 ............................. featherYPos = Ypos
+  [183] getprop 20 .............................. <this>
+  [185] getprop 20 .............................. <this>
+  [187] getobjprop 477 .......................... <this.memberNum>
+  [190] pushint8 1 .............................. <1>
+  [193] add ..................................... <this.memberNum + 1>
+  [194] pushcons 24 ............................. <"Gfx">
+  [196] pusharglist 2 ........................... <this.memberNum + 1, "Gfx">
+  [198] extcall 27 .............................. <member(this.memberNum + 1, "Gfx")>
+  [200] setobjprop 27 ........................... this.member = member(this.memberNum + 1, "Gfx")
+  [202] pushint8 3 .............................. <3>
+  [205] pushint8 28 ............................. <28>
+  [208] pushcons 32 ............................. <"Sfx">
+  [210] pusharglist 2 ........................... <28, "Sfx">
+  [212] extcall 27 .............................. <member(28, "Sfx")>
+  [214] pusharglistnoret 2 ...................... <3, member(28, "Sfx")>
+  [216] extcall 395 ............................. puppetSound(3, member(28, "Sfx"))
+  [219] getprop 595 ............................. <feathers>
+  [222] getprop 20 .............................. <this>
+  [224] getobjprop 37 ........................... <this.locV>
+  [227] setobjprop 37 ........................... feathers.locV = this.locV
+  [230] getglobal 430 ........................... <gDamagePercent>
+  [233] pushint8 20 ............................. <20>
+  [236] add ..................................... <gDamagePercent + 20>
+  [237] setglobal 430 ........................... gDamagePercent = gDamagePercent + 20
+  [240] getglobal 47 ............................ <gXVel>
+  [243] pushzero ................................ <0>
+  [244] gt ...................................... <gXVel > 0>
+  [245] jmpifz [257] ............................ if gXVel > 0 then / else
+  [248] pushint8 3234 ........................... <3234>
+  [251] setprop 599 ............................. hitRot = 3234
+  [254] jmp [264]
+  [257] pushint8 3234 ........................... <3234>
+  [260] inv ..................................... <-3234>
+  [261] setprop 599 ............................. hitRot = -3234
+  [264] pushzero ................................ <0>
+  [265] setglobal 47 ............................ gXVel = 0
+  [268] getprop 342 ............................. <cableGuy>
+  [271] getobjprop 36 ........................... <cableGuy.locH>
+  [274] getprop 20 .............................. <this>
+  [276] getobjprop 36 ........................... <this.locH>
+  [279] sub ..................................... <cableGuy.locH - this.locH>
+  [280] setlocal 0 .............................. xDiff = cableGuy.locH - this.locH
+  [282] getlocal 0 .............................. <xDiff>
+  [284] pusharglist 1 ........................... <xDiff>
+  [286] extcall 370 ............................. <abs(xDiff)>
+  [289] pushint8 30 ............................. <30>
+  [292] lt ...................................... <abs(xDiff) < 30>
+  [293] jmpifz [369] ............................ if abs(xDiff) < 30 then
+  [296] getprop 342 ............................. <cableGuy>
+  [299] getobjprop 37 ........................... <cableGuy.locV>
+  [302] getprop 20 .............................. <this>
+  [304] getobjprop 37 ........................... <this.locV>
+  [307] sub ..................................... <cableGuy.locV - this.locV>
+  [308] setlocal 8 .............................. yDiff = cableGuy.locV - this.locV
+  [310] getlocal 8 .............................. <yDiff>
+  [312] pusharglist 1 ........................... <yDiff>
+  [314] extcall 370 ............................. <abs(yDiff)>
+  [317] pushint8 15 ............................. <15>
+  [320] lt ...................................... <abs(yDiff) < 15>
+  [321] jmpifz [369] ............................ if abs(yDiff) < 15 then
+  [324] getglobal 448 ........................... <gCableItem>
+  [327] pushzero ................................ <0>
+  [328] eq ...................................... <gCableItem = 0>
+  [329] getglobal 450 ........................... <gCableLength>
+  [332] pushint8 50 ............................. <50>
+  [335] gteq .................................... <gCableLength >= 50>
+  [336] and ..................................... <(gCableItem = 0) and (gCableLength >= 50)>
+  [337] jmpifz [369] ............................ if (gCableItem = 0) and (gCableLength >= 50) then
+  [340] pushsymb 444 ............................ <#ONCABLE>
+  [343] setprop 596 ............................. seaGullState = #ONCABLE
+  [346] pushint8 3 .............................. <3>
+  [349] pushint8 29 ............................. <29>
+  [352] pushcons 40 ............................. <"Sfx">
+  [354] pusharglist 2 ........................... <29, "Sfx">
+  [356] extcall 27 .............................. <member(29, "Sfx")>
+  [358] pusharglistnoret 2 ...................... <3, member(29, "Sfx")>
+  [360] extcall 395 ............................. puppetSound(3, member(29, "Sfx"))
+  [363] pushint8 1 .............................. <1>
+  [366] setglobal 448 ........................... gCableItem = 1
+  [369] getprop 595 ............................. <feathers>
+  [372] getprop 20 .............................. <this>
+  [374] getobjprop 36 ........................... <this.locH>
+  [377] setobjprop 36 ........................... feathers.locH = this.locH
+  [380] getprop 595 ............................. <feathers>
+  [383] pushint8 1000 ........................... <1000>
+  [386] inv ..................................... <-1000>
+  [387] setobjprop 37 ........................... feathers.locV = -1000
+  [390] getprop 20 .............................. <this>
+  [392] getprop 48 .............................. <Xpos>
+  [395] getprop 600 ............................. <bash>
+  [398] add ..................................... <Xpos + bash>
+  [399] getprop 583 ............................. <swellList>
+  [402] getprop 584 ............................. <swellListPointer>
+  [405] pusharglist 2 ........................... <swellList, swellListPointer>
+  [407] objcall 185 ............................. <swellList[swellListPointer]>
+  [410] pushint8 5 .............................. <5>
+  [413] mul ..................................... <swellList[swellListPointer] * 5>
+  [414] add ..................................... <Xpos + bash + (swellList[swellListPointer] * 5)>
+  [415] setobjprop 36 ........................... this.locH = Xpos + bash + (swellList[swellListPointer] * 5)
+  [418] getprop 20 .............................. <this>
+  [420] getprop 583 ............................. <swellList>
+  [423] getprop 597 ............................. <swellListPointer1>
+  [426] pusharglist 2 ........................... <swellList, swellListPointer1>
+  [428] objcall 185 ............................. <swellList[swellListPointer1]>
+  [431] inv ..................................... <-swellList[swellListPointer1]>
+  [432] pushint8 2 .............................. <2>
+  [435] mul ..................................... <-swellList[swellListPointer1] * 2>
+  [436] getprop 599 ............................. <hitRot>
+  [439] add ..................................... <(-swellList[swellListPointer1] * 2) + hitRot>
+  [440] setobjprop 25 ........................... this.rotation = (-swellList[swellListPointer1] * 2) + hitRot
+  [442] getprop 20 .............................. <this>
+  [444] getprop 38 .............................. <Ypos>
+  [447] getprop 583 ............................. <swellList>
+  [450] getprop 584 ............................. <swellListPointer>
+  [453] pusharglist 2 ........................... <swellList, swellListPointer>
+  [455] objcall 185 ............................. <swellList[swellListPointer]>
+  [458] add ..................................... <Ypos + swellList[swellListPointer]>
+  [459] getprop 600 ............................. <bash>
+  [462] add ..................................... <Ypos + swellList[swellListPointer] + bash>
+  [463] setobjprop 37 ........................... this.locV = Ypos + swellList[swellListPointer] + bash
+  [466] jmp [771]
+  [469] peek 0
+  [471] pushsymb 598 ............................ <#HIT>
+  [474] eq
+  [475] jmpifz [665] ............................ (case) #HIT:
+  [478] getprop 602 ............................. <featherXPos>
+  [481] getglobal 47 ............................ <gXVel>
+  [484] add ..................................... <featherXPos + gXVel>
+  [485] getglobal 55 ............................ <gXOffset>
+  [488] add ..................................... <featherXPos + gXVel + gXOffset>
+  [489] getprop 585 ............................. <swell>
+  [492] pushint8 5 .............................. <5>
+  [495] mul ..................................... <swell * 5>
+  [496] add ..................................... <featherXPos + gXVel + gXOffset + (swell * 5)>
+  [497] setprop 602 ............................. featherXPos = featherXPos + gXVel + gXOffset + (swell * 5)
+  [500] getprop 595 ............................. <feathers>
+  [503] getprop 602 ............................. <featherXPos>
+  [506] setobjprop 36 ........................... feathers.locH = featherXPos
+  [509] getprop 595 ............................. <feathers>
+  [512] getprop 603 ............................. <featherYPos>
+  [515] setobjprop 37 ........................... feathers.locV = featherYPos
+  [518] getprop 603 ............................. <featherYPos>
+  [521] pushint8 1 .............................. <1>
+  [524] add ..................................... <featherYPos + 1>
+  [525] setprop 603 ............................. featherYPos = featherYPos + 1
+  [528] getprop 601 ............................. <featherDelay>
+  [531] pushint8 1 .............................. <1>
+  [534] add ..................................... <featherDelay + 1>
+  [535] setprop 601 ............................. featherDelay = featherDelay + 1
+  [538] getprop 601 ............................. <featherDelay>
+  [541] pushint8 3 .............................. <3>
+  [544] eq ...................................... <featherDelay = 3>
+  [545] jmpifz [586] ............................ if featherDelay = 3 then
+  [548] getprop 595 ............................. <feathers>
+  [551] getobjprop 477 .......................... <feathers.memberNum>
+  [554] pushint8 105 ............................ <105>
+  [557] eq ...................................... <feathers.memberNum = 105>
+  [558] jmpifz [573] ............................ if feathers.memberNum = 105 then / else
+  [561] getprop 595 ............................. <feathers>
+  [564] pushint8 106 ............................ <106>
+  [567] setobjprop 477 .......................... feathers.memberNum = 106
+  [570] jmp [582]
+  [573] getprop 595 ............................. <feathers>
+  [576] pushint8 105 ............................ <105>
+  [579] setobjprop 477 .......................... feathers.memberNum = 105
+  [582] pushzero ................................ <0>
+  [583] setprop 601 ............................. featherDelay = 0
+  [586] getprop 20 .............................. <this>
+  [588] getprop 48 .............................. <Xpos>
+  [591] getprop 600 ............................. <bash>
+  [594] add ..................................... <Xpos + bash>
+  [595] getprop 583 ............................. <swellList>
+  [598] getprop 584 ............................. <swellListPointer>
+  [601] pusharglist 2 ........................... <swellList, swellListPointer>
+  [603] objcall 185 ............................. <swellList[swellListPointer]>
+  [606] pushint8 5 .............................. <5>
+  [609] mul ..................................... <swellList[swellListPointer] * 5>
+  [610] add ..................................... <Xpos + bash + (swellList[swellListPointer] * 5)>
+  [611] setobjprop 36 ........................... this.locH = Xpos + bash + (swellList[swellListPointer] * 5)
+  [614] getprop 20 .............................. <this>
+  [616] getprop 583 ............................. <swellList>
+  [619] getprop 597 ............................. <swellListPointer1>
+  [622] pusharglist 2 ........................... <swellList, swellListPointer1>
+  [624] objcall 185 ............................. <swellList[swellListPointer1]>
+  [627] inv ..................................... <-swellList[swellListPointer1]>
+  [628] pushint8 2 .............................. <2>
+  [631] mul ..................................... <-swellList[swellListPointer1] * 2>
+  [632] getprop 599 ............................. <hitRot>
+  [635] add ..................................... <(-swellList[swellListPointer1] * 2) + hitRot>
+  [636] setobjprop 25 ........................... this.rotation = (-swellList[swellListPointer1] * 2) + hitRot
+  [638] getprop 20 .............................. <this>
+  [640] getprop 38 .............................. <Ypos>
+  [643] getprop 583 ............................. <swellList>
+  [646] getprop 584 ............................. <swellListPointer>
+  [649] pusharglist 2 ........................... <swellList, swellListPointer>
+  [651] objcall 185 ............................. <swellList[swellListPointer]>
+  [654] add ..................................... <Ypos + swellList[swellListPointer]>
+  [655] getprop 600 ............................. <bash>
+  [658] add ..................................... <Ypos + swellList[swellListPointer] + bash>
+  [659] setobjprop 37 ........................... this.locV = Ypos + swellList[swellListPointer] + bash
+  [662] jmp [771]
+  [665] peek 0
+  [667] pushsymb 444 ............................ <#ONCABLE>
+  [670] eq
+  [671] jmpifz [744] ............................ (case) #ONCABLE:
+  [674] getprop 20 .............................. <this>
+  [676] getprop 342 ............................. <cableGuy>
+  [679] getobjprop 36 ........................... <cableGuy.locH>
+  [682] setobjprop 36 ........................... this.locH = cableGuy.locH
+  [685] getprop 20 .............................. <this>
+  [687] getprop 342 ............................. <cableGuy>
+  [690] getobjprop 37 ........................... <cableGuy.locV>
+  [693] setobjprop 37 ........................... this.locV = cableGuy.locV
+  [696] getglobal 450 ........................... <gCableLength>
+  [699] pushzero ................................ <0>
+  [700] eq ...................................... <gCableLength = 0>
+  [701] jmpifz [741] ............................ if gCableLength = 0 then
+  [704] pushsymb 348 ............................ <#INCOPTER>
+  [707] setprop 596 ............................. seaGullState = #INCOPTER
+  [710] pushzero ................................ <0>
+  [711] setglobal 448 ........................... gCableItem = 0
+  [714] getglobal 410 ........................... <gScore>
+  [717] pushint8 1000 ........................... <1000>
+  [720] add ..................................... <gScore + 1000>
+  [721] setglobal 410 ........................... gScore = gScore + 1000
+  [724] pushint8 3 .............................. <3>
+  [727] pushint8 29 ............................. <29>
+  [730] pushcons 48 ............................. <"Sfx">
+  [732] pusharglist 2 ........................... <29, "Sfx">
+  [734] extcall 27 .............................. <member(29, "Sfx")>
+  [736] pusharglistnoret 2 ...................... <3, member(29, "Sfx")>
+  [738] extcall 395 ............................. puppetSound(3, member(29, "Sfx"))
+  [741] jmp [771]
+  [744] peek 0
+  [746] pushsymb 348 ............................ <#INCOPTER>
+  [749] eq
+  [750] jmpifz [771] ............................ (case) #INCOPTER:
+  [753] getprop 20 .............................. <this>
+  [755] pushint8 1000 ........................... <1000>
+  [758] inv ..................................... <-1000>
+  [759] setobjprop 36 ........................... this.locH = -1000
+  [762] getprop 20 .............................. <this>
+  [764] pushint8 1000 ........................... <1000>
+  [767] inv ..................................... <-1000>
+  [768] setobjprop 37 ........................... this.locV = -1000
+  [771] pop 1 ................................... end case
+  [773] getprop 584 ............................. <swellListPointer>
+  [776] pushint8 1 .............................. <1>
+  [779] add ..................................... <swellListPointer + 1>
+  [780] setprop 584 ............................. swellListPointer = swellListPointer + 1
+  [783] getprop 584 ............................. <swellListPointer>
+  [786] pushint8 2 .............................. <2>
+  [789] add ..................................... <swellListPointer + 2>
+  [790] setprop 597 ............................. swellListPointer1 = swellListPointer + 2
+  [793] getprop 584 ............................. <swellListPointer>
+  [796] pushint8 90 ............................. <90>
+  [799] gt ...................................... <swellListPointer > 90>
+  [800] jmpifz [809] ............................ if swellListPointer > 90 then
+  [803] pushint8 1 .............................. <1>
+  [806] setprop 584 ............................. swellListPointer = 1
+  [809] getprop 597 ............................. <swellListPointer1>
+  [812] pushint8 90 ............................. <90>
+  [815] gt ...................................... <swellListPointer1 > 90>
+  [816] jmpifz [825] ............................ if swellListPointer1 > 90 then
+  [819] pushint8 1 .............................. <1>
+  [822] setprop 597 ............................. swellListPointer1 = 1
+  [825] ret
+end

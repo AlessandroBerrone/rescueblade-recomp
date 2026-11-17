@@ -1,0 +1,52 @@
+{
+  "totalLength": 212,
+  "totalLength2": 212,
+  "headerLength": 92,
+  "scriptNumber": 3,
+  "unk20": 5,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 262148,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 180,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 0,
+  "propertiesOffset": 92,
+  "globalsCount": 0,
+  "globalsOffset": 92,
+  "handlersCount": 1,
+  "handlersOffset": 92,
+  "literalsCount": 1,
+  "literalsOffset": 156,
+  "literalsDataCount": 16,
+  "literalsDataOffset": 164,
+  "propertyNameIDs": [],
+  "globalNameIDs": [],
+  "handlers": [
+    {
+      "nameID": 0,
+      "vectorPos": 15,
+      "compiledLen": 15,
+      "compiledOffset": 134,
+      "argumentCount": 1,
+      "argumentOffset": 150,
+      "localsCount": 0,
+      "localsOffset": 152,
+      "globalsCount": 0,
+      "globalsOffset": 152,
+      "unknown1": 12,
+      "unknown2": 1,
+      "lineCount": 3,
+      "lineOffset": 152
+    }
+  ],
+  "literals": [
+    {
+      "type": 1,
+      "offset": 0,
+      "value": "MenuScreen"
+    }
+  ]
+}

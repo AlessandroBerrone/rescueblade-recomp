@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2783,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 352,
+    "scriptSrcText": "property this, Xpos, swellAngle, radians, Ypos, mapXPos, survivorDelay, thisMember, Xvel, cableGuy, pickupState, ThisWidth, thisHalfHeight, grabCount, distToHQ, pickupID, pickupTile, pickupMaster\rglobal gXVel, gXOffset, gPaused, gTileIDList, gCableItem, gCableLength, gRescueCount, gRescuedList, gScore, gPickupList, gfuelPercent, gSceneryList, gDamagePercent, gCoconuts\r\ron beginSprite\r  radians = float(PI / 180)\r  this = sprite(the currentSpriteNum)\r  this.locH = -1000\r  this.locV = -1000\r  this.locZ = 60\r  pickupID = #TREASURE\r  Xpos = float(this.locH)\r  Ypos = float(this.locV)\r  Xvel = 0\r  mapXPos = Xpos - 256\r  survivorDelay = 0\r  swellAngle = 0\r  cableGuy = sprite(6)\r  pickupState = #NULL\r  pickupTile = 0\r  grabCount = 0\r  gPickupList.add(this)\r  pickupMaster = 0\rend\r\ron exitFrame\r  if gPaused = 0 then\r    case pickupState of\r      #NULL:\r        this.locH = -1000\r        this.locV = -1000\r      #ONGROUND:\r        diffX = abs(this.locH - cableGuy.locH)\r        diffY = abs(this.locV - cableGuy.locV)\r        if (diffX <= 10) and (diffY <= 20) then\r          if (gCableItem = 0) and (gCableLength >= 50) then\r            pickupState = #ONCABLE\r            pickupMaster.thisPickup = 0\r            pickupMaster = 0\r            case pickupID of\r              #TREASURE:\r                puppetSound(4, member(15, \"Sfx\"))\r                gSceneryList[pickupTile] = 0\r              #FUEL:\r                puppetSound(4, member(10, \"Sfx\"))\r                gSceneryList[pickupTile] = 0\r              #TOOLS:\r                gSceneryList[pickupTile] = 0\r              #COCONUTS:\r                puppetSound(4, member(89, \"Sfx\"))\r            end case\r            gCableItem = 1\r          end if\r        else\r          grabCount = 0\r        end if\r      #ONCABLE:\r        this.loc = cableGuy.loc + point(0, 10)\r        if gCableLength = 0 then\r          gCableItem = 0\r          pickupState = #NULL\r          case pickupID of\r            #TREASURE:\r              gScore = gScore + 1234\r              puppetSound(3, member(16, \"Sfx\"))\r            #FUEL:\r              if gfuelPercent > 0 then\r                gScore = gScore + 10\r                gfuelPercent = 100\r                puppetSound(3, member(19, \"Sfx\"))\r              end if\r            #TOOLS:\r              if gDamagePercent < 100 then\r                gScore = gScore + 10\r                gDamagePercent = 0\r                if gDamagePercent < 0 then\r                  gDamagePercent = 0\r                end if\r                puppetSound(3, member(18, \"Sfx\"))\r              end if\r            #COCONUTS:\r              gCoconuts = 10\r              puppetSound(4, member(90, \"Sfx\"))\r          end case\r          gPickupList.add(this)\r        end if\r    end case\r  end if\rend\r",
+    "name": "Pickups"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

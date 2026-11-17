@@ -1,0 +1,266 @@
+property this, radians, Xpos, Ypos, mapXPos, loopX, bolt, COPTER, cableGuy, ouchCount, prevBolt, boltOffset, loopWidth, gun, Yvel, Xvel, startY, yTarget, fireCounter, donkCount, xDonk, UFO, glow, glowBlend
+global gXVel, gXOffset, gPaused, gTileIDList, gDamagePercent, gCoconutList, yDonk
+
+on beginSprite
+  [  0] pusharglist 0 ........................... <>
+  [  2] extcall 41 .............................. <PI>
+  [  5] pushint8 180 ............................ <180>
+  [  8] div ..................................... <PI / 180>
+  [  9] pusharglist 1 ........................... <PI / 180>
+  [ 11] extcall 33 .............................. <float(PI / 180)>
+  [ 14] setprop 40 .............................. radians = float(PI / 180)
+  [ 17] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 19] pusharglist 1 ........................... <the currentSpriteNum>
+  [ 21] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [ 23] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [ 25] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 27] pushint8 1 .............................. <1>
+  [ 30] sub ..................................... <the currentSpriteNum - 1>
+  [ 31] pusharglist 1 ........................... <the currentSpriteNum - 1>
+  [ 33] extcall 21 .............................. <sprite(the currentSpriteNum - 1)>
+  [ 35] setprop 646 ............................. bolt = sprite(the currentSpriteNum - 1)
+  [ 38] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 40] pushint8 4 .............................. <4>
+  [ 43] sub ..................................... <the currentSpriteNum - 4>
+  [ 44] pusharglist 1 ........................... <the currentSpriteNum - 4>
+  [ 46] extcall 21 .............................. <sprite(the currentSpriteNum - 4)>
+  [ 48] setprop 992 ............................. UFO = sprite(the currentSpriteNum - 4)
+  [ 51] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 53] pushint8 2 .............................. <2>
+  [ 56] sub ..................................... <the currentSpriteNum - 2>
+  [ 57] pusharglist 1 ........................... <the currentSpriteNum - 2>
+  [ 59] extcall 21 .............................. <sprite(the currentSpriteNum - 2)>
+  [ 61] setprop 649 ............................. glow = sprite(the currentSpriteNum - 2)
+  [ 64] getprop 649 ............................. <glow>
+  [ 67] pushzero ................................ <0>
+  [ 68] setobjprop 173 .......................... glow.blend = 0
+  [ 71] getprop 20 .............................. <this>
+  [ 73] getobjprop 37 ........................... <this.locV>
+  [ 76] setprop 660 ............................. startY = this.locV
+  [ 79] pushint8 4 .............................. <4>
+  [ 82] pusharglist 1 ........................... <4>
+  [ 84] extcall 21 .............................. <sprite(4)>
+  [ 86] setprop 341 ............................. COPTER = sprite(4)
+  [ 89] pushzero ................................ <0>
+  [ 90] setprop 988 ............................. yTarget = 0
+  [ 93] pushint8 6 .............................. <6>
+  [ 96] pusharglist 1 ........................... <6>
+  [ 98] extcall 21 .............................. <sprite(6)>
+  [100] setprop 342 ............................. cableGuy = sprite(6)
+  [103] getprop 20 .............................. <this>
+  [105] getobjprop 36 ........................... <this.locH>
+  [108] pusharglist 1 ........................... <this.locH>
+  [110] extcall 33 .............................. <float(this.locH)>
+  [113] setprop 48 .............................. Xpos = float(this.locH)
+  [116] getprop 20 .............................. <this>
+  [118] getobjprop 37 ........................... <this.locV>
+  [121] pusharglist 1 ........................... <this.locV>
+  [123] extcall 33 .............................. <float(this.locV)>
+  [126] setprop 38 .............................. Ypos = float(this.locV)
+  [129] pushzero ................................ <0>
+  [130] setprop 32 .............................. Yvel = 0
+  [133] pushzero ................................ <0>
+  [134] setprop 44 .............................. Xvel = 0
+  [137] getglobal 180 ........................... <gTileIDList>
+  [140] getobjprop 183 .......................... <gTileIDList.count>
+  [143] pushint8 128 ............................ <128>
+  [146] mul ..................................... <gTileIDList.count * 128>
+  [147] pushcons 0 .............................. <0.5>
+  [149] mul ..................................... <gTileIDList.count * 128 * 0.5>
+  [150] setprop 608 ............................. loopX = gTileIDList.count * 128 * 0.5
+  [153] getglobal 180 ........................... <gTileIDList>
+  [156] getobjprop 183 .......................... <gTileIDList.count>
+  [159] pushint8 128 ............................ <128>
+  [162] mul ..................................... <gTileIDList.count * 128>
+  [163] setprop 54 .............................. loopWidth = gTileIDList.count * 128
+  [166] getprop 20 .............................. <this>
+  [168] pushint8 52 ............................. <52>
+  [171] setobjprop 178 .......................... this.locZ = 52
+  [174] getprop 646 ............................. <bolt>
+  [177] pushint8 51 ............................. <51>
+  [180] setobjprop 178 .......................... bolt.locZ = 51
+  [183] getprop 649 ............................. <glow>
+  [186] pushint8 50 ............................. <50>
+  [189] setobjprop 178 .......................... glow.locZ = 50
+  [192] getprop 48 .............................. <Xpos>
+  [195] pushint8 256 ............................ <256>
+  [198] sub ..................................... <Xpos - 256>
+  [199] setprop 366 ............................. mapXPos = Xpos - 256
+  [202] getglobal 180 ........................... <gTileIDList>
+  [205] getobjprop 183 .......................... <gTileIDList.count>
+  [208] pushint8 128 ............................ <128>
+  [211] mul ..................................... <gTileIDList.count * 128>
+  [212] pushcons 8 .............................. <0.25>
+  [214] mul ..................................... <gTileIDList.count * 128 * 0.25>
+  [215] getprop 48 .............................. <Xpos>
+  [218] sub ..................................... <(gTileIDList.count * 128 * 0.25) - Xpos>
+  [219] setprop 608 ............................. loopX = (gTileIDList.count * 128 * 0.25) - Xpos
+  [222] pushzero ................................ <0>
+  [223] setprop 645 ............................. ouchCount = 0
+  [226] pushzero ................................ <0>
+  [227] setprop 647 ............................. prevBolt = 0
+  [230] pushint8 50 ............................. <50>
+  [233] inv ..................................... <-50>
+  [234] setprop 648 ............................. boltOffset = -50
+  [237] pushzero ................................ <0>
+  [238] setprop 989 ............................. fireCounter = 0
+  [241] pushzero ................................ <0>
+  [242] setprop 980 ............................. donkCount = 0
+  [245] pushzero ................................ <0>
+  [246] setprop 990 ............................. xDonk = 0
+  [249] pushzero ................................ <0>
+  [250] setglobal 991 ........................... yDonk = 0
+  [253] pushzero ................................ <0>
+  [254] setprop 993 ............................. glowBlend = 0
+  [257] ret
+end
+
+on exitFrame
+  [  0] getglobal 364 ........................... <gPaused>
+  [  3] pushzero ................................ <0>
+  [  4] eq ...................................... <gPaused = 0>
+  [  5] jmpifz [346] ............................ if gPaused = 0 then
+  [  8] getprop 20 .............................. <this>
+  [ 10] getprop 992 ............................. <UFO>
+  [ 13] getobjprop 213 .......................... <UFO.loc>
+  [ 16] setobjprop 213 .......................... this.loc = UFO.loc
+  [ 19] getprop 649 ............................. <glow>
+  [ 22] getprop 20 .............................. <this>
+  [ 24] getobjprop 213 .......................... <this.loc>
+  [ 27] setobjprop 213 .......................... glow.loc = this.loc
+  [ 30] getprop 649 ............................. <glow>
+  [ 33] getprop 20 .............................. <this>
+  [ 35] getobjprop 25 ........................... <this.rotation>
+  [ 37] setobjprop 25 ........................... glow.rotation = this.rotation
+  [ 39] getprop 20 .............................. <this>
+  [ 41] getobjprop 36 ........................... <this.locH>
+  [ 44] pushzero ................................ <0>
+  [ 45] gt ...................................... <this.locH > 0>
+  [ 46] getprop 20 .............................. <this>
+  [ 48] getobjprop 36 ........................... <this.locH>
+  [ 51] pushint8 512 ............................ <512>
+  [ 54] lt ...................................... <this.locH < 512>
+  [ 55] and ..................................... <(this.locH > 0) and (this.locH < 512)>
+  [ 56] getprop 20 .............................. <this>
+  [ 58] getobjprop 37 ........................... <this.locV>
+  [ 61] pushzero ................................ <0>
+  [ 62] gt ...................................... <this.locV > 0>
+  [ 63] and ..................................... <(this.locH > 0) and (this.locH < 512) and (this.locV > 0)>
+  [ 64] jmpifz [346] ............................ if (this.locH > 0) and (this.locH < 512) and (this.locV > 0) then
+  [ 67] getprop 989 ............................. <fireCounter>
+  [ 70] pushint8 1 .............................. <1>
+  [ 73] add ..................................... <fireCounter + 1>
+  [ 74] setprop 989 ............................. fireCounter = fireCounter + 1
+  [ 77] getprop 989 ............................. <fireCounter>
+  [ 80] pushint8 100 ............................ <100>
+  [ 83] gteq .................................... <fireCounter >= 100>
+  [ 84] jmpifz [311] ............................ if fireCounter >= 100 then / else
+  [ 87] getprop 649 ............................. <glow>
+  [ 90] getobjprop 173 .......................... <glow.blend>
+  [ 93] pushint8 30 ............................. <30>
+  [ 96] eq ...................................... <glow.blend = 30>
+  [ 97] jmpifz [117] ............................ if glow.blend = 30 then
+  [100] pushint8 2 .............................. <2>
+  [103] pushint8 93 ............................. <93>
+  [106] pushcons 16 ............................. <"Sfx">
+  [108] pusharglist 2 ........................... <93, "Sfx">
+  [110] extcall 27 .............................. <member(93, "Sfx")>
+  [112] pusharglistnoret 2 ...................... <2, member(93, "Sfx")>
+  [114] extcall 395 ............................. puppetSound(2, member(93, "Sfx"))
+  [117] getprop 649 ............................. <glow>
+  [120] getobjprop 173 .......................... <glow.blend>
+  [123] pushint8 100 ............................ <100>
+  [126] gteq .................................... <glow.blend >= 100>
+  [127] jmpifz [255] ............................ if glow.blend >= 100 then
+  [130] getprop 646 ............................. <bolt>
+  [133] getobjprop 931 .......................... <bolt.fireBallState>
+  [136] pushsymb 399 ............................ <#NULL>
+  [139] eq ...................................... <bolt.fireBallState = #NULL>
+  [140] jmpifz [255] ............................ if bolt.fireBallState = #NULL then
+  [143] getprop 646 ............................. <bolt>
+  [146] pushsymb 813 ............................ <#FIRED>
+  [149] setobjprop 931 .......................... bolt.fireBallState = #FIRED
+  [152] pushint8 2 .............................. <2>
+  [155] pushint8 94 ............................. <94>
+  [158] pushcons 24 ............................. <"Sfx">
+  [160] pusharglist 2 ........................... <94, "Sfx">
+  [162] extcall 27 .............................. <member(94, "Sfx")>
+  [164] pusharglistnoret 2 ...................... <2, member(94, "Sfx")>
+  [166] extcall 395 ............................. puppetSound(2, member(94, "Sfx"))
+  [169] getprop 646 ............................. <bolt>
+  [172] getprop 20 .............................. <this>
+  [174] getobjprop 36 ........................... <this.locH>
+  [177] pushint8 50 ............................. <50>
+  [180] getprop 20 .............................. <this>
+  [182] getobjprop 25 ........................... <this.rotation>
+  [184] pushint8 180 ............................ <180>
+  [187] add ..................................... <this.rotation + 180>
+  [188] getprop 40 .............................. <radians>
+  [191] mul ..................................... <(this.rotation + 180) * radians>
+  [192] pusharglist 1 ........................... <(this.rotation + 180) * radians>
+  [194] extcall 45 .............................. <cos((this.rotation + 180) * radians)>
+  [197] mul ..................................... <50 * cos((this.rotation + 180) * radians)>
+  [198] add ..................................... <this.locH + (50 * cos((this.rotation + 180) * radians))>
+  [199] setobjprop 36 ........................... bolt.locH = this.locH + (50 * cos((this.rotation + 180) * radians))
+  [202] getprop 646 ............................. <bolt>
+  [205] getprop 20 .............................. <this>
+  [207] getobjprop 37 ........................... <this.locV>
+  [210] pushint8 50 ............................. <50>
+  [213] getprop 20 .............................. <this>
+  [215] getobjprop 25 ........................... <this.rotation>
+  [217] pushint8 180 ............................ <180>
+  [220] add ..................................... <this.rotation + 180>
+  [221] getprop 40 .............................. <radians>
+  [224] mul ..................................... <(this.rotation + 180) * radians>
+  [225] pusharglist 1 ........................... <(this.rotation + 180) * radians>
+  [227] extcall 43 .............................. <sin((this.rotation + 180) * radians)>
+  [230] mul ..................................... <50 * sin((this.rotation + 180) * radians)>
+  [231] add ..................................... <this.locV + (50 * sin((this.rotation + 180) * radians))>
+  [232] setobjprop 37 ........................... bolt.locV = this.locV + (50 * sin((this.rotation + 180) * radians))
+  [235] getprop 646 ............................. <bolt>
+  [238] getprop 20 .............................. <this>
+  [240] getobjprop 25 ........................... <this.rotation>
+  [242] pushint8 180 ............................ <180>
+  [245] sub ..................................... <this.rotation - 180>
+  [246] setobjprop 25 ........................... bolt.rotation = this.rotation - 180
+  [248] getprop 649 ............................. <glow>
+  [251] pushzero ................................ <0>
+  [252] setobjprop 173 .......................... glow.blend = 0
+  [255] getprop 989 ............................. <fireCounter>
+  [258] pushint8 150 ............................ <150>
+  [261] gteq .................................... <fireCounter >= 150>
+  [262] jmpifz [269] ............................ if fireCounter >= 150 then
+  [265] pushzero ................................ <0>
+  [266] setprop 989 ............................. fireCounter = 0
+  [269] getprop 989 ............................. <fireCounter>
+  [272] pushint8 200 ............................ <200>
+  [275] lt ...................................... <fireCounter < 200>
+  [276] jmpifz [308] ............................ if fireCounter < 200 then
+  [279] getprop 649 ............................. <glow>
+  [282] getobjprop 173 .......................... <glow.blend>
+  [285] pushint8 100 ............................ <100>
+  [288] lt ...................................... <glow.blend < 100>
+  [289] jmpifz [308] ............................ if glow.blend < 100 then
+  [292] getprop 649 ............................. <glow>
+  [295] getprop 649 ............................. <glow>
+  [298] getobjprop 173 .......................... <glow.blend>
+  [301] pushint8 2 .............................. <2>
+  [304] add ..................................... <glow.blend + 2>
+  [305] setobjprop 173 .......................... glow.blend = glow.blend + 2
+  [308] jmp [311]
+  [311] getprop 20 .............................. <this>
+  [313] getprop 20 .............................. <this>
+  [315] getobjprop 36 ........................... <this.locH>
+  [318] getprop 20 .............................. <this>
+  [320] getobjprop 37 ........................... <this.locV>
+  [323] getprop 341 ............................. <COPTER>
+  [326] getobjprop 36 ........................... <COPTER.locH>
+  [329] getprop 341 ............................. <COPTER>
+  [332] getobjprop 37 ........................... <COPTER.locV>
+  [335] pusharglist 4 ........................... <this.locH, this.locV, COPTER.locH, COPTER.locV>
+  [337] extcall 276 ............................. <AngleGrind(this.locH, this.locV, COPTER.locH, COPTER.locV)>
+  [340] pushint8 180 ............................ <180>
+  [343] add ..................................... <AngleGrind(this.locH, this.locV, COPTER.locH, COPTER.locV) + 180>
+  [344] setobjprop 25 ........................... this.rotation = AngleGrind(this.locH, this.locV, COPTER.locH, COPTER.locV) + 180
+  [346] ret
+end

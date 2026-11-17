@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2012,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 151,
+    "scriptSrcText": "property this, Xpos, radians, Ypos, mapXPos, raftFront, cableGuy, swellList, swellListPointer, crumpus, crumpusX, crumpusPointer, COPTER, loopX, loopWidth\rglobal gXVel, gXOffset, gPaused, gTileIDList\r\ron beginSprite\r  radians = float(PI / 180)\r  this = sprite(the currentSpriteNum)\r  cableGuy = sprite(6)\r  crumpus = sprite(the currentSpriteNum + 8)\r  COPTER = sprite(4)\r  loopX = gTileIDList.count * 128 * 0.5\r  loopWidth = gTileIDList.count * 128\r  Xpos = float(this.locH)\r  Ypos = float(this.locV)\r  this.locZ = 50\r  mapXPos = Xpos - 256\r  swellAngle = random(360)\r  swellList = []\r  swellListPointer = random(90)\r  repeat with i = 1 to 180\r    swellAngle = i * 2\r    swellList.add(15 * cos(swellAngle * radians))\r  end repeat\r  crumpusPointer = 1.0\r  crumpus.locZ = 49\r  crumpusX = -100\r  crumpus.locH = this.locH\r  crumpus.locV = this.locV\rend\r\ron exitFrame\r  if gPaused = 0 then\r    Xpos = Xpos + gXVel + gXOffset\r    if Xpos > loopX then\r      Xpos = Xpos - loopWidth\r    end if\r    if Xpos < -loopX then\r      Xpos = Xpos + loopWidth\r    end if\r    this.locH = Xpos\r    swellListPointer = swellListPointer + 2\r    if swellListPointer > 180 then\r      swellListPointer = 1\r    end if\r    this.locV = Ypos + swellList[swellListPointer]\r    crumpus.locH = this.locH + crumpusX\r    crumpusX = crumpusX + 2\r    if crumpusX = -90 then\r      if (this.locH > 0) and (this.locH < 512) then\r        puppetSound(2, member(32, \"Sfx\"))\r      end if\r    end if\r    crumpusPointer = crumpusPointer + 1\r    if crumpusPointer > 180 then\r      crumpusPointer = 1\r    end if\r    temp = swellList[crumpusPointer] * 12\r    if temp < 1 then\r      temp = 1\r      crumpusX = -100\r    end if\r    crumpus.height = temp\r  end if\r  yDiff = this.locV - COPTER.locV\r  if yDiff < crumpus.height then\r    xDiff = this.locH - COPTER.locH\r    if abs(xDiff) < 100 then\r      COPTER.Yvel = COPTER.Yvel - 0.10000000000000001\r      COPTER.tiltAngle = COPTER.tiltAngle + 0.5\r    end if\r  end if\rend\r",
+    "name": "ShipWreck"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 128,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 2,
+    "scriptSrcText": "on exitFrame me\r  go(the frame)\rend\r\ron mouseUp\r  go(\"MenuScreen\")\rend\r",
+    "name": "StartScreenFrameScript"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

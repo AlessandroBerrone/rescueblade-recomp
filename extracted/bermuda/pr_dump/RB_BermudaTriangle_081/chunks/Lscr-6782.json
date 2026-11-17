@@ -1,0 +1,112 @@
+{
+  "totalLength": 924,
+  "totalLength2": 924,
+  "headerLength": 92,
+  "scriptNumber": 437,
+  "unk20": 8,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65618,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 892,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 15,
+  "propertiesOffset": 92,
+  "globalsCount": 7,
+  "globalsOffset": 122,
+  "handlersCount": 2,
+  "handlersOffset": 136,
+  "literalsCount": 5,
+  "literalsOffset": 796,
+  "literalsDataCount": 56,
+  "literalsDataOffset": 836,
+  "propertyNameIDs": [
+    20,
+    48,
+    40,
+    38,
+    667,
+    608,
+    54,
+    342,
+    341,
+    1003,
+    616,
+    26,
+    471,
+    44,
+    32
+  ],
+  "globalNameIDs": [
+    47,
+    55,
+    364,
+    180,
+    669,
+    410,
+    572
+  ],
+  "handlers": [
+    {
+      "nameID": 18,
+      "vectorPos": 65535,
+      "compiledLen": 136,
+      "compiledOffset": 220,
+      "argumentCount": 0,
+      "argumentOffset": 356,
+      "localsCount": 0,
+      "localsOffset": 356,
+      "globalsCount": 0,
+      "globalsOffset": 356,
+      "unknown1": 213,
+      "unknown2": 5,
+      "lineCount": 15,
+      "lineOffset": 356
+    },
+    {
+      "nameID": 19,
+      "vectorPos": 15,
+      "compiledLen": 361,
+      "compiledOffset": 372,
+      "argumentCount": 0,
+      "argumentOffset": 734,
+      "localsCount": 2,
+      "localsOffset": 734,
+      "globalsCount": 0,
+      "globalsOffset": 738,
+      "unknown1": 588,
+      "unknown2": 24,
+      "lineCount": 58,
+      "lineOffset": 738
+    }
+  ],
+  "literals": [
+    {
+      "type": 9,
+      "offset": 0,
+      "value": 0.5
+    },
+    {
+      "type": 9,
+      "offset": 12,
+      "value": 0.20000000000000001
+    },
+    {
+      "type": 9,
+      "offset": 24,
+      "value": 0.20000000000000001
+    },
+    {
+      "type": 9,
+      "offset": 36,
+      "value": 0.90000000000000002
+    },
+    {
+      "type": 1,
+      "offset": 48,
+      "value": "Sfx"
+    }
+  ]
+}

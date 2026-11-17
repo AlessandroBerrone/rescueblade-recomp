@@ -1,0 +1,263 @@
+property this, Xpos, swellAngle, radians, Ypos, mapXPos, survivorDelay, thisMember, startMember, Xvel, cableGuy, survivorState, ThisWidth, thisHalfHeight, grabCount, distToHQ, targetSprite, targetOffset, frameDir, loopWidth, loopX
+global gXVel, gXOffset, gPaused, gTileIDList, gCableItem, gCableLength, gRescueCount, gRescuedList, gScore
+
+on beginSprite
+  [  0] pusharglist 0 ........................... <>
+  [  2] extcall 41 .............................. <PI>
+  [  5] pushint8 180 ............................ <180>
+  [  8] div ..................................... <PI / 180>
+  [  9] pusharglist 1 ........................... <PI / 180>
+  [ 11] extcall 33 .............................. <float(PI / 180)>
+  [ 14] setprop 40 .............................. radians = float(PI / 180)
+  [ 17] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 19] pusharglist 1 ........................... <the currentSpriteNum>
+  [ 21] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [ 23] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [ 25] getprop 20 .............................. <this>
+  [ 27] getobjprop 477 .......................... <this.memberNum>
+  [ 30] setprop 616 ............................. startMember = this.memberNum
+  [ 33] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 35] pushint8 1 .............................. <1>
+  [ 38] sub ..................................... <the currentSpriteNum - 1>
+  [ 39] setprop 612 ............................. targetSprite = the currentSpriteNum - 1
+  [ 42] getglobal 180 ........................... <gTileIDList>
+  [ 45] getobjprop 183 .......................... <gTileIDList.count>
+  [ 48] pushint8 128 ............................ <128>
+  [ 51] mul ..................................... <gTileIDList.count * 128>
+  [ 52] setprop 54 .............................. loopWidth = gTileIDList.count * 128
+  [ 55] getglobal 180 ........................... <gTileIDList>
+  [ 58] getobjprop 183 .......................... <gTileIDList.count>
+  [ 61] pushint8 128 ............................ <128>
+  [ 64] mul ..................................... <gTileIDList.count * 128>
+  [ 65] pushcons 0 .............................. <0.5>
+  [ 67] mul ..................................... <gTileIDList.count * 128 * 0.5>
+  [ 68] setprop 608 ............................. loopX = gTileIDList.count * 128 * 0.5
+  [ 71] getprop 20 .............................. <this>
+  [ 73] getobjprop 36 ........................... <this.locH>
+  [ 76] pusharglist 1 ........................... <this.locH>
+  [ 78] extcall 33 .............................. <float(this.locH)>
+  [ 81] setprop 48 .............................. Xpos = float(this.locH)
+  [ 84] getprop 20 .............................. <this>
+  [ 86] getobjprop 37 ........................... <this.locV>
+  [ 89] pusharglist 1 ........................... <this.locV>
+  [ 91] extcall 33 .............................. <float(this.locV)>
+  [ 94] setprop 38 .............................. Ypos = float(this.locV)
+  [ 97] getprop 20 .............................. <this>
+  [ 99] getmovieprop 22 ......................... <the currentSpriteNum>
+  [101] pushint8 1 .............................. <1>
+  [104] sub ..................................... <the currentSpriteNum - 1>
+  [105] pusharglist 1 ........................... <the currentSpriteNum - 1>
+  [107] extcall 21 .............................. <sprite(the currentSpriteNum - 1)>
+  [109] getobjprop 178 .......................... <sprite(the currentSpriteNum - 1).locZ>
+  [112] pushint8 1 .............................. <1>
+  [115] sub ..................................... <sprite(the currentSpriteNum - 1).locZ - 1>
+  [116] setobjprop 178 .......................... this.locZ = sprite(the currentSpriteNum - 1).locZ - 1
+  [119] pushzero ................................ <0>
+  [120] setprop 44 .............................. Xvel = 0
+  [123] getprop 48 .............................. <Xpos>
+  [126] pushint8 256 ............................ <256>
+  [129] sub ..................................... <Xpos - 256>
+  [130] pushint8 64 ............................. <64>
+  [133] sub ..................................... <Xpos - 256 - 64>
+  [134] setprop 366 ............................. mapXPos = Xpos - 256 - 64
+  [137] pushzero ................................ <0>
+  [138] setprop 440 ............................. survivorDelay = 0
+  [141] pushzero ................................ <0>
+  [142] setprop 62 .............................. swellAngle = 0
+  [145] pushint8 6 .............................. <6>
+  [148] pusharglist 1 ........................... <6>
+  [150] extcall 21 .............................. <sprite(6)>
+  [152] setprop 342 ............................. cableGuy = sprite(6)
+  [155] pushsymb 442 ............................ <#ONGROUND>
+  [158] setprop 441 ............................. survivorState = #ONGROUND
+  [161] getprop 20 .............................. <this>
+  [163] getobjprop 50 ........................... <this.width>
+  [166] setprop 51 .............................. ThisWidth = this.width
+  [169] getprop 20 .............................. <this>
+  [171] getobjprop 97 ........................... <this.height>
+  [174] pushint8 2 .............................. <2>
+  [177] div ..................................... <this.height / 2>
+  [178] setprop 443 ............................. thisHalfHeight = this.height / 2
+  [181] pushzero ................................ <0>
+  [182] setprop 445 ............................. grabCount = 0
+  [185] pushzero ................................ <0>
+  [186] setprop 459 ............................. distToHQ = 0
+  [189] pushint8 1 .............................. <1>
+  [192] setprop 471 ............................. frameDir = 1
+  [195] ret
+end
+
+on exitFrame
+  [  0] getglobal 364 ........................... <gPaused>
+  [  3] pushzero ................................ <0>
+  [  4] eq ...................................... <gPaused = 0>
+  [  5] jmpifz [405] ............................ if gPaused = 0 then
+  [  8] getprop 441 ............................. <survivorState>
+  [ 11] peek 0 .................................. case survivorState of
+  [ 13] pushsymb 442 ............................ <#ONGROUND>
+  [ 16] eq
+  [ 17] jmpifz [298] ............................ (case) #ONGROUND:
+  [ 20] getprop 612 ............................. <targetSprite>
+  [ 23] getprop 20 .............................. <this>
+  [ 25] getobjprop 169 .......................... <this.spriteNum>
+  [ 28] eq ...................................... <targetSprite = this.spriteNum>
+  [ 29] jmpifz [ 98] ............................ if targetSprite = this.spriteNum then / else
+  [ 32] getprop 48 .............................. <Xpos>
+  [ 35] getglobal 47 ............................ <gXVel>
+  [ 38] getglobal 55 ............................ <gXOffset>
+  [ 41] add ..................................... <gXVel + gXOffset>
+  [ 42] add ..................................... <Xpos + (gXVel + gXOffset)>
+  [ 43] setprop 48 .............................. Xpos = Xpos + (gXVel + gXOffset)
+  [ 46] getprop 20 .............................. <this>
+  [ 48] getprop 48 .............................. <Xpos>
+  [ 51] setobjprop 36 ........................... this.locH = Xpos
+  [ 54] getprop 48 .............................. <Xpos>
+  [ 57] getprop 608 ............................. <loopX>
+  [ 60] gt ...................................... <Xpos > loopX>
+  [ 61] jmpifz [ 74] ............................ if Xpos > loopX then
+  [ 64] getprop 48 .............................. <Xpos>
+  [ 67] getprop 54 .............................. <loopWidth>
+  [ 70] sub ..................................... <Xpos - loopWidth>
+  [ 71] setprop 48 .............................. Xpos = Xpos - loopWidth
+  [ 74] getprop 48 .............................. <Xpos>
+  [ 77] getprop 608 ............................. <loopX>
+  [ 80] inv ..................................... <-loopX>
+  [ 81] lt ...................................... <Xpos < -loopX>
+  [ 82] jmpifz [ 95] ............................ if Xpos < -loopX then
+  [ 85] getprop 48 .............................. <Xpos>
+  [ 88] getprop 54 .............................. <loopWidth>
+  [ 91] add ..................................... <Xpos + loopWidth>
+  [ 92] setprop 48 .............................. Xpos = Xpos + loopWidth
+  [ 95] jmp [117]
+  [ 98] getprop 20 .............................. <this>
+  [100] getprop 612 ............................. <targetSprite>
+  [103] pusharglist 1 ........................... <targetSprite>
+  [105] extcall 21 .............................. <sprite(targetSprite)>
+  [107] getobjprop 213 .......................... <sprite(targetSprite).loc>
+  [110] getprop 615 ............................. <targetOffset>
+  [113] add ..................................... <sprite(targetSprite).loc + targetOffset>
+  [114] setobjprop 213 .......................... this.loc = sprite(targetSprite).loc + targetOffset
+  [117] getprop 440 ............................. <survivorDelay>
+  [120] pushint8 1 .............................. <1>
+  [123] add ..................................... <survivorDelay + 1>
+  [124] setprop 440 ............................. survivorDelay = survivorDelay + 1
+  [127] getprop 440 ............................. <survivorDelay>
+  [130] pushint8 5 .............................. <5>
+  [133] gteq .................................... <survivorDelay >= 5>
+  [134] jmpifz [141] ............................ if survivorDelay >= 5 then
+  [137] pushzero ................................ <0>
+  [138] setprop 440 ............................. survivorDelay = 0
+  [141] getprop 20 .............................. <this>
+  [143] getobjprop 36 ........................... <this.locH>
+  [146] getprop 342 ............................. <cableGuy>
+  [149] getobjprop 36 ........................... <cableGuy.locH>
+  [152] sub ..................................... <this.locH - cableGuy.locH>
+  [153] pusharglist 1 ........................... <this.locH - cableGuy.locH>
+  [155] extcall 370 ............................. <abs(this.locH - cableGuy.locH)>
+  [158] setlocal 0 .............................. diffX = abs(this.locH - cableGuy.locH)
+  [160] getprop 20 .............................. <this>
+  [162] getobjprop 37 ........................... <this.locV>
+  [165] getprop 342 ............................. <cableGuy>
+  [168] getobjprop 37 ........................... <cableGuy.locV>
+  [171] sub ..................................... <this.locV - cableGuy.locV>
+  [172] pusharglist 1 ........................... <this.locV - cableGuy.locV>
+  [174] extcall 370 ............................. <abs(this.locV - cableGuy.locV)>
+  [177] setlocal 8 .............................. diffY = abs(this.locV - cableGuy.locV)
+  [179] getlocal 0 .............................. <diffX>
+  [181] getprop 51 .............................. <ThisWidth>
+  [184] lt ...................................... <diffX < ThisWidth>
+  [185] getlocal 8 .............................. <diffY>
+  [187] getprop 443 ............................. <thisHalfHeight>
+  [190] lt ...................................... <diffY < thisHalfHeight>
+  [191] and ..................................... <(diffX < ThisWidth) and (diffY < thisHalfHeight)>
+  [192] jmpifz [291] ............................ if (diffX < ThisWidth) and (diffY < thisHalfHeight) then / else
+  [195] getprop 445 ............................. <grabCount>
+  [198] pushint8 1 .............................. <1>
+  [201] add ..................................... <grabCount + 1>
+  [202] setprop 445 ............................. grabCount = grabCount + 1
+  [205] getprop 445 ............................. <grabCount>
+  [208] pushint8 2 .............................. <2>
+  [211] gteq .................................... <grabCount >= 2>
+  [212] getprop 612 ............................. <targetSprite>
+  [215] pusharglist 1 ........................... <targetSprite>
+  [217] extcall 21 .............................. <sprite(targetSprite)>
+  [219] getobjprop 868 .......................... <sprite(targetSprite).attackMode>
+  [222] pushsymb 871 ............................ <#FLEE>
+  [225] eq ...................................... <sprite(targetSprite).attackMode = #FLEE>
+  [226] and ..................................... <(grabCount >= 2) and (sprite(targetSprite).attackMode = #FLEE)>
+  [227] jmpifz [288] ............................ if (grabCount >= 2) and (sprite(targetSprite).attackMode = #FLEE) then
+  [230] getglobal 448 ........................... <gCableItem>
+  [233] pushzero ................................ <0>
+  [234] eq ...................................... <gCableItem = 0>
+  [235] getglobal 450 ........................... <gCableLength>
+  [238] pushint8 50 ............................. <50>
+  [241] gteq .................................... <gCableLength >= 50>
+  [242] and ..................................... <(gCableItem = 0) and (gCableLength >= 50)>
+  [243] jmpifz [288] ............................ if (gCableItem = 0) and (gCableLength >= 50) then
+  [246] pushsymb 444 ............................ <#ONCABLE>
+  [249] setprop 441 ............................. survivorState = #ONCABLE
+  [252] getprop 612 ............................. <targetSprite>
+  [255] pusharglist 1 ........................... <targetSprite>
+  [257] extcall 21 .............................. <sprite(targetSprite)>
+  [259] pushsymb 981 ............................ <#PILOTLESS>
+  [262] setobjprop 868 .......................... sprite(targetSprite).attackMode = #PILOTLESS
+  [265] pushint8 2 .............................. <2>
+  [268] pushint8 97 ............................. <97>
+  [271] pushcons 8 .............................. <"Sfx">
+  [273] pusharglist 2 ........................... <97, "Sfx">
+  [275] extcall 27 .............................. <member(97, "Sfx")>
+  [277] pusharglistnoret 2 ...................... <2, member(97, "Sfx")>
+  [279] extcall 395 ............................. puppetSound(2, member(97, "Sfx"))
+  [282] pushint8 1 .............................. <1>
+  [285] setglobal 448 ........................... gCableItem = 1
+  [288] jmp [295]
+  [291] pushzero ................................ <0>
+  [292] setprop 445 ............................. grabCount = 0
+  [295] jmp [403]
+  [298] peek 0
+  [300] pushsymb 444 ............................ <#ONCABLE>
+  [303] eq
+  [304] jmpifz [376] ............................ (case) #ONCABLE:
+  [307] getprop 20 .............................. <this>
+  [309] getprop 342 ............................. <cableGuy>
+  [312] getobjprop 213 .......................... <cableGuy.loc>
+  [315] setobjprop 213 .......................... this.loc = cableGuy.loc
+  [318] getglobal 450 ........................... <gCableLength>
+  [321] pushzero ................................ <0>
+  [322] eq ...................................... <gCableLength = 0>
+  [323] jmpifz [373] ............................ if gCableLength = 0 then
+  [326] pushzero ................................ <0>
+  [327] setglobal 448 ........................... gCableItem = 0
+  [330] pushsymb 348 ............................ <#INCOPTER>
+  [333] setprop 441 ............................. survivorState = #INCOPTER
+  [336] getglobal 453 ........................... <gRescueCount>
+  [339] pushint8 1 .............................. <1>
+  [342] add ..................................... <gRescueCount + 1>
+  [343] setglobal 453 ........................... gRescueCount = gRescueCount + 1
+  [346] getglobal 410 ........................... <gScore>
+  [349] pushint8 500 ............................ <500>
+  [352] add ..................................... <gScore + 500>
+  [353] setglobal 410 ........................... gScore = gScore + 500
+  [356] pushint8 3 .............................. <3>
+  [359] pushint8 8 .............................. <8>
+  [362] pushcons 16 ............................. <"Sfx">
+  [364] pusharglist 2 ........................... <8, "Sfx">
+  [366] extcall 27 .............................. <member(8, "Sfx")>
+  [368] pusharglistnoret 2 ...................... <3, member(8, "Sfx")>
+  [370] extcall 395 ............................. puppetSound(3, member(8, "Sfx"))
+  [373] jmp [403]
+  [376] peek 0
+  [378] pushsymb 348 ............................ <#INCOPTER>
+  [381] eq
+  [382] jmpifz [403] ............................ (case) #INCOPTER:
+  [385] getprop 20 .............................. <this>
+  [387] pushint8 1000 ........................... <1000>
+  [390] inv ..................................... <-1000>
+  [391] setobjprop 36 ........................... this.locH = -1000
+  [394] getprop 20 .............................. <this>
+  [396] pushint8 1000 ........................... <1000>
+  [399] inv ..................................... <-1000>
+  [400] setobjprop 37 ........................... this.locV = -1000
+  [403] pop 1 ................................... end case
+  [405] ret
+end

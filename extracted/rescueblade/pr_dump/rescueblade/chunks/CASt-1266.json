@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 246,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 111,
+    "scriptSrcText": "property thisNum\r\ron beginSprite\r  thisNum = the currentSpriteNum\rend\r\ron mouseUp\r  put thisNum\r  if the rollover = thisNum then\r    go(\"MenuScreen\")\r    puppetSound(2, member(12, \"Sfx\"))\r  end if\rend\r",
+    "name": "BackButton"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

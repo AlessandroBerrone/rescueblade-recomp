@@ -1,0 +1,10 @@
+MISSION 004 Oil Rig Rescue
+You have passed your flight training!
+
+Now use your skills in a real emergency.
+
+An off shore oil rig has suffered structural collapse. Pickup the survivors from each life raft.
+
+Drop the survivors off at Rescue HQ.
+
+WARNING : Other rescue helicopters are operating in your flight space. AVOID them at all costs.

@@ -1,0 +1,128 @@
+{
+  "totalLength": 1332,
+  "totalLength2": 1332,
+  "headerLength": 92,
+  "scriptNumber": 302,
+  "unk20": 8,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65589,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 1300,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 23,
+  "propertiesOffset": 92,
+  "globalsCount": 10,
+  "globalsOffset": 138,
+  "handlersCount": 2,
+  "handlersOffset": 158,
+  "literalsCount": 6,
+  "literalsOffset": 1192,
+  "literalsDataCount": 60,
+  "literalsDataOffset": 1240,
+  "propertyNameIDs": [
+    20,
+    48,
+    62,
+    40,
+    38,
+    366,
+    440,
+    26,
+    616,
+    44,
+    342,
+    811,
+    51,
+    443,
+    445,
+    459,
+    612,
+    615,
+    471,
+    804,
+    341,
+    808,
+    812
+  ],
+  "globalNameIDs": [
+    47,
+    55,
+    364,
+    180,
+    448,
+    450,
+    453,
+    458,
+    410,
+    430
+  ],
+  "handlers": [
+    {
+      "nameID": 18,
+      "vectorPos": 65535,
+      "compiledLen": 186,
+      "compiledOffset": 242,
+      "argumentCount": 0,
+      "argumentOffset": 428,
+      "localsCount": 3,
+      "localsOffset": 428,
+      "globalsCount": 0,
+      "globalsOffset": 434,
+      "unknown1": 363,
+      "unknown2": 7,
+      "lineCount": 24,
+      "lineOffset": 434
+    },
+    {
+      "nameID": 19,
+      "vectorPos": 15,
+      "compiledLen": 622,
+      "compiledOffset": 458,
+      "argumentCount": 0,
+      "argumentOffset": 1080,
+      "localsCount": 5,
+      "localsOffset": 1080,
+      "globalsCount": 0,
+      "globalsOffset": 1090,
+      "unknown1": 917,
+      "unknown2": 35,
+      "lineCount": 102,
+      "lineOffset": 1090
+    }
+  ],
+  "literals": [
+    {
+      "type": 1,
+      "offset": 0,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 8,
+      "value": 2.5
+    },
+    {
+      "type": 9,
+      "offset": 20,
+      "value": 2.5
+    },
+    {
+      "type": 9,
+      "offset": 32,
+      "value": 0.20000000000000001
+    },
+    {
+      "type": 1,
+      "offset": 44,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 52,
+      "value": "Gfx"
+    }
+  ]
+}

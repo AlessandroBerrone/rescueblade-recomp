@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 434,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 265,
+    "scriptSrcText": "global gTileHeightList\r\ron beginSprite\r  delayCount = 0\r  gSeaFrame = 1\r  repeat with i = 1 to gTileHeightList.count\r    gTileHeightList[i] = random(50)\r  end repeat\rend\r\ron exitFrame\r  repeat with i = 1 to gTileHeightList.count\r    temp = gTileHeightList[i]\r    temp = temp * 0.94999999999999996\r    if temp < 1 then\r      temp = 0\r    end if\r    gTileHeightList[i] = temp\r  end repeat\rend\r",
+    "name": "SeaBumph"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

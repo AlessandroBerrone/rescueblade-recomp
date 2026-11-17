@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 274,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 3,
+    "scriptSrcText": "global gLockOut\r\ron exitFrame me\r  if keyPressed(\"r\") and keyPressed(\"i\") and keyPressed(\"x\") then\r    alert(\"Rix Cheat\" & RETURN & \"Unlocking all levels. . .\")\r    gLockOut = 2\r    go(the frame - 1)\r  end if\r  go(the frame)\rend\r",
+    "name": "MenuScreen"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

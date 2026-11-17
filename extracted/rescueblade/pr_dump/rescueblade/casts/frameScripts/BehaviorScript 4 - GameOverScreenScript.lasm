@@ -1,0 +1,10 @@
+on exitFrame me
+  [  0] pushcons 0 .............................. <"MenuScreen">
+  [  2] pusharglistnoret 1 ...................... <"MenuScreen">
+  [  4] extcall 2 ............................... go("MenuScreen")
+  [  6] pusharglist 0 ........................... <>
+  [  8] thebuiltin 1 ............................ <the frame>
+  [ 10] pusharglistnoret 1 ...................... <the frame>
+  [ 12] extcall 2 ............................... go(the frame)
+  [ 14] ret
+end

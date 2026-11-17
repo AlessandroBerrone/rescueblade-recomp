@@ -1,0 +1,100 @@
+property MaxToggle, this
+global gShockwave_ResolutionObj, gShockwave_ExitObj
+
+on beginSprite
+  [  0] getmovieprop 22 ......................... <the currentSpriteNum>
+  [  2] pusharglist 1 ........................... <the currentSpriteNum>
+  [  4] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [  6] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [  8] pushzero ................................ <0>
+  [  9] setprop 944 ............................. MaxToggle = 0
+  [ 12] getprop 20 .............................. <this>
+  [ 14] pushzero ................................ <0>
+  [ 15] pusharglist 0 ........................... <>
+  [ 17] thebuiltin 945 .......................... <the stageBottom>
+  [ 20] pusharglist 0 ........................... <>
+  [ 22] thebuiltin 212 .......................... <the stageTop>
+  [ 25] sub ..................................... <the stageBottom - the stageTop>
+  [ 26] pusharglist 2 ........................... <0, the stageBottom - the stageTop>
+  [ 28] extcall 57 .............................. <point(0, the stageBottom - the stageTop)>
+  [ 31] setobjprop 213 .......................... this.loc = point(0, the stageBottom - the stageTop)
+  [ 34] getglobal 946 ........................... <gShockwave_ResolutionObj>
+  [ 37] pusharglist 1 ........................... <gShockwave_ResolutionObj>
+  [ 39] extcall 714 ............................. <voidp(gShockwave_ResolutionObj)>
+  [ 42] jmpifz [ 66] ............................ if voidp(gShockwave_ResolutionObj) then
+  [ 45] getmovieprop 719 ........................ <the environment>
+  [ 48] getobjprop 720 .......................... <(the environment).runMode>
+  [ 51] pushcons 0 .............................. <"Author">
+  [ 53] nteq .................................... <(the environment).runMode <> "Author">
+  [ 54] jmpifz [ 66] ............................ if (the environment).runMode <> "Author" then
+  [ 57] getprop 20 .............................. <this>
+  [ 59] pushint8 1000 ........................... <1000>
+  [ 62] inv ..................................... <-1000>
+  [ 63] setobjprop 37 ........................... this.locV = -1000
+  [ 66] pushcons 8 .............................. <"No Xtra found">
+  [ 68] pusharglistnoret 1 ...................... <"No Xtra found">
+  [ 70] extcall 31 .............................. put "No Xtra found"
+  [ 72] ret
+end
+
+on mouseLeave
+  [  0] getprop 20 .............................. <this>
+  [  2] pushzero ................................ <0>
+  [  3] setobjprop 176 .......................... this.flipH = 0
+  [  6] getprop 20 .............................. <this>
+  [  8] pushzero ................................ <0>
+  [  9] setobjprop 177 .......................... this.flipV = 0
+  [ 12] getprop 20 .............................. <this>
+  [ 14] pushint8 100 ............................ <100>
+  [ 17] setobjprop 173 .......................... this.blend = 100
+  [ 20] ret
+end
+
+on mouseWithin
+  [  0] getprop 20 .............................. <this>
+  [  2] pushzero ................................ <0>
+  [  3] setobjprop 176 .......................... this.flipH = 0
+  [  6] getprop 20 .............................. <this>
+  [  8] pushzero ................................ <0>
+  [  9] setobjprop 177 .......................... this.flipV = 0
+  [ 12] getprop 20 .............................. <this>
+  [ 14] pushint8 100 ............................ <100>
+  [ 17] setobjprop 173 .......................... this.blend = 100
+  [ 20] pusharglist 0 ........................... <>
+  [ 22] thebuiltin 947 .......................... <the mouseH>
+  [ 25] pushint8 11 ............................. <11>
+  [ 28] lteq .................................... <the mouseH <= 11>
+  [ 29] jmpifz [ 64] ............................ if the mouseH <= 11 then
+  [ 32] pusharglist 0 ........................... <>
+  [ 34] thebuiltin 680 .......................... <the mouseDown>
+  [ 37] jmpifz [ 48] ............................ if the mouseDown then
+  [ 40] getprop 20 .............................. <this>
+  [ 42] pushint8 70 ............................. <70>
+  [ 45] setobjprop 173 .......................... this.blend = 70
+  [ 48] getprop 20 .............................. <this>
+  [ 50] pushint8 1 .............................. <1>
+  [ 53] setobjprop 176 .......................... this.flipH = 1
+  [ 56] getprop 20 .............................. <this>
+  [ 58] pushint8 1 .............................. <1>
+  [ 61] setobjprop 176 .......................... this.flipH = 1
+  [ 64] ret
+end
+
+on mouseUp
+  [  0] pusharglist 0 ........................... <>
+  [  2] thebuiltin 947 .......................... <the mouseH>
+  [  5] pushint8 11 ............................. <11>
+  [  8] lteq .................................... <the mouseH <= 11>
+  [  9] jmpifz [ 37] ............................ if the mouseH <= 11 then
+  [ 12] getglobal 946 ........................... <gShockwave_ResolutionObj>
+  [ 15] pusharglist 1 ........................... <gShockwave_ResolutionObj>
+  [ 17] extcall 948 ............................. <objectp(gShockwave_ResolutionObj)>
+  [ 20] jmpifz [ 31] ............................ if objectp(gShockwave_ResolutionObj) then
+  [ 23] getglobal 949 ........................... <gShockwave_ExitObj>
+  [ 26] pusharglistnoret 1 ...................... <gShockwave_ExitObj>
+  [ 28] objcall 950 ............................. gShockwave_ExitObj.mExit()
+  [ 31] pushcons 16 ............................. <"CallClose">
+  [ 33] pusharglistnoret 1 ...................... <"CallClose">
+  [ 35] extcall 31 .............................. put "CallClose"
+  [ 37] ret
+end

@@ -1,0 +1,8 @@
+on beginSprite me
+  [  0] getmovieprop 22 ......................... <the currentSpriteNum>
+  [  2] pusharglist 1 ........................... <the currentSpriteNum>
+  [  4] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [  6] pushcons 0 .............................. <99999999>
+  [  8] setobjprop 178 .......................... sprite(the currentSpriteNum).locZ = 99999999
+  [ 11] ret
+end

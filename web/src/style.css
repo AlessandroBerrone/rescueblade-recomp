@@ -1,0 +1,128 @@
+:root {
+  color-scheme: dark;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: #0d1520;
+  color: #e6eef8;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.layout {
+  width: 100%;
+  max-width: 1080px;
+  display: grid;
+  grid-template-columns: 520px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background: #142030;
+  border: 1px solid #263952;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+h1 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.stage-wrap canvas {
+  display: block;
+  width: 512px;
+  height: 330px;
+  max-width: 100%;
+  border-radius: 6px;
+  border: 1px solid #355070;
+  background: #77bbff;
+  cursor: crosshair;
+}
+
+.stage-wrap canvas:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  border: none;
+  border-radius: 0;
+  object-fit: contain;
+  background: #000000;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #21344d;
+  border: 1px solid #345075;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge.active {
+  background: #1d6f42;
+  border-color: #36c977;
+  color: #fff;
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.axis-bar {
+  height: 10px;
+  background: #0d1520;
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  flex: 1;
+}
+
+.axis-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: #38bdf8;
+}
+
+.stick-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0;
+}
+
+.log {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  background: #0b111a;
+  border: 1px solid #203147;
+  border-radius: 6px;
+  padding: 8px;
+  height: 120px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}

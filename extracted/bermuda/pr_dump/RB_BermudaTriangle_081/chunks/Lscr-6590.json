@@ -1,0 +1,66 @@
+{
+  "totalLength": 254,
+  "totalLength2": 254,
+  "headerLength": 92,
+  "scriptNumber": 243,
+  "unk20": 8,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65578,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 222,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 1,
+  "propertiesOffset": 92,
+  "globalsCount": 1,
+  "globalsOffset": 94,
+  "handlersCount": 2,
+  "handlersOffset": 96,
+  "literalsCount": 0,
+  "literalsOffset": 222,
+  "literalsDataCount": 0,
+  "literalsDataOffset": 222,
+  "propertyNameIDs": [
+    20
+  ],
+  "globalNameIDs": [
+    364
+  ],
+  "handlers": [
+    {
+      "nameID": 18,
+      "vectorPos": 65535,
+      "compiledLen": 17,
+      "compiledOffset": 180,
+      "argumentCount": 0,
+      "argumentOffset": 198,
+      "localsCount": 0,
+      "localsOffset": 198,
+      "globalsCount": 0,
+      "globalsOffset": 198,
+      "unknown1": 45,
+      "unknown2": 5,
+      "lineCount": 2,
+      "lineOffset": 198
+    },
+    {
+      "nameID": 19,
+      "vectorPos": 15,
+      "compiledLen": 18,
+      "compiledOffset": 200,
+      "argumentCount": 0,
+      "argumentOffset": 218,
+      "localsCount": 0,
+      "localsOffset": 218,
+      "globalsCount": 0,
+      "globalsOffset": 218,
+      "unknown1": 132,
+      "unknown2": 10,
+      "lineCount": 3,
+      "lineOffset": 218
+    }
+  ],
+  "literals": []
+}

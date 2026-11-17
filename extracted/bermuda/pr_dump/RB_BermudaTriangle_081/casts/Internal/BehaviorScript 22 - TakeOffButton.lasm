@@ -1,0 +1,30 @@
+property thisNum
+global gLevel
+
+on beginSprite
+  [  0] getmovieprop 22 ......................... <the currentSpriteNum>
+  [  2] setprop 554 ............................. thisNum = the currentSpriteNum
+  [  5] ret
+end
+
+on mouseUp
+  [  0] pusharglist 0 ........................... <>
+  [  2] thebuiltin 555 .......................... <the rollover>
+  [  5] getprop 554 ............................. <thisNum>
+  [  8] eq ...................................... <the rollover = thisNum>
+  [  9] jmpifz [ 43] ............................ if the rollover = thisNum then
+  [ 12] pusharglist 0 ........................... <>
+  [ 14] thebuiltin 577 .......................... <the frame>
+  [ 17] pushint8 1 .............................. <1>
+  [ 20] add ..................................... <the frame + 1>
+  [ 21] pusharglistnoret 1 ...................... <the frame + 1>
+  [ 23] extcall 553 ............................. go(the frame + 1)
+  [ 26] pushint8 2 .............................. <2>
+  [ 29] pushint8 12 ............................. <12>
+  [ 32] pushcons 0 .............................. <"Sfx">
+  [ 34] pusharglist 2 ........................... <12, "Sfx">
+  [ 36] extcall 27 .............................. <member(12, "Sfx")>
+  [ 38] pusharglistnoret 2 ...................... <2, member(12, "Sfx")>
+  [ 40] extcall 395 ............................. puppetSound(2, member(12, "Sfx"))
+  [ 43] ret
+end

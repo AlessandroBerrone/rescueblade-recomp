@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2272,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 204,
+    "scriptSrcText": "property this, Xpos, Ypos, mapXPos, loopX, bolt, COPTER, cableGuy, ouchCount, prevBolt, boltOffset, loopWidth\rglobal gXVel, gXOffset, gPaused, gTileIDList, gDamagePercent\r\ron beginSprite\r  this = sprite(the currentSpriteNum)\r  bolt = sprite(the currentSpriteNum - 1)\r  COPTER = sprite(4)\r  cableGuy = sprite(6)\r  Xpos = float(this.locH)\r  Ypos = float(this.locV)\r  loopX = gTileIDList.count * 128 * 0.5\r  loopWidth = gTileIDList.count * 128\r  this.locZ = 51\r  bolt.locZ = 52\r  mapXPos = Xpos - 256\r  loopX = (gTileIDList.count * 128 * 0.25) - Xpos\r  ouchCount = 0\r  prevBolt = 0\r  boltOffset = -50\rend\r\ron exitFrame\r  if gPaused = 0 then\r    Xpos = Xpos + (gXVel + gXOffset)\r    if Xpos > loopX then\r      Xpos = Xpos - loopWidth\r    end if\r    if Xpos < -loopX then\r      Xpos = Xpos + loopWidth\r    end if\r    this.locH = Xpos\r    this.locV = Ypos\r    boltTarget = cableGuy\r    xDiff = this.locH - boltTarget.locH\r    if abs(xDiff) < 120 then\r      yDiff = this.locV - boltTarget.locV\r      if yDiff < 168 then\r        rand = random(2)\r        if rand = 1 then\r          boltTarget = cableGuy\r        else\r          boltTarget = COPTER\r        end if\r        boltOffset = 96 - (random(3) * 48)\r        bolt.locH = this.locH + boltOffset\r        bolt.locV = this.locV\r        bolt.rotation = AngleGrind(bolt.locH, bolt.locV, boltTarget.locH, boltTarget.locV) + 90\r        xDiff = bolt.locH - boltTarget.locH\r        yDiff = bolt.locV - boltTarget.locV\r        bolt.height = sqrt((xDiff * xDiff) + (yDiff * yDiff))\r        if prevBolt = 0 then\r          prevBolt = 1\r          puppetSound(3, member(38, \"Sfx\"))\r        end if\r        gDamagePercent = gDamagePercent + 0.5\r        if soundBusy(4) = 0 then\r          puppetSound(4, member(34 + ouchCount, \"Sfx\"))\r          ouchCount = ouchCount + 1\r          if ouchCount > 3 then\r            ouchCount = 0\r          end if\r        end if\r      else\r        if prevBolt = 1 then\r          prevBolt = 0\r          puppetSound(3, 0)\r        end if\r        bolt.locH = -1000\r        bolt.locV = -1000\r      end if\r    else\r      if prevBolt = 1 then\r        prevBolt = 0\r        puppetSound(3, 0)\r      end if\r      bolt.locH = -1000\r      bolt.locV = -1000\r    end if\r  end if\rend\r",
+    "name": "Transformer"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

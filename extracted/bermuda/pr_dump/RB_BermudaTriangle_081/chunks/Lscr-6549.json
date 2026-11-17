@@ -1,0 +1,136 @@
+{
+  "totalLength": 1040,
+  "totalLength2": 1040,
+  "headerLength": 92,
+  "scriptNumber": 202,
+  "unk20": 8,
+  "parentNumber": -1,
+  "scriptFlags": 2,
+  "unk42": 0,
+  "castID": 65538,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 12,
+  "handlerVectorsOffset": 1016,
+  "handlerVectorsSize": 2048,
+  "propertiesCount": 0,
+  "propertiesOffset": 92,
+  "globalsCount": 11,
+  "globalsOffset": 92,
+  "handlersCount": 3,
+  "handlersOffset": 114,
+  "literalsCount": 9,
+  "literalsOffset": 832,
+  "literalsDataCount": 112,
+  "literalsDataOffset": 904,
+  "propertyNameIDs": [],
+  "globalNameIDs": [
+    179,
+    180,
+    182,
+    439,
+    510,
+    574,
+    578,
+    672,
+    735,
+    745,
+    751
+  ],
+  "handlers": [
+    {
+      "nameID": 16,
+      "vectorPos": 11,
+      "compiledLen": 169,
+      "compiledOffset": 240,
+      "argumentCount": 0,
+      "argumentOffset": 410,
+      "localsCount": 0,
+      "localsOffset": 410,
+      "globalsCount": 0,
+      "globalsOffset": 410,
+      "unknown1": 155,
+      "unknown2": 4,
+      "lineCount": 37,
+      "lineOffset": 410
+    },
+    {
+      "nameID": 673,
+      "vectorPos": 65535,
+      "compiledLen": 87,
+      "compiledOffset": 448,
+      "argumentCount": 0,
+      "argumentOffset": 536,
+      "localsCount": 2,
+      "localsOffset": 536,
+      "globalsCount": 0,
+      "globalsOffset": 540,
+      "unknown1": 1386,
+      "unknown2": 45,
+      "lineCount": 12,
+      "lineOffset": 540
+    },
+    {
+      "nameID": 276,
+      "vectorPos": 65535,
+      "compiledLen": 238,
+      "compiledOffset": 552,
+      "argumentCount": 4,
+      "argumentOffset": 790,
+      "localsCount": 4,
+      "localsOffset": 798,
+      "globalsCount": 0,
+      "globalsOffset": 806,
+      "unknown1": 1902,
+      "unknown2": 63,
+      "lineCount": 26,
+      "lineOffset": 806
+    }
+  ],
+  "literals": [
+    {
+      "type": 1,
+      "offset": 0,
+      "value": "RBlade2"
+    },
+    {
+      "type": 1,
+      "offset": 12,
+      "value": "0"
+    },
+    {
+      "type": 1,
+      "offset": 18,
+      "value": "Author"
+    },
+    {
+      "type": 1,
+      "offset": 30,
+      "value": "stolen"
+    },
+    {
+      "type": 1,
+      "offset": 42,
+      "value": "MenuScreen"
+    },
+    {
+      "type": 1,
+      "offset": 58,
+      "value": "src"
+    },
+    {
+      "type": 1,
+      "offset": 66,
+      "value": "http:"
+    },
+    {
+      "type": 1,
+      "offset": 76,
+      "value": "shockwave.com"
+    },
+    {
+      "type": 1,
+      "offset": 94,
+      "value": "sticky3d.com"
+    }
+  ]
+}

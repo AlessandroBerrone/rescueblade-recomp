@@ -1,0 +1,82 @@
+property this, Xpos, Ypos, mapXPos, loopX, loopWidth
+global gXVel, gXOffset, gPaused, gTileIDList
+
+on beginSprite
+  [  0] getmovieprop 22 ......................... <the currentSpriteNum>
+  [  2] pusharglist 1 ........................... <the currentSpriteNum>
+  [  4] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [  6] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [  8] getprop 20 .............................. <this>
+  [ 10] getobjprop 36 ........................... <this.locH>
+  [ 13] pusharglist 1 ........................... <this.locH>
+  [ 15] extcall 33 .............................. <float(this.locH)>
+  [ 18] setprop 48 .............................. Xpos = float(this.locH)
+  [ 21] getprop 20 .............................. <this>
+  [ 23] getobjprop 37 ........................... <this.locV>
+  [ 26] pusharglist 1 ........................... <this.locV>
+  [ 28] extcall 33 .............................. <float(this.locV)>
+  [ 31] setprop 38 .............................. Ypos = float(this.locV)
+  [ 34] getprop 20 .............................. <this>
+  [ 36] pushint8 3 .............................. <3>
+  [ 39] setobjprop 178 .......................... this.locZ = 3
+  [ 42] getprop 48 .............................. <Xpos>
+  [ 45] pushint8 256 ............................ <256>
+  [ 48] sub ..................................... <Xpos - 256>
+  [ 49] setprop 366 ............................. mapXPos = Xpos - 256
+  [ 52] getglobal 180 ........................... <gTileIDList>
+  [ 55] getobjprop 183 .......................... <gTileIDList.count>
+  [ 58] pushint8 128 ............................ <128>
+  [ 61] mul ..................................... <gTileIDList.count * 128>
+  [ 62] pushcons 0 .............................. <0.25>
+  [ 64] mul ..................................... <gTileIDList.count * 128 * 0.25>
+  [ 65] getprop 48 .............................. <Xpos>
+  [ 68] sub ..................................... <(gTileIDList.count * 128 * 0.25) - Xpos>
+  [ 69] setprop 608 ............................. loopX = (gTileIDList.count * 128 * 0.25) - Xpos
+  [ 72] getglobal 180 ........................... <gTileIDList>
+  [ 75] getobjprop 183 .......................... <gTileIDList.count>
+  [ 78] pushint8 128 ............................ <128>
+  [ 81] mul ..................................... <gTileIDList.count * 128>
+  [ 82] pushcons 8 .............................. <0.25>
+  [ 84] mul ..................................... <gTileIDList.count * 128 * 0.25>
+  [ 85] setprop 54 .............................. loopWidth = gTileIDList.count * 128 * 0.25
+  [ 88] ret
+end
+
+on exitFrame
+  [  0] getglobal 364 ........................... <gPaused>
+  [  3] pushzero ................................ <0>
+  [  4] eq ...................................... <gPaused = 0>
+  [  5] jmpifz [ 82] ............................ if gPaused = 0 then
+  [  8] getprop 48 .............................. <Xpos>
+  [ 11] getglobal 47 ............................ <gXVel>
+  [ 14] getglobal 55 ............................ <gXOffset>
+  [ 17] add ..................................... <gXVel + gXOffset>
+  [ 18] pushcons 16 ............................. <0.25>
+  [ 20] mul ..................................... <(gXVel + gXOffset) * 0.25>
+  [ 21] add ..................................... <Xpos + ((gXVel + gXOffset) * 0.25)>
+  [ 22] setprop 48 .............................. Xpos = Xpos + ((gXVel + gXOffset) * 0.25)
+  [ 25] getprop 48 .............................. <Xpos>
+  [ 28] getprop 608 ............................. <loopX>
+  [ 31] gt ...................................... <Xpos > loopX>
+  [ 32] jmpifz [ 45] ............................ if Xpos > loopX then
+  [ 35] getprop 48 .............................. <Xpos>
+  [ 38] getprop 54 .............................. <loopWidth>
+  [ 41] sub ..................................... <Xpos - loopWidth>
+  [ 42] setprop 48 .............................. Xpos = Xpos - loopWidth
+  [ 45] getprop 48 .............................. <Xpos>
+  [ 48] getprop 608 ............................. <loopX>
+  [ 51] inv ..................................... <-loopX>
+  [ 52] lt ...................................... <Xpos < -loopX>
+  [ 53] jmpifz [ 66] ............................ if Xpos < -loopX then
+  [ 56] getprop 48 .............................. <Xpos>
+  [ 59] getprop 54 .............................. <loopWidth>
+  [ 62] add ..................................... <Xpos + loopWidth>
+  [ 63] setprop 48 .............................. Xpos = Xpos + loopWidth
+  [ 66] getprop 20 .............................. <this>
+  [ 68] getprop 48 .............................. <Xpos>
+  [ 71] setobjprop 36 ........................... this.locH = Xpos
+  [ 74] getprop 20 .............................. <this>
+  [ 76] getprop 38 .............................. <Ypos>
+  [ 79] setobjprop 37 ........................... this.locV = Ypos
+  [ 82] ret
+end

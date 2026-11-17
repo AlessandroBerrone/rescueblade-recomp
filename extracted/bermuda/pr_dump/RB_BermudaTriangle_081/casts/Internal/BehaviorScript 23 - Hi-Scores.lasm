@@ -1,0 +1,330 @@
+property this, scoreList, lockFlash, lockOutFlashCount1, lockOutFlashCount2
+global gLevelScoreList, gScoreTotal, gLockOut
+
+on beginSprite
+  [  0] getmovieprop 22 ......................... <the currentSpriteNum>
+  [  2] pusharglist 1 ........................... <the currentSpriteNum>
+  [  4] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [  6] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [  8] pusharglist 0 ........................... <[]>
+  [ 10] pushlist ................................ <[]>
+  [ 11] setprop 579 ............................. scoreList = []
+  [ 14] pushzero ................................ <0>
+  [ 15] setglobal 672 ........................... gScoreTotal = 0
+  [ 18] pushint8 1 .............................. <1>
+  [ 21] setlocal 0
+  [ 23] getlocal 0
+  [ 25] pushint8 9 .............................. <9>
+  [ 28] lteq
+  [ 29] jmpifz [173] ............................ repeat with i = 1 to 9
+  [ 32] getglobal 672 ........................... <gScoreTotal>
+  [ 35] getglobal 578 ........................... <gLevelScoreList>
+  [ 38] getlocal 0 .............................. <i>
+  [ 40] pusharglist 2 ........................... <gLevelScoreList, i>
+  [ 42] objcall 185 ............................. <gLevelScoreList[i]>
+  [ 45] add ..................................... <gScoreTotal + gLevelScoreList[i]>
+  [ 46] setglobal 672 ........................... gScoreTotal = gScoreTotal + gLevelScoreList[i]
+  [ 49] getglobal 578 ........................... <gLevelScoreList>
+  [ 52] getlocal 0 .............................. <i>
+  [ 54] pusharglist 2 ........................... <gLevelScoreList, i>
+  [ 56] objcall 185 ............................. <gLevelScoreList[i]>
+  [ 59] setlocal 8 .............................. calcScore = gLevelScoreList[i]
+  [ 61] pushcons 0 .............................. <EMPTY>
+  [ 63] setlocal 16 ............................. tempString = EMPTY
+  [ 65] pushint8 7 .............................. <7>
+  [ 68] setlocal 24
+  [ 70] getlocal 24
+  [ 72] pushint8 1 .............................. <1>
+  [ 75] gteq
+  [ 76] jmpifz [152] ............................ repeat with j = 7 down to 1
+  [ 79] getlocal 8 .............................. <calcScore>
+  [ 81] pushint8 10 ............................. <10>
+  [ 84] getlocal 24 ............................. <j>
+  [ 86] pushint8 1 .............................. <1>
+  [ 89] sub ..................................... <j - 1>
+  [ 90] pusharglist 2 ........................... <10, j - 1>
+  [ 92] extcall 423 ............................. <power(10, j - 1)>
+  [ 95] mod ..................................... <calcScore mod power(10, j - 1)>
+  [ 96] setlocal 32 ............................. temp = calcScore mod power(10, j - 1)
+  [ 98] getlocal 8 .............................. <calcScore>
+  [100] getlocal 32 ............................. <temp>
+  [102] sub ..................................... <calcScore - temp>
+  [103] pushint8 10 ............................. <10>
+  [106] getlocal 24 ............................. <j>
+  [108] pushint8 1 .............................. <1>
+  [111] sub ..................................... <j - 1>
+  [112] pusharglist 2 ........................... <10, j - 1>
+  [114] extcall 423 ............................. <power(10, j - 1)>
+  [117] div ..................................... <(calcScore - temp) / power(10, j - 1)>
+  [118] setlocal 40 ............................. temp1 = (calcScore - temp) / power(10, j - 1)
+  [120] getlocal 32 ............................. <temp>
+  [122] setlocal 8 .............................. calcScore = temp
+  [124] getlocal 16 ............................. <tempString>
+  [126] getlocal 40 ............................. <temp1>
+  [128] pusharglist 1 ........................... <temp1>
+  [130] extcall 39 .............................. <integer(temp1)>
+  [133] pusharglist 1 ........................... <integer(temp1)>
+  [135] extcall 71 .............................. <string(integer(temp1))>
+  [138] joinstr ................................. <tempString & string(integer(temp1))>
+  [139] setlocal 16 ............................. tempString = tempString & string(integer(temp1))
+  [141] pushint8 -1
+  [144] getlocal 24
+  [146] add
+  [147] setlocal 24
+  [149] endrepeat [ 70]
+  [152] getprop 579 ............................. <scoreList>
+  [155] getlocal 16 ............................. <tempString>
+  [157] pusharglistnoret 2 ...................... <scoreList, tempString>
+  [159] objcall 418 ............................. scoreList.add(tempString)
+  [162] pushint8 1
+  [165] getlocal 0
+  [167] add
+  [168] setlocal 0
+  [170] endrepeat [ 23]
+  [173] getglobal 672 ........................... <gScoreTotal>
+  [176] setlocal 8 .............................. calcScore = gScoreTotal
+  [178] pushcons 8 .............................. <EMPTY>
+  [180] setlocal 16 ............................. tempString = EMPTY
+  [182] pushint8 7 .............................. <7>
+  [185] setlocal 24
+  [187] getlocal 24
+  [189] pushint8 1 .............................. <1>
+  [192] gteq
+  [193] jmpifz [269] ............................ repeat with j = 7 down to 1
+  [196] getlocal 8 .............................. <calcScore>
+  [198] pushint8 10 ............................. <10>
+  [201] getlocal 24 ............................. <j>
+  [203] pushint8 1 .............................. <1>
+  [206] sub ..................................... <j - 1>
+  [207] pusharglist 2 ........................... <10, j - 1>
+  [209] extcall 423 ............................. <power(10, j - 1)>
+  [212] mod ..................................... <calcScore mod power(10, j - 1)>
+  [213] setlocal 32 ............................. temp = calcScore mod power(10, j - 1)
+  [215] getlocal 8 .............................. <calcScore>
+  [217] getlocal 32 ............................. <temp>
+  [219] sub ..................................... <calcScore - temp>
+  [220] pushint8 10 ............................. <10>
+  [223] getlocal 24 ............................. <j>
+  [225] pushint8 1 .............................. <1>
+  [228] sub ..................................... <j - 1>
+  [229] pusharglist 2 ........................... <10, j - 1>
+  [231] extcall 423 ............................. <power(10, j - 1)>
+  [234] div ..................................... <(calcScore - temp) / power(10, j - 1)>
+  [235] setlocal 40 ............................. temp1 = (calcScore - temp) / power(10, j - 1)
+  [237] getlocal 32 ............................. <temp>
+  [239] setlocal 8 .............................. calcScore = temp
+  [241] getlocal 16 ............................. <tempString>
+  [243] getlocal 40 ............................. <temp1>
+  [245] pusharglist 1 ........................... <temp1>
+  [247] extcall 39 .............................. <integer(temp1)>
+  [250] pusharglist 1 ........................... <integer(temp1)>
+  [252] extcall 71 .............................. <string(integer(temp1))>
+  [255] joinstr ................................. <tempString & string(integer(temp1))>
+  [256] setlocal 16 ............................. tempString = tempString & string(integer(temp1))
+  [258] pushint8 -1
+  [261] getlocal 24
+  [263] add
+  [264] setlocal 24
+  [266] endrepeat [187]
+  [269] getprop 579 ............................. <scoreList>
+  [272] getlocal 16 ............................. <tempString>
+  [274] pusharglistnoret 2 ...................... <scoreList, tempString>
+  [276] objcall 418 ............................. scoreList.add(tempString)
+  [279] getprop 20 .............................. <this>
+  [281] getobjprop 27 ........................... <this.member>
+  [283] getprop 579 ............................. <scoreList>
+  [286] pushint8 1 .............................. <1>
+  [289] pusharglist 2 ........................... <scoreList, 1>
+  [291] objcall 185 ............................. <scoreList[1]>
+  [294] pushcons 16 ............................. <RETURN>
+  [296] joinstr ................................. <scoreList[1] & RETURN>
+  [297] getprop 579 ............................. <scoreList>
+  [300] pushint8 2 .............................. <2>
+  [303] pusharglist 2 ........................... <scoreList, 2>
+  [305] objcall 185 ............................. <scoreList[2]>
+  [308] joinstr ................................. <scoreList[1] & RETURN & scoreList[2]>
+  [309] pushcons 24 ............................. <RETURN>
+  [311] joinstr ................................. <scoreList[1] & RETURN & scoreList[2] & RETURN>
+  [312] getprop 579 ............................. <scoreList>
+  [315] pushint8 3 .............................. <3>
+  [318] pusharglist 2 ........................... <scoreList, 3>
+  [320] objcall 185 ............................. <scoreList[3]>
+  [323] joinstr ................................. <scoreList[1] & RETURN & scoreList[2] & RETURN & scoreList[3]>
+  [324] pushcons 32 ............................. <RETURN>
+  [326] joinstr ................................. <scoreList[1] & RETURN & scoreList[2] & RETURN & scoreList[3] & RETURN>
+  [327] getprop 579 ............................. <scoreList>
+  [330] pushint8 4 .............................. <4>
+  [333] pusharglist 2 ........................... <scoreList, 4>
+  [335] objcall 185 ............................. <scoreList[4]>
+  [338] joinstr ................................. <scoreList[1] & RETURN & scoreList[2] & RETURN & scoreList[3] & RETURN & scoreList[4]>
+  [339] pushcons 40 ............................. <RETURN>
+  [341] joinstr ................................. <scoreList[1] & RETURN & scoreList[2] & RETURN & scoreList[3] & RETURN & scoreList[4] & RETURN>
+  [342] pushcons 48 ............................. <RETURN>
+  [344] joinstr ................................. <scoreList[1] & RETURN & scoreList[2] & RETURN & scoreList[3] & RETURN & scoreList[4] & RETURN & RETURN>
+  [345] getprop 579 ............................. <scoreList>
+  [348] pushint8 10 ............................. <10>
+  [351] pusharglist 2 ........................... <scoreList, 10>
+  [353] objcall 185 ............................. <scoreList[10]>
+  [356] joinstr ................................. <scoreList[1] & RETURN & scoreList[2] & RETURN & scoreList[3] & RETURN & scoreList[4] & RETURN & RETURN & scoreList[10]>
+  [357] setobjprop 101 .......................... this.member.text = scoreList[1] & RETURN & scoreList[2] & RETURN & scoreList[3] & RETURN & scoreList[4] & RETURN & RETURN & scoreList[10]
+  [360] pushcons 56 ............................. <"SubmitScore">
+  [362] pushcons 64 ............................. <"Gfx">
+  [364] pusharglist 2 ........................... <"SubmitScore", "Gfx">
+  [366] extcall 27 .............................. <member("SubmitScore", "Gfx")>
+  [368] getglobal 672 ........................... <gScoreTotal>
+  [371] pusharglist 1 ........................... <gScoreTotal>
+  [373] extcall 71 .............................. <string(gScoreTotal)>
+  [376] setobjprop 101 .......................... member("SubmitScore", "Gfx").text = string(gScoreTotal)
+  [379] getglobal 578 ........................... <gLevelScoreList>
+  [382] pushint8 1 .............................. <1>
+  [385] pusharglist 2 ........................... <gLevelScoreList, 1>
+  [387] objcall 185 ............................. <gLevelScoreList[1]>
+  [390] getglobal 578 ........................... <gLevelScoreList>
+  [393] pushint8 2 .............................. <2>
+  [396] pusharglist 2 ........................... <gLevelScoreList, 2>
+  [398] objcall 185 ............................. <gLevelScoreList[2]>
+  [401] and ..................................... <gLevelScoreList[1] and gLevelScoreList[2]>
+  [402] getglobal 578 ........................... <gLevelScoreList>
+  [405] pushint8 3 .............................. <3>
+  [408] pusharglist 2 ........................... <gLevelScoreList, 3>
+  [410] objcall 185 ............................. <gLevelScoreList[3]>
+  [413] and ..................................... <gLevelScoreList[1] and gLevelScoreList[2] and gLevelScoreList[3]>
+  [414] jmpifz [431] ............................ if gLevelScoreList[1] and gLevelScoreList[2] and gLevelScoreList[3] then
+  [417] getglobal 745 ........................... <gLockOut>
+  [420] pushcons 72 ............................. <"0">
+  [422] eq ...................................... <gLockOut = "0">
+  [423] jmpifz [431] ............................ if gLockOut = "0" then
+  [426] pushcons 80 ............................. <"1">
+  [428] setglobal 745 ........................... gLockOut = "1"
+  [431] getglobal 578 ........................... <gLevelScoreList>
+  [434] pushint8 4 .............................. <4>
+  [437] pusharglist 2 ........................... <gLevelScoreList, 4>
+  [439] objcall 185 ............................. <gLevelScoreList[4]>
+  [442] getglobal 578 ........................... <gLevelScoreList>
+  [445] pushint8 5 .............................. <5>
+  [448] pusharglist 2 ........................... <gLevelScoreList, 5>
+  [450] objcall 185 ............................. <gLevelScoreList[5]>
+  [453] and ..................................... <gLevelScoreList[4] and gLevelScoreList[5]>
+  [454] getglobal 578 ........................... <gLevelScoreList>
+  [457] pushint8 6 .............................. <6>
+  [460] pusharglist 2 ........................... <gLevelScoreList, 6>
+  [462] objcall 185 ............................. <gLevelScoreList[6]>
+  [465] and ..................................... <gLevelScoreList[4] and gLevelScoreList[5] and gLevelScoreList[6]>
+  [466] jmpifz [483] ............................ if gLevelScoreList[4] and gLevelScoreList[5] and gLevelScoreList[6] then
+  [469] getglobal 745 ........................... <gLockOut>
+  [472] pushcons 88 ............................. <"1">
+  [474] eq ...................................... <gLockOut = "1">
+  [475] jmpifz [483] ............................ if gLockOut = "1" then
+  [478] pushcons 96 ............................. <"2">
+  [480] setglobal 745 ........................... gLockOut = "2"
+  [483] getmovieprop 719 ........................ <the environment>
+  [486] getobjprop 720 .......................... <(the environment).runMode>
+  [489] pushcons 104 ............................ <"Author">
+  [491] eq ...................................... <(the environment).runMode = "Author">
+  [492] jmpifz [500] ............................ if (the environment).runMode = "Author" then
+  [495] pushcons 112 ............................ <"2">
+  [497] setglobal 745 ........................... gLockOut = "2"
+  [500] getglobal 745 ........................... <gLockOut>
+  [503] peek 0 .................................. case gLockOut of
+  [505] pushcons 120 ............................ <"0">
+  [507] eq
+  [508] jmpifz [514] ............................ (case) "0":
+  [511] jmp [575]
+  [514] peek 0
+  [516] pushcons 128 ............................ <"1">
+  [518] eq
+  [519] jmpifz [539] ............................ (case) "1":
+  [522] pushint8 19 ............................. <19>
+  [525] pusharglist 1 ........................... <19>
+  [527] extcall 21 .............................. <sprite(19)>
+  [529] pushint8 1000 ........................... <1000>
+  [532] inv ..................................... <-1000>
+  [533] setobjprop 37 ........................... sprite(19).locV = -1000
+  [536] jmp [575]
+  [539] peek 0
+  [541] pushcons 136 ............................ <"2">
+  [543] eq
+  [544] jmpifz [575] ............................ (case) "2":
+  [547] pushint8 19 ............................. <19>
+  [550] pusharglist 1 ........................... <19>
+  [552] extcall 21 .............................. <sprite(19)>
+  [554] pushint8 1000 ........................... <1000>
+  [557] inv ..................................... <-1000>
+  [558] setobjprop 37 ........................... sprite(19).locV = -1000
+  [561] pushint8 20 ............................. <20>
+  [564] pusharglist 1 ........................... <20>
+  [566] extcall 21 .............................. <sprite(20)>
+  [568] pushint8 1000 ........................... <1000>
+  [571] inv ..................................... <-1000>
+  [572] setobjprop 37 ........................... sprite(20).locV = -1000
+  [575] pop 1 ................................... end case
+  [577] pushzero ................................ <0>
+  [578] setprop 748 ............................. lockOutFlashCount2 = 0
+  [581] pushzero ................................ <0>
+  [582] setprop 749 ............................. lockOutFlashCount1 = 0
+  [585] ret
+end
+
+on exitFrame
+  [  0] pushint8 19 ............................. <19>
+  [  3] pusharglist 1 ........................... <19>
+  [  5] extcall 21 .............................. <sprite(19)>
+  [  7] getobjprop 173 .......................... <sprite(19).blend>
+  [ 10] pushzero ................................ <0>
+  [ 11] eq ...................................... <sprite(19).blend = 0>
+  [ 12] getprop 749 ............................. <lockOutFlashCount1>
+  [ 15] pushzero ................................ <0>
+  [ 16] eq ...................................... <lockOutFlashCount1 = 0>
+  [ 17] and ..................................... <(sprite(19).blend = 0) and (lockOutFlashCount1 = 0)>
+  [ 18] jmpifz [ 27] ............................ if (sprite(19).blend = 0) and (lockOutFlashCount1 = 0) then
+  [ 21] pushint8 10 ............................. <10>
+  [ 24] setprop 749 ............................. lockOutFlashCount1 = 10
+  [ 27] getprop 749 ............................. <lockOutFlashCount1>
+  [ 30] pushzero ................................ <0>
+  [ 31] gt ...................................... <lockOutFlashCount1 > 0>
+  [ 32] jmpifz [ 66] ............................ if lockOutFlashCount1 > 0 then
+  [ 35] pushint8 19 ............................. <19>
+  [ 38] pusharglist 1 ........................... <19>
+  [ 40] extcall 21 .............................. <sprite(19)>
+  [ 42] pushint8 100 ............................ <100>
+  [ 45] getprop 749 ............................. <lockOutFlashCount1>
+  [ 48] pushint8 2 .............................. <2>
+  [ 51] mod ..................................... <lockOutFlashCount1 mod 2>
+  [ 52] mul ..................................... <100 * (lockOutFlashCount1 mod 2)>
+  [ 53] setobjprop 173 .......................... sprite(19).blend = 100 * (lockOutFlashCount1 mod 2)
+  [ 56] getprop 749 ............................. <lockOutFlashCount1>
+  [ 59] pushint8 1 .............................. <1>
+  [ 62] sub ..................................... <lockOutFlashCount1 - 1>
+  [ 63] setprop 749 ............................. lockOutFlashCount1 = lockOutFlashCount1 - 1
+  [ 66] pushint8 20 ............................. <20>
+  [ 69] pusharglist 1 ........................... <20>
+  [ 71] extcall 21 .............................. <sprite(20)>
+  [ 73] getobjprop 173 .......................... <sprite(20).blend>
+  [ 76] pushzero ................................ <0>
+  [ 77] eq ...................................... <sprite(20).blend = 0>
+  [ 78] getprop 748 ............................. <lockOutFlashCount2>
+  [ 81] pushzero ................................ <0>
+  [ 82] eq ...................................... <lockOutFlashCount2 = 0>
+  [ 83] and ..................................... <(sprite(20).blend = 0) and (lockOutFlashCount2 = 0)>
+  [ 84] jmpifz [ 93] ............................ if (sprite(20).blend = 0) and (lockOutFlashCount2 = 0) then
+  [ 87] pushint8 10 ............................. <10>
+  [ 90] setprop 748 ............................. lockOutFlashCount2 = 10
+  [ 93] getprop 748 ............................. <lockOutFlashCount2>
+  [ 96] pushzero ................................ <0>
+  [ 97] gt ...................................... <lockOutFlashCount2 > 0>
+  [ 98] jmpifz [132] ............................ if lockOutFlashCount2 > 0 then
+  [101] pushint8 20 ............................. <20>
+  [104] pusharglist 1 ........................... <20>
+  [106] extcall 21 .............................. <sprite(20)>
+  [108] pushint8 100 ............................ <100>
+  [111] getprop 748 ............................. <lockOutFlashCount2>
+  [114] pushint8 2 .............................. <2>
+  [117] mod ..................................... <lockOutFlashCount2 mod 2>
+  [118] mul ..................................... <100 * (lockOutFlashCount2 mod 2)>
+  [119] setobjprop 173 .......................... sprite(20).blend = 100 * (lockOutFlashCount2 mod 2)
+  [122] getprop 748 ............................. <lockOutFlashCount2>
+  [125] pushint8 1 .............................. <1>
+  [128] sub ..................................... <lockOutFlashCount2 - 1>
+  [129] setprop 748 ............................. lockOutFlashCount2 = lockOutFlashCount2 - 1
+  [132] ret
+end

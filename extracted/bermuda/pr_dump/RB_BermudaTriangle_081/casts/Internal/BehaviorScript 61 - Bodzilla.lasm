@@ -1,0 +1,1397 @@
+property radians, Body, ArmBack, ArmFront, Head, Tail, bodzillaState, Xpos, Ypos, loopX, loopWidth, Xvel, ArmBackOffset, ArmFrontOffset, HeadOffset, tailOffset, counter, waggleList, waggleListPointer1, waggleListPointer2, cableGuy, bodzillaScale, BONK, Sink, fireBall, COPTER
+global gPaused, gXVel, gXOffset, gTileIDList, gCoconutList, gRescueCount, gScore, gPloshX
+
+on getPropertyDescriptionList me
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setlocal 0 .............................. descriptionList = [:]
+  [  5] getlocal 0 .............................. <descriptionList>
+  [  7] pushsymb 921 ............................ <#bodzillaScale>
+  [ 10] pushsymb 9 .............................. <#default>
+  [ 12] pushint8 1 .............................. <1>
+  [ 15] pushsymb 70 ............................. <#format>
+  [ 18] pushsymb 33 ............................. <#float>
+  [ 21] pushsymb 64 ............................. <#comment>
+  [ 24] pushcons 0 .............................. <"Bodzilla Scale Decimal Fraction">
+  [ 26] pusharglist 6 ........................... <[#default: 1, #format: #float, #comment: "Bodzilla Scale Decimal Fraction"]>
+  [ 28] pushproplist ............................ <[#default: 1, #format: #float, #comment: "Bodzilla Scale Decimal Fraction"]>
+  [ 29] pusharglistnoret 3 ...................... <descriptionList, #bodzillaScale, [#default: 1, #format: #float, #comment: "Bodzilla Scale Decimal Fraction"]>
+  [ 31] extcall 611 ............................. addProp(descriptionList, #bodzillaScale, [#default: 1, #format: #float, #comment: "Bodzilla Scale Decimal Fraction"])
+  [ 34] getlocal 0 .............................. <descriptionList>
+  [ 36] pusharglistnoret 1 ...................... <descriptionList>
+  [ 38] extcall 2 ............................... return descriptionList
+  [ 40] ret
+end
+
+on beginSprite
+  [  0] pusharglist 0 ........................... <>
+  [  2] extcall 41 .............................. <PI>
+  [  5] pushint8 180 ............................ <180>
+  [  8] div ..................................... <PI / 180>
+  [  9] pusharglist 1 ........................... <PI / 180>
+  [ 11] extcall 33 .............................. <float(PI / 180)>
+  [ 14] setprop 40 .............................. radians = float(PI / 180)
+  [ 17] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 19] pushint8 2 .............................. <2>
+  [ 22] sub ..................................... <the currentSpriteNum - 2>
+  [ 23] pusharglist 1 ........................... <the currentSpriteNum - 2>
+  [ 25] extcall 21 .............................. <sprite(the currentSpriteNum - 2)>
+  [ 27] setprop 930 ............................. fireBall = sprite(the currentSpriteNum - 2)
+  [ 30] pushint8 4 .............................. <4>
+  [ 33] pusharglist 1 ........................... <4>
+  [ 35] extcall 21 .............................. <sprite(4)>
+  [ 37] setprop 341 ............................. COPTER = sprite(4)
+  [ 40] pushint8 6 .............................. <6>
+  [ 43] pusharglist 1 ........................... <6>
+  [ 45] extcall 21 .............................. <sprite(6)>
+  [ 47] setprop 342 ............................. cableGuy = sprite(6)
+  [ 50] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 52] pushint8 1 .............................. <1>
+  [ 55] sub ..................................... <the currentSpriteNum - 1>
+  [ 56] pusharglist 1 ........................... <the currentSpriteNum - 1>
+  [ 58] extcall 21 .............................. <sprite(the currentSpriteNum - 1)>
+  [ 60] setprop 897 ............................. ArmBack = sprite(the currentSpriteNum - 1)
+  [ 63] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 65] pusharglist 1 ........................... <the currentSpriteNum>
+  [ 67] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [ 69] setprop 898 ............................. Body = sprite(the currentSpriteNum)
+  [ 72] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 74] pushint8 1 .............................. <1>
+  [ 77] add ..................................... <the currentSpriteNum + 1>
+  [ 78] pusharglist 1 ........................... <the currentSpriteNum + 1>
+  [ 80] extcall 21 .............................. <sprite(the currentSpriteNum + 1)>
+  [ 82] setprop 899 ............................. ArmFront = sprite(the currentSpriteNum + 1)
+  [ 85] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 87] pushint8 2 .............................. <2>
+  [ 90] add ..................................... <the currentSpriteNum + 2>
+  [ 91] pusharglist 1 ........................... <the currentSpriteNum + 2>
+  [ 93] extcall 21 .............................. <sprite(the currentSpriteNum + 2)>
+  [ 95] setprop 900 ............................. Head = sprite(the currentSpriteNum + 2)
+  [ 98] getmovieprop 22 ......................... <the currentSpriteNum>
+  [100] pushint8 3 .............................. <3>
+  [103] add ..................................... <the currentSpriteNum + 3>
+  [104] pusharglist 1 ........................... <the currentSpriteNum + 3>
+  [106] extcall 21 .............................. <sprite(the currentSpriteNum + 3)>
+  [108] setprop 901 ............................. Tail = sprite(the currentSpriteNum + 3)
+  [111] getprop 897 ............................. <ArmBack>
+  [114] pushint8 946 ............................ <946>
+  [117] setobjprop 178 .......................... ArmBack.locZ = 946
+  [120] getprop 898 ............................. <Body>
+  [123] pushint8 947 ............................ <947>
+  [126] setobjprop 178 .......................... Body.locZ = 947
+  [129] getprop 899 ............................. <ArmFront>
+  [132] pushint8 948 ............................ <948>
+  [135] setobjprop 178 .......................... ArmFront.locZ = 948
+  [138] getprop 900 ............................. <Head>
+  [141] pushint8 949 ............................ <949>
+  [144] setobjprop 178 .......................... Head.locZ = 949
+  [147] getprop 901 ............................. <Tail>
+  [150] pushint8 949 ............................ <949>
+  [153] setobjprop 178 .......................... Tail.locZ = 949
+  [156] getprop 898 ............................. <Body>
+  [159] getprop 898 ............................. <Body>
+  [162] getobjprop 50 ........................... <Body.width>
+  [165] getprop 921 ............................. <bodzillaScale>
+  [168] mul ..................................... <Body.width * bodzillaScale>
+  [169] setobjprop 50 ........................... Body.width = Body.width * bodzillaScale
+  [172] getprop 898 ............................. <Body>
+  [175] getprop 898 ............................. <Body>
+  [178] getobjprop 97 ........................... <Body.height>
+  [181] getprop 921 ............................. <bodzillaScale>
+  [184] mul ..................................... <Body.height * bodzillaScale>
+  [185] setobjprop 97 ........................... Body.height = Body.height * bodzillaScale
+  [188] getprop 897 ............................. <ArmBack>
+  [191] getprop 897 ............................. <ArmBack>
+  [194] getobjprop 50 ........................... <ArmBack.width>
+  [197] getprop 921 ............................. <bodzillaScale>
+  [200] mul ..................................... <ArmBack.width * bodzillaScale>
+  [201] setobjprop 50 ........................... ArmBack.width = ArmBack.width * bodzillaScale
+  [204] getprop 897 ............................. <ArmBack>
+  [207] getprop 897 ............................. <ArmBack>
+  [210] getobjprop 97 ........................... <ArmBack.height>
+  [213] getprop 921 ............................. <bodzillaScale>
+  [216] mul ..................................... <ArmBack.height * bodzillaScale>
+  [217] setobjprop 97 ........................... ArmBack.height = ArmBack.height * bodzillaScale
+  [220] getprop 899 ............................. <ArmFront>
+  [223] getprop 899 ............................. <ArmFront>
+  [226] getobjprop 50 ........................... <ArmFront.width>
+  [229] getprop 921 ............................. <bodzillaScale>
+  [232] mul ..................................... <ArmFront.width * bodzillaScale>
+  [233] setobjprop 50 ........................... ArmFront.width = ArmFront.width * bodzillaScale
+  [236] getprop 899 ............................. <ArmFront>
+  [239] getprop 899 ............................. <ArmFront>
+  [242] getobjprop 97 ........................... <ArmFront.height>
+  [245] getprop 921 ............................. <bodzillaScale>
+  [248] mul ..................................... <ArmFront.height * bodzillaScale>
+  [249] setobjprop 97 ........................... ArmFront.height = ArmFront.height * bodzillaScale
+  [252] getprop 900 ............................. <Head>
+  [255] getprop 900 ............................. <Head>
+  [258] getobjprop 27 ........................... <Head.member>
+  [260] getobjprop 50 ........................... <Head.member.width>
+  [263] getprop 921 ............................. <bodzillaScale>
+  [266] mul ..................................... <Head.member.width * bodzillaScale>
+  [267] setobjprop 50 ........................... Head.width = Head.member.width * bodzillaScale
+  [270] getprop 900 ............................. <Head>
+  [273] getprop 900 ............................. <Head>
+  [276] getobjprop 27 ........................... <Head.member>
+  [278] getobjprop 97 ........................... <Head.member.height>
+  [281] getprop 921 ............................. <bodzillaScale>
+  [284] mul ..................................... <Head.member.height * bodzillaScale>
+  [285] setobjprop 97 ........................... Head.height = Head.member.height * bodzillaScale
+  [288] getprop 901 ............................. <Tail>
+  [291] getprop 901 ............................. <Tail>
+  [294] getobjprop 50 ........................... <Tail.width>
+  [297] getprop 921 ............................. <bodzillaScale>
+  [300] mul ..................................... <Tail.width * bodzillaScale>
+  [301] setobjprop 50 ........................... Tail.width = Tail.width * bodzillaScale
+  [304] getprop 901 ............................. <Tail>
+  [307] getprop 901 ............................. <Tail>
+  [310] getobjprop 97 ........................... <Tail.height>
+  [313] getprop 921 ............................. <bodzillaScale>
+  [316] mul ..................................... <Tail.height * bodzillaScale>
+  [317] setobjprop 97 ........................... Tail.height = Tail.height * bodzillaScale
+  [320] getglobal 180 ........................... <gTileIDList>
+  [323] getobjprop 183 .......................... <gTileIDList.count>
+  [326] pushint8 128 ............................ <128>
+  [329] mul ..................................... <gTileIDList.count * 128>
+  [330] pushcons 8 .............................. <0.5>
+  [332] mul ..................................... <gTileIDList.count * 128 * 0.5>
+  [333] setprop 608 ............................. loopX = gTileIDList.count * 128 * 0.5
+  [336] getglobal 180 ........................... <gTileIDList>
+  [339] getobjprop 183 .......................... <gTileIDList.count>
+  [342] pushint8 128 ............................ <128>
+  [345] mul ..................................... <gTileIDList.count * 128>
+  [346] setprop 54 .............................. loopWidth = gTileIDList.count * 128
+  [349] getprop 898 ............................. <Body>
+  [352] getobjprop 36 ........................... <Body.locH>
+  [355] setprop 48 .............................. Xpos = Body.locH
+  [358] getprop 898 ............................. <Body>
+  [361] getobjprop 37 ........................... <Body.locV>
+  [364] setprop 38 .............................. Ypos = Body.locV
+  [367] pushsymb 903 ............................ <#STAND>
+  [370] setprop 902 ............................. bodzillaState = #STAND
+  [373] pushzero ................................ <0>
+  [374] setprop 44 .............................. Xvel = 0
+  [377] pushzero ................................ <0>
+  [378] setprop 908 ............................. counter = 0
+  [381] pushzero ................................ <0>
+  [382] setprop 927 ............................. BONK = 0
+  [385] pushzero ................................ <0>
+  [386] setprop 929 ............................. Sink = 0
+  [389] pushint8 15 ............................. <15>
+  [392] pushint8 90 ............................. <90>
+  [395] pusharglist 2 ........................... <15, 90>
+  [397] extcall 57 .............................. <point(15, 90)>
+  [400] getprop 921 ............................. <bodzillaScale>
+  [403] mul ..................................... <point(15, 90) * bodzillaScale>
+  [404] setprop 904 ............................. ArmBackOffset = point(15, 90) * bodzillaScale
+  [407] pushint8 14 ............................. <14>
+  [410] inv ..................................... <-14>
+  [411] pushint8 85 ............................. <85>
+  [414] pusharglist 2 ........................... <-14, 85>
+  [416] extcall 57 .............................. <point(-14, 85)>
+  [419] getprop 921 ............................. <bodzillaScale>
+  [422] mul ..................................... <point(-14, 85) * bodzillaScale>
+  [423] setprop 905 ............................. ArmFrontOffset = point(-14, 85) * bodzillaScale
+  [426] pushint8 2 .............................. <2>
+  [429] inv ..................................... <-2>
+  [430] pushint8 131 ............................ <131>
+  [433] pusharglist 2 ........................... <-2, 131>
+  [435] extcall 57 .............................. <point(-2, 131)>
+  [438] getprop 921 ............................. <bodzillaScale>
+  [441] mul ..................................... <point(-2, 131) * bodzillaScale>
+  [442] setprop 906 ............................. HeadOffset = point(-2, 131) * bodzillaScale
+  [445] pushint8 81 ............................. <81>
+  [448] inv ..................................... <-81>
+  [449] pushint8 9 .............................. <9>
+  [452] pusharglist 2 ........................... <-81, 9>
+  [454] extcall 57 .............................. <point(-81, 9)>
+  [457] getprop 921 ............................. <bodzillaScale>
+  [460] mul ..................................... <point(-81, 9) * bodzillaScale>
+  [461] setprop 907 ............................. tailOffset = point(-81, 9) * bodzillaScale
+  [464] pusharglist 0 ........................... <[]>
+  [466] pushlist ................................ <[]>
+  [467] setprop 911 ............................. waggleList = []
+  [470] getprop 898 ............................. <Body>
+  [473] getprop 48 .............................. <Xpos>
+  [476] setobjprop 36 ........................... Body.locH = Xpos
+  [479] getprop 898 ............................. <Body>
+  [482] getprop 38 .............................. <Ypos>
+  [485] setobjprop 37 ........................... Body.locV = Ypos
+  [488] getprop 897 ............................. <ArmBack>
+  [491] getprop 898 ............................. <Body>
+  [494] getobjprop 213 .......................... <Body.loc>
+  [497] getprop 904 ............................. <ArmBackOffset>
+  [500] sub ..................................... <Body.loc - ArmBackOffset>
+  [501] setobjprop 213 .......................... ArmBack.loc = Body.loc - ArmBackOffset
+  [504] getprop 899 ............................. <ArmFront>
+  [507] getprop 898 ............................. <Body>
+  [510] getobjprop 213 .......................... <Body.loc>
+  [513] getprop 905 ............................. <ArmFrontOffset>
+  [516] sub ..................................... <Body.loc - ArmFrontOffset>
+  [517] setobjprop 213 .......................... ArmFront.loc = Body.loc - ArmFrontOffset
+  [520] getprop 900 ............................. <Head>
+  [523] getprop 898 ............................. <Body>
+  [526] getobjprop 213 .......................... <Body.loc>
+  [529] getprop 906 ............................. <HeadOffset>
+  [532] sub ..................................... <Body.loc - HeadOffset>
+  [533] setobjprop 213 .......................... Head.loc = Body.loc - HeadOffset
+  [536] getprop 901 ............................. <Tail>
+  [539] getprop 898 ............................. <Body>
+  [542] getobjprop 213 .......................... <Body.loc>
+  [545] getprop 907 ............................. <tailOffset>
+  [548] sub ..................................... <Body.loc - tailOffset>
+  [549] setobjprop 213 .......................... Tail.loc = Body.loc - tailOffset
+  [552] pushint8 1 .............................. <1>
+  [555] setlocal 0
+  [557] getlocal 0
+  [559] pushint8 180 ............................ <180>
+  [562] lteq
+  [563] jmpifz [608] ............................ repeat with i = 1 to 180
+  [566] getprop 911 ............................. <waggleList>
+  [569] pushint8 20 ............................. <20>
+  [572] getlocal 0 .............................. <i>
+  [574] pushint8 2 .............................. <2>
+  [577] mul ..................................... <i * 2>
+  [578] getprop 40 .............................. <radians>
+  [581] mul ..................................... <i * 2 * radians>
+  [582] pusharglist 1 ........................... <i * 2 * radians>
+  [584] extcall 45 .............................. <cos(i * 2 * radians)>
+  [587] mul ..................................... <20 * cos(i * 2 * radians)>
+  [588] pushint8 20 ............................. <20>
+  [591] add ..................................... <(20 * cos(i * 2 * radians)) + 20>
+  [592] pusharglistnoret 2 ...................... <waggleList, (20 * cos(i * 2 * radians)) + 20>
+  [594] objcall 418 ............................. waggleList.add((20 * cos(i * 2 * radians)) + 20)
+  [597] pushint8 1
+  [600] getlocal 0
+  [602] add
+  [603] setlocal 0
+  [605] endrepeat [557]
+  [608] pushint8 1 .............................. <1>
+  [611] setprop 913 ............................. waggleListPointer1 = 1
+  [614] getprop 911 ............................. <waggleList>
+  [617] getobjprop 183 .......................... <waggleList.count>
+  [620] pushcons 16 ............................. <0.5>
+  [622] mul ..................................... <waggleList.count * 0.5>
+  [623] setprop 912 ............................. waggleListPointer2 = waggleList.count * 0.5
+  [626] ret
+end
+
+on exitFrame
+  [  0] getglobal 364 ........................... <gPaused>
+  [  3] pushzero ................................ <0>
+  [  4] eq ...................................... <gPaused = 0>
+  [  5] jmpifz [2714] ........................... if gPaused = 0 then
+  [  8] getprop 48 .............................. <Xpos>
+  [ 11] getprop 44 .............................. <Xvel>
+  [ 14] add ..................................... <Xpos + Xvel>
+  [ 15] getglobal 47 ............................ <gXVel>
+  [ 18] add ..................................... <Xpos + Xvel + gXVel>
+  [ 19] getglobal 55 ............................ <gXOffset>
+  [ 22] add ..................................... <Xpos + Xvel + gXVel + gXOffset>
+  [ 23] setprop 48 .............................. Xpos = Xpos + Xvel + gXVel + gXOffset
+  [ 26] getprop 48 .............................. <Xpos>
+  [ 29] getprop 608 ............................. <loopX>
+  [ 32] gt ...................................... <Xpos > loopX>
+  [ 33] jmpifz [ 46] ............................ if Xpos > loopX then
+  [ 36] getprop 48 .............................. <Xpos>
+  [ 39] getprop 54 .............................. <loopWidth>
+  [ 42] sub ..................................... <Xpos - loopWidth>
+  [ 43] setprop 48 .............................. Xpos = Xpos - loopWidth
+  [ 46] getprop 48 .............................. <Xpos>
+  [ 49] getprop 608 ............................. <loopX>
+  [ 52] inv ..................................... <-loopX>
+  [ 53] lt ...................................... <Xpos < -loopX>
+  [ 54] jmpifz [ 67] ............................ if Xpos < -loopX then
+  [ 57] getprop 48 .............................. <Xpos>
+  [ 60] getprop 54 .............................. <loopWidth>
+  [ 63] add ..................................... <Xpos + loopWidth>
+  [ 64] setprop 48 .............................. Xpos = Xpos + loopWidth
+  [ 67] getprop 48 .............................. <Xpos>
+  [ 70] pushint8 100 ............................ <100>
+  [ 73] inv ..................................... <-100>
+  [ 74] gt ...................................... <Xpos > -100>
+  [ 75] getprop 48 .............................. <Xpos>
+  [ 78] pushint8 612 ............................ <612>
+  [ 81] lt ...................................... <Xpos < 612>
+  [ 82] and ..................................... <(Xpos > -100) and (Xpos < 612)>
+  [ 83] jmpifz [2618] ........................... if (Xpos > -100) and (Xpos < 612) then
+  [ 86] getprop 913 ............................. <waggleListPointer1>
+  [ 89] pushint8 1 .............................. <1>
+  [ 92] add ..................................... <waggleListPointer1 + 1>
+  [ 93] setprop 913 ............................. waggleListPointer1 = waggleListPointer1 + 1
+  [ 96] getprop 912 ............................. <waggleListPointer2>
+  [ 99] pushint8 1 .............................. <1>
+  [102] add ..................................... <waggleListPointer2 + 1>
+  [103] setprop 912 ............................. waggleListPointer2 = waggleListPointer2 + 1
+  [106] getprop 913 ............................. <waggleListPointer1>
+  [109] getprop 911 ............................. <waggleList>
+  [112] getobjprop 183 .......................... <waggleList.count>
+  [115] gt ...................................... <waggleListPointer1 > waggleList.count>
+  [116] jmpifz [125] ............................ if waggleListPointer1 > waggleList.count then
+  [119] pushint8 1 .............................. <1>
+  [122] setprop 913 ............................. waggleListPointer1 = 1
+  [125] getprop 912 ............................. <waggleListPointer2>
+  [128] getprop 911 ............................. <waggleList>
+  [131] getobjprop 183 .......................... <waggleList.count>
+  [134] gt ...................................... <waggleListPointer2 > waggleList.count>
+  [135] jmpifz [144] ............................ if waggleListPointer2 > waggleList.count then
+  [138] pushint8 1 .............................. <1>
+  [141] setprop 912 ............................. waggleListPointer2 = 1
+  [144] getprop 899 ............................. <ArmFront>
+  [147] getprop 911 ............................. <waggleList>
+  [150] getprop 913 ............................. <waggleListPointer1>
+  [153] pusharglist 2 ........................... <waggleList, waggleListPointer1>
+  [155] objcall 185 ............................. <waggleList[waggleListPointer1]>
+  [158] setobjprop 25 ........................... ArmFront.rotation = waggleList[waggleListPointer1]
+  [160] getprop 897 ............................. <ArmBack>
+  [163] getprop 911 ............................. <waggleList>
+  [166] getprop 912 ............................. <waggleListPointer2>
+  [169] pusharglist 2 ........................... <waggleList, waggleListPointer2>
+  [171] objcall 185 ............................. <waggleList[waggleListPointer2]>
+  [174] setobjprop 25 ........................... ArmBack.rotation = waggleList[waggleListPointer2]
+  [176] getprop 902 ............................. <bodzillaState>
+  [179] peek 0 .................................. case bodzillaState of
+  [181] pushsymb 903 ............................ <#STAND>
+  [184] eq
+  [185] jmpifz [573] ............................ (case) #STAND:
+  [188] getprop 908 ............................. <counter>
+  [191] pushint8 1 .............................. <1>
+  [194] add ..................................... <counter + 1>
+  [195] setprop 908 ............................. counter = counter + 1
+  [198] getprop 908 ............................. <counter>
+  [201] getprop 921 ............................. <bodzillaScale>
+  [204] mul ..................................... <counter * bodzillaScale>
+  [205] pushint8 50 ............................. <50>
+  [208] gt ...................................... <(counter * bodzillaScale) > 50>
+  [209] jmpifz [239] ............................ if (counter * bodzillaScale) > 50 then
+  [212] pushsymb 909 ............................ <#INHALE>
+  [215] setprop 902 ............................. bodzillaState = #INHALE
+  [218] pushzero ................................ <0>
+  [219] setprop 908 ............................. counter = 0
+  [222] pushint8 4 .............................. <4>
+  [225] pushint8 84 ............................. <84>
+  [228] pushcons 24 ............................. <"Sfx">
+  [230] pusharglist 2 ........................... <84, "Sfx">
+  [232] extcall 27 .............................. <member(84, "Sfx")>
+  [234] pusharglistnoret 2 ...................... <4, member(84, "Sfx")>
+  [236] extcall 395 ............................. puppetSound(4, member(84, "Sfx"))
+  [239] getprop 900 ............................. <Head>
+  [242] getobjprop 36 ........................... <Head.locH>
+  [245] getprop 342 ............................. <cableGuy>
+  [248] getobjprop 36 ........................... <cableGuy.locH>
+  [251] sub ..................................... <Head.locH - cableGuy.locH>
+  [252] pusharglist 1 ........................... <Head.locH - cableGuy.locH>
+  [254] extcall 33 .............................. <float(Head.locH - cableGuy.locH)>
+  [257] setlocal 0 .............................. xDiff = float(Head.locH - cableGuy.locH)
+  [259] getprop 900 ............................. <Head>
+  [262] getobjprop 37 ........................... <Head.locV>
+  [265] getprop 342 ............................. <cableGuy>
+  [268] getobjprop 37 ........................... <cableGuy.locV>
+  [271] sub ..................................... <Head.locV - cableGuy.locV>
+  [272] pusharglist 1 ........................... <Head.locV - cableGuy.locV>
+  [274] extcall 33 .............................. <float(Head.locV - cableGuy.locV)>
+  [277] setlocal 8 .............................. yDiff = float(Head.locV - cableGuy.locV)
+  [279] getlocal 0 .............................. <xDiff>
+  [281] getlocal 0 .............................. <xDiff>
+  [283] mul ..................................... <xDiff * xDiff>
+  [284] getlocal 8 .............................. <yDiff>
+  [286] getlocal 8 .............................. <yDiff>
+  [288] mul ..................................... <yDiff * yDiff>
+  [289] add ..................................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [290] pusharglist 1 ........................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [292] extcall 343 ............................. <sqrt((xDiff * xDiff) + (yDiff * yDiff))>
+  [295] setlocal 16 ............................. Dist = sqrt((xDiff * xDiff) + (yDiff * yDiff))
+  [297] getlocal 16 ............................. <Dist>
+  [299] pushint8 120 ............................ <120>
+  [302] getprop 921 ............................. <bodzillaScale>
+  [305] mul ..................................... <120 * bodzillaScale>
+  [306] lt ...................................... <Dist < (120 * bodzillaScale)>
+  [307] jmpifz [333] ............................ if Dist < (120 * bodzillaScale) then
+  [310] pushsymb 917 ............................ <#OPENWIDE>
+  [313] setprop 902 ............................. bodzillaState = #OPENWIDE
+  [316] pushint8 4 .............................. <4>
+  [319] pushint8 77 ............................. <77>
+  [322] pushcons 32 ............................. <"Sfx">
+  [324] pusharglist 2 ........................... <77, "Sfx">
+  [326] extcall 27 .............................. <member(77, "Sfx")>
+  [328] pusharglistnoret 2 ...................... <4, member(77, "Sfx")>
+  [330] extcall 395 ............................. puppetSound(4, member(77, "Sfx"))
+  [333] getprop 900 ............................. <Head>
+  [336] getobjprop 36 ........................... <Head.locH>
+  [339] getprop 900 ............................. <Head>
+  [342] getobjprop 37 ........................... <Head.locV>
+  [345] getprop 342 ............................. <cableGuy>
+  [348] getobjprop 36 ........................... <cableGuy.locH>
+  [351] getprop 342 ............................. <cableGuy>
+  [354] getobjprop 37 ........................... <cableGuy.locV>
+  [357] pushint8 8 .............................. <8>
+  [360] add ..................................... <cableGuy.locV + 8>
+  [361] pusharglist 4 ........................... <Head.locH, Head.locV, cableGuy.locH, cableGuy.locV + 8>
+  [363] extcall 276 ............................. <AngleGrind(Head.locH, Head.locV, cableGuy.locH, cableGuy.locV + 8)>
+  [366] setlocal 24 ............................. toGuy = AngleGrind(Head.locH, Head.locV, cableGuy.locH, cableGuy.locV + 8)
+  [368] getlocal 24 ............................. <toGuy>
+  [370] pushint8 90 ............................. <90>
+  [373] lt ...................................... <toGuy < 90>
+  [374] getlocal 24 ............................. <toGuy>
+  [376] pushint8 270 ............................ <270>
+  [379] gt ...................................... <toGuy > 270>
+  [380] or ...................................... <(toGuy < 90) or (toGuy > 270)>
+  [381] jmpifz [403] ............................ if (toGuy < 90) or (toGuy > 270) then / else
+  [384] getprop 900 ............................. <Head>
+  [387] getlocal 24 ............................. <toGuy>
+  [389] setobjprop 25 ........................... Head.rotation = toGuy
+  [391] getprop 900 ............................. <Head>
+  [394] pushint8 1 .............................. <1>
+  [397] setobjprop 176 .......................... Head.flipH = 1
+  [400] jmp [421]
+  [403] getprop 900 ............................. <Head>
+  [406] getlocal 24 ............................. <toGuy>
+  [408] pushint8 180 ............................ <180>
+  [411] add ..................................... <toGuy + 180>
+  [412] setobjprop 25 ........................... Head.rotation = toGuy + 180
+  [414] getprop 900 ............................. <Head>
+  [417] pushzero ................................ <0>
+  [418] setobjprop 176 .......................... Head.flipH = 0
+  [421] getglobal 632 ........................... <gPloshX>
+  [424] pushint8 1 .............................. <1>
+  [427] inv ..................................... <-1>
+  [428] nteq .................................... <gPloshX <> -1>
+  [429] jmpifz [525] ............................ if gPloshX <> -1 then
+  [432] getglobal 632 ........................... <gPloshX>
+  [435] getprop 900 ............................. <Head>
+  [438] getobjprop 36 ........................... <Head.locH>
+  [441] sub ..................................... <gPloshX - Head.locH>
+  [442] pusharglist 1 ........................... <gPloshX - Head.locH>
+  [444] extcall 370 ............................. <abs(gPloshX - Head.locH)>
+  [447] pushint8 50 ............................. <50>
+  [450] getprop 921 ............................. <bodzillaScale>
+  [453] mul ..................................... <50 * bodzillaScale>
+  [454] lt ...................................... <abs(gPloshX - Head.locH) < (50 * bodzillaScale)>
+  [455] getlocal 0 .............................. <xDiff>
+  [457] pushint8 250 ............................ <250>
+  [460] getprop 921 ............................. <bodzillaScale>
+  [463] mul ..................................... <250 * bodzillaScale>
+  [464] lt ...................................... <xDiff < (250 * bodzillaScale)>
+  [465] and ..................................... <(abs(gPloshX - Head.locH) < (50 * bodzillaScale)) and (xDiff < (250 * bodzillaScale))>
+  [466] jmpifz [525] ............................ if (abs(gPloshX - Head.locH) < (50 * bodzillaScale)) and (xDiff < (250 * bodzillaScale)) then
+  [469] pushsymb 954 ............................ <#GARGLE>
+  [472] setprop 902 ............................. bodzillaState = #GARGLE
+  [475] getprop 921 ............................. <bodzillaScale>
+  [478] pushcons 40 ............................. <0.5>
+  [480] lteq .................................... <bodzillaScale <= 0.5>
+  [481] jmpifz [504] ............................ if bodzillaScale <= 0.5 then / else
+  [484] pushint8 4 .............................. <4>
+  [487] pushint8 87 ............................. <87>
+  [490] pushcons 48 ............................. <"Sfx">
+  [492] pusharglist 2 ........................... <87, "Sfx">
+  [494] extcall 27 .............................. <member(87, "Sfx")>
+  [496] pusharglistnoret 2 ...................... <4, member(87, "Sfx")>
+  [498] extcall 395 ............................. puppetSound(4, member(87, "Sfx"))
+  [501] jmp [521]
+  [504] pushint8 4 .............................. <4>
+  [507] pushint8 86 ............................. <86>
+  [510] pushcons 56 ............................. <"Sfx">
+  [512] pusharglist 2 ........................... <86, "Sfx">
+  [514] extcall 27 .............................. <member(86, "Sfx")>
+  [516] pusharglistnoret 2 ...................... <4, member(86, "Sfx")>
+  [518] extcall 395 ............................. puppetSound(4, member(86, "Sfx"))
+  [521] pushzero ................................ <0>
+  [522] setprop 908 ............................. counter = 0
+  [525] getprop 900 ............................. <Head>
+  [528] pushint8 195 ............................ <195>
+  [531] setobjprop 477 .......................... Head.memberNum = 195
+  [534] getprop 900 ............................. <Head>
+  [537] getprop 900 ............................. <Head>
+  [540] getobjprop 27 ........................... <Head.member>
+  [542] getobjprop 50 ........................... <Head.member.width>
+  [545] getprop 921 ............................. <bodzillaScale>
+  [548] mul ..................................... <Head.member.width * bodzillaScale>
+  [549] setobjprop 50 ........................... Head.width = Head.member.width * bodzillaScale
+  [552] getprop 900 ............................. <Head>
+  [555] getprop 900 ............................. <Head>
+  [558] getobjprop 27 ........................... <Head.member>
+  [560] getobjprop 97 ........................... <Head.member.height>
+  [563] getprop 921 ............................. <bodzillaScale>
+  [566] mul ..................................... <Head.member.height * bodzillaScale>
+  [567] setobjprop 97 ........................... Head.height = Head.member.height * bodzillaScale
+  [570] jmp [2289]
+  [573] peek 0
+  [575] pushsymb 917 ............................ <#OPENWIDE>
+  [578] eq
+  [579] jmpifz [827] ............................ (case) #OPENWIDE:
+  [582] getprop 900 ............................. <Head>
+  [585] getobjprop 36 ........................... <Head.locH>
+  [588] getprop 342 ............................. <cableGuy>
+  [591] getobjprop 36 ........................... <cableGuy.locH>
+  [594] sub ..................................... <Head.locH - cableGuy.locH>
+  [595] pusharglist 1 ........................... <Head.locH - cableGuy.locH>
+  [597] extcall 33 .............................. <float(Head.locH - cableGuy.locH)>
+  [600] setlocal 0 .............................. xDiff = float(Head.locH - cableGuy.locH)
+  [602] getprop 900 ............................. <Head>
+  [605] getobjprop 37 ........................... <Head.locV>
+  [608] getprop 342 ............................. <cableGuy>
+  [611] getobjprop 37 ........................... <cableGuy.locV>
+  [614] sub ..................................... <Head.locV - cableGuy.locV>
+  [615] pusharglist 1 ........................... <Head.locV - cableGuy.locV>
+  [617] extcall 33 .............................. <float(Head.locV - cableGuy.locV)>
+  [620] setlocal 8 .............................. yDiff = float(Head.locV - cableGuy.locV)
+  [622] getlocal 0 .............................. <xDiff>
+  [624] getlocal 0 .............................. <xDiff>
+  [626] mul ..................................... <xDiff * xDiff>
+  [627] getlocal 8 .............................. <yDiff>
+  [629] getlocal 8 .............................. <yDiff>
+  [631] mul ..................................... <yDiff * yDiff>
+  [632] add ..................................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [633] pusharglist 1 ........................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [635] extcall 343 ............................. <sqrt((xDiff * xDiff) + (yDiff * yDiff))>
+  [638] setlocal 16 ............................. Dist = sqrt((xDiff * xDiff) + (yDiff * yDiff))
+  [640] getlocal 16 ............................. <Dist>
+  [642] pushint8 40 ............................. <40>
+  [645] lt ...................................... <Dist < 40>
+  [646] jmpifz [672] ............................ if Dist < 40 then
+  [649] pushsymb 918 ............................ <#SHUT>
+  [652] setprop 902 ............................. bodzillaState = #SHUT
+  [655] pushint8 4 .............................. <4>
+  [658] pushint8 78 ............................. <78>
+  [661] pushcons 64 ............................. <"Sfx">
+  [663] pusharglist 2 ........................... <78, "Sfx">
+  [665] extcall 27 .............................. <member(78, "Sfx")>
+  [667] pusharglistnoret 2 ...................... <4, member(78, "Sfx")>
+  [669] extcall 395 ............................. puppetSound(4, member(78, "Sfx"))
+  [672] getlocal 16 ............................. <Dist>
+  [674] pushint8 120 ............................ <120>
+  [677] getprop 921 ............................. <bodzillaScale>
+  [680] mul ..................................... <120 * bodzillaScale>
+  [681] gt ...................................... <Dist > (120 * bodzillaScale)>
+  [682] jmpifz [691] ............................ if Dist > (120 * bodzillaScale) then
+  [685] pushsymb 903 ............................ <#STAND>
+  [688] setprop 902 ............................. bodzillaState = #STAND
+  [691] getprop 900 ............................. <Head>
+  [694] getobjprop 36 ........................... <Head.locH>
+  [697] getprop 900 ............................. <Head>
+  [700] getobjprop 37 ........................... <Head.locV>
+  [703] getprop 342 ............................. <cableGuy>
+  [706] getobjprop 36 ........................... <cableGuy.locH>
+  [709] getprop 342 ............................. <cableGuy>
+  [712] getobjprop 37 ........................... <cableGuy.locV>
+  [715] pushint8 8 .............................. <8>
+  [718] add ..................................... <cableGuy.locV + 8>
+  [719] pusharglist 4 ........................... <Head.locH, Head.locV, cableGuy.locH, cableGuy.locV + 8>
+  [721] extcall 276 ............................. <AngleGrind(Head.locH, Head.locV, cableGuy.locH, cableGuy.locV + 8)>
+  [724] setlocal 24 ............................. toGuy = AngleGrind(Head.locH, Head.locV, cableGuy.locH, cableGuy.locV + 8)
+  [726] getlocal 24 ............................. <toGuy>
+  [728] pushint8 90 ............................. <90>
+  [731] lt ...................................... <toGuy < 90>
+  [732] getlocal 24 ............................. <toGuy>
+  [734] pushint8 270 ............................ <270>
+  [737] gt ...................................... <toGuy > 270>
+  [738] or ...................................... <(toGuy < 90) or (toGuy > 270)>
+  [739] jmpifz [761] ............................ if (toGuy < 90) or (toGuy > 270) then / else
+  [742] getprop 900 ............................. <Head>
+  [745] getlocal 24 ............................. <toGuy>
+  [747] setobjprop 25 ........................... Head.rotation = toGuy
+  [749] getprop 900 ............................. <Head>
+  [752] pushint8 1 .............................. <1>
+  [755] setobjprop 176 .......................... Head.flipH = 1
+  [758] jmp [779]
+  [761] getprop 900 ............................. <Head>
+  [764] getlocal 24 ............................. <toGuy>
+  [766] pushint8 180 ............................ <180>
+  [769] add ..................................... <toGuy + 180>
+  [770] setobjprop 25 ........................... Head.rotation = toGuy + 180
+  [772] getprop 900 ............................. <Head>
+  [775] pushzero ................................ <0>
+  [776] setobjprop 176 .......................... Head.flipH = 0
+  [779] getprop 900 ............................. <Head>
+  [782] pushint8 196 ............................ <196>
+  [785] setobjprop 477 .......................... Head.memberNum = 196
+  [788] getprop 900 ............................. <Head>
+  [791] getprop 900 ............................. <Head>
+  [794] getobjprop 27 ........................... <Head.member>
+  [796] getobjprop 50 ........................... <Head.member.width>
+  [799] getprop 921 ............................. <bodzillaScale>
+  [802] mul ..................................... <Head.member.width * bodzillaScale>
+  [803] setobjprop 50 ........................... Head.width = Head.member.width * bodzillaScale
+  [806] getprop 900 ............................. <Head>
+  [809] getprop 900 ............................. <Head>
+  [812] getobjprop 27 ........................... <Head.member>
+  [814] getobjprop 97 ........................... <Head.member.height>
+  [817] getprop 921 ............................. <bodzillaScale>
+  [820] mul ..................................... <Head.member.height * bodzillaScale>
+  [821] setobjprop 97 ........................... Head.height = Head.member.height * bodzillaScale
+  [824] jmp [2289]
+  [827] peek 0
+  [829] pushsymb 954 ............................ <#GARGLE>
+  [832] eq
+  [833] jmpifz [1092] ........................... (case) #GARGLE:
+  [836] getprop 908 ............................. <counter>
+  [839] pushint8 1 .............................. <1>
+  [842] add ..................................... <counter + 1>
+  [843] setprop 908 ............................. counter = counter + 1
+  [846] getprop 908 ............................. <counter>
+  [849] pushint8 70 ............................. <70>
+  [852] getprop 921 ............................. <bodzillaScale>
+  [855] mul ..................................... <70 * bodzillaScale>
+  [856] gt ...................................... <counter > (70 * bodzillaScale)>
+  [857] jmpifz [866] ............................ if counter > (70 * bodzillaScale) then
+  [860] pushsymb 903 ............................ <#STAND>
+  [863] setprop 902 ............................. bodzillaState = #STAND
+  [866] getprop 900 ............................. <Head>
+  [869] getobjprop 36 ........................... <Head.locH>
+  [872] getprop 342 ............................. <cableGuy>
+  [875] getobjprop 36 ........................... <cableGuy.locH>
+  [878] sub ..................................... <Head.locH - cableGuy.locH>
+  [879] pusharglist 1 ........................... <Head.locH - cableGuy.locH>
+  [881] extcall 33 .............................. <float(Head.locH - cableGuy.locH)>
+  [884] setlocal 0 .............................. xDiff = float(Head.locH - cableGuy.locH)
+  [886] getprop 900 ............................. <Head>
+  [889] getobjprop 37 ........................... <Head.locV>
+  [892] getprop 342 ............................. <cableGuy>
+  [895] getobjprop 37 ........................... <cableGuy.locV>
+  [898] sub ..................................... <Head.locV - cableGuy.locV>
+  [899] pusharglist 1 ........................... <Head.locV - cableGuy.locV>
+  [901] extcall 33 .............................. <float(Head.locV - cableGuy.locV)>
+  [904] setlocal 8 .............................. yDiff = float(Head.locV - cableGuy.locV)
+  [906] getlocal 0 .............................. <xDiff>
+  [908] getlocal 0 .............................. <xDiff>
+  [910] mul ..................................... <xDiff * xDiff>
+  [911] getlocal 8 .............................. <yDiff>
+  [913] getlocal 8 .............................. <yDiff>
+  [915] mul ..................................... <yDiff * yDiff>
+  [916] add ..................................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [917] pusharglist 1 ........................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [919] extcall 343 ............................. <sqrt((xDiff * xDiff) + (yDiff * yDiff))>
+  [922] setlocal 16 ............................. Dist = sqrt((xDiff * xDiff) + (yDiff * yDiff))
+  [924] getlocal 16 ............................. <Dist>
+  [926] pushint8 40 ............................. <40>
+  [929] lt ...................................... <Dist < 40>
+  [930] jmpifz [956] ............................ if Dist < 40 then
+  [933] pushsymb 918 ............................ <#SHUT>
+  [936] setprop 902 ............................. bodzillaState = #SHUT
+  [939] pushint8 4 .............................. <4>
+  [942] pushint8 78 ............................. <78>
+  [945] pushcons 72 ............................. <"Sfx">
+  [947] pusharglist 2 ........................... <78, "Sfx">
+  [949] extcall 27 .............................. <member(78, "Sfx")>
+  [951] pusharglistnoret 2 ...................... <4, member(78, "Sfx")>
+  [953] extcall 395 ............................. puppetSound(4, member(78, "Sfx"))
+  [956] getprop 900 ............................. <Head>
+  [959] getobjprop 36 ........................... <Head.locH>
+  [962] getprop 900 ............................. <Head>
+  [965] getobjprop 37 ........................... <Head.locV>
+  [968] getprop 342 ............................. <cableGuy>
+  [971] getobjprop 36 ........................... <cableGuy.locH>
+  [974] getprop 342 ............................. <cableGuy>
+  [977] getobjprop 37 ........................... <cableGuy.locV>
+  [980] pushint8 8 .............................. <8>
+  [983] add ..................................... <cableGuy.locV + 8>
+  [984] pusharglist 4 ........................... <Head.locH, Head.locV, cableGuy.locH, cableGuy.locV + 8>
+  [986] extcall 276 ............................. <AngleGrind(Head.locH, Head.locV, cableGuy.locH, cableGuy.locV + 8)>
+  [989] setlocal 24 ............................. toGuy = AngleGrind(Head.locH, Head.locV, cableGuy.locH, cableGuy.locV + 8)
+  [991] getlocal 24 ............................. <toGuy>
+  [993] pushint8 90 ............................. <90>
+  [996] lt ...................................... <toGuy < 90>
+  [997] getlocal 24 ............................. <toGuy>
+  [999] pushint8 270 ............................ <270>
+  [1002] gt ..................................... <toGuy > 270>
+  [1003] or ..................................... <(toGuy < 90) or (toGuy > 270)>
+  [1004] jmpifz [1026] .......................... if (toGuy < 90) or (toGuy > 270) then / else
+  [1007] getprop 900 ............................ <Head>
+  [1010] getlocal 24 ............................ <toGuy>
+  [1012] setobjprop 25 .......................... Head.rotation = toGuy
+  [1014] getprop 900 ............................ <Head>
+  [1017] pushint8 1 ............................. <1>
+  [1020] setobjprop 176 ......................... Head.flipH = 1
+  [1023] jmp [1044]
+  [1026] getprop 900 ............................ <Head>
+  [1029] getlocal 24 ............................ <toGuy>
+  [1031] pushint8 180 ........................... <180>
+  [1034] add .................................... <toGuy + 180>
+  [1035] setobjprop 25 .......................... Head.rotation = toGuy + 180
+  [1037] getprop 900 ............................ <Head>
+  [1040] pushzero ............................... <0>
+  [1041] setobjprop 176 ......................... Head.flipH = 0
+  [1044] getprop 900 ............................ <Head>
+  [1047] pushint8 196 ........................... <196>
+  [1050] setobjprop 477 ......................... Head.memberNum = 196
+  [1053] getprop 900 ............................ <Head>
+  [1056] getprop 900 ............................ <Head>
+  [1059] getobjprop 27 .......................... <Head.member>
+  [1061] getobjprop 50 .......................... <Head.member.width>
+  [1064] getprop 921 ............................ <bodzillaScale>
+  [1067] mul .................................... <Head.member.width * bodzillaScale>
+  [1068] setobjprop 50 .......................... Head.width = Head.member.width * bodzillaScale
+  [1071] getprop 900 ............................ <Head>
+  [1074] getprop 900 ............................ <Head>
+  [1077] getobjprop 27 .......................... <Head.member>
+  [1079] getobjprop 97 .......................... <Head.member.height>
+  [1082] getprop 921 ............................ <bodzillaScale>
+  [1085] mul .................................... <Head.member.height * bodzillaScale>
+  [1086] setobjprop 97 .......................... Head.height = Head.member.height * bodzillaScale
+  [1089] jmp [2289]
+  [1092] peek 0
+  [1094] pushsymb 918 ........................... <#SHUT>
+  [1097] eq
+  [1098] jmpifz [1335] .......................... (case) #SHUT:
+  [1101] getprop 900 ............................ <Head>
+  [1104] getobjprop 36 .......................... <Head.locH>
+  [1107] getprop 342 ............................ <cableGuy>
+  [1110] getobjprop 36 .......................... <cableGuy.locH>
+  [1113] sub .................................... <Head.locH - cableGuy.locH>
+  [1114] pusharglist 1 .......................... <Head.locH - cableGuy.locH>
+  [1116] extcall 33 ............................. <float(Head.locH - cableGuy.locH)>
+  [1119] setlocal 0 ............................. xDiff = float(Head.locH - cableGuy.locH)
+  [1121] getprop 900 ............................ <Head>
+  [1124] getobjprop 37 .......................... <Head.locV>
+  [1127] getprop 342 ............................ <cableGuy>
+  [1130] getobjprop 37 .......................... <cableGuy.locV>
+  [1133] sub .................................... <Head.locV - cableGuy.locV>
+  [1134] pusharglist 1 .......................... <Head.locV - cableGuy.locV>
+  [1136] extcall 33 ............................. <float(Head.locV - cableGuy.locV)>
+  [1139] setlocal 8 ............................. yDiff = float(Head.locV - cableGuy.locV)
+  [1141] getlocal 0 ............................. <xDiff>
+  [1143] getlocal 0 ............................. <xDiff>
+  [1145] mul .................................... <xDiff * xDiff>
+  [1146] getlocal 8 ............................. <yDiff>
+  [1148] getlocal 8 ............................. <yDiff>
+  [1150] mul .................................... <yDiff * yDiff>
+  [1151] add .................................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [1152] pusharglist 1 .......................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [1154] extcall 343 ............................ <sqrt((xDiff * xDiff) + (yDiff * yDiff))>
+  [1157] setlocal 16 ............................ Dist = sqrt((xDiff * xDiff) + (yDiff * yDiff))
+  [1159] getlocal 16 ............................ <Dist>
+  [1161] pushint8 70 ............................ <70>
+  [1164] getprop 921 ............................ <bodzillaScale>
+  [1167] mul .................................... <70 * bodzillaScale>
+  [1168] gt ..................................... <Dist > (70 * bodzillaScale)>
+  [1169] jmpifz [1199] .......................... if Dist > (70 * bodzillaScale) then
+  [1172] pushsymb 919 ........................... <#SPIT>
+  [1175] setprop 902 ............................ bodzillaState = #SPIT
+  [1178] pushzero ............................... <0>
+  [1179] setprop 908 ............................ counter = 0
+  [1182] pushint8 4 ............................. <4>
+  [1185] pushint8 79 ............................ <79>
+  [1188] pushcons 80 ............................ <"Sfx">
+  [1190] pusharglist 2 .......................... <79, "Sfx">
+  [1192] extcall 27 ............................. <member(79, "Sfx")>
+  [1194] pusharglistnoret 2 ..................... <4, member(79, "Sfx")>
+  [1196] extcall 395 ............................ puppetSound(4, member(79, "Sfx"))
+  [1199] getprop 900 ............................ <Head>
+  [1202] getobjprop 36 .......................... <Head.locH>
+  [1205] getprop 900 ............................ <Head>
+  [1208] getobjprop 37 .......................... <Head.locV>
+  [1211] getprop 342 ............................ <cableGuy>
+  [1214] getobjprop 36 .......................... <cableGuy.locH>
+  [1217] getprop 342 ............................ <cableGuy>
+  [1220] getobjprop 37 .......................... <cableGuy.locV>
+  [1223] pushint8 8 ............................. <8>
+  [1226] add .................................... <cableGuy.locV + 8>
+  [1227] pusharglist 4 .......................... <Head.locH, Head.locV, cableGuy.locH, cableGuy.locV + 8>
+  [1229] extcall 276 ............................ <AngleGrind(Head.locH, Head.locV, cableGuy.locH, cableGuy.locV + 8)>
+  [1232] setlocal 24 ............................ toGuy = AngleGrind(Head.locH, Head.locV, cableGuy.locH, cableGuy.locV + 8)
+  [1234] getlocal 24 ............................ <toGuy>
+  [1236] pushint8 90 ............................ <90>
+  [1239] lt ..................................... <toGuy < 90>
+  [1240] getlocal 24 ............................ <toGuy>
+  [1242] pushint8 270 ........................... <270>
+  [1245] gt ..................................... <toGuy > 270>
+  [1246] or ..................................... <(toGuy < 90) or (toGuy > 270)>
+  [1247] jmpifz [1269] .......................... if (toGuy < 90) or (toGuy > 270) then / else
+  [1250] getprop 900 ............................ <Head>
+  [1253] getlocal 24 ............................ <toGuy>
+  [1255] setobjprop 25 .......................... Head.rotation = toGuy
+  [1257] getprop 900 ............................ <Head>
+  [1260] pushint8 1 ............................. <1>
+  [1263] setobjprop 176 ......................... Head.flipH = 1
+  [1266] jmp [1287]
+  [1269] getprop 900 ............................ <Head>
+  [1272] getlocal 24 ............................ <toGuy>
+  [1274] pushint8 180 ........................... <180>
+  [1277] add .................................... <toGuy + 180>
+  [1278] setobjprop 25 .......................... Head.rotation = toGuy + 180
+  [1280] getprop 900 ............................ <Head>
+  [1283] pushzero ............................... <0>
+  [1284] setobjprop 176 ......................... Head.flipH = 0
+  [1287] getprop 900 ............................ <Head>
+  [1290] pushint8 195 ........................... <195>
+  [1293] setobjprop 477 ......................... Head.memberNum = 195
+  [1296] getprop 900 ............................ <Head>
+  [1299] getprop 900 ............................ <Head>
+  [1302] getobjprop 27 .......................... <Head.member>
+  [1304] getobjprop 50 .......................... <Head.member.width>
+  [1307] getprop 921 ............................ <bodzillaScale>
+  [1310] mul .................................... <Head.member.width * bodzillaScale>
+  [1311] setobjprop 50 .......................... Head.width = Head.member.width * bodzillaScale
+  [1314] getprop 900 ............................ <Head>
+  [1317] getprop 900 ............................ <Head>
+  [1320] getobjprop 27 .......................... <Head.member>
+  [1322] getobjprop 97 .......................... <Head.member.height>
+  [1325] getprop 921 ............................ <bodzillaScale>
+  [1328] mul .................................... <Head.member.height * bodzillaScale>
+  [1329] setobjprop 97 .......................... Head.height = Head.member.height * bodzillaScale
+  [1332] jmp [2289]
+  [1335] peek 0
+  [1337] pushsymb 919 ........................... <#SPIT>
+  [1340] eq
+  [1341] jmpifz [1506] .......................... (case) #SPIT:
+  [1344] getprop 908 ............................ <counter>
+  [1347] pushint8 1 ............................. <1>
+  [1350] add .................................... <counter + 1>
+  [1351] setprop 908 ............................ counter = counter + 1
+  [1354] getprop 908 ............................ <counter>
+  [1357] pushint8 15 ............................ <15>
+  [1360] gt ..................................... <counter > 15>
+  [1361] jmpifz [1370] .......................... if counter > 15 then
+  [1364] pushsymb 903 ........................... <#STAND>
+  [1367] setprop 902 ............................ bodzillaState = #STAND
+  [1370] getprop 900 ............................ <Head>
+  [1373] getobjprop 36 .......................... <Head.locH>
+  [1376] getprop 900 ............................ <Head>
+  [1379] getobjprop 37 .......................... <Head.locV>
+  [1382] getprop 342 ............................ <cableGuy>
+  [1385] getobjprop 36 .......................... <cableGuy.locH>
+  [1388] getprop 342 ............................ <cableGuy>
+  [1391] getobjprop 37 .......................... <cableGuy.locV>
+  [1394] pushint8 8 ............................. <8>
+  [1397] add .................................... <cableGuy.locV + 8>
+  [1398] pusharglist 4 .......................... <Head.locH, Head.locV, cableGuy.locH, cableGuy.locV + 8>
+  [1400] extcall 276 ............................ <AngleGrind(Head.locH, Head.locV, cableGuy.locH, cableGuy.locV + 8)>
+  [1403] setlocal 24 ............................ toGuy = AngleGrind(Head.locH, Head.locV, cableGuy.locH, cableGuy.locV + 8)
+  [1405] getlocal 24 ............................ <toGuy>
+  [1407] pushint8 90 ............................ <90>
+  [1410] lt ..................................... <toGuy < 90>
+  [1411] getlocal 24 ............................ <toGuy>
+  [1413] pushint8 270 ........................... <270>
+  [1416] gt ..................................... <toGuy > 270>
+  [1417] or ..................................... <(toGuy < 90) or (toGuy > 270)>
+  [1418] jmpifz [1440] .......................... if (toGuy < 90) or (toGuy > 270) then / else
+  [1421] getprop 900 ............................ <Head>
+  [1424] getlocal 24 ............................ <toGuy>
+  [1426] setobjprop 25 .......................... Head.rotation = toGuy
+  [1428] getprop 900 ............................ <Head>
+  [1431] pushint8 1 ............................. <1>
+  [1434] setobjprop 176 ......................... Head.flipH = 1
+  [1437] jmp [1458]
+  [1440] getprop 900 ............................ <Head>
+  [1443] getlocal 24 ............................ <toGuy>
+  [1445] pushint8 180 ........................... <180>
+  [1448] add .................................... <toGuy + 180>
+  [1449] setobjprop 25 .......................... Head.rotation = toGuy + 180
+  [1451] getprop 900 ............................ <Head>
+  [1454] pushzero ............................... <0>
+  [1455] setobjprop 176 ......................... Head.flipH = 0
+  [1458] getprop 900 ............................ <Head>
+  [1461] pushint8 197 ........................... <197>
+  [1464] setobjprop 477 ......................... Head.memberNum = 197
+  [1467] getprop 900 ............................ <Head>
+  [1470] getprop 900 ............................ <Head>
+  [1473] getobjprop 27 .......................... <Head.member>
+  [1475] getobjprop 50 .......................... <Head.member.width>
+  [1478] getprop 921 ............................ <bodzillaScale>
+  [1481] mul .................................... <Head.member.width * bodzillaScale>
+  [1482] setobjprop 50 .......................... Head.width = Head.member.width * bodzillaScale
+  [1485] getprop 900 ............................ <Head>
+  [1488] getprop 900 ............................ <Head>
+  [1491] getobjprop 27 .......................... <Head.member>
+  [1493] getobjprop 97 .......................... <Head.member.height>
+  [1496] getprop 921 ............................ <bodzillaScale>
+  [1499] mul .................................... <Head.member.height * bodzillaScale>
+  [1500] setobjprop 97 .......................... Head.height = Head.member.height * bodzillaScale
+  [1503] jmp [2289]
+  [1506] peek 0
+  [1508] pushsymb 909 ........................... <#INHALE>
+  [1511] eq
+  [1512] jmpifz [1846] .......................... (case) #INHALE:
+  [1515] getprop 908 ............................ <counter>
+  [1518] pushint8 1 ............................. <1>
+  [1521] add .................................... <counter + 1>
+  [1522] setprop 908 ............................ counter = counter + 1
+  [1525] getprop 900 ............................ <Head>
+  [1528] getobjprop 36 .......................... <Head.locH>
+  [1531] getprop 900 ............................ <Head>
+  [1534] getobjprop 37 .......................... <Head.locV>
+  [1537] getprop 341 ............................ <COPTER>
+  [1540] getobjprop 36 .......................... <COPTER.locH>
+  [1543] getprop 341 ............................ <COPTER>
+  [1546] getobjprop 37 .......................... <COPTER.locV>
+  [1549] pusharglist 4 .......................... <Head.locH, Head.locV, COPTER.locH, COPTER.locV>
+  [1551] extcall 276 ............................ <AngleGrind(Head.locH, Head.locV, COPTER.locH, COPTER.locV)>
+  [1554] setlocal 24 ............................ toGuy = AngleGrind(Head.locH, Head.locV, COPTER.locH, COPTER.locV)
+  [1556] getlocal 24 ............................ <toGuy>
+  [1558] pushint8 90 ............................ <90>
+  [1561] lt ..................................... <toGuy < 90>
+  [1562] getlocal 24 ............................ <toGuy>
+  [1564] pushint8 270 ........................... <270>
+  [1567] gt ..................................... <toGuy > 270>
+  [1568] or ..................................... <(toGuy < 90) or (toGuy > 270)>
+  [1569] jmpifz [1591] .......................... if (toGuy < 90) or (toGuy > 270) then / else
+  [1572] getprop 900 ............................ <Head>
+  [1575] getlocal 24 ............................ <toGuy>
+  [1577] setobjprop 25 .......................... Head.rotation = toGuy
+  [1579] getprop 900 ............................ <Head>
+  [1582] pushint8 1 ............................. <1>
+  [1585] setobjprop 176 ......................... Head.flipH = 1
+  [1588] jmp [1609]
+  [1591] getprop 900 ............................ <Head>
+  [1594] getlocal 24 ............................ <toGuy>
+  [1596] pushint8 180 ........................... <180>
+  [1599] add .................................... <toGuy + 180>
+  [1600] setobjprop 25 .......................... Head.rotation = toGuy + 180
+  [1602] getprop 900 ............................ <Head>
+  [1605] pushzero ............................... <0>
+  [1606] setobjprop 176 ......................... Head.flipH = 0
+  [1609] getprop 908 ............................ <counter>
+  [1612] pushint8 40 ............................ <40>
+  [1615] gteq ................................... <counter >= 40>
+  [1616] jmpifz [1674] .......................... if counter >= 40 then
+  [1619] pushsymb 910 ........................... <#EXHALE>
+  [1622] setprop 902 ............................ bodzillaState = #EXHALE
+  [1625] pushint8 4 ............................. <4>
+  [1628] pushint8 85 ............................ <85>
+  [1631] pushcons 88 ............................ <"Sfx">
+  [1633] pusharglist 2 .......................... <85, "Sfx">
+  [1635] extcall 27 ............................. <member(85, "Sfx")>
+  [1637] pusharglistnoret 2 ..................... <4, member(85, "Sfx")>
+  [1639] extcall 395 ............................ puppetSound(4, member(85, "Sfx"))
+  [1642] getprop 930 ............................ <fireBall>
+  [1645] pushsymb 813 ........................... <#FIRED>
+  [1648] setobjprop 931 ......................... fireBall.fireBallState = #FIRED
+  [1651] getprop 930 ............................ <fireBall>
+  [1654] getprop 900 ............................ <Head>
+  [1657] getobjprop 213 ......................... <Head.loc>
+  [1660] setobjprop 213 ......................... fireBall.loc = Head.loc
+  [1663] getprop 930 ............................ <fireBall>
+  [1666] getlocal 24 ............................ <toGuy>
+  [1668] setobjprop 25 .......................... fireBall.rotation = toGuy
+  [1670] pushzero ............................... <0>
+  [1671] setprop 908 ............................ counter = 0
+  [1674] getprop 900 ............................ <Head>
+  [1677] getobjprop 36 .......................... <Head.locH>
+  [1680] getprop 342 ............................ <cableGuy>
+  [1683] getobjprop 36 .......................... <cableGuy.locH>
+  [1686] sub .................................... <Head.locH - cableGuy.locH>
+  [1687] pusharglist 1 .......................... <Head.locH - cableGuy.locH>
+  [1689] extcall 33 ............................. <float(Head.locH - cableGuy.locH)>
+  [1692] setlocal 0 ............................. xDiff = float(Head.locH - cableGuy.locH)
+  [1694] getglobal 632 .......................... <gPloshX>
+  [1697] pushint8 1 ............................. <1>
+  [1700] inv .................................... <-1>
+  [1701] nteq ................................... <gPloshX <> -1>
+  [1702] jmpifz [1798] .......................... if gPloshX <> -1 then
+  [1705] getglobal 632 .......................... <gPloshX>
+  [1708] getprop 900 ............................ <Head>
+  [1711] getobjprop 36 .......................... <Head.locH>
+  [1714] sub .................................... <gPloshX - Head.locH>
+  [1715] pusharglist 1 .......................... <gPloshX - Head.locH>
+  [1717] extcall 370 ............................ <abs(gPloshX - Head.locH)>
+  [1720] pushint8 50 ............................ <50>
+  [1723] getprop 921 ............................ <bodzillaScale>
+  [1726] mul .................................... <50 * bodzillaScale>
+  [1727] lt ..................................... <abs(gPloshX - Head.locH) < (50 * bodzillaScale)>
+  [1728] getlocal 0 ............................. <xDiff>
+  [1730] pushint8 250 ........................... <250>
+  [1733] getprop 921 ............................ <bodzillaScale>
+  [1736] mul .................................... <250 * bodzillaScale>
+  [1737] lt ..................................... <xDiff < (250 * bodzillaScale)>
+  [1738] and .................................... <(abs(gPloshX - Head.locH) < (50 * bodzillaScale)) and (xDiff < (250 * bodzillaScale))>
+  [1739] jmpifz [1798] .......................... if (abs(gPloshX - Head.locH) < (50 * bodzillaScale)) and (xDiff < (250 * bodzillaScale)) then
+  [1742] pushsymb 954 ........................... <#GARGLE>
+  [1745] setprop 902 ............................ bodzillaState = #GARGLE
+  [1748] getprop 921 ............................ <bodzillaScale>
+  [1751] pushcons 96 ............................ <0.5>
+  [1753] lteq ................................... <bodzillaScale <= 0.5>
+  [1754] jmpifz [1777] .......................... if bodzillaScale <= 0.5 then / else
+  [1757] pushint8 4 ............................. <4>
+  [1760] pushint8 87 ............................ <87>
+  [1763] pushcons 104 ........................... <"Sfx">
+  [1765] pusharglist 2 .......................... <87, "Sfx">
+  [1767] extcall 27 ............................. <member(87, "Sfx")>
+  [1769] pusharglistnoret 2 ..................... <4, member(87, "Sfx")>
+  [1771] extcall 395 ............................ puppetSound(4, member(87, "Sfx"))
+  [1774] jmp [1794]
+  [1777] pushint8 4 ............................. <4>
+  [1780] pushint8 86 ............................ <86>
+  [1783] pushcons 112 ........................... <"Sfx">
+  [1785] pusharglist 2 .......................... <86, "Sfx">
+  [1787] extcall 27 ............................. <member(86, "Sfx")>
+  [1789] pusharglistnoret 2 ..................... <4, member(86, "Sfx")>
+  [1791] extcall 395 ............................ puppetSound(4, member(86, "Sfx"))
+  [1794] pushzero ............................... <0>
+  [1795] setprop 908 ............................ counter = 0
+  [1798] getprop 900 ............................ <Head>
+  [1801] pushint8 196 ........................... <196>
+  [1804] setobjprop 477 ......................... Head.memberNum = 196
+  [1807] getprop 900 ............................ <Head>
+  [1810] getprop 900 ............................ <Head>
+  [1813] getobjprop 27 .......................... <Head.member>
+  [1815] getobjprop 50 .......................... <Head.member.width>
+  [1818] getprop 921 ............................ <bodzillaScale>
+  [1821] mul .................................... <Head.member.width * bodzillaScale>
+  [1822] setobjprop 50 .......................... Head.width = Head.member.width * bodzillaScale
+  [1825] getprop 900 ............................ <Head>
+  [1828] getprop 900 ............................ <Head>
+  [1831] getobjprop 27 .......................... <Head.member>
+  [1833] getobjprop 97 .......................... <Head.member.height>
+  [1836] getprop 921 ............................ <bodzillaScale>
+  [1839] mul .................................... <Head.member.height * bodzillaScale>
+  [1840] setobjprop 97 .......................... Head.height = Head.member.height * bodzillaScale
+  [1843] jmp [2289]
+  [1846] peek 0
+  [1848] pushsymb 910 ........................... <#EXHALE>
+  [1851] eq
+  [1852] jmpifz [1933] .......................... (case) #EXHALE:
+  [1855] getprop 908 ............................ <counter>
+  [1858] pushint8 1 ............................. <1>
+  [1861] add .................................... <counter + 1>
+  [1862] setprop 908 ............................ counter = counter + 1
+  [1865] getprop 908 ............................ <counter>
+  [1868] pushint8 30 ............................ <30>
+  [1871] gteq ................................... <counter >= 30>
+  [1872] jmpifz [1885] .......................... if counter >= 30 then
+  [1875] pushsymb 903 ........................... <#STAND>
+  [1878] setprop 902 ............................ bodzillaState = #STAND
+  [1881] pushzero ............................... <0>
+  [1882] setprop 908 ............................ counter = 0
+  [1885] getprop 900 ............................ <Head>
+  [1888] pushint8 197 ........................... <197>
+  [1891] setobjprop 477 ......................... Head.memberNum = 197
+  [1894] getprop 900 ............................ <Head>
+  [1897] getprop 900 ............................ <Head>
+  [1900] getobjprop 27 .......................... <Head.member>
+  [1902] getobjprop 50 .......................... <Head.member.width>
+  [1905] getprop 921 ............................ <bodzillaScale>
+  [1908] mul .................................... <Head.member.width * bodzillaScale>
+  [1909] setobjprop 50 .......................... Head.width = Head.member.width * bodzillaScale
+  [1912] getprop 900 ............................ <Head>
+  [1915] getprop 900 ............................ <Head>
+  [1918] getobjprop 27 .......................... <Head.member>
+  [1920] getobjprop 97 .......................... <Head.member.height>
+  [1923] getprop 921 ............................ <bodzillaScale>
+  [1926] mul .................................... <Head.member.height * bodzillaScale>
+  [1927] setobjprop 97 .......................... Head.height = Head.member.height * bodzillaScale
+  [1930] jmp [2289]
+  [1933] peek 0
+  [1935] pushsymb 927 ........................... <#BONK>
+  [1938] eq
+  [1939] jmpifz [2242] .......................... (case) #BONK:
+  [1942] getprop 927 ............................ <BONK>
+  [1945] pushcons 120 ........................... <0.94999999999999996>
+  [1947] mul .................................... <BONK * 0.94999999999999996>
+  [1948] setprop 927 ............................ BONK = BONK * 0.94999999999999996
+  [1951] getprop 900 ............................ <Head>
+  [1954] getobjprop 36 .......................... <Head.locH>
+  [1957] getprop 900 ............................ <Head>
+  [1960] getobjprop 37 .......................... <Head.locV>
+  [1963] getprop 341 ............................ <COPTER>
+  [1966] getobjprop 36 .......................... <COPTER.locH>
+  [1969] getprop 341 ............................ <COPTER>
+  [1972] getobjprop 37 .......................... <COPTER.locV>
+  [1975] pusharglist 4 .......................... <Head.locH, Head.locV, COPTER.locH, COPTER.locV>
+  [1977] extcall 276 ............................ <AngleGrind(Head.locH, Head.locV, COPTER.locH, COPTER.locV)>
+  [1980] setlocal 24 ............................ toGuy = AngleGrind(Head.locH, Head.locV, COPTER.locH, COPTER.locV)
+  [1982] getlocal 24 ............................ <toGuy>
+  [1984] pushint8 90 ............................ <90>
+  [1987] lt ..................................... <toGuy < 90>
+  [1988] getlocal 24 ............................ <toGuy>
+  [1990] pushint8 270 ........................... <270>
+  [1993] gt ..................................... <toGuy > 270>
+  [1994] or ..................................... <(toGuy < 90) or (toGuy > 270)>
+  [1995] jmpifz [2017] .......................... if (toGuy < 90) or (toGuy > 270) then / else
+  [1998] getprop 900 ............................ <Head>
+  [2001] getlocal 24 ............................ <toGuy>
+  [2003] setobjprop 25 .......................... Head.rotation = toGuy
+  [2005] getprop 900 ............................ <Head>
+  [2008] pushint8 1 ............................. <1>
+  [2011] setobjprop 176 ......................... Head.flipH = 1
+  [2014] jmp [2035]
+  [2017] getprop 900 ............................ <Head>
+  [2020] getlocal 24 ............................ <toGuy>
+  [2022] pushint8 180 ........................... <180>
+  [2025] add .................................... <toGuy + 180>
+  [2026] setobjprop 25 .......................... Head.rotation = toGuy + 180
+  [2028] getprop 900 ............................ <Head>
+  [2031] pushzero ............................... <0>
+  [2032] setobjprop 176 ......................... Head.flipH = 0
+  [2035] getprop 900 ............................ <Head>
+  [2038] pushint8 197 ........................... <197>
+  [2041] setobjprop 477 ......................... Head.memberNum = 197
+  [2044] getprop 900 ............................ <Head>
+  [2047] getprop 900 ............................ <Head>
+  [2050] getobjprop 27 .......................... <Head.member>
+  [2052] getobjprop 50 .......................... <Head.member.width>
+  [2055] getprop 921 ............................ <bodzillaScale>
+  [2058] mul .................................... <Head.member.width * bodzillaScale>
+  [2059] setobjprop 50 .......................... Head.width = Head.member.width * bodzillaScale
+  [2062] getprop 900 ............................ <Head>
+  [2065] getprop 900 ............................ <Head>
+  [2068] getobjprop 27 .......................... <Head.member>
+  [2070] getobjprop 97 .......................... <Head.member.height>
+  [2073] getprop 921 ............................ <bodzillaScale>
+  [2076] mul .................................... <Head.member.height * bodzillaScale>
+  [2077] setobjprop 97 .......................... Head.height = Head.member.height * bodzillaScale
+  [2080] getprop 927 ............................ <BONK>
+  [2083] pushint8 10 ............................ <10>
+  [2086] lt ..................................... <BONK < 10>
+  [2087] jmpifz [2239] .......................... if BONK < 10 then
+  [2090] pushzero ............................... <0>
+  [2091] setprop 927 ............................ BONK = 0
+  [2094] getprop 900 ............................ <Head>
+  [2097] getobjprop 37 .......................... <Head.locV>
+  [2100] pushint8 290 ........................... <290>
+  [2103] gt ..................................... <Head.locV > 290>
+  [2104] jmpifz [2162] .......................... if Head.locV > 290 then / else
+  [2107] pushsymb 929 ........................... <#Sink>
+  [2110] setprop 902 ............................ bodzillaState = #Sink
+  [2113] getglobal 453 .......................... <gRescueCount>
+  [2116] pushint8 1 ............................. <1>
+  [2119] add .................................... <gRescueCount + 1>
+  [2120] setglobal 453 .......................... gRescueCount = gRescueCount + 1
+  [2123] getglobal 410 .......................... <gScore>
+  [2126] pushint8 2000 .......................... <2000>
+  [2129] getprop 921 ............................ <bodzillaScale>
+  [2132] mul .................................... <2000 * bodzillaScale>
+  [2133] pusharglist 1 .......................... <2000 * bodzillaScale>
+  [2135] extcall 39 ............................. <integer(2000 * bodzillaScale)>
+  [2138] add .................................... <gScore + integer(2000 * bodzillaScale)>
+  [2139] setglobal 410 .......................... gScore = gScore + integer(2000 * bodzillaScale)
+  [2142] pushint8 4 ............................. <4>
+  [2145] pushint8 1 ............................. <1>
+  [2148] pushcons 128 ........................... <"Sfx">
+  [2150] pusharglist 2 .......................... <1, "Sfx">
+  [2152] extcall 27 ............................. <member(1, "Sfx")>
+  [2154] pusharglistnoret 2 ..................... <4, member(1, "Sfx")>
+  [2156] extcall 395 ............................ puppetSound(4, member(1, "Sfx"))
+  [2159] jmp [2239]
+  [2162] getprop 930 ............................ <fireBall>
+  [2165] getobjprop 931 ......................... <fireBall.fireBallState>
+  [2168] pushsymb 363 ........................... <#FLY>
+  [2171] nteq ................................... <fireBall.fireBallState <> #FLY>
+  [2172] jmpifz [2233] .......................... if fireBall.fireBallState <> #FLY then / else
+  [2175] pushsymb 910 ........................... <#EXHALE>
+  [2178] setprop 902 ............................ bodzillaState = #EXHALE
+  [2181] pushint8 4 ............................. <4>
+  [2184] pushint8 85 ............................ <85>
+  [2187] pushcons 136 ........................... <"Sfx">
+  [2189] pusharglist 2 .......................... <85, "Sfx">
+  [2191] extcall 27 ............................. <member(85, "Sfx")>
+  [2193] pusharglistnoret 2 ..................... <4, member(85, "Sfx")>
+  [2195] extcall 395 ............................ puppetSound(4, member(85, "Sfx"))
+  [2198] getprop 930 ............................ <fireBall>
+  [2201] pushsymb 813 ........................... <#FIRED>
+  [2204] setobjprop 931 ......................... fireBall.fireBallState = #FIRED
+  [2207] getprop 930 ............................ <fireBall>
+  [2210] getprop 900 ............................ <Head>
+  [2213] getobjprop 213 ......................... <Head.loc>
+  [2216] setobjprop 213 ......................... fireBall.loc = Head.loc
+  [2219] getprop 930 ............................ <fireBall>
+  [2222] getlocal 24 ............................ <toGuy>
+  [2224] setobjprop 25 .......................... fireBall.rotation = toGuy
+  [2226] pushzero ............................... <0>
+  [2227] setprop 908 ............................ counter = 0
+  [2230] jmp [2239]
+  [2233] pushsymb 903 ........................... <#STAND>
+  [2236] setprop 902 ............................ bodzillaState = #STAND
+  [2239] jmp [2289]
+  [2242] peek 0
+  [2244] pushsymb 929 ........................... <#Sink>
+  [2247] eq
+  [2248] jmpifz [2280] .......................... (case) #Sink:
+  [2251] getprop 38 ............................. <Ypos>
+  [2254] pushint8 1 ............................. <1>
+  [2257] add .................................... <Ypos + 1>
+  [2258] setprop 38 ............................. Ypos = Ypos + 1
+  [2261] getprop 38 ............................. <Ypos>
+  [2264] pushint8 400 ........................... <400>
+  [2267] gt ..................................... <Ypos > 400>
+  [2268] jmpifz [2277] .......................... if Ypos > 400 then
+  [2271] pushsymb 955 ........................... <#SUNK>
+  [2274] setprop 902 ............................ bodzillaState = #SUNK
+  [2277] jmp [2289]
+  [2280] peek 0
+  [2282] pushsymb 955 ........................... <#SUNK>
+  [2285] eq
+  [2286] jmpifz [2289] .......................... (case) #SUNK:
+  [2289] pop 1 .................................. end case
+  [2291] getglobal 926 .......................... <gCoconutList>
+  [2294] getobjprop 183 ......................... <gCoconutList.count>
+  [2297] pushzero ............................... <0>
+  [2298] gt ..................................... <gCoconutList.count > 0>
+  [2299] jmpifz [2618] .......................... if gCoconutList.count > 0 then
+  [2302] pushint8 1 ............................. <1>
+  [2305] setlocal 32
+  [2307] getlocal 32
+  [2309] getglobal 926 .......................... <gCoconutList>
+  [2312] getobjprop 183 ......................... <gCoconutList.count>
+  [2315] lteq
+  [2316] jmpifz [2618] .......................... repeat with i = 1 to gCoconutList.count
+  [2319] getglobal 926 .......................... <gCoconutList>
+  [2322] getlocal 32 ............................ <i>
+  [2324] pusharglist 2 .......................... <gCoconutList, i>
+  [2326] objcall 185 ............................ <gCoconutList[i]>
+  [2329] getobjprop 36 .......................... <gCoconutList[i].locH>
+  [2332] getprop 900 ............................ <Head>
+  [2335] getobjprop 36 .......................... <Head.locH>
+  [2338] sub .................................... <gCoconutList[i].locH - Head.locH>
+  [2339] pusharglist 1 .......................... <gCoconutList[i].locH - Head.locH>
+  [2341] extcall 33 ............................. <float(gCoconutList[i].locH - Head.locH)>
+  [2344] setlocal 0 ............................. xDiff = float(gCoconutList[i].locH - Head.locH)
+  [2346] getglobal 926 .......................... <gCoconutList>
+  [2349] getlocal 32 ............................ <i>
+  [2351] pusharglist 2 .......................... <gCoconutList, i>
+  [2353] objcall 185 ............................ <gCoconutList[i]>
+  [2356] getobjprop 37 .......................... <gCoconutList[i].locV>
+  [2359] getprop 900 ............................ <Head>
+  [2362] getobjprop 37 .......................... <Head.locV>
+  [2365] sub .................................... <gCoconutList[i].locV - Head.locV>
+  [2366] pusharglist 1 .......................... <gCoconutList[i].locV - Head.locV>
+  [2368] extcall 33 ............................. <float(gCoconutList[i].locV - Head.locV)>
+  [2371] setlocal 8 ............................. yDiff = float(gCoconutList[i].locV - Head.locV)
+  [2373] getlocal 0 ............................. <xDiff>
+  [2375] getlocal 0 ............................. <xDiff>
+  [2377] mul .................................... <xDiff * xDiff>
+  [2378] getlocal 8 ............................. <yDiff>
+  [2380] getlocal 8 ............................. <yDiff>
+  [2382] mul .................................... <yDiff * yDiff>
+  [2383] add .................................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [2384] pusharglist 1 .......................... <(xDiff * xDiff) + (yDiff * yDiff)>
+  [2386] extcall 343 ............................ <sqrt((xDiff * xDiff) + (yDiff * yDiff))>
+  [2389] setlocal 16 ............................ Dist = sqrt((xDiff * xDiff) + (yDiff * yDiff))
+  [2391] getlocal 16 ............................ <Dist>
+  [2393] pushint8 80 ............................ <80>
+  [2396] getprop 921 ............................ <bodzillaScale>
+  [2399] mul .................................... <80 * bodzillaScale>
+  [2400] lt ..................................... <Dist < (80 * bodzillaScale)>
+  [2401] getprop 902 ............................ <bodzillaState>
+  [2404] pushsymb 929 ........................... <#Sink>
+  [2407] nteq ................................... <bodzillaState <> #Sink>
+  [2408] and .................................... <(Dist < (80 * bodzillaScale)) and (bodzillaState <> #Sink)>
+  [2409] jmpifz [2607] .......................... if (Dist < (80 * bodzillaScale)) and (bodzillaState <> #Sink) then
+  [2412] getprop 902 ............................ <bodzillaState>
+  [2415] pushsymb 927 ........................... <#BONK>
+  [2418] nteq ................................... <bodzillaState <> #BONK>
+  [2419] jmpifz [2607] .......................... if bodzillaState <> #BONK then
+  [2422] pushsymb 927 ........................... <#BONK>
+  [2425] setprop 902 ............................ bodzillaState = #BONK
+  [2428] pushint8 20 ............................ <20>
+  [2431] setprop 927 ............................ BONK = 20
+  [2434] getprop 929 ............................ <Sink>
+  [2437] pushint8 14 ............................ <14>
+  [2440] getprop 921 ............................ <bodzillaScale>
+  [2443] mul .................................... <14 * bodzillaScale>
+  [2444] add .................................... <Sink + (14 * bodzillaScale)>
+  [2445] setprop 929 ............................ Sink = Sink + (14 * bodzillaScale)
+  [2448] getprop 921 ............................ <bodzillaScale>
+  [2451] peek 0 ................................. case bodzillaScale of
+  [2453] pushcons 144 ........................... <1.0>
+  [2455] eq
+  [2456] jmpifz [2479] .......................... (case) 1.0:
+  [2459] pushint8 4 ............................. <4>
+  [2462] pushint8 80 ............................ <80>
+  [2465] pushcons 152 ........................... <"Sfx">
+  [2467] pusharglist 2 .......................... <80, "Sfx">
+  [2469] extcall 27 ............................. <member(80, "Sfx")>
+  [2471] pusharglistnoret 2 ..................... <4, member(80, "Sfx")>
+  [2473] extcall 395 ............................ puppetSound(4, member(80, "Sfx"))
+  [2476] jmp [2540]
+  [2479] peek 0
+  [2481] pushcons 160 ........................... <0.80000000000000004>
+  [2483] eq
+  [2484] jmpifz [2507] .......................... (case) 0.80000000000000004:
+  [2487] pushint8 4 ............................. <4>
+  [2490] pushint8 81 ............................ <81>
+  [2493] pushcons 168 ........................... <"Sfx">
+  [2495] pusharglist 2 .......................... <81, "Sfx">
+  [2497] extcall 27 ............................. <member(81, "Sfx")>
+  [2499] pusharglistnoret 2 ..................... <4, member(81, "Sfx")>
+  [2501] extcall 395 ............................ puppetSound(4, member(81, "Sfx"))
+  [2504] jmp [2540]
+  [2507] peek 0
+  [2509] pushcons 176 ........................... <0.5>
+  [2511] nteq
+  [2512] jmpifz [2523] .......................... (case) 0.5, ...
+  [2515] peek 0
+  [2517] pushcons 184 ........................... <0.40000000000000002>
+  [2519] eq
+  [2520] jmpifz [2540] .......................... (case) ..., 0.40000000000000002:
+  [2523] pushint8 4 ............................. <4>
+  [2526] pushint8 82 ............................ <82>
+  [2529] pushcons 192 ........................... <"Sfx">
+  [2531] pusharglist 2 .......................... <82, "Sfx">
+  [2533] extcall 27 ............................. <member(82, "Sfx")>
+  [2535] pusharglistnoret 2 ..................... <4, member(82, "Sfx")>
+  [2537] extcall 395 ............................ puppetSound(4, member(82, "Sfx"))
+  [2540] pop 1 .................................. end case
+  [2542] getlocal 16 ............................ <Dist>
+  [2544] pushzero ............................... <0>
+  [2545] gt ..................................... <Dist > 0>
+  [2546] jmpifz [2607] .......................... if Dist > 0 then
+  [2549] getlocal 0 ............................. <xDiff>
+  [2551] getlocal 8 ............................. <yDiff>
+  [2553] pusharglist 2 .......................... <xDiff, yDiff>
+  [2555] extcall 57 ............................. <point(xDiff, yDiff)>
+  [2558] getlocal 16 ............................ <Dist>
+  [2560] div .................................... <point(xDiff, yDiff) / Dist>
+  [2561] setlocal 40 ............................ pushDir = point(xDiff, yDiff) / Dist
+  [2563] getglobal 926 .......................... <gCoconutList>
+  [2566] getlocal 32 ............................ <i>
+  [2568] pusharglist 2 .......................... <gCoconutList, i>
+  [2570] objcall 185 ............................ <gCoconutList[i]>
+  [2573] getlocal 40 ............................ <pushDir>
+  [2575] getobjprop 36 .......................... <pushDir.locH>
+  [2578] pushint8 10 ............................ <10>
+  [2581] mul .................................... <pushDir.locH * 10>
+  [2582] setobjprop 44 .......................... gCoconutList[i].Xvel = pushDir.locH * 10
+  [2585] getglobal 926 .......................... <gCoconutList>
+  [2588] getlocal 32 ............................ <i>
+  [2590] pusharglist 2 .......................... <gCoconutList, i>
+  [2592] objcall 185 ............................ <gCoconutList[i]>
+  [2595] getlocal 40 ............................ <pushDir>
+  [2597] getobjprop 37 .......................... <pushDir.locV>
+  [2600] pushint8 10 ............................ <10>
+  [2603] mul .................................... <pushDir.locV * 10>
+  [2604] setobjprop 32 .......................... gCoconutList[i].Yvel = pushDir.locV * 10
+  [2607] pushint8 1
+  [2610] getlocal 32
+  [2612] add
+  [2613] setlocal 32
+  [2615] endrepeat [2307]
+  [2618] getprop 898 ............................ <Body>
+  [2621] getprop 48 ............................. <Xpos>
+  [2624] setobjprop 36 .......................... Body.locH = Xpos
+  [2627] getprop 898 ............................ <Body>
+  [2630] getprop 38 ............................. <Ypos>
+  [2633] getprop 929 ............................ <Sink>
+  [2636] add .................................... <Ypos + Sink>
+  [2637] setobjprop 37 .......................... Body.locV = Ypos + Sink
+  [2640] getprop 897 ............................ <ArmBack>
+  [2643] getprop 898 ............................ <Body>
+  [2646] getobjprop 213 ......................... <Body.loc>
+  [2649] getprop 904 ............................ <ArmBackOffset>
+  [2652] sub .................................... <Body.loc - ArmBackOffset>
+  [2653] setobjprop 213 ......................... ArmBack.loc = Body.loc - ArmBackOffset
+  [2656] getprop 899 ............................ <ArmFront>
+  [2659] getprop 898 ............................ <Body>
+  [2662] getobjprop 213 ......................... <Body.loc>
+  [2665] getprop 905 ............................ <ArmFrontOffset>
+  [2668] sub .................................... <Body.loc - ArmFrontOffset>
+  [2669] setobjprop 213 ......................... ArmFront.loc = Body.loc - ArmFrontOffset
+  [2672] getprop 900 ............................ <Head>
+  [2675] getprop 898 ............................ <Body>
+  [2678] getobjprop 213 ......................... <Body.loc>
+  [2681] getprop 906 ............................ <HeadOffset>
+  [2684] sub .................................... <Body.loc - HeadOffset>
+  [2685] pushzero ............................... <0>
+  [2686] getprop 927 ............................ <BONK>
+  [2689] pusharglist 2 .......................... <0, BONK>
+  [2691] extcall 57 ............................. <point(0, BONK)>
+  [2694] add .................................... <Body.loc - HeadOffset + point(0, BONK)>
+  [2695] setobjprop 213 ......................... Head.loc = Body.loc - HeadOffset + point(0, BONK)
+  [2698] getprop 901 ............................ <Tail>
+  [2701] getprop 898 ............................ <Body>
+  [2704] getobjprop 213 ......................... <Body.loc>
+  [2707] getprop 907 ............................ <tailOffset>
+  [2710] sub .................................... <Body.loc - tailOffset>
+  [2711] setobjprop 213 ......................... Tail.loc = Body.loc - tailOffset
+  [2714] ret
+end

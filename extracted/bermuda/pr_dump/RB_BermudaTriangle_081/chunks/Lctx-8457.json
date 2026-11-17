@@ -1,0 +1,131 @@
+{
+  "unknown0": 0,
+  "unknown1": 0,
+  "entryCount": 19,
+  "entryCount2": 19,
+  "entriesOffset": 96,
+  "unknown2": 12,
+  "unknown3": 0,
+  "unknown4": 4,
+  "unknown5": -1,
+  "lnamSectionID": 8461,
+  "validCount": 19,
+  "flags": 4,
+  "freePointer": -1,
+  "sectionMap": [
+    {
+      "unknown0": 42380500,
+      "sectionID": 8462,
+      "unknown1": 4,
+      "unknown2": 65535
+    },
+    {
+      "unknown0": 42380520,
+      "sectionID": 8463,
+      "unknown1": 4,
+      "unknown2": 65535
+    },
+    {
+      "unknown0": 42380540,
+      "sectionID": 8464,
+      "unknown1": 4,
+      "unknown2": 8
+    },
+    {
+      "unknown0": 42380560,
+      "sectionID": 8465,
+      "unknown1": 4,
+      "unknown2": 65535
+    },
+    {
+      "unknown0": 42380580,
+      "sectionID": 8466,
+      "unknown1": 4,
+      "unknown2": 8
+    },
+    {
+      "unknown0": 42380600,
+      "sectionID": 8467,
+      "unknown1": 4,
+      "unknown2": 65535
+    },
+    {
+      "unknown0": 42380620,
+      "sectionID": 8468,
+      "unknown1": 4,
+      "unknown2": 65535
+    },
+    {
+      "unknown0": 42380640,
+      "sectionID": 8469,
+      "unknown1": 4,
+      "unknown2": 65535
+    },
+    {
+      "unknown0": 42380400,
+      "sectionID": 8470,
+      "unknown1": 4,
+      "unknown2": 65535
+    },
+    {
+      "unknown0": 42380380,
+      "sectionID": 8471,
+      "unknown1": 4,
+      "unknown2": 0
+    },
+    {
+      "unknown0": 42380320,
+      "sectionID": 8472,
+      "unknown1": 4,
+      "unknown2": 0
+    },
+    {
+      "unknown0": 42380440,
+      "sectionID": 8473,
+      "unknown1": 4,
+      "unknown2": 0
+    },
+    {
+      "unknown0": 42380360,
+      "sectionID": 8474,
+      "unknown1": 4,
+      "unknown2": 0
+    },
+    {
+      "unknown0": 42380080,
+      "sectionID": 8475,
+      "unknown1": 4,
+      "unknown2": 0
+    },
+    {
+      "unknown0": 42380340,
+      "sectionID": 8476,
+      "unknown1": 4,
+      "unknown2": 0
+    },
+    {
+      "unknown0": 42381300,
+      "sectionID": 8477,
+      "unknown1": 4,
+      "unknown2": 0
+    },
+    {
+      "unknown0": 42380820,
+      "sectionID": 8478,
+      "unknown1": 4,
+      "unknown2": 0
+    },
+    {
+      "unknown0": 42380840,
+      "sectionID": 8479,
+      "unknown1": 4,
+      "unknown2": 65535
+    },
+    {
+      "unknown0": 42380860,
+      "sectionID": 8480,
+      "unknown1": 4,
+      "unknown2": 0
+    }
+  ]
+}

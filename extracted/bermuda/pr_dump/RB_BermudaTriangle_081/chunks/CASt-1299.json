@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 1861,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 271,
+    "scriptSrcText": "property this, Xpos, radians, Ypos, mapXPos, raftFront, cableGuy, swellList, swellListPointer, loopWidth, loopX, swellHeight, swellListPointerStart\rglobal gXVel, gXOffset, gPaused, gTileIDList\r\ron getPropertyDescriptionList me\r  descriptionList = [:]\r  addProp(descriptionList, #swellHeight, [#default: 0, #format: #sprite, #comment: \"Sea Swell Height\"])\r  addProp(descriptionList, #swellListPointerStart, [#default: 1, #format: #sprite, #comment: \"SwellListPointer Start\"])\r  return descriptionList\rend\r\ron beginSprite\r  radians = float(PI / 180)\r  this = sprite(the currentSpriteNum)\r  cableGuy = sprite(6)\r  loopWidth = gTileIDList.count * 128\r  loopX = gTileIDList.count * 128 * 0.5\r  Xpos = float(this.locH)\r  Ypos = float(this.locV)\r  this.locZ = 50\r  mapXPos = Xpos - 256\r  swellAngle = random(360)\r  swellList = []\r  swellListPointer = swellListPointerStart\r  repeat with i = 1 to 90\r    swellAngle = i * 4\r    swellList.add(swellHeight * cos(swellAngle * radians))\r  end repeat\rend\r\ron exitFrame\r  if gPaused = 0 then\r    Xpos = Xpos + gXVel + gXOffset\r    if Xpos > loopX then\r      Xpos = Xpos - loopWidth\r    end if\r    if Xpos < -loopX then\r      Xpos = Xpos + loopWidth\r    end if\r    xDiff = this.locH - cableGuy.locH\r    if abs(xDiff) < 35 then\r      yDiff = this.locV - 20 - (cableGuy.locV + cableGuy.Yvel)\r      if yDiff < 0 then\r        cableGuy.Yvel = cableGuy.Yvel + (yDiff * 0.25)\r      end if\r    end if\r    this.locH = Xpos\r    swellListPointer = swellListPointer + 1\r    if swellListPointer > 90 then\r      swellListPointer = 1\r    end if\r    this.locV = Ypos - swellList[swellListPointer]\r  end if\rend\r",
+    "name": "Pleasure Vessel"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

@@ -1,0 +1,11 @@
+MISSION 006 Nuclear Combustion
+The local nuclear test facility is in serious trouble!
+Can you avoid total meltdown?
+
+Douse all the flames, and rescue the workers and scientists.
+
+Lock down the burst steam vents with your water jet to get past them safely. Don't take too long!
+
+Use the cableGuy to pull every reactor fuel rod up into the raised position, then douse the rod to cool it down.
+
+Caution: Do not fly too close to the large power transformers!

@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2580,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 332,
+    "scriptSrcText": "property this, startMember, thisMember, frameCounter, Xvel, Xpos, Yvel, rotVel, COPTER, Ypos, spinDir, waitCounter\rglobal gXVel, gXOffset, gPaused, gDamagePercent\r\ron beginSprite\r  this = sprite(the currentSpriteNum)\r  COPTER = sprite(4)\r  thisMember = random(12) - 1\r  startMember = this.memberNum\r  frameCounter = 1\r  Xvel = random(3)\r  Xpos = float(this.locH)\r  Ypos = float(this.locV) - 1000\r  Yvel = 0\r  rotVel = 0\r  spinDir = random(2)\r  if spinDir = 2 then\r    spinDir = -1\r  end if\r  waitCounter = 45 - the currentSpriteNum\rend\r\ron exitFrame\r  if gPaused = 0 then\r    frameCounter = frameCounter + spinDir\r    if frameCounter = 2 then\r      frameCounter = 0\r      thisMember = thisMember + 1\r      if thisMember > 11 then\r        thisMember = 0\r      end if\r    end if\r    if frameCounter = -2 then\r      frameCounter = 0\r      thisMember = thisMember - 1\r      if thisMember < 0 then\r        thisMember = 11\r      end if\r    end if\r    this.memberNum = startMember + thisMember\r    Xpos = Xpos + gXVel + gXOffset - Xvel\r    Ypos = Ypos + Yvel\r    Yvel = Yvel * 0.97999999999999998\r    this.locH = Xpos\r    this.locV = Ypos\r    this.rotation = this.rotation + rotVel\r    if this.rotation > 360 then\r      this.rotation = this.rotation - 360\r    end if\r    if this.rotation < 0 then\r      this.rotation = this.rotation + 360\r    end if\r    if rotVel = 0 then\r      xDiff = COPTER.locH - this.locH\r      if abs(xDiff) < (this.width * 0.5) then\r        yDiff = COPTER.locV - this.locV\r        if abs(yDiff) < (this.height * 0.5) then\r          if yDiff > 0 then\r            Yvel = -5\r            rotVel = -8\r            Xvel = Xvel * 0.5\r            COPTER.Yvel = COPTER.Yvel + 2\r          else\r            Yvel = 5\r            rotVel = 8\r            Xvel = Xvel * 0.5\r            COPTER.Yvel = COPTER.Yvel - 2\r          end if\r          puppetSound(3, member(27, \"Sfx\"))\r          gDamagePercent = gDamagePercent + (this.width * 0.25)\r        end if\r      end if\r    end if\r    if Xpos < -100 then\r      waitCounter = waitCounter - 1\r      if waitCounter <= 0 then\r        Xvel = random(6)\r        Ypos = 30 + random(270)\r        Yvel = random(2) - 3\r        rotVel = 0\r        this.rotation = 0\r      end if\r      Xpos = Xpos + 800\r    end if\r    if Xpos > 612 then\r      waitCounter = waitCounter - 1\r      if waitCounter <= 0 then\r        Xvel = random(6)\r        Ypos = 30 + random(270)\r        Yvel = random(2) - 3\r        rotVel = 0\r        this.rotation = 0\r      end if\r      Xpos = Xpos - 800\r    end if\r  end if\rend\r",
+    "name": "TornadoDebris"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

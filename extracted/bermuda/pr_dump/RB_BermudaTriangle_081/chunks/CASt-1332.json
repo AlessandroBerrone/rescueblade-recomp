@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2654,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 175,
+    "scriptSrcText": "property this, COPTER, nozzleAngle, PrevSpacePressed, ploshDelay, radians, sprayWait, prevgWaterFlow, cableGuy\rglobal gPaused, gWaterFlow, gPloshList, gPloshX, gCoconuts, gCoconutList\r\ron beginSprite\r  this = sprite(the currentSpriteNum)\r  radians = float(PI / 180)\r  cableGuy = sprite(6)\r  COPTER = sprite(4)\r  nozzleAngle = 0\r  this.locZ = 99\r  prevgWaterFlow = 0\r  ploshDelay = float(3)\r  sprayWait = 0\rend\r\ron exitFrame\r  if gPaused = 0 then\r    gPloshX = -1\r    if keyPressed(123) then\r      nozzleAngle = nozzleAngle + 6\r    end if\r    if keyPressed(124) then\r      nozzleAngle = nozzleAngle - 6\r    end if\r    if keyPressed(49) then\r      if prevgWaterFlow = 0 then\r        if sprayWait >= 15 then\r          if gCoconuts = 0 then\r            puppetSound(3, member(33, \"Sfx\"))\r          end if\r          gWaterFlow = 1\r          cableGuy.cableState = #GOUP\r        else\r          sprayWait = sprayWait + 1\r        end if\r      end if\r    else\r      sprayWait = 0\r      gWaterFlow = 0\r      if prevgWaterFlow = 1 then\r        if sound(3).member = member(33, \"Sfx\") then\r          puppetSound(3, 0)\r        end if\r        PrevSpacePressed = 0\r      end if\r    end if\r    prevgWaterFlow = gWaterFlow\r    nozzleAngle = nozzleAngle * 0.94999999999999996\r    this.rotation = nozzleAngle\r    this.locH = COPTER.locH\r    this.locV = COPTER.locV + 10\r    if gWaterFlow = 1 then\r      if gCoconuts > 0 then\r        ploshDelay = ploshDelay + 0.20000000000000001\r      else\r        ploshDelay = ploshDelay + 1\r      end if\r      if ploshDelay >= 3 then\r        if gPloshList.count > 0 then\r          if gCoconuts > 0 then\r            gCoconuts = gCoconuts - 1\r            gPloshList[1].rotation = 0\r            gPloshList[1].member = member(200, \"Gfx\")\r            gPloshList[1].width = gPloshList[1].member.width\r            gPloshList[1].height = gPloshList[1].member.height\r            gCoconutList.add(gPloshList[1])\r            puppetSound(3, member(71, \"Sfx\"))\r          else\r            if sound(3).member <> member(33, \"Sfx\") then\r              puppetSound(3, member(33, \"Sfx\"))\r            end if\r            gPloshList[1].member = member(126, \"Gfx\")\r          end if\r          gPloshList[1].ploshState = #PLOSH\r          gPloshList[1].Xvel = 8 * sin(-nozzleAngle * radians)\r          gPloshList[1].Yvel = 8 * cos(-nozzleAngle * radians)\r          gPloshList[1].Xpos = this.locH\r          gPloshList[1].Ypos = this.locV\r          gPloshList[1].rotation = nozzleAngle\r          gPloshList.deleteAt(1)\r        end if\r        ploshDelay = 0\r      end if\r    else\r      ploshDelay = 3\r    end if\r  end if\rend\r",
+    "name": "WaterNozzle"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2546,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 368,
+    "scriptSrcText": "property this, Xpos, swellAngle, radians, Ypos, mapXPos, survivorDelay, thisMember, startMember, Xvel, cableGuy, survivorState, ThisWidth, thisHalfHeight, grabCount, distToHQ, targetSprite, targetOffset, frameDir, loopWidth, loopX\rglobal gXVel, gXOffset, gPaused, gTileIDList, gCableItem, gCableLength, gRescueCount, gRescuedList, gScore\r\ron beginSprite\r  radians = float(PI / 180)\r  this = sprite(the currentSpriteNum)\r  startMember = this.memberNum\r  thisMember = random(3) + startMember - 1\r  this.member = member(thisMember, \"Gfx\")\r  loopWidth = gTileIDList.count * 128\r  loopX = gTileIDList.count * 128 * 0.5\r  Xpos = float(this.locH)\r  Ypos = float(this.locV)\r  this.locZ = 60\r  Xvel = 0\r  mapXPos = Xpos - 256 - 64\r  survivorDelay = 0\r  swellAngle = 0\r  cableGuy = sprite(6)\r  survivorState = #TENTACLE\r  ThisWidth = this.width\r  thisHalfHeight = this.height / 2\r  grabCount = 0\r  distToHQ = 0\r  frameDir = 1\rend\r\ron exitFrame\r  if gPaused = 0 then\r    case survivorState of\r      #TENTACLE:\r        survivorDelay = survivorDelay + 1\r        if survivorDelay >= 5 then\r          survivorDelay = 0\r          if ((thisMember + frameDir) > (startMember + 2)) or ((thisMember + frameDir) < startMember) then\r            frameDir = -frameDir\r          end if\r          thisMember = thisMember + frameDir\r          this.member = member(thisMember, \"Gfx\")\r        end if\r      #ONCABLE:\r        this.loc = cableGuy.loc\r        if gCableLength = 0 then\r          gCableItem = 0\r          survivorState = #INCOPTER\r          gRescueCount = gRescueCount + 1\r          gScore = gScore + 500\r          puppetSound(3, member(8, \"Sfx\"))\r          gRescuedList.add(this)\r        end if\r      #INCOPTER:\r        this.locH = -1000\r        this.locV = -1000\r      #GOTOHQ:\r        thisMember = thisMember + 1\r        if thisMember > (startMember + 2) then\r          thisMember = startMember\r        end if\r        this.member = member(thisMember, \"Gfx\")\r        if distToHQ <= 0 then\r          Xvel = 0\r          this.blend = this.blend - 5\r          if this.blend <= 0 then\r            survivorState = #HOME\r            gRescueCount = gRescueCount + 1\r            gScore = gScore + 1000\r            puppetSound(3, member(8, \"Sfx\"))\r          end if\r        end if\r        Xpos = Xpos + gXVel + gXOffset + Xvel\r        distToHQ = distToHQ + Xvel\r        Ypos = 270\r        this.locH = Xpos\r        this.locV = Ypos\r      #HOME:\r        this.locH = -1000\r        this.locV = -1000\r    end case\r  end if\rend\r",
+    "name": "TentacleSurvivor"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

@@ -1,0 +1,13 @@
+MISSION 002 Introducing Cable Guy
+Use spacebar to toggle the winch up / down.
+
+Fly around  the  islands and hover above each pickup,  tap the spacebar to lower your cable guy down to grab the item. Tap the Spacebar again to haul up the goodies.
+
+
+FUEL BARREL:				Raises fuel level
+
+TOOL BOX :				Reduces damage level
+
+TREASURE :				Huge points bonus
+
+SEAGULL :				AVOID BIRD STRIKES!

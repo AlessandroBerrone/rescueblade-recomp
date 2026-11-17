@@ -1,0 +1,745 @@
+property this, missionState, missionCounter, tileVisitList
+global gLevel, gDamagePercent, gfuelPercent, gTileIDList, gCopterTile, gGuyDoom, gScore, gTimeBonus, gPaused, gLevelScoreList, gFlyingPoints, gRescueCount, gRescuedList, gGameName, gLockOut, gCoconuts
+
+on beginSprite
+  [  0] pushsymb 399 ............................ <#NULL>
+  [  3] setlocal 0 .............................. gLevelResult = #NULL
+  [  5] getmovieprop 22 ......................... <the currentSpriteNum>
+  [  7] pusharglist 1 ........................... <the currentSpriteNum>
+  [  9] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [ 11] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [ 13] pushsymb 561 ............................ <#START>
+  [ 16] setprop 560 ............................. missionState = #START
+  [ 19] getglobal 510 ........................... <gLevel>
+  [ 22] peek 0 .................................. case gLevel of
+  [ 24] pushint8 1 .............................. <1>
+  [ 27] eq
+  [ 28] jmpifz [133] ............................ (case) 1:
+  [ 31] getprop 20 .............................. <this>
+  [ 33] getobjprop 27 ........................... <this.member>
+  [ 35] pushcons 0 .............................. <"Rescue all holiday guests!">
+  [ 37] pushcons 8 .............................. <RETURN>
+  [ 39] joinstr ................................. <"Rescue all holiday guests!" & RETURN>
+  [ 40] pushcons 16 ............................. <"Avoid debris and hazards at all costs.">
+  [ 42] joinstr ................................. <"Rescue all holiday guests!" & RETURN & "Avoid debris and hazards at all costs.">
+  [ 43] setobjprop 101 .......................... this.member.text = "Rescue all holiday guests!" & RETURN & "Avoid debris and hazards at all costs."
+  [ 46] pushint8 2200 ........................... <2200>
+  [ 49] setglobal 576 ........................... gTimeBonus = 2200
+  [ 52] pusharglist 0 ........................... <[]>
+  [ 54] pushlist ................................ <[]>
+  [ 55] setprop 567 ............................. tileVisitList = []
+  [ 58] pushint8 3 .............................. <3>
+  [ 61] pushint8 76 ............................. <76>
+  [ 64] pushcons 24 ............................. <"Sfx">
+  [ 66] pusharglist 2 ........................... <76, "Sfx">
+  [ 68] extcall 27 .............................. <member(76, "Sfx")>
+  [ 70] pusharglistnoret 2 ...................... <3, member(76, "Sfx")>
+  [ 72] extcall 395 ............................. puppetSound(3, member(76, "Sfx"))
+  [ 75] pushint8 1 .............................. <1>
+  [ 78] setlocal 8
+  [ 80] getlocal 8
+  [ 82] getglobal 180 ........................... <gTileIDList>
+  [ 85] getobjprop 183 .......................... <gTileIDList.count>
+  [ 88] lteq
+  [ 89] jmpifz [130] ............................ repeat with i = 1 to gTileIDList.count
+  [ 92] getglobal 180 ........................... <gTileIDList>
+  [ 95] getlocal 8 .............................. <i>
+  [ 97] pusharglist 2 ........................... <gTileIDList, i>
+  [ 99] objcall 185 ............................. <gTileIDList[i]>
+  [102] pushint8 4 .............................. <4>
+  [105] eq ...................................... <gTileIDList[i] = 4>
+  [106] jmpifz [119] ............................ if gTileIDList[i] = 4 then
+  [109] getprop 567 ............................. <tileVisitList>
+  [112] getlocal 8 .............................. <i>
+  [114] pusharglistnoret 2 ...................... <tileVisitList, i>
+  [116] objcall 418 ............................. tileVisitList.add(i)
+  [119] pushint8 1
+  [122] getlocal 8
+  [124] add
+  [125] setlocal 8
+  [127] endrepeat [ 80]
+  [130] jmp [302]
+  [133] peek 0
+  [135] pushint8 2 .............................. <2>
+  [138] eq
+  [139] jmpifz [233] ............................ (case) 2:
+  [142] getprop 20 .............................. <this>
+  [144] getobjprop 27 ........................... <this.member>
+  [146] pushcons 32 ............................. <"Fight off the UFOs.">
+  [148] pushcons 40 ............................. <RETURN>
+  [150] joinstr ................................. <"Fight off the UFOs." & RETURN>
+  [151] pushcons 48 ............................. <"Rescue all the guests">
+  [153] joinstr ................................. <"Fight off the UFOs." & RETURN & "Rescue all the guests">
+  [154] pushcons 56 ............................. <RETURN>
+  [156] joinstr ................................. <"Fight off the UFOs." & RETURN & "Rescue all the guests" & RETURN>
+  [157] pushcons 64 ............................. <"and return them to the hotel!">
+  [159] joinstr ................................. <"Fight off the UFOs." & RETURN & "Rescue all the guests" & RETURN & "and return them to the hotel!">
+  [160] setobjprop 101 .......................... this.member.text = "Fight off the UFOs." & RETURN & "Rescue all the guests" & RETURN & "and return them to the hotel!"
+  [163] pushint8 8000 ........................... <8000>
+  [166] setglobal 576 ........................... gTimeBonus = 8000
+  [169] pusharglist 0 ........................... <[]>
+  [171] pushlist ................................ <[]>
+  [172] setprop 567 ............................. tileVisitList = []
+  [175] pushint8 1 .............................. <1>
+  [178] setlocal 8
+  [180] getlocal 8
+  [182] getglobal 180 ........................... <gTileIDList>
+  [185] getobjprop 183 .......................... <gTileIDList.count>
+  [188] lteq
+  [189] jmpifz [230] ............................ repeat with i = 1 to gTileIDList.count
+  [192] getglobal 180 ........................... <gTileIDList>
+  [195] getlocal 8 .............................. <i>
+  [197] pusharglist 2 ........................... <gTileIDList, i>
+  [199] objcall 185 ............................. <gTileIDList[i]>
+  [202] pushint8 4 .............................. <4>
+  [205] eq ...................................... <gTileIDList[i] = 4>
+  [206] jmpifz [219] ............................ if gTileIDList[i] = 4 then
+  [209] getprop 567 ............................. <tileVisitList>
+  [212] getlocal 8 .............................. <i>
+  [214] pusharglistnoret 2 ...................... <tileVisitList, i>
+  [216] objcall 418 ............................. tileVisitList.add(i)
+  [219] pushint8 1
+  [222] getlocal 8
+  [224] add
+  [225] setlocal 8
+  [227] endrepeat [180]
+  [230] jmp [302]
+  [233] peek 0
+  [235] pushint8 3 .............................. <3>
+  [238] eq
+  [239] jmpifz [266] ............................ (case) 3:
+  [242] getprop 20 .............................. <this>
+  [244] getobjprop 27 ........................... <this.member>
+  [246] pushcons 72 ............................. <"Save all survivors.">
+  [248] pushcons 80 ............................. <RETURN>
+  [250] joinstr ................................. <"Save all survivors." & RETURN>
+  [251] pushcons 88 ............................. <"Try to get rid of the Bodzillas!">
+  [253] joinstr ................................. <"Save all survivors." & RETURN & "Try to get rid of the Bodzillas!">
+  [254] setobjprop 101 .......................... this.member.text = "Save all survivors." & RETURN & "Try to get rid of the Bodzillas!"
+  [257] pushint8 9000 ........................... <9000>
+  [260] setglobal 576 ........................... gTimeBonus = 9000
+  [263] jmp [302]
+  [266] peek 0
+  [268] pushint8 4 .............................. <4>
+  [271] eq
+  [272] jmpifz [302] ............................ (case) 4:
+  [275] getprop 20 .............................. <this>
+  [277] getobjprop 27 ........................... <this.member>
+  [279] pushcons 96 ............................. <"Grab as much sunken treasure as you can!">
+  [281] pushcons 104 ............................ <RETURN>
+  [283] joinstr ................................. <"Grab as much sunken treasure as you can!" & RETURN>
+  [284] pushcons 112 ............................ <"HOLD SPACEBAR to snap the plane wrecks!">
+  [286] joinstr ................................. <"Grab as much sunken treasure as you can!" & RETURN & "HOLD SPACEBAR to snap the plane wrecks!">
+  [287] setobjprop 101 .......................... this.member.text = "Grab as much sunken treasure as you can!" & RETURN & "HOLD SPACEBAR to snap the plane wrecks!"
+  [290] pushint8 9000 ........................... <9000>
+  [293] setglobal 576 ........................... gTimeBonus = 9000
+  [296] pushint8 12 ............................. <12>
+  [299] setglobal 923 ........................... gCoconuts = 12
+  [302] pop 1 ................................... end case
+  [304] getprop 20 .............................. <this>
+  [306] pushint8 2100 ........................... <2100>
+  [309] setobjprop 178 .......................... this.locZ = 2100
+  [312] getprop 20 .............................. <this>
+  [314] pushzero ................................ <0>
+  [315] setobjprop 173 .......................... this.blend = 0
+  [318] pushzero ................................ <0>
+  [319] setprop 565 ............................. missionCounter = 0
+  [322] ret
+end
+
+on exitFrame
+  [  0] getglobal 364 ........................... <gPaused>
+  [  3] pushzero ................................ <0>
+  [  4] eq ...................................... <gPaused = 0>
+  [  5] jmpifz [1427] ........................... if gPaused = 0 then
+  [  8] getprop 560 ............................. <missionState>
+  [ 11] peek 0 .................................. case missionState of
+  [ 13] pushsymb 561 ............................ <#START>
+  [ 16] eq
+  [ 17] jmpifz [ 65] ............................ (case) #START:
+  [ 20] pushint8 126 ............................ <126>
+  [ 23] pusharglist 1 ........................... <126>
+  [ 25] extcall 24 .............................. <keyPressed(126)>
+  [ 27] jmpifz [ 36] ............................ if keyPressed(126) then
+  [ 30] pushsymb 562 ............................ <#STARTFADEOUT>
+  [ 33] setprop 560 ............................. missionState = #STARTFADEOUT
+  [ 36] getprop 20 .............................. <this>
+  [ 38] getobjprop 173 .......................... <this.blend>
+  [ 41] pushint8 100 ............................ <100>
+  [ 44] lt ...................................... <this.blend < 100>
+  [ 45] jmpifz [ 62] ............................ if this.blend < 100 then
+  [ 48] getprop 20 .............................. <this>
+  [ 50] getprop 20 .............................. <this>
+  [ 52] getobjprop 173 .......................... <this.blend>
+  [ 55] pushint8 5 .............................. <5>
+  [ 58] add ..................................... <this.blend + 5>
+  [ 59] setobjprop 173 .......................... this.blend = this.blend + 5
+  [ 62] jmp [1425]
+  [ 65] peek 0
+  [ 67] pushsymb 562 ............................ <#STARTFADEOUT>
+  [ 70] eq
+  [ 71] jmpifz [125] ............................ (case) #STARTFADEOUT:
+  [ 74] getprop 20 .............................. <this>
+  [ 76] getprop 20 .............................. <this>
+  [ 78] getobjprop 173 .......................... <this.blend>
+  [ 81] pushint8 5 .............................. <5>
+  [ 84] sub ..................................... <this.blend - 5>
+  [ 85] setobjprop 173 .......................... this.blend = this.blend - 5
+  [ 88] getprop 20 .............................. <this>
+  [ 90] getobjprop 173 .......................... <this.blend>
+  [ 93] pushzero ................................ <0>
+  [ 94] eq ...................................... <this.blend = 0>
+  [ 95] jmpifz [122] ............................ if this.blend = 0 then
+  [ 98] getprop 20 .............................. <this>
+  [100] pushint8 1000 ........................... <1000>
+  [103] inv ..................................... <-1000>
+  [104] setobjprop 36 ........................... this.locH = -1000
+  [107] getprop 20 .............................. <this>
+  [109] pushint8 1000 ........................... <1000>
+  [112] inv ..................................... <-1000>
+  [113] setobjprop 37 ........................... this.locV = -1000
+  [116] pushsymb 563 ............................ <#RUNNING>
+  [119] setprop 560 ............................. missionState = #RUNNING
+  [122] jmp [1425]
+  [125] peek 0
+  [127] pushsymb 563 ............................ <#RUNNING>
+  [130] eq
+  [131] jmpifz [1078] ........................... (case) #RUNNING:
+  [134] getglobal 576 ........................... <gTimeBonus>
+  [137] pushzero ................................ <0>
+  [138] gt ...................................... <gTimeBonus > 0>
+  [139] jmpifz [152] ............................ if gTimeBonus > 0 then
+  [142] getglobal 576 ........................... <gTimeBonus>
+  [145] pushint8 1 .............................. <1>
+  [148] sub ..................................... <gTimeBonus - 1>
+  [149] setglobal 576 ........................... gTimeBonus = gTimeBonus - 1
+  [152] getglobal 510 ........................... <gLevel>
+  [155] peek 0 .................................. case gLevel of
+  [157] pushint8 1 .............................. <1>
+  [160] eq
+  [161] jmpifz [314] ............................ (case) 1:
+  [164] getglobal 453 ........................... <gRescueCount>
+  [167] pushint8 9 .............................. <9>
+  [170] gteq .................................... <gRescueCount >= 9>
+  [171] jmpifz [311] ............................ if gRescueCount >= 9 then
+  [174] pushsymb 569 ............................ <#COMPLETE>
+  [177] setlocal 0 .............................. gLevelResult = #COMPLETE
+  [179] pushsymb 569 ............................ <#COMPLETE>
+  [182] setprop 560 ............................. missionState = #COMPLETE
+  [185] getprop 20 .............................. <this>
+  [187] pushint8 78 ............................. <78>
+  [190] setobjprop 36 ........................... this.locH = 78
+  [193] getprop 20 .............................. <this>
+  [195] pushint8 32 ............................. <32>
+  [198] setobjprop 37 ........................... this.locV = 32
+  [201] getprop 20 .............................. <this>
+  [203] getobjprop 27 ........................... <this.member>
+  [205] pushcons 120 ............................ <"MISSION COMPLETE">
+  [207] pushcons 128 ............................ <RETURN>
+  [209] joinstr ................................. <"MISSION COMPLETE" & RETURN>
+  [210] pushcons 136 ............................ <"You saved all the guests!">
+  [212] joinstr ................................. <"MISSION COMPLETE" & RETURN & "You saved all the guests!">
+  [213] pushcons 144 ............................ <RETURN>
+  [215] joinstr ................................. <"MISSION COMPLETE" & RETURN & "You saved all the guests!" & RETURN>
+  [216] pushcons 152 ............................ <"TimeBonus = ">
+  [218] joinstr ................................. <"MISSION COMPLETE" & RETURN & "You saved all the guests!" & RETURN & "TimeBonus = ">
+  [219] getglobal 576 ........................... <gTimeBonus>
+  [222] joinstr ................................. <"MISSION COMPLETE" & RETURN & "You saved all the guests!" & RETURN & "TimeBonus = " & gTimeBonus>
+  [223] setobjprop 101 .......................... this.member.text = "MISSION COMPLETE" & RETURN & "You saved all the guests!" & RETURN & "TimeBonus = " & gTimeBonus
+  [226] getglobal 410 ........................... <gScore>
+  [229] getglobal 576 ........................... <gTimeBonus>
+  [232] add ..................................... <gScore + gTimeBonus>
+  [233] setglobal 410 ........................... gScore = gScore + gTimeBonus
+  [236] getglobal 576 ........................... <gTimeBonus>
+  [239] setglobal 594 ........................... gFlyingPoints = gTimeBonus
+  [242] pushint8 1 .............................. <1>
+  [245] pushint8 23 ............................. <23>
+  [248] pushcons 160 ............................ <"Sfx">
+  [250] pusharglist 2 ........................... <23, "Sfx">
+  [252] extcall 27 .............................. <member(23, "Sfx")>
+  [254] pusharglistnoret 2 ...................... <1, member(23, "Sfx")>
+  [256] extcall 395 ............................. puppetSound(1, member(23, "Sfx"))
+  [259] getglobal 578 ........................... <gLevelScoreList>
+  [262] getglobal 510 ........................... <gLevel>
+  [265] pusharglist 2 ........................... <gLevelScoreList, gLevel>
+  [267] objcall 185 ............................. <gLevelScoreList[gLevel]>
+  [270] getglobal 410 ........................... <gScore>
+  [273] lt ...................................... <gLevelScoreList[gLevel] < gScore>
+  [274] jmpifz [311] ............................ if gLevelScoreList[gLevel] < gScore then
+  [277] getglobal 578 ........................... <gLevelScoreList>
+  [280] getglobal 510 ........................... <gLevel>
+  [283] getglobal 410 ........................... <gScore>
+  [286] pusharglistnoret 3 ...................... <gLevelScoreList, gLevel, gScore>
+  [288] objcall 181 ............................. gLevelScoreList[gLevel] = gScore
+  [291] getprop 20 .............................. <this>
+  [293] getobjprop 27 ........................... <this.member>
+  [295] getprop 20 .............................. <this>
+  [297] getobjprop 27 ........................... <this.member>
+  [299] getobjprop 101 .......................... <this.member.text>
+  [302] pushcons 168 ............................ <RETURN>
+  [304] joinstr ................................. <this.member.text & RETURN>
+  [305] pushcons 176 ............................ <"NEW HI-SCORE!">
+  [307] joinstr ................................. <this.member.text & RETURN & "NEW HI-SCORE!">
+  [308] setobjprop 101 .......................... this.member.text = this.member.text & RETURN & "NEW HI-SCORE!"
+  [311] jmp [793]
+  [314] peek 0
+  [316] pushint8 2 .............................. <2>
+  [319] eq
+  [320] jmpifz [467] ............................ (case) 2:
+  [323] getglobal 453 ........................... <gRescueCount>
+  [326] pushint8 16 ............................. <16>
+  [329] gteq .................................... <gRescueCount >= 16>
+  [330] jmpifz [464] ............................ if gRescueCount >= 16 then
+  [333] pushsymb 569 ............................ <#COMPLETE>
+  [336] setlocal 0 .............................. gLevelResult = #COMPLETE
+  [338] pushsymb 569 ............................ <#COMPLETE>
+  [341] setprop 560 ............................. missionState = #COMPLETE
+  [344] getprop 20 .............................. <this>
+  [346] pushint8 78 ............................. <78>
+  [349] setobjprop 36 ........................... this.locH = 78
+  [352] getprop 20 .............................. <this>
+  [354] pushint8 32 ............................. <32>
+  [357] setobjprop 37 ........................... this.locV = 32
+  [360] getprop 20 .............................. <this>
+  [362] getobjprop 27 ........................... <this.member>
+  [364] pushcons 184 ............................ <"MISSION COMPLETE">
+  [366] pushcons 192 ............................ <RETURN>
+  [368] joinstr ................................. <"MISSION COMPLETE" & RETURN>
+  [369] pushcons 200 ............................ <"Alien Invaders Repelled! ">
+  [371] joinstr ................................. <"MISSION COMPLETE" & RETURN & "Alien Invaders Repelled! ">
+  [372] pushcons 208 ............................ <RETURN>
+  [374] joinstr ................................. <"MISSION COMPLETE" & RETURN & "Alien Invaders Repelled! " & RETURN>
+  [375] pushcons 216 ............................ <" TimeBonus = ">
+  [377] joinstr ................................. <"MISSION COMPLETE" & RETURN & "Alien Invaders Repelled! " & RETURN & " TimeBonus = ">
+  [378] getglobal 576 ........................... <gTimeBonus>
+  [381] joinstr ................................. <"MISSION COMPLETE" & RETURN & "Alien Invaders Repelled! " & RETURN & " TimeBonus = " & gTimeBonus>
+  [382] setobjprop 101 .......................... this.member.text = "MISSION COMPLETE" & RETURN & "Alien Invaders Repelled! " & RETURN & " TimeBonus = " & gTimeBonus
+  [385] getglobal 410 ........................... <gScore>
+  [388] getglobal 576 ........................... <gTimeBonus>
+  [391] add ..................................... <gScore + gTimeBonus>
+  [392] setglobal 410 ........................... gScore = gScore + gTimeBonus
+  [395] pushint8 1 .............................. <1>
+  [398] pushint8 23 ............................. <23>
+  [401] pushcons 224 ............................ <"Sfx">
+  [403] pusharglist 2 ........................... <23, "Sfx">
+  [405] extcall 27 .............................. <member(23, "Sfx")>
+  [407] pusharglistnoret 2 ...................... <1, member(23, "Sfx")>
+  [409] extcall 395 ............................. puppetSound(1, member(23, "Sfx"))
+  [412] getglobal 578 ........................... <gLevelScoreList>
+  [415] getglobal 510 ........................... <gLevel>
+  [418] pusharglist 2 ........................... <gLevelScoreList, gLevel>
+  [420] objcall 185 ............................. <gLevelScoreList[gLevel]>
+  [423] getglobal 410 ........................... <gScore>
+  [426] lt ...................................... <gLevelScoreList[gLevel] < gScore>
+  [427] jmpifz [464] ............................ if gLevelScoreList[gLevel] < gScore then
+  [430] getglobal 578 ........................... <gLevelScoreList>
+  [433] getglobal 510 ........................... <gLevel>
+  [436] getglobal 410 ........................... <gScore>
+  [439] pusharglistnoret 3 ...................... <gLevelScoreList, gLevel, gScore>
+  [441] objcall 181 ............................. gLevelScoreList[gLevel] = gScore
+  [444] getprop 20 .............................. <this>
+  [446] getobjprop 27 ........................... <this.member>
+  [448] getprop 20 .............................. <this>
+  [450] getobjprop 27 ........................... <this.member>
+  [452] getobjprop 101 .......................... <this.member.text>
+  [455] pushcons 232 ............................ <RETURN>
+  [457] joinstr ................................. <this.member.text & RETURN>
+  [458] pushcons 240 ............................ <"NEW HI-SCORE!">
+  [460] joinstr ................................. <this.member.text & RETURN & "NEW HI-SCORE!">
+  [461] setobjprop 101 .......................... this.member.text = this.member.text & RETURN & "NEW HI-SCORE!"
+  [464] jmp [793]
+  [467] peek 0
+  [469] pushint8 3 .............................. <3>
+  [472] eq
+  [473] jmpifz [627] ............................ (case) 3:
+  [476] getglobal 453 ........................... <gRescueCount>
+  [479] pushint8 36 ............................. <36>
+  [482] gteq .................................... <gRescueCount >= 36>
+  [483] jmpifz [624] ............................ if gRescueCount >= 36 then
+  [486] pushsymb 569 ............................ <#COMPLETE>
+  [489] setlocal 0 .............................. gLevelResult = #COMPLETE
+  [491] pushsymb 569 ............................ <#COMPLETE>
+  [494] setprop 560 ............................. missionState = #COMPLETE
+  [497] getprop 20 .............................. <this>
+  [499] pushint8 78 ............................. <78>
+  [502] setobjprop 36 ........................... this.locH = 78
+  [505] getprop 20 .............................. <this>
+  [507] pushint8 32 ............................. <32>
+  [510] setobjprop 37 ........................... this.locV = 32
+  [513] getprop 20 .............................. <this>
+  [515] getobjprop 27 ........................... <this.member>
+  [517] pushcons 248 ............................ <"MISSION COMPLETE">
+  [519] pushcons 256 ............................ <RETURN>
+  [522] joinstr ................................. <"MISSION COMPLETE" & RETURN>
+  [523] pushcons 264 ............................ <"Brilliant Bodzilla Bonking! ">
+  [526] joinstr ................................. <"MISSION COMPLETE" & RETURN & "Brilliant Bodzilla Bonking! ">
+  [527] pushcons 272 ............................ <RETURN>
+  [530] joinstr ................................. <"MISSION COMPLETE" & RETURN & "Brilliant Bodzilla Bonking! " & RETURN>
+  [531] pushcons 280 ............................ <" TimeBonus = ">
+  [534] joinstr ................................. <"MISSION COMPLETE" & RETURN & "Brilliant Bodzilla Bonking! " & RETURN & " TimeBonus = ">
+  [535] getglobal 576 ........................... <gTimeBonus>
+  [538] joinstr ................................. <"MISSION COMPLETE" & RETURN & "Brilliant Bodzilla Bonking! " & RETURN & " TimeBonus = " & gTimeBonus>
+  [539] setobjprop 101 .......................... this.member.text = "MISSION COMPLETE" & RETURN & "Brilliant Bodzilla Bonking! " & RETURN & " TimeBonus = " & gTimeBonus
+  [542] getglobal 410 ........................... <gScore>
+  [545] getglobal 576 ........................... <gTimeBonus>
+  [548] add ..................................... <gScore + gTimeBonus>
+  [549] setglobal 410 ........................... gScore = gScore + gTimeBonus
+  [552] pushint8 1 .............................. <1>
+  [555] pushint8 23 ............................. <23>
+  [558] pushcons 288 ............................ <"Sfx">
+  [561] pusharglist 2 ........................... <23, "Sfx">
+  [563] extcall 27 .............................. <member(23, "Sfx")>
+  [565] pusharglistnoret 2 ...................... <1, member(23, "Sfx")>
+  [567] extcall 395 ............................. puppetSound(1, member(23, "Sfx"))
+  [570] getglobal 578 ........................... <gLevelScoreList>
+  [573] getglobal 510 ........................... <gLevel>
+  [576] pusharglist 2 ........................... <gLevelScoreList, gLevel>
+  [578] objcall 185 ............................. <gLevelScoreList[gLevel]>
+  [581] getglobal 410 ........................... <gScore>
+  [584] lt ...................................... <gLevelScoreList[gLevel] < gScore>
+  [585] jmpifz [624] ............................ if gLevelScoreList[gLevel] < gScore then
+  [588] getglobal 578 ........................... <gLevelScoreList>
+  [591] getglobal 510 ........................... <gLevel>
+  [594] getglobal 410 ........................... <gScore>
+  [597] pusharglistnoret 3 ...................... <gLevelScoreList, gLevel, gScore>
+  [599] objcall 181 ............................. gLevelScoreList[gLevel] = gScore
+  [602] getprop 20 .............................. <this>
+  [604] getobjprop 27 ........................... <this.member>
+  [606] getprop 20 .............................. <this>
+  [608] getobjprop 27 ........................... <this.member>
+  [610] getobjprop 101 .......................... <this.member.text>
+  [613] pushcons 296 ............................ <RETURN>
+  [616] joinstr ................................. <this.member.text & RETURN>
+  [617] pushcons 304 ............................ <"NEW HI-SCORE!">
+  [620] joinstr ................................. <this.member.text & RETURN & "NEW HI-SCORE!">
+  [621] setobjprop 101 .......................... this.member.text = this.member.text & RETURN & "NEW HI-SCORE!"
+  [624] jmp [793]
+  [627] peek 0
+  [629] pushint8 4 .............................. <4>
+  [632] eq
+  [633] jmpifz [793] ............................ (case) 4:
+  [636] getglobal 453 ........................... <gRescueCount>
+  [639] pushint8 9 .............................. <9>
+  [642] gteq .................................... <gRescueCount >= 9>
+  [643] jmpifz [793] ............................ if gRescueCount >= 9 then
+  [646] pushsymb 569 ............................ <#COMPLETE>
+  [649] setlocal 0 .............................. gLevelResult = #COMPLETE
+  [651] pushsymb 569 ............................ <#COMPLETE>
+  [654] setprop 560 ............................. missionState = #COMPLETE
+  [657] getprop 20 .............................. <this>
+  [659] pushint8 78 ............................. <78>
+  [662] setobjprop 36 ........................... this.locH = 78
+  [665] getprop 20 .............................. <this>
+  [667] pushint8 32 ............................. <32>
+  [670] setobjprop 37 ........................... this.locV = 32
+  [673] getprop 20 .............................. <this>
+  [675] getobjprop 27 ........................... <this.member>
+  [677] pushcons 312 ............................ <"MISSION COMPLETE">
+  [680] pushcons 320 ............................ <RETURN>
+  [683] joinstr ................................. <"MISSION COMPLETE" & RETURN>
+  [684] pushcons 328 ............................ <"cableGuy has ample holiday cash to splash!">
+  [687] joinstr ................................. <"MISSION COMPLETE" & RETURN & "cableGuy has ample holiday cash to splash!">
+  [688] pushcons 336 ............................ <RETURN>
+  [691] joinstr ................................. <"MISSION COMPLETE" & RETURN & "cableGuy has ample holiday cash to splash!" & RETURN>
+  [692] pushcons 344 ............................ <"Superb submarine skill skipper!">
+  [695] joinstr ................................. <"MISSION COMPLETE" & RETURN & "cableGuy has ample holiday cash to splash!" & RETURN & "Superb submarine skill skipper!">
+  [696] pushcons 352 ............................ <RETURN>
+  [699] joinstr ................................. <"MISSION COMPLETE" & RETURN & "cableGuy has ample holiday cash to splash!" & RETURN & "Superb submarine skill skipper!" & RETURN>
+  [700] pushcons 360 ............................ <"TimeBonus = ">
+  [703] joinstr ................................. <"MISSION COMPLETE" & RETURN & "cableGuy has ample holiday cash to splash!" & RETURN & "Superb submarine skill skipper!" & RETURN & "TimeBonus = ">
+  [704] getglobal 576 ........................... <gTimeBonus>
+  [707] joinstr ................................. <"MISSION COMPLETE" & RETURN & "cableGuy has ample holiday cash to splash!" & RETURN & "Superb submarine skill skipper!" & RETURN & "TimeBonus = " & gTimeBonus>
+  [708] setobjprop 101 .......................... this.member.text = "MISSION COMPLETE" & RETURN & "cableGuy has ample holiday cash to splash!" & RETURN & "Superb submarine skill skipper!" & RETURN & "TimeBonus = " & gTimeBonus
+  [711] getglobal 410 ........................... <gScore>
+  [714] getglobal 576 ........................... <gTimeBonus>
+  [717] add ..................................... <gScore + gTimeBonus>
+  [718] setglobal 410 ........................... gScore = gScore + gTimeBonus
+  [721] pushint8 1 .............................. <1>
+  [724] pushint8 23 ............................. <23>
+  [727] pushcons 368 ............................ <"Sfx">
+  [730] pusharglist 2 ........................... <23, "Sfx">
+  [732] extcall 27 .............................. <member(23, "Sfx")>
+  [734] pusharglistnoret 2 ...................... <1, member(23, "Sfx")>
+  [736] extcall 395 ............................. puppetSound(1, member(23, "Sfx"))
+  [739] getglobal 578 ........................... <gLevelScoreList>
+  [742] getglobal 510 ........................... <gLevel>
+  [745] pusharglist 2 ........................... <gLevelScoreList, gLevel>
+  [747] objcall 185 ............................. <gLevelScoreList[gLevel]>
+  [750] getglobal 410 ........................... <gScore>
+  [753] lt ...................................... <gLevelScoreList[gLevel] < gScore>
+  [754] jmpifz [793] ............................ if gLevelScoreList[gLevel] < gScore then
+  [757] getglobal 578 ........................... <gLevelScoreList>
+  [760] getglobal 510 ........................... <gLevel>
+  [763] getglobal 410 ........................... <gScore>
+  [766] pusharglistnoret 3 ...................... <gLevelScoreList, gLevel, gScore>
+  [768] objcall 181 ............................. gLevelScoreList[gLevel] = gScore
+  [771] getprop 20 .............................. <this>
+  [773] getobjprop 27 ........................... <this.member>
+  [775] getprop 20 .............................. <this>
+  [777] getobjprop 27 ........................... <this.member>
+  [779] getobjprop 101 .......................... <this.member.text>
+  [782] pushcons 376 ............................ <RETURN>
+  [785] joinstr ................................. <this.member.text & RETURN>
+  [786] pushcons 384 ............................ <"NEW HI-SCORE !">
+  [789] joinstr ................................. <this.member.text & RETURN & "NEW HI-SCORE !">
+  [790] setobjprop 101 .......................... this.member.text = this.member.text & RETURN & "NEW HI-SCORE !"
+  [793] pop 1 ................................... end case
+  [795] getglobal 430 ........................... <gDamagePercent>
+  [798] pushint8 100 ............................ <100>
+  [801] gteq .................................... <gDamagePercent >= 100>
+  [802] jmpifz [886] ............................ if gDamagePercent >= 100 then
+  [805] pushsymb 575 ............................ <#DAMAGE>
+  [808] setlocal 0 .............................. gLevelResult = #DAMAGE
+  [810] pushsymb 571 ............................ <#FAILED>
+  [813] setprop 560 ............................. missionState = #FAILED
+  [816] getprop 20 .............................. <this>
+  [818] pushint8 78 ............................. <78>
+  [821] setobjprop 36 ........................... this.locH = 78
+  [824] getprop 20 .............................. <this>
+  [826] pushint8 32 ............................. <32>
+  [829] setobjprop 37 ........................... this.locV = 32
+  [832] getprop 20 .............................. <this>
+  [834] getobjprop 27 ........................... <this.member>
+  [836] pushcons 392 ............................ <"MISSION FAILED">
+  [839] pushcons 400 ............................ <RETURN>
+  [842] joinstr ................................. <"MISSION FAILED" & RETURN>
+  [843] pushcons 408 ............................ <"EXTREME DAMAGE!">
+  [846] joinstr ................................. <"MISSION FAILED" & RETURN & "EXTREME DAMAGE!">
+  [847] setobjprop 101 .......................... this.member.text = "MISSION FAILED" & RETURN & "EXTREME DAMAGE!"
+  [850] pushint8 1 .............................. <1>
+  [853] pushint8 24 ............................. <24>
+  [856] pushcons 416 ............................ <"Sfx">
+  [859] pusharglist 2 ........................... <24, "Sfx">
+  [861] extcall 27 .............................. <member(24, "Sfx")>
+  [863] pusharglistnoret 2 ...................... <1, member(24, "Sfx")>
+  [865] extcall 395 ............................. puppetSound(1, member(24, "Sfx"))
+  [868] pushint8 4 .............................. <4>
+  [871] pushint8 84 ............................. <84>
+  [874] pushcons 424 ............................ <"Sfx">
+  [877] pusharglist 2 ........................... <84, "Sfx">
+  [879] extcall 27 .............................. <member(84, "Sfx")>
+  [881] pusharglistnoret 2 ...................... <4, member(84, "Sfx")>
+  [883] extcall 395 ............................. puppetSound(4, member(84, "Sfx"))
+  [886] getglobal 427 ........................... <gfuelPercent>
+  [889] pushzero ................................ <0>
+  [890] lteq .................................... <gfuelPercent <= 0>
+  [891] jmpifz [957] ............................ if gfuelPercent <= 0 then
+  [894] pushsymb 478 ............................ <#FUEL>
+  [897] setlocal 0 .............................. gLevelResult = #FUEL
+  [899] pushsymb 571 ............................ <#FAILED>
+  [902] setprop 560 ............................. missionState = #FAILED
+  [905] getprop 20 .............................. <this>
+  [907] pushint8 78 ............................. <78>
+  [910] setobjprop 36 ........................... this.locH = 78
+  [913] getprop 20 .............................. <this>
+  [915] pushint8 32 ............................. <32>
+  [918] setobjprop 37 ........................... this.locV = 32
+  [921] getprop 20 .............................. <this>
+  [923] getobjprop 27 ........................... <this.member>
+  [925] pushcons 432 ............................ <"MISSION FAILED">
+  [928] pushcons 440 ............................ <RETURN>
+  [931] joinstr ................................. <"MISSION FAILED" & RETURN>
+  [932] pushcons 448 ............................ <"OUT OF FUEL!">
+  [935] joinstr ................................. <"MISSION FAILED" & RETURN & "OUT OF FUEL!">
+  [936] setobjprop 101 .......................... this.member.text = "MISSION FAILED" & RETURN & "OUT OF FUEL!"
+  [939] pushint8 1 .............................. <1>
+  [942] pushint8 24 ............................. <24>
+  [945] pushcons 456 ............................ <"Sfx">
+  [948] pusharglist 2 ........................... <24, "Sfx">
+  [950] extcall 27 .............................. <member(24, "Sfx")>
+  [952] pusharglistnoret 2 ...................... <1, member(24, "Sfx")>
+  [954] extcall 395 ............................. puppetSound(1, member(24, "Sfx"))
+  [957] getglobal 572 ........................... <gGuyDoom>
+  [960] pushsymb 573 ............................ <#SHARK>
+  [963] eq ...................................... <gGuyDoom = #SHARK>
+  [964] jmpifz [1020] ........................... if gGuyDoom = #SHARK then
+  [967] pushsymb 573 ............................ <#SHARK>
+  [970] setlocal 0 .............................. gLevelResult = #SHARK
+  [972] pushsymb 571 ............................ <#FAILED>
+  [975] setprop 560 ............................. missionState = #FAILED
+  [978] getprop 20 .............................. <this>
+  [980] pushint8 78 ............................. <78>
+  [983] setobjprop 36 ........................... this.locH = 78
+  [986] getprop 20 .............................. <this>
+  [988] pushint8 32 ............................. <32>
+  [991] setobjprop 37 ........................... this.locV = 32
+  [994] getprop 20 .............................. <this>
+  [996] getobjprop 27 ........................... <this.member>
+  [998] pushcons 464 ............................ <"MISSION FAILED">
+  [1001] pushcons 472 ........................... <RETURN>
+  [1004] joinstr ................................ <"MISSION FAILED" & RETURN>
+  [1005] pushcons 480 ........................... <"A blue Marlin ate cableGuy!">
+  [1008] joinstr ................................ <"MISSION FAILED" & RETURN & "A blue Marlin ate cableGuy!">
+  [1009] pushcons 488 ........................... <RETURN>
+  [1012] joinstr ................................ <"MISSION FAILED" & RETURN & "A blue Marlin ate cableGuy!" & RETURN>
+  [1013] pushcons 496 ........................... <"(Nice catch though)">
+  [1016] joinstr ................................ <"MISSION FAILED" & RETURN & "A blue Marlin ate cableGuy!" & RETURN & "(Nice catch though)">
+  [1017] setobjprop 101 ......................... this.member.text = "MISSION FAILED" & RETURN & "A blue Marlin ate cableGuy!" & RETURN & "(Nice catch though)"
+  [1020] getglobal 572 .......................... <gGuyDoom>
+  [1023] pushsymb 793 ........................... <#ICECUBE>
+  [1026] eq ..................................... <gGuyDoom = #ICECUBE>
+  [1027] jmpifz [1075] .......................... if gGuyDoom = #ICECUBE then
+  [1030] pushsymb 793 ........................... <#ICECUBE>
+  [1033] setlocal 0 ............................. gLevelResult = #ICECUBE
+  [1035] pushsymb 571 ........................... <#FAILED>
+  [1038] setprop 560 ............................ missionState = #FAILED
+  [1041] getprop 20 ............................. <this>
+  [1043] pushint8 78 ............................ <78>
+  [1046] setobjprop 36 .......................... this.locH = 78
+  [1049] getprop 20 ............................. <this>
+  [1051] pushint8 32 ............................ <32>
+  [1054] setobjprop 37 .......................... this.locV = 32
+  [1057] getprop 20 ............................. <this>
+  [1059] getobjprop 27 .......................... <this.member>
+  [1061] pushcons 504 ........................... <"MISSION FAILED">
+  [1064] pushcons 512 ........................... <RETURN>
+  [1067] joinstr ................................ <"MISSION FAILED" & RETURN>
+  [1068] pushcons 520 ........................... <"You froze your cableGuy!">
+  [1071] joinstr ................................ <"MISSION FAILED" & RETURN & "You froze your cableGuy!">
+  [1072] setobjprop 101 ......................... this.member.text = "MISSION FAILED" & RETURN & "You froze your cableGuy!"
+  [1075] jmp [1425]
+  [1078] peek 0
+  [1080] pushsymb 571 ........................... <#FAILED>
+  [1083] eq
+  [1084] jmpifz [1186] .......................... (case) #FAILED:
+  [1087] getprop 20 ............................. <this>
+  [1089] getobjprop 173 ......................... <this.blend>
+  [1092] pushint8 100 ........................... <100>
+  [1095] lt ..................................... <this.blend < 100>
+  [1096] jmpifz [1113] .......................... if this.blend < 100 then
+  [1099] getprop 20 ............................. <this>
+  [1101] getprop 20 ............................. <this>
+  [1103] getobjprop 173 ......................... <this.blend>
+  [1106] pushint8 5 ............................. <5>
+  [1109] add .................................... <this.blend + 5>
+  [1110] setobjprop 173 ......................... this.blend = this.blend + 5
+  [1113] getprop 565 ............................ <missionCounter>
+  [1116] pushint8 1 ............................. <1>
+  [1119] add .................................... <missionCounter + 1>
+  [1120] setprop 565 ............................ missionCounter = missionCounter + 1
+  [1123] getprop 565 ............................ <missionCounter>
+  [1126] pushint8 200 ........................... <200>
+  [1129] gteq ................................... <missionCounter >= 200>
+  [1130] jmpifz [1183] .......................... if missionCounter >= 200 then
+  [1133] pushint8 1 ............................. <1>
+  [1136] pushzero ............................... <0>
+  [1137] pusharglistnoret 2 ..................... <1, 0>
+  [1139] extcall 395 ............................ puppetSound(1, 0)
+  [1142] pushint8 2 ............................. <2>
+  [1145] pushzero ............................... <0>
+  [1146] pusharglistnoret 2 ..................... <2, 0>
+  [1148] extcall 395 ............................ puppetSound(2, 0)
+  [1151] pushint8 3 ............................. <3>
+  [1154] pushzero ............................... <0>
+  [1155] pusharglistnoret 2 ..................... <3, 0>
+  [1157] extcall 395 ............................ puppetSound(3, 0)
+  [1160] pushint8 4 ............................. <4>
+  [1163] pushzero ............................... <0>
+  [1164] pusharglistnoret 2 ..................... <4, 0>
+  [1166] extcall 395 ............................ puppetSound(4, 0)
+  [1169] pusharglist 0 .......................... <>
+  [1171] thebuiltin 577 ......................... <the frame>
+  [1174] pushint8 1 ............................. <1>
+  [1177] sub .................................... <the frame - 1>
+  [1178] pusharglistnoret 1 ..................... <the frame - 1>
+  [1180] extcall 553 ............................ go(the frame - 1)
+  [1183] jmp [1425]
+  [1186] peek 0
+  [1188] pushsymb 569 ........................... <#COMPLETE>
+  [1191] eq
+  [1192] jmpifz [1425] .......................... (case) #COMPLETE:
+  [1195] getprop 20 ............................. <this>
+  [1197] getobjprop 173 ......................... <this.blend>
+  [1200] pushint8 100 ........................... <100>
+  [1203] lt ..................................... <this.blend < 100>
+  [1204] jmpifz [1221] .......................... if this.blend < 100 then
+  [1207] getprop 20 ............................. <this>
+  [1209] getprop 20 ............................. <this>
+  [1211] getobjprop 173 ......................... <this.blend>
+  [1214] pushint8 5 ............................. <5>
+  [1217] add .................................... <this.blend + 5>
+  [1218] setobjprop 173 ......................... this.blend = this.blend + 5
+  [1221] getprop 565 ............................ <missionCounter>
+  [1224] pushint8 1 ............................. <1>
+  [1227] add .................................... <missionCounter + 1>
+  [1228] setprop 565 ............................ missionCounter = missionCounter + 1
+  [1231] getprop 565 ............................ <missionCounter>
+  [1234] pushint8 180 ........................... <180>
+  [1237] gteq ................................... <missionCounter >= 180>
+  [1238] jmpifz [1425] .......................... if missionCounter >= 180 then
+  [1241] getglobal 578 .......................... <gLevelScoreList>
+  [1244] pushint8 1 ............................. <1>
+  [1247] pusharglist 2 .......................... <gLevelScoreList, 1>
+  [1249] objcall 185 ............................ <gLevelScoreList[1]>
+  [1252] getglobal 578 .......................... <gLevelScoreList>
+  [1255] pushint8 2 ............................. <2>
+  [1258] pusharglist 2 .......................... <gLevelScoreList, 2>
+  [1260] objcall 185 ............................ <gLevelScoreList[2]>
+  [1263] and .................................... <gLevelScoreList[1] and gLevelScoreList[2]>
+  [1264] getglobal 578 .......................... <gLevelScoreList>
+  [1267] pushint8 3 ............................. <3>
+  [1270] pusharglist 2 .......................... <gLevelScoreList, 3>
+  [1272] objcall 185 ............................ <gLevelScoreList[3]>
+  [1275] and .................................... <gLevelScoreList[1] and gLevelScoreList[2] and gLevelScoreList[3]>
+  [1276] jmpifz [1306] .......................... if gLevelScoreList[1] and gLevelScoreList[2] and gLevelScoreList[3] then
+  [1279] getglobal 745 .......................... <gLockOut>
+  [1282] pushcons 528 ........................... <"0">
+  [1285] eq ..................................... <gLockOut = "0">
+  [1286] jmpifz [1306] .......................... if gLockOut = "0" then
+  [1289] pushcons 536 ........................... <"1">
+  [1292] setglobal 745 .......................... gLockOut = "1"
+  [1295] getglobal 751 .......................... <gGameName>
+  [1298] getglobal 745 .......................... <gLockOut>
+  [1301] pusharglistnoret 2 ..................... <gGameName, gLockOut>
+  [1303] extcall 747 ............................ setPref(gGameName, gLockOut)
+  [1306] getglobal 578 .......................... <gLevelScoreList>
+  [1309] pushint8 4 ............................. <4>
+  [1312] pusharglist 2 .......................... <gLevelScoreList, 4>
+  [1314] objcall 185 ............................ <gLevelScoreList[4]>
+  [1317] getglobal 578 .......................... <gLevelScoreList>
+  [1320] pushint8 5 ............................. <5>
+  [1323] pusharglist 2 .......................... <gLevelScoreList, 5>
+  [1325] objcall 185 ............................ <gLevelScoreList[5]>
+  [1328] and .................................... <gLevelScoreList[4] and gLevelScoreList[5]>
+  [1329] getglobal 578 .......................... <gLevelScoreList>
+  [1332] pushint8 6 ............................. <6>
+  [1335] pusharglist 2 .......................... <gLevelScoreList, 6>
+  [1337] objcall 185 ............................ <gLevelScoreList[6]>
+  [1340] and .................................... <gLevelScoreList[4] and gLevelScoreList[5] and gLevelScoreList[6]>
+  [1341] jmpifz [1371] .......................... if gLevelScoreList[4] and gLevelScoreList[5] and gLevelScoreList[6] then
+  [1344] getglobal 745 .......................... <gLockOut>
+  [1347] pushcons 544 ........................... <"1">
+  [1350] eq ..................................... <gLockOut = "1">
+  [1351] jmpifz [1371] .......................... if gLockOut = "1" then
+  [1354] pushcons 552 ........................... <"2">
+  [1357] setglobal 745 .......................... gLockOut = "2"
+  [1360] getglobal 751 .......................... <gGameName>
+  [1363] getglobal 745 .......................... <gLockOut>
+  [1366] pusharglistnoret 2 ..................... <gGameName, gLockOut>
+  [1368] extcall 747 ............................ setPref(gGameName, gLockOut)
+  [1371] getglobal 510 .......................... <gLevel>
+  [1374] pushint8 1 ............................. <1>
+  [1377] add .................................... <gLevel + 1>
+  [1378] setglobal 510 .......................... gLevel = gLevel + 1
+  [1381] pushint8 1 ............................. <1>
+  [1384] pushzero ............................... <0>
+  [1385] pusharglistnoret 2 ..................... <1, 0>
+  [1387] extcall 395 ............................ puppetSound(1, 0)
+  [1390] pushint8 2 ............................. <2>
+  [1393] pushzero ............................... <0>
+  [1394] pusharglistnoret 2 ..................... <2, 0>
+  [1396] extcall 395 ............................ puppetSound(2, 0)
+  [1399] pushint8 3 ............................. <3>
+  [1402] pushzero ............................... <0>
+  [1403] pusharglistnoret 2 ..................... <3, 0>
+  [1405] extcall 395 ............................ puppetSound(3, 0)
+  [1408] pushint8 4 ............................. <4>
+  [1411] pushzero ............................... <0>
+  [1412] pusharglistnoret 2 ..................... <4, 0>
+  [1414] extcall 395 ............................ puppetSound(4, 0)
+  [1417] pushcons 560 ........................... <"MenuScreen">
+  [1420] pusharglistnoret 1 ..................... <"MenuScreen">
+  [1422] extcall 553 ............................ go("MenuScreen")
+  [1425] pop 1 .................................. end case
+  [1427] ret
+end

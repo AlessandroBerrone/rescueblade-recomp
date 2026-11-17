@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2805,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 355,
+    "scriptSrcText": "property this, Xpos, swellAngle, radians, Ypos, mapXPos, survivorDelay, thisMember, startMember, Xvel, cableGuy, fireBallState, ThisWidth, thisHalfHeight, grabCount, distToHQ, targetSprite, targetOffset, frameDir, xSlide, COPTER, splosh, thisVel\rglobal gXVel, gXOffset, gPaused, gTileIDList, gCableItem, gCableLength, gRescueCount, gRescuedList, gScore, gDamagePercent\r\ron beginSprite\r  radians = float(PI / 180)\r  this = sprite(the currentSpriteNum)\r  startMember = this.memberNum\r  thisMember = startMember\r  COPTER = sprite(4)\r  splosh = sprite(7)\r  fireCount = 0\r  loopWidth = gTileIDList.count * 128\r  Xpos = float(this.locH)\r  Ypos = float(this.locV)\r  this.locZ = 945\r  Xvel = 0\r  mapXPos = Xpos - 256 - 64\r  survivorDelay = 0\r  swellAngle = 0\r  cableGuy = sprite(6)\r  fireBallState = #NULL\r  ThisWidth = this.width\r  thisHalfHeight = this.height / 2\r  grabCount = 0\r  distToHQ = 0\r  frameDir = 1\r  tiltAngle = 0\r  thisVel = 0\rend\r\ron exitFrame\r  if gPaused = 0 then\r    case fireBallState of\r      #NULL:\r        this.locV = -1000\r      #FIRED:\r        thisVel = 3\r        Xpos = this.locH\r        Ypos = this.locV\r        this.blend = 100\r        fireBallState = #FLY\r      #FLY:\r        if (this.locH < -200) or (this.locH > 712) then\r          fireBallState = #NULL\r        end if\r        if this.locV > 280 then\r          fireBallState = #NULL\r          splosh.overlayState = #StartSplash\r          splosh.Xpos = this.locH\r          splosh.Ypos = this.locV\r        end if\r        if this.locV < -50 then\r          fireBallState = #NULL\r        end if\r        thisMember = thisMember + 1\r        if thisMember > (startMember + 9) then\r          thisMember = startMember\r        end if\r        this.memberNum = thisMember\r        Xpos = Xpos + gXVel + gXOffset\r        Xpos = Xpos + (thisVel * cos(this.rotation * radians))\r        Ypos = Ypos + (thisVel * sin(this.rotation * radians))\r        if thisVel < 5 then\r          thisVel = thisVel + 0.20000000000000001\r        end if\r        this.locH = Xpos\r        this.locV = Ypos\r        xDiff = abs(this.locH - COPTER.locH)\r        yDiff = abs(this.locV - COPTER.locV)\r        if (xDiff < 50) and (yDiff < 20) then\r          this.memberNum = 210\r          this.rotation = 0\r          fireBallState = #BOOM\r          puppetSound(2, member(88, \"Sfx\"))\r          gDamagePercent = gDamagePercent + 19\r          COPTER.Yvel = COPTER.Yvel - 4\r        end if\r      #BOOM:\r        Xpos = Xpos + gXVel + gXOffset\r        this.locH = Xpos\r        this.locV = Ypos\r        this.blend = this.blend - 5\r        if this.blend <= 5 then\r          this.blend = 100\r          fireBallState = #NULL\r          this.locV = -1000\r          this.member = member(startMember, \"Gfx\")\r        end if\r    end case\r  end if\rend\r",
+    "name": "FireBall"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

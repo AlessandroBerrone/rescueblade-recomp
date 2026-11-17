@@ -1,0 +1,261 @@
+property this, Xpos, Ypos, claw, guyState, Yvel, grav, mapXPos, mapXTile, Xvel, loopX, loopWidth, jump, jumpVel, blackCopter
+global gPaused, gXVel, gXOffset, gTileIDList, gTileHeightList, gRescueCount
+
+on beginSprite
+  [  0] getmovieprop 22 ......................... <the currentSpriteNum>
+  [  2] pusharglist 1 ........................... <the currentSpriteNum>
+  [  4] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [  6] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [  8] pushint8 80 ............................. <80>
+  [ 11] pusharglist 1 ........................... <80>
+  [ 13] extcall 21 .............................. <sprite(80)>
+  [ 15] setprop 796 ............................. claw = sprite(80)
+  [ 18] pushint8 79 ............................. <79>
+  [ 21] pusharglist 1 ........................... <79>
+  [ 23] extcall 21 .............................. <sprite(79)>
+  [ 25] setprop 801 ............................. blackCopter = sprite(79)
+  [ 28] getprop 20 .............................. <this>
+  [ 30] getobjprop 36 ........................... <this.locH>
+  [ 33] setprop 48 .............................. Xpos = this.locH
+  [ 36] getprop 20 .............................. <this>
+  [ 38] getobjprop 37 ........................... <this.locV>
+  [ 41] setprop 38 .............................. Ypos = this.locV
+  [ 44] pushzero ................................ <0>
+  [ 45] setprop 44 .............................. Xvel = 0
+  [ 48] pushzero ................................ <0>
+  [ 49] setprop 32 .............................. Yvel = 0
+  [ 52] pushsymb 796 ............................ <#claw>
+  [ 55] setprop 874 ............................. guyState = #claw
+  [ 58] pushint8 1 .............................. <1>
+  [ 61] setprop 34 .............................. grav = 1
+  [ 64] getglobal 180 ........................... <gTileIDList>
+  [ 67] getobjprop 183 .......................... <gTileIDList.count>
+  [ 70] pushint8 128 ............................ <128>
+  [ 73] mul ..................................... <gTileIDList.count * 128>
+  [ 74] pushcons 0 .............................. <0.5>
+  [ 76] mul ..................................... <gTileIDList.count * 128 * 0.5>
+  [ 77] setprop 608 ............................. loopX = gTileIDList.count * 128 * 0.5
+  [ 80] getglobal 180 ........................... <gTileIDList>
+  [ 83] getobjprop 183 .......................... <gTileIDList.count>
+  [ 86] pushint8 128 ............................ <128>
+  [ 89] mul ..................................... <gTileIDList.count * 128>
+  [ 90] setprop 54 .............................. loopWidth = gTileIDList.count * 128
+  [ 93] getglobal 180 ........................... <gTileIDList>
+  [ 96] getobjprop 183 .......................... <gTileIDList.count>
+  [ 99] pushint8 2 .............................. <2>
+  [102] div ..................................... <gTileIDList.count / 2>
+  [103] pushint8 128 ............................ <128>
+  [106] mul ..................................... <gTileIDList.count / 2 * 128>
+  [107] getprop 48 .............................. <Xpos>
+  [110] add ..................................... <(gTileIDList.count / 2 * 128) + Xpos>
+  [111] pushint8 256 ............................ <256>
+  [114] sub ..................................... <(gTileIDList.count / 2 * 128) + Xpos - 256>
+  [115] pushint8 64 ............................. <64>
+  [118] sub ..................................... <(gTileIDList.count / 2 * 128) + Xpos - 256 - 64>
+  [119] setprop 366 ............................. mapXPos = (gTileIDList.count / 2 * 128) + Xpos - 256 - 64
+  [122] getprop 367 ............................. <mapXTile>
+  [125] getprop 366 ............................. <mapXPos>
+  [128] pushint8 128 ............................ <128>
+  [131] div ..................................... <mapXPos / 128>
+  [132] pusharglist 1 ........................... <mapXPos / 128>
+  [134] extcall 39 .............................. <integer(mapXPos / 128)>
+  [137] eq ...................................... <mapXTile = integer(mapXPos / 128)>
+  [138] setprop 367 ............................. mapXTile = mapXTile = integer(mapXPos / 128)
+  [141] pushzero ................................ <0>
+  [142] setprop 876 ............................. jump = 0
+  [145] pushint8 4 .............................. <4>
+  [148] pushint8 82 ............................. <82>
+  [151] pushcons 8 .............................. <"Sfx">
+  [153] pusharglist 2 ........................... <82, "Sfx">
+  [155] extcall 27 .............................. <member(82, "Sfx")>
+  [157] pusharglistnoret 2 ...................... <4, member(82, "Sfx")>
+  [159] extcall 395 ............................. puppetSound(4, member(82, "Sfx"))
+  [162] ret
+end
+
+on exitFrame
+  [  0] getglobal 364 ........................... <gPaused>
+  [  3] pushzero ................................ <0>
+  [  4] eq ...................................... <gPaused = 0>
+  [  5] jmpifz [140] ............................ if gPaused = 0 then
+  [  8] getprop 874 ............................. <guyState>
+  [ 11] peek 0 .................................. case guyState of
+  [ 13] pushsymb 796 ............................ <#claw>
+  [ 16] eq
+  [ 17] jmpifz [ 61] ............................ (case) #claw:
+  [ 20] getprop 796 ............................. <claw>
+  [ 23] getobjprop 36 ........................... <claw.locH>
+  [ 26] setprop 48 .............................. Xpos = claw.locH
+  [ 29] getprop 796 ............................. <claw>
+  [ 32] getobjprop 37 ........................... <claw.locV>
+  [ 35] setprop 38 .............................. Ypos = claw.locV
+  [ 38] getprop 20 .............................. <this>
+  [ 40] getprop 48 .............................. <Xpos>
+  [ 43] setobjprop 36 ........................... this.locH = Xpos
+  [ 46] getprop 20 .............................. <this>
+  [ 48] getprop 38 .............................. <Ypos>
+  [ 51] setobjprop 37 ........................... this.locV = Ypos
+  [ 54] pusharglistnoret 0 ...................... <>
+  [ 56] localcall 2 ............................. doGroundHeight()
+  [ 58] jmp [138]
+  [ 61] peek 0
+  [ 63] pushsymb 442 ............................ <#ONGROUND>
+  [ 66] eq
+  [ 67] jmpifz [138] ............................ (case) #ONGROUND:
+  [ 70] getprop 48 .............................. <Xpos>
+  [ 73] getglobal 47 ............................ <gXVel>
+  [ 76] add ..................................... <Xpos + gXVel>
+  [ 77] getglobal 55 ............................ <gXOffset>
+  [ 80] add ..................................... <Xpos + gXVel + gXOffset>
+  [ 81] setprop 48 .............................. Xpos = Xpos + gXVel + gXOffset
+  [ 84] getprop 20 .............................. <this>
+  [ 86] getprop 48 .............................. <Xpos>
+  [ 89] setobjprop 36 ........................... this.locH = Xpos
+  [ 92] getprop 20 .............................. <this>
+  [ 94] getprop 38 .............................. <Ypos>
+  [ 97] getprop 876 ............................. <jump>
+  [100] sub ..................................... <Ypos - jump>
+  [101] setobjprop 37 ........................... this.locV = Ypos - jump
+  [104] getprop 877 ............................. <jumpVel>
+  [107] getprop 34 .............................. <grav>
+  [110] sub ..................................... <jumpVel - grav>
+  [111] setprop 877 ............................. jumpVel = jumpVel - grav
+  [114] getprop 876 ............................. <jump>
+  [117] getprop 877 ............................. <jumpVel>
+  [120] add ..................................... <jump + jumpVel>
+  [121] setprop 876 ............................. jump = jump + jumpVel
+  [124] getprop 876 ............................. <jump>
+  [127] pushzero ................................ <0>
+  [128] lt ...................................... <jump < 0>
+  [129] jmpifz [138] ............................ if jump < 0 then
+  [132] pushint8 10 ............................. <10>
+  [135] setprop 877 ............................. jumpVel = 10
+  [138] pop 1 ................................... end case
+  [140] ret
+end
+
+on doGroundHeight
+  [  0] getprop 366 ............................. <mapXPos>
+  [  3] getglobal 47 ............................ <gXVel>
+  [  6] sub ..................................... <mapXPos - gXVel>
+  [  7] setprop 366 ............................. mapXPos = mapXPos - gXVel
+  [ 10] getprop 366 ............................. <mapXPos>
+  [ 13] getprop 54 .............................. <loopWidth>
+  [ 16] gt ...................................... <mapXPos > loopWidth>
+  [ 17] jmpifz [ 30] ............................ if mapXPos > loopWidth then
+  [ 20] getprop 366 ............................. <mapXPos>
+  [ 23] getprop 54 .............................. <loopWidth>
+  [ 26] sub ..................................... <mapXPos - loopWidth>
+  [ 27] setprop 366 ............................. mapXPos = mapXPos - loopWidth
+  [ 30] getprop 366 ............................. <mapXPos>
+  [ 33] pushzero ................................ <0>
+  [ 34] lt ...................................... <mapXPos < 0>
+  [ 35] jmpifz [ 48] ............................ if mapXPos < 0 then
+  [ 38] getprop 366 ............................. <mapXPos>
+  [ 41] getprop 54 .............................. <loopWidth>
+  [ 44] add ..................................... <mapXPos + loopWidth>
+  [ 45] setprop 366 ............................. mapXPos = mapXPos + loopWidth
+  [ 48] getprop 366 ............................. <mapXPos>
+  [ 51] pushcons 16 ............................. <0.5>
+  [ 53] sub ..................................... <mapXPos - 0.5>
+  [ 54] pushint8 128 ............................ <128>
+  [ 57] mod ..................................... <(mapXPos - 0.5) mod 128>
+  [ 58] setlocal 0 .............................. temp = (mapXPos - 0.5) mod 128
+  [ 60] getprop 366 ............................. <mapXPos>
+  [ 63] getlocal 0 .............................. <temp>
+  [ 65] sub ..................................... <mapXPos - temp>
+  [ 66] setlocal 8 .............................. temp1 = mapXPos - temp
+  [ 68] getlocal 8 .............................. <temp1>
+  [ 70] pushint8 128 ............................ <128>
+  [ 73] div ..................................... <temp1 / 128>
+  [ 74] pusharglist 1 ........................... <temp1 / 128>
+  [ 76] extcall 39 .............................. <integer(temp1 / 128)>
+  [ 79] setlocal 16 ............................. temp2 = integer(temp1 / 128)
+  [ 81] getlocal 16 ............................. <temp2>
+  [ 83] pushint8 1 .............................. <1>
+  [ 86] add ..................................... <temp2 + 1>
+  [ 87] setprop 367 ............................. mapXTile = temp2 + 1
+  [ 90] getprop 366 ............................. <mapXPos>
+  [ 93] getprop 367 ............................. <mapXTile>
+  [ 96] pushint8 1 .............................. <1>
+  [ 99] sub ..................................... <mapXTile - 1>
+  [100] pushint8 128 ............................ <128>
+  [103] mul ..................................... <(mapXTile - 1) * 128>
+  [104] sub ..................................... <mapXPos - ((mapXTile - 1) * 128)>
+  [105] pushint8 128 ............................ <128>
+  [108] div ..................................... <(mapXPos - ((mapXTile - 1) * 128)) / 128>
+  [109] setlocal 24 ............................. localXPercent = (mapXPos - ((mapXTile - 1) * 128)) / 128
+  [111] getglobal 180 ........................... <gTileIDList>
+  [114] getprop 367 ............................. <mapXTile>
+  [117] pusharglist 2 ........................... <gTileIDList, mapXTile>
+  [119] objcall 185 ............................. <gTileIDList[mapXTile]>
+  [122] setlocal 32 ............................. tempID = gTileIDList[mapXTile]
+  [124] getglobal 182 ........................... <gTileHeightList>
+  [127] getprop 367 ............................. <mapXTile>
+  [130] pusharglist 2 ........................... <gTileHeightList, mapXTile>
+  [132] objcall 185 ............................. <gTileHeightList[mapXTile]>
+  [135] setlocal 40 ............................. groundHeightLeft = gTileHeightList[mapXTile]
+  [137] getprop 367 ............................. <mapXTile>
+  [140] pushint8 1 .............................. <1>
+  [143] add ..................................... <mapXTile + 1>
+  [144] setlocal 0 .............................. temp = mapXTile + 1
+  [146] getlocal 0 .............................. <temp>
+  [148] getglobal 180 ........................... <gTileIDList>
+  [151] getobjprop 183 .......................... <gTileIDList.count>
+  [154] gt ...................................... <temp > gTileIDList.count>
+  [155] jmpifz [169] ............................ if temp > gTileIDList.count then
+  [158] getlocal 0 .............................. <temp>
+  [160] getglobal 180 ........................... <gTileIDList>
+  [163] getobjprop 183 .......................... <gTileIDList.count>
+  [166] sub ..................................... <temp - gTileIDList.count>
+  [167] setlocal 0 .............................. temp = temp - gTileIDList.count
+  [169] getglobal 182 ........................... <gTileHeightList>
+  [172] getlocal 0 .............................. <temp>
+  [174] pusharglist 2 ........................... <gTileHeightList, temp>
+  [176] objcall 185 ............................. <gTileHeightList[temp]>
+  [179] setlocal 48 ............................. groundHeightRight = gTileHeightList[temp]
+  [181] getlocal 48 ............................. <groundHeightRight>
+  [183] getlocal 40 ............................. <groundHeightLeft>
+  [185] sub ..................................... <groundHeightRight - groundHeightLeft>
+  [186] setlocal 56 ............................. groundDiff = groundHeightRight - groundHeightLeft
+  [188] getprop 38 .............................. <Ypos>
+  [191] pushint8 10 ............................. <10>
+  [194] add ..................................... <Ypos + 10>
+  [195] pushint8 280 ............................ <280>
+  [198] getlocal 40 ............................. <groundHeightLeft>
+  [200] sub ..................................... <280 - groundHeightLeft>
+  [201] sub ..................................... <Ypos + 10 - (280 - groundHeightLeft)>
+  [202] getlocal 56 ............................. <groundDiff>
+  [204] getlocal 24 ............................. <localXPercent>
+  [206] mul ..................................... <groundDiff * localXPercent>
+  [207] add ..................................... <Ypos + 10 - (280 - groundHeightLeft) + (groundDiff * localXPercent)>
+  [208] setlocal 64 ............................. diff = Ypos + 10 - (280 - groundHeightLeft) + (groundDiff * localXPercent)
+  [210] getlocal 64 ............................. <diff>
+  [212] pushzero ................................ <0>
+  [213] gt ...................................... <diff > 0>
+  [214] getprop 801 ............................. <blackCopter>
+  [217] getobjprop 819 .......................... <blackCopter.firedCount>
+  [220] pushint8 10 ............................. <10>
+  [223] gteq .................................... <blackCopter.firedCount >= 10>
+  [224] and ..................................... <(diff > 0) and (blackCopter.firedCount >= 10)>
+  [225] jmpifz [274] ............................ if (diff > 0) and (blackCopter.firedCount >= 10) then
+  [228] getprop 38 .............................. <Ypos>
+  [231] getlocal 64 ............................. <diff>
+  [233] sub ..................................... <Ypos - diff>
+  [234] setprop 38 .............................. Ypos = Ypos - diff
+  [237] getprop 20 .............................. <this>
+  [239] getprop 38 .............................. <Ypos>
+  [242] setobjprop 37 ........................... this.locV = Ypos
+  [245] pushsymb 442 ............................ <#ONGROUND>
+  [248] setprop 874 ............................. guyState = #ONGROUND
+  [251] pushint8 1 .............................. <1>
+  [254] setglobal 453 ........................... gRescueCount = 1
+  [257] pushint8 4 .............................. <4>
+  [260] pushint8 85 ............................. <85>
+  [263] pushcons 24 ............................. <"Sfx">
+  [265] pusharglist 2 ........................... <85, "Sfx">
+  [267] extcall 27 .............................. <member(85, "Sfx")>
+  [269] pusharglistnoret 2 ...................... <4, member(85, "Sfx")>
+  [271] extcall 395 ............................. puppetSound(4, member(85, "Sfx"))
+  [274] ret
+end

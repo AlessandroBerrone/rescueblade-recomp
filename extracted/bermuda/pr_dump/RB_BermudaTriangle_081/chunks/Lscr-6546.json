@@ -1,0 +1,463 @@
+{
+  "totalLength": 3410,
+  "totalLength2": 3410,
+  "headerLength": 92,
+  "scriptNumber": 199,
+  "unk20": 8,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65539,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 2,
+  "handlerVectorsOffset": 3406,
+  "handlerVectorsSize": 3,
+  "propertiesCount": 8,
+  "propertiesOffset": 92,
+  "globalsCount": 4,
+  "globalsOffset": 108,
+  "handlersCount": 8,
+  "handlersOffset": 116,
+  "literalsCount": 58,
+  "literalsOffset": 1466,
+  "literalsDataCount": 1476,
+  "literalsDataOffset": 1930,
+  "propertyNameIDs": [
+    685,
+    688,
+    689,
+    690,
+    691,
+    692,
+    693,
+    695
+  ],
+  "globalNameIDs": [
+    699,
+    700,
+    697,
+    722
+  ],
+  "handlers": [
+    {
+      "nameID": 610,
+      "vectorPos": 65535,
+      "compiledLen": 200,
+      "compiledOffset": 452,
+      "argumentCount": 1,
+      "argumentOffset": 652,
+      "localsCount": 0,
+      "localsOffset": 654,
+      "globalsCount": 0,
+      "globalsOffset": 654,
+      "unknown1": 343,
+      "unknown2": 9,
+      "lineCount": 11,
+      "lineOffset": 654
+    },
+    {
+      "nameID": 679,
+      "vectorPos": 65535,
+      "compiledLen": 93,
+      "compiledOffset": 666,
+      "argumentCount": 0,
+      "argumentOffset": 760,
+      "localsCount": 0,
+      "localsOffset": 760,
+      "globalsCount": 0,
+      "globalsOffset": 760,
+      "unknown1": 1141,
+      "unknown2": 22,
+      "lineCount": 14,
+      "lineOffset": 760
+    },
+    {
+      "nameID": 680,
+      "vectorPos": 0,
+      "compiledLen": 7,
+      "compiledOffset": 774,
+      "argumentCount": 1,
+      "argumentOffset": 782,
+      "localsCount": 0,
+      "localsOffset": 784,
+      "globalsCount": 0,
+      "globalsOffset": 784,
+      "unknown1": 2445,
+      "unknown2": 53,
+      "lineCount": 2,
+      "lineOffset": 784
+    },
+    {
+      "nameID": 424,
+      "vectorPos": 1,
+      "compiledLen": 7,
+      "compiledOffset": 786,
+      "argumentCount": 1,
+      "argumentOffset": 794,
+      "localsCount": 0,
+      "localsOffset": 796,
+      "globalsCount": 0,
+      "globalsOffset": 796,
+      "unknown1": 2515,
+      "unknown2": 58,
+      "lineCount": 3,
+      "lineOffset": 796
+    },
+    {
+      "nameID": 681,
+      "vectorPos": 65535,
+      "compiledLen": 202,
+      "compiledOffset": 800,
+      "argumentCount": 1,
+      "argumentOffset": 1002,
+      "localsCount": 0,
+      "localsOffset": 1004,
+      "globalsCount": 0,
+      "globalsOffset": 1004,
+      "unknown1": 2641,
+      "unknown2": 64,
+      "lineCount": 26,
+      "lineOffset": 1004
+    },
+    {
+      "nameID": 682,
+      "vectorPos": 65535,
+      "compiledLen": 46,
+      "compiledOffset": 1030,
+      "argumentCount": 3,
+      "argumentOffset": 1076,
+      "localsCount": 0,
+      "localsOffset": 1082,
+      "globalsCount": 0,
+      "globalsOffset": 1082,
+      "unknown1": 3542,
+      "unknown2": 93,
+      "lineCount": 7,
+      "lineOffset": 1082
+    },
+    {
+      "nameID": 683,
+      "vectorPos": 65535,
+      "compiledLen": 190,
+      "compiledOffset": 1090,
+      "argumentCount": 1,
+      "argumentOffset": 1280,
+      "localsCount": 2,
+      "localsOffset": 1282,
+      "globalsCount": 0,
+      "globalsOffset": 1286,
+      "unknown1": 3851,
+      "unknown2": 103,
+      "lineCount": 29,
+      "lineOffset": 1286
+    },
+    {
+      "nameID": 684,
+      "vectorPos": 65535,
+      "compiledLen": 120,
+      "compiledOffset": 1316,
+      "argumentCount": 1,
+      "argumentOffset": 1436,
+      "localsCount": 4,
+      "localsOffset": 1438,
+      "globalsCount": 0,
+      "globalsOffset": 1446,
+      "unknown1": 4970,
+      "unknown2": 135,
+      "lineCount": 19,
+      "lineOffset": 1446
+    }
+  ],
+  "literals": [
+    {
+      "type": 1,
+      "offset": 0,
+      "value": "Submit / View Button?"
+    },
+    {
+      "type": 1,
+      "offset": 26,
+      "value": "Field or text member holding score:"
+    },
+    {
+      "type": 1,
+      "offset": 66,
+      "value": ""
+    },
+    {
+      "type": 1,
+      "offset": 72,
+      "value": "Game ID:"
+    },
+    {
+      "type": 1,
+      "offset": 86,
+      "value": ""
+    },
+    {
+      "type": 1,
+      "offset": 92,
+      "value": "Game Title:"
+    },
+    {
+      "type": 1,
+      "offset": 108,
+      "value": ""
+    },
+    {
+      "type": 1,
+      "offset": 114,
+      "value": "Screen Width"
+    },
+    {
+      "type": 1,
+      "offset": 132,
+      "value": "Screen Height"
+    },
+    {
+      "type": 1,
+      "offset": 150,
+      "value": "Marker to wait at while HS Hub downloads:"
+    },
+    {
+      "type": 1,
+      "offset": 196,
+      "value": ""
+    },
+    {
+      "type": 1,
+      "offset": 202,
+      "value": "Score Descriptor (points, kills, etc.)"
+    },
+    {
+      "type": 1,
+      "offset": 246,
+      "value": "points"
+    },
+    {
+      "type": 1,
+      "offset": 258,
+      "value": "DESCRIPTION:"
+    },
+    {
+      "type": 1,
+      "offset": 276,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 282,
+      "value": "This is the only behavior required for high score setup. It will configure your movie for Name, Score scores display."
+    },
+    {
+      "type": 1,
+      "offset": 404,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 410,
+      "value": "Additional optional behaviors are required if you want to use more fields or have multiple players."
+    },
+    {
+      "type": 1,
+      "offset": 514,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 520,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 526,
+      "value": "PARAMETERS:"
+    },
+    {
+      "type": 1,
+      "offset": 542,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 548,
+      "value": "\xA5 Submit Scores Button / View Scores Button: Which button is this behavior on?"
+    },
+    {
+      "type": 1,
+      "offset": 632,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 638,
+      "value": "\xA5 Text member holding Score: The text member holding the score."
+    },
+    {
+      "type": 1,
+      "offset": 706,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 712,
+      "value": "\xA5 Game ID: Unique ID provided to you by Macromedia."
+    },
+    {
+      "type": 1,
+      "offset": 768,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 774,
+      "value": "\xA5 Game Title: Title to display in the HS Hub."
+    },
+    {
+      "type": 1,
+      "offset": 824,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 830,
+      "value": "\xA5 Screen Width: Width of your game's screen."
+    },
+    {
+      "type": 1,
+      "offset": 880,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 886,
+      "value": "\xA5 Screen Height: Height of your game's screen."
+    },
+    {
+      "type": 1,
+      "offset": 938,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 944,
+      "value": "\xA5 Marker to wait at while HS Hub downloads: set up this marker in your game."
+    },
+    {
+      "type": 1,
+      "offset": 1026,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1032,
+      "value": "\xA5 Score descriptor: How would you like your score labeled?"
+    },
+    {
+      "type": 1,
+      "offset": 1096,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1102,
+      "value": "\r"
+    },
+    {
+      "type": 1,
+      "offset": 1108,
+      "value": "-- \xA9 kwik 2000"
+    },
+    {
+      "type": 1,
+      "offset": 1128,
+      "value": ""
+    },
+    {
+      "type": 1,
+      "offset": 1134,
+      "value": ""
+    },
+    {
+      "type": 1,
+      "offset": 1140,
+      "value": "Plugin"
+    },
+    {
+      "type": 1,
+      "offset": 1152,
+      "value": "http://"
+    },
+    {
+      "type": 1,
+      "offset": 1164,
+      "value": ""
+    },
+    {
+      "type": 1,
+      "offset": 1170,
+      "value": "Author"
+    },
+    {
+      "type": 1,
+      "offset": 1182,
+      "value": "scorez-2000"
+    },
+    {
+      "type": 1,
+      "offset": 1198,
+      "value": "http://www.shockwave.com/content/highscores/nosave/hshub-2000-2.dcr"
+    },
+    {
+      "type": 1,
+      "offset": 1270,
+      "value": "Projector"
+    },
+    {
+      "type": 1,
+      "offset": 1284,
+      "value": "swURL"
+    },
+    {
+      "type": 1,
+      "offset": 1294,
+      "value": "swURL"
+    },
+    {
+      "type": 1,
+      "offset": 1304,
+      "value": "/"
+    },
+    {
+      "type": 1,
+      "offset": 1310,
+      "value": "http://"
+    },
+    {
+      "type": 1,
+      "offset": 1322,
+      "value": "shockwave.com"
+    },
+    {
+      "type": 1,
+      "offset": 1340,
+      "value": "."
+    },
+    {
+      "type": 1,
+      "offset": 1346,
+      "value": "http://"
+    },
+    {
+      "type": 1,
+      "offset": 1358,
+      "value": ".shockwave.com/content/highscores/scorez-2000.dcr"
+    },
+    {
+      "type": 1,
+      "offset": 1412,
+      "value": "http://www.shockwave.com/content/highscores/scorez-2000.dcr"
+    }
+  ]
+}

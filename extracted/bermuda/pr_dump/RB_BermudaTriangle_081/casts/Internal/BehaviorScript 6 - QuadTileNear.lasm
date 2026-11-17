@@ -1,0 +1,1136 @@
+property this, Xpos, leftLoopX, rightLoopX, loopWidth, ThisWidth, thisHalfWidth, TR, TL, BR, BL, calc, thisMember, thisTileID, tileIDListPointer, leftHeight, rightHeight, tileHeightListPointer, Scenery, SceneryID, sceneryMember, thisPickup
+global gXVel, gCurrentLevel, gTileIDList, gTileHeightList, gSeaFrame, gXOffset, gPaused, gSceneryList, gPickupList
+
+on beginSprite
+  [  0] getmovieprop 22 ......................... <the currentSpriteNum>
+  [  2] pusharglist 1 ........................... <the currentSpriteNum>
+  [  4] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [  6] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [  8] pushint8 512 ............................ <512>
+  [ 11] getprop 20 .............................. <this>
+  [ 13] getobjprop 50 ........................... <this.width>
+  [ 16] pushint8 2 .............................. <2>
+  [ 19] div ..................................... <this.width / 2>
+  [ 20] add ..................................... <512 + (this.width / 2)>
+  [ 21] setprop 53 .............................. rightLoopX = 512 + (this.width / 2)
+  [ 24] getprop 20 .............................. <this>
+  [ 26] getobjprop 50 ........................... <this.width>
+  [ 29] inv ..................................... <-this.width>
+  [ 30] pushint8 2 .............................. <2>
+  [ 33] div ..................................... <-this.width / 2>
+  [ 34] setprop 52 .............................. leftLoopX = -this.width / 2
+  [ 37] pushint8 512 ............................ <512>
+  [ 40] getprop 20 .............................. <this>
+  [ 42] getobjprop 50 ........................... <this.width>
+  [ 45] add ..................................... <512 + this.width>
+  [ 46] setprop 54 .............................. loopWidth = 512 + this.width
+  [ 49] getprop 20 .............................. <this>
+  [ 51] getobjprop 36 ........................... <this.locH>
+  [ 54] pusharglist 1 ........................... <this.locH>
+  [ 56] extcall 33 .............................. <float(this.locH)>
+  [ 59] setprop 48 .............................. Xpos = float(this.locH)
+  [ 62] getprop 20 .............................. <this>
+  [ 64] getobjprop 50 ........................... <this.width>
+  [ 67] setprop 51 .............................. ThisWidth = this.width
+  [ 70] getprop 20 .............................. <this>
+  [ 72] getobjprop 50 ........................... <this.width>
+  [ 75] pushint8 2 .............................. <2>
+  [ 78] div ..................................... <this.width / 2>
+  [ 79] setprop 49 .............................. thisHalfWidth = this.width / 2
+  [ 82] pushcons 0 .............................. <0.0>
+  [ 84] pushcons 8 .............................. <280.0>
+  [ 86] pusharglist 2 ........................... <0.0, 280.0>
+  [ 88] extcall 57 .............................. <point(0.0, 280.0)>
+  [ 91] setprop 56 .............................. TR = point(0.0, 280.0)
+  [ 94] pushcons 16 ............................. <0.0>
+  [ 96] pushcons 24 ............................. <280.0>
+  [ 98] pusharglist 2 ........................... <0.0, 280.0>
+  [100] extcall 57 .............................. <point(0.0, 280.0)>
+  [103] setprop 58 .............................. TL = point(0.0, 280.0)
+  [106] pushcons 32 ............................. <0.0>
+  [108] pushcons 40 ............................. <330.0>
+  [110] pusharglist 2 ........................... <0.0, 330.0>
+  [112] extcall 57 .............................. <point(0.0, 330.0)>
+  [115] setprop 59 .............................. BR = point(0.0, 330.0)
+  [118] pushcons 48 ............................. <0.0>
+  [120] pushcons 56 ............................. <330.0>
+  [122] pusharglist 2 ........................... <0.0, 330.0>
+  [124] extcall 57 .............................. <point(0.0, 330.0)>
+  [127] setprop 60 .............................. BL = point(0.0, 330.0)
+  [130] pushcons 64 ............................. <0.0>
+  [132] setprop 30 .............................. calc = 0.0
+  [134] pushint8 1 .............................. <1>
+  [137] setprop 26 .............................. thisMember = 1
+  [139] getprop 48 .............................. <Xpos>
+  [142] pushint8 256 ............................ <256>
+  [145] pushint8 64 ............................. <64>
+  [148] sub ..................................... <256 - 64>
+  [149] gt ...................................... <Xpos > (256 - 64)>
+  [150] jmpifz [221] ............................ if Xpos > (256 - 64) then / else
+  [153] getprop 48 .............................. <Xpos>
+  [156] setprop 30 .............................. calc = Xpos
+  [158] getprop 30 .............................. <calc>
+  [160] pushint8 256 ............................ <256>
+  [163] sub ..................................... <calc - 256>
+  [164] pushint8 64 ............................. <64>
+  [167] sub ..................................... <calc - 256 - 64>
+  [168] getprop 20 .............................. <this>
+  [170] getobjprop 50 ........................... <this.width>
+  [173] pushint8 2 .............................. <2>
+  [176] div ..................................... <this.width / 2>
+  [177] add ..................................... <calc - 256 - 64 + (this.width / 2)>
+  [178] setprop 30 .............................. calc = calc - 256 - 64 + (this.width / 2)
+  [180] getglobal 180 ........................... <gTileIDList>
+  [183] getobjprop 183 .......................... <gTileIDList.count>
+  [186] pushint8 2 .............................. <2>
+  [189] div ..................................... <gTileIDList.count / 2>
+  [190] getprop 30 .............................. <calc>
+  [192] pushcons 72 ............................. <128.0>
+  [194] div ..................................... <calc / 128.0>
+  [195] pusharglist 1 ........................... <calc / 128.0>
+  [197] extcall 39 .............................. <integer(calc / 128.0)>
+  [200] add ..................................... <(gTileIDList.count / 2) + integer(calc / 128.0)>
+  [201] setprop 188 ............................. tileIDListPointer = (gTileIDList.count / 2) + integer(calc / 128.0)
+  [204] getglobal 180 ........................... <gTileIDList>
+  [207] getprop 188 ............................. <tileIDListPointer>
+  [210] pusharglist 2 ........................... <gTileIDList, tileIDListPointer>
+  [212] objcall 185 ............................. <gTileIDList[tileIDListPointer]>
+  [215] setprop 184 ............................. thisTileID = gTileIDList[tileIDListPointer]
+  [218] jmp [286]
+  [221] getprop 48 .............................. <Xpos>
+  [224] setprop 30 .............................. calc = Xpos
+  [226] getprop 30 .............................. <calc>
+  [228] pushint8 256 ............................ <256>
+  [231] sub ..................................... <calc - 256>
+  [232] pushint8 64 ............................. <64>
+  [235] sub ..................................... <calc - 256 - 64>
+  [236] getprop 20 .............................. <this>
+  [238] getobjprop 50 ........................... <this.width>
+  [241] pushint8 2 .............................. <2>
+  [244] div ..................................... <this.width / 2>
+  [245] add ..................................... <calc - 256 - 64 + (this.width / 2)>
+  [246] setprop 30 .............................. calc = calc - 256 - 64 + (this.width / 2)
+  [248] getglobal 180 ........................... <gTileIDList>
+  [251] getobjprop 183 .......................... <gTileIDList.count>
+  [254] pushint8 2 .............................. <2>
+  [257] div ..................................... <gTileIDList.count / 2>
+  [258] getprop 30 .............................. <calc>
+  [260] pushcons 80 ............................. <128.0>
+  [262] div ..................................... <calc / 128.0>
+  [263] pusharglist 1 ........................... <calc / 128.0>
+  [265] extcall 39 .............................. <integer(calc / 128.0)>
+  [268] add ..................................... <(gTileIDList.count / 2) + integer(calc / 128.0)>
+  [269] setprop 188 ............................. tileIDListPointer = (gTileIDList.count / 2) + integer(calc / 128.0)
+  [272] getglobal 180 ........................... <gTileIDList>
+  [275] getprop 188 ............................. <tileIDListPointer>
+  [278] pusharglist 2 ........................... <gTileIDList, tileIDListPointer>
+  [280] objcall 185 ............................. <gTileIDList[tileIDListPointer]>
+  [283] setprop 184 ............................. thisTileID = gTileIDList[tileIDListPointer]
+  [286] getprop 188 ............................. <tileIDListPointer>
+  [289] pushint8 1 .............................. <1>
+  [292] add ..................................... <tileIDListPointer + 1>
+  [293] setprop 190 ............................. tileHeightListPointer = tileIDListPointer + 1
+  [296] getprop 190 ............................. <tileHeightListPointer>
+  [299] getglobal 182 ........................... <gTileHeightList>
+  [302] getobjprop 183 .......................... <gTileHeightList.count>
+  [305] gt ...................................... <tileHeightListPointer > gTileHeightList.count>
+  [306] jmpifz [322] ............................ if tileHeightListPointer > gTileHeightList.count then
+  [309] getprop 190 ............................. <tileHeightListPointer>
+  [312] getglobal 182 ........................... <gTileHeightList>
+  [315] getobjprop 183 .......................... <gTileHeightList.count>
+  [318] sub ..................................... <tileHeightListPointer - gTileHeightList.count>
+  [319] setprop 190 ............................. tileHeightListPointer = tileHeightListPointer - gTileHeightList.count
+  [322] getglobal 182 ........................... <gTileHeightList>
+  [325] getprop 188 ............................. <tileIDListPointer>
+  [328] pusharglist 2 ........................... <gTileHeightList, tileIDListPointer>
+  [330] objcall 185 ............................. <gTileHeightList[tileIDListPointer]>
+  [333] setprop 189 ............................. leftHeight = gTileHeightList[tileIDListPointer]
+  [336] getglobal 182 ........................... <gTileHeightList>
+  [339] getprop 190 ............................. <tileHeightListPointer>
+  [342] pusharglist 2 ........................... <gTileHeightList, tileHeightListPointer>
+  [344] objcall 185 ............................. <gTileHeightList[tileHeightListPointer]>
+  [347] setprop 191 ............................. rightHeight = gTileHeightList[tileHeightListPointer]
+  [350] getmovieprop 22 ......................... <the currentSpriteNum>
+  [352] pushint8 5 .............................. <5>
+  [355] add ..................................... <the currentSpriteNum + 5>
+  [356] pusharglist 1 ........................... <the currentSpriteNum + 5>
+  [358] extcall 21 .............................. <sprite(the currentSpriteNum + 5)>
+  [360] setprop 455 ............................. Scenery = sprite(the currentSpriteNum + 5)
+  [363] pushzero ................................ <0>
+  [364] setprop 456 ............................. SceneryID = 0
+  [367] getprop 455 ............................. <Scenery>
+  [370] pushint8 280 ............................ <280>
+  [373] getprop 189 ............................. <leftHeight>
+  [376] getprop 191 ............................. <rightHeight>
+  [379] sub ..................................... <leftHeight - rightHeight>
+  [380] pushcons 88 ............................. <0.5>
+  [382] mul ..................................... <(leftHeight - rightHeight) * 0.5>
+  [383] sub ..................................... <280 - ((leftHeight - rightHeight) * 0.5)>
+  [384] setobjprop 37 ........................... Scenery.locV = 280 - ((leftHeight - rightHeight) * 0.5)
+  [387] getprop 20 .............................. <this>
+  [389] pushint8 1000 ........................... <1000>
+  [392] setobjprop 178 .......................... this.locZ = 1000
+  [395] getprop 455 ............................. <Scenery>
+  [398] pushint8 50 ............................. <50>
+  [401] setobjprop 178 .......................... Scenery.locZ = 50
+  [404] pushzero ................................ <0>
+  [405] setprop 476 ............................. thisPickup = 0
+  [408] pusharglistnoret 0 ...................... <>
+  [410] localcall 3 ............................. doQuadsStart()
+  [412] pusharglistnoret 0 ...................... <>
+  [414] localcall 2 ............................. doQuadsNear()
+  [416] ret
+end
+
+on exitFrame
+  [  0] getglobal 364 ........................... <gPaused>
+  [  3] pushzero ................................ <0>
+  [  4] eq ...................................... <gPaused = 0>
+  [  5] jmpifz [ 12] ............................ if gPaused = 0 then
+  [  8] pusharglistnoret 0 ...................... <>
+  [ 10] localcall 2 ............................. doQuadsNear()
+  [ 12] ret
+end
+
+on doQuadsNear
+  [  0] getprop 48 .............................. <Xpos>
+  [  3] getglobal 47 ............................ <gXVel>
+  [  6] add ..................................... <Xpos + gXVel>
+  [  7] getglobal 55 ............................ <gXOffset>
+  [ 10] add ..................................... <Xpos + gXVel + gXOffset>
+  [ 11] setprop 48 .............................. Xpos = Xpos + gXVel + gXOffset
+  [ 14] getprop 48 .............................. <Xpos>
+  [ 17] pusharglist 1 ........................... <Xpos>
+  [ 19] extcall 39 .............................. <integer(Xpos)>
+  [ 22] getprop 53 .............................. <rightLoopX>
+  [ 25] gt ...................................... <integer(Xpos) > rightLoopX>
+  [ 26] jmpifz [566] ............................ if integer(Xpos) > rightLoopX then
+  [ 29] getprop 48 .............................. <Xpos>
+  [ 32] getprop 54 .............................. <loopWidth>
+  [ 35] sub ..................................... <Xpos - loopWidth>
+  [ 36] setprop 48 .............................. Xpos = Xpos - loopWidth
+  [ 39] getprop 188 ............................. <tileIDListPointer>
+  [ 42] pushint8 5 .............................. <5>
+  [ 45] sub ..................................... <tileIDListPointer - 5>
+  [ 46] setprop 188 ............................. tileIDListPointer = tileIDListPointer - 5
+  [ 49] getprop 188 ............................. <tileIDListPointer>
+  [ 52] pushint8 1 .............................. <1>
+  [ 55] lt ...................................... <tileIDListPointer < 1>
+  [ 56] jmpifz [ 72] ............................ if tileIDListPointer < 1 then
+  [ 59] getprop 188 ............................. <tileIDListPointer>
+  [ 62] getglobal 180 ........................... <gTileIDList>
+  [ 65] getobjprop 183 .......................... <gTileIDList.count>
+  [ 68] add ..................................... <tileIDListPointer + gTileIDList.count>
+  [ 69] setprop 188 ............................. tileIDListPointer = tileIDListPointer + gTileIDList.count
+  [ 72] getglobal 180 ........................... <gTileIDList>
+  [ 75] getprop 188 ............................. <tileIDListPointer>
+  [ 78] pusharglist 2 ........................... <gTileIDList, tileIDListPointer>
+  [ 80] objcall 185 ............................. <gTileIDList[tileIDListPointer]>
+  [ 83] setprop 184 ............................. thisTileID = gTileIDList[tileIDListPointer]
+  [ 86] getprop 188 ............................. <tileIDListPointer>
+  [ 89] pushint8 1 .............................. <1>
+  [ 92] add ..................................... <tileIDListPointer + 1>
+  [ 93] setprop 190 ............................. tileHeightListPointer = tileIDListPointer + 1
+  [ 96] getprop 190 ............................. <tileHeightListPointer>
+  [ 99] getglobal 182 ........................... <gTileHeightList>
+  [102] getobjprop 183 .......................... <gTileHeightList.count>
+  [105] gt ...................................... <tileHeightListPointer > gTileHeightList.count>
+  [106] jmpifz [122] ............................ if tileHeightListPointer > gTileHeightList.count then
+  [109] getprop 190 ............................. <tileHeightListPointer>
+  [112] getglobal 182 ........................... <gTileHeightList>
+  [115] getobjprop 183 .......................... <gTileHeightList.count>
+  [118] sub ..................................... <tileHeightListPointer - gTileHeightList.count>
+  [119] setprop 190 ............................. tileHeightListPointer = tileHeightListPointer - gTileHeightList.count
+  [122] getglobal 182 ........................... <gTileHeightList>
+  [125] getprop 188 ............................. <tileIDListPointer>
+  [128] pusharglist 2 ........................... <gTileHeightList, tileIDListPointer>
+  [130] objcall 185 ............................. <gTileHeightList[tileIDListPointer]>
+  [133] setprop 189 ............................. leftHeight = gTileHeightList[tileIDListPointer]
+  [136] getglobal 182 ........................... <gTileHeightList>
+  [139] getprop 190 ............................. <tileHeightListPointer>
+  [142] pusharglist 2 ........................... <gTileHeightList, tileHeightListPointer>
+  [144] objcall 185 ............................. <gTileHeightList[tileHeightListPointer]>
+  [147] setprop 191 ............................. rightHeight = gTileHeightList[tileHeightListPointer]
+  [150] getprop 455 ............................. <Scenery>
+  [153] pushint8 280 ............................ <280>
+  [156] getprop 189 ............................. <leftHeight>
+  [159] sub ..................................... <280 - leftHeight>
+  [160] getprop 189 ............................. <leftHeight>
+  [163] getprop 191 ............................. <rightHeight>
+  [166] sub ..................................... <leftHeight - rightHeight>
+  [167] pushcons 96 ............................. <0.5>
+  [169] mul ..................................... <(leftHeight - rightHeight) * 0.5>
+  [170] add ..................................... <280 - leftHeight + ((leftHeight - rightHeight) * 0.5)>
+  [171] setobjprop 37 ........................... Scenery.locV = 280 - leftHeight + ((leftHeight - rightHeight) * 0.5)
+  [174] getglobal 439 ........................... <gSceneryList>
+  [177] getprop 188 ............................. <tileIDListPointer>
+  [180] pusharglist 2 ........................... <gSceneryList, tileIDListPointer>
+  [182] objcall 185 ............................. <gSceneryList[tileIDListPointer]>
+  [185] setprop 456 ............................. SceneryID = gSceneryList[tileIDListPointer]
+  [188] getprop 476 ............................. <thisPickup>
+  [191] pushzero ................................ <0>
+  [192] nteq .................................... <thisPickup <> 0>
+  [193] jmpifz [220] ............................ if thisPickup <> 0 then
+  [196] getprop 476 ............................. <thisPickup>
+  [199] pushsymb 399 ............................ <#NULL>
+  [202] setobjprop 472 .......................... thisPickup.pickupState = #NULL
+  [205] getglobal 475 ........................... <gPickupList>
+  [208] getprop 476 ............................. <thisPickup>
+  [211] pusharglistnoret 2 ...................... <gPickupList, thisPickup>
+  [213] objcall 418 ............................. gPickupList.add(thisPickup)
+  [216] pushzero ................................ <0>
+  [217] setprop 476 ............................. thisPickup = 0
+  [220] getprop 456 ............................. <SceneryID>
+  [223] peek 0 .................................. case SceneryID of
+  [225] pushint8 4 .............................. <4>
+  [228] eq
+  [229] jmpifz [309] ............................ (case) 4:
+  [232] getglobal 475 ........................... <gPickupList>
+  [235] pushint8 1 .............................. <1>
+  [238] pusharglist 2 ........................... <gPickupList, 1>
+  [240] objcall 185 ............................. <gPickupList[1]>
+  [243] setprop 476 ............................. thisPickup = gPickupList[1]
+  [246] getglobal 475 ........................... <gPickupList>
+  [249] pushint8 1 .............................. <1>
+  [252] pusharglistnoret 2 ...................... <gPickupList, 1>
+  [254] objcall 463 ............................. gPickupList.deleteAt(1)
+  [257] getprop 476 ............................. <thisPickup>
+  [260] pushsymb 474 ............................ <#TREASURE>
+  [263] setobjprop 473 .......................... thisPickup.pickupID = #TREASURE
+  [266] getprop 476 ............................. <thisPickup>
+  [269] pushsymb 442 ............................ <#ONGROUND>
+  [272] setobjprop 472 .......................... thisPickup.pickupState = #ONGROUND
+  [275] getprop 476 ............................. <thisPickup>
+  [278] pushint8 84 ............................. <84>
+  [281] pushcons 104 ............................ <"Gfx">
+  [283] pusharglist 2 ........................... <84, "Gfx">
+  [285] extcall 27 .............................. <member(84, "Gfx")>
+  [287] setobjprop 27 ........................... thisPickup.member = member(84, "Gfx")
+  [289] getprop 476 ............................. <thisPickup>
+  [292] getprop 188 ............................. <tileIDListPointer>
+  [295] setobjprop 480 .......................... thisPickup.pickupTile = tileIDListPointer
+  [298] getprop 476 ............................. <thisPickup>
+  [301] getprop 20 .............................. <this>
+  [303] setobjprop 482 .......................... thisPickup.pickupMaster = this
+  [306] jmp [564]
+  [309] peek 0
+  [311] pushint8 5 .............................. <5>
+  [314] eq
+  [315] jmpifz [395] ............................ (case) 5:
+  [318] getglobal 475 ........................... <gPickupList>
+  [321] pushint8 1 .............................. <1>
+  [324] pusharglist 2 ........................... <gPickupList, 1>
+  [326] objcall 185 ............................. <gPickupList[1]>
+  [329] setprop 476 ............................. thisPickup = gPickupList[1]
+  [332] getglobal 475 ........................... <gPickupList>
+  [335] pushint8 1 .............................. <1>
+  [338] pusharglistnoret 2 ...................... <gPickupList, 1>
+  [340] objcall 463 ............................. gPickupList.deleteAt(1)
+  [343] getprop 476 ............................. <thisPickup>
+  [346] pushsymb 478 ............................ <#FUEL>
+  [349] setobjprop 473 .......................... thisPickup.pickupID = #FUEL
+  [352] getprop 476 ............................. <thisPickup>
+  [355] pushsymb 442 ............................ <#ONGROUND>
+  [358] setobjprop 472 .......................... thisPickup.pickupState = #ONGROUND
+  [361] getprop 476 ............................. <thisPickup>
+  [364] pushint8 85 ............................. <85>
+  [367] pushcons 112 ............................ <"Gfx">
+  [369] pusharglist 2 ........................... <85, "Gfx">
+  [371] extcall 27 .............................. <member(85, "Gfx")>
+  [373] setobjprop 27 ........................... thisPickup.member = member(85, "Gfx")
+  [375] getprop 476 ............................. <thisPickup>
+  [378] getprop 188 ............................. <tileIDListPointer>
+  [381] setobjprop 480 .......................... thisPickup.pickupTile = tileIDListPointer
+  [384] getprop 476 ............................. <thisPickup>
+  [387] getprop 20 .............................. <this>
+  [389] setobjprop 482 .......................... thisPickup.pickupMaster = this
+  [392] jmp [564]
+  [395] peek 0
+  [397] pushint8 6 .............................. <6>
+  [400] eq
+  [401] jmpifz [481] ............................ (case) 6:
+  [404] getglobal 475 ........................... <gPickupList>
+  [407] pushint8 1 .............................. <1>
+  [410] pusharglist 2 ........................... <gPickupList, 1>
+  [412] objcall 185 ............................. <gPickupList[1]>
+  [415] setprop 476 ............................. thisPickup = gPickupList[1]
+  [418] getglobal 475 ........................... <gPickupList>
+  [421] pushint8 1 .............................. <1>
+  [424] pusharglistnoret 2 ...................... <gPickupList, 1>
+  [426] objcall 463 ............................. gPickupList.deleteAt(1)
+  [429] getprop 476 ............................. <thisPickup>
+  [432] pushsymb 479 ............................ <#TOOLS>
+  [435] setobjprop 473 .......................... thisPickup.pickupID = #TOOLS
+  [438] getprop 476 ............................. <thisPickup>
+  [441] pushsymb 442 ............................ <#ONGROUND>
+  [444] setobjprop 472 .......................... thisPickup.pickupState = #ONGROUND
+  [447] getprop 476 ............................. <thisPickup>
+  [450] pushint8 86 ............................. <86>
+  [453] pushcons 120 ............................ <"Gfx">
+  [455] pusharglist 2 ........................... <86, "Gfx">
+  [457] extcall 27 .............................. <member(86, "Gfx")>
+  [459] setobjprop 27 ........................... thisPickup.member = member(86, "Gfx")
+  [461] getprop 476 ............................. <thisPickup>
+  [464] getprop 188 ............................. <tileIDListPointer>
+  [467] setobjprop 480 .......................... thisPickup.pickupTile = tileIDListPointer
+  [470] getprop 476 ............................. <thisPickup>
+  [473] getprop 20 .............................. <this>
+  [475] setobjprop 482 .......................... thisPickup.pickupMaster = this
+  [478] jmp [564]
+  [481] peek 0
+  [483] pushint8 12 ............................. <12>
+  [486] eq
+  [487] jmpifz [564] ............................ (case) 12:
+  [490] getglobal 475 ........................... <gPickupList>
+  [493] pushint8 1 .............................. <1>
+  [496] pusharglist 2 ........................... <gPickupList, 1>
+  [498] objcall 185 ............................. <gPickupList[1]>
+  [501] setprop 476 ............................. thisPickup = gPickupList[1]
+  [504] getglobal 475 ........................... <gPickupList>
+  [507] pushint8 1 .............................. <1>
+  [510] pusharglistnoret 2 ...................... <gPickupList, 1>
+  [512] objcall 463 ............................. gPickupList.deleteAt(1)
+  [515] getprop 476 ............................. <thisPickup>
+  [518] pushsymb 922 ............................ <#COCONUTS>
+  [521] setobjprop 473 .......................... thisPickup.pickupID = #COCONUTS
+  [524] getprop 476 ............................. <thisPickup>
+  [527] pushsymb 442 ............................ <#ONGROUND>
+  [530] setobjprop 472 .......................... thisPickup.pickupState = #ONGROUND
+  [533] getprop 476 ............................. <thisPickup>
+  [536] pushint8 199 ............................ <199>
+  [539] pushcons 128 ............................ <"Gfx">
+  [541] pusharglist 2 ........................... <199, "Gfx">
+  [543] extcall 27 .............................. <member(199, "Gfx")>
+  [545] setobjprop 27 ........................... thisPickup.member = member(199, "Gfx")
+  [547] getprop 476 ............................. <thisPickup>
+  [550] getprop 188 ............................. <tileIDListPointer>
+  [553] setobjprop 480 .......................... thisPickup.pickupTile = tileIDListPointer
+  [556] getprop 476 ............................. <thisPickup>
+  [559] getprop 20 .............................. <this>
+  [561] setobjprop 482 .......................... thisPickup.pickupMaster = this
+  [564] pop 1 ................................... end case
+  [566] getprop 48 .............................. <Xpos>
+  [569] pusharglist 1 ........................... <Xpos>
+  [571] extcall 39 .............................. <integer(Xpos)>
+  [574] getprop 52 .............................. <leftLoopX>
+  [577] lt ...................................... <integer(Xpos) < leftLoopX>
+  [578] jmpifz [1121] ........................... if integer(Xpos) < leftLoopX then
+  [581] getprop 48 .............................. <Xpos>
+  [584] getprop 54 .............................. <loopWidth>
+  [587] add ..................................... <Xpos + loopWidth>
+  [588] setprop 48 .............................. Xpos = Xpos + loopWidth
+  [591] getprop 188 ............................. <tileIDListPointer>
+  [594] pushint8 5 .............................. <5>
+  [597] add ..................................... <tileIDListPointer + 5>
+  [598] setprop 188 ............................. tileIDListPointer = tileIDListPointer + 5
+  [601] getprop 188 ............................. <tileIDListPointer>
+  [604] getglobal 180 ........................... <gTileIDList>
+  [607] getobjprop 183 .......................... <gTileIDList.count>
+  [610] gt ...................................... <tileIDListPointer > gTileIDList.count>
+  [611] jmpifz [627] ............................ if tileIDListPointer > gTileIDList.count then
+  [614] getprop 188 ............................. <tileIDListPointer>
+  [617] getglobal 180 ........................... <gTileIDList>
+  [620] getobjprop 183 .......................... <gTileIDList.count>
+  [623] sub ..................................... <tileIDListPointer - gTileIDList.count>
+  [624] setprop 188 ............................. tileIDListPointer = tileIDListPointer - gTileIDList.count
+  [627] getglobal 180 ........................... <gTileIDList>
+  [630] getprop 188 ............................. <tileIDListPointer>
+  [633] pusharglist 2 ........................... <gTileIDList, tileIDListPointer>
+  [635] objcall 185 ............................. <gTileIDList[tileIDListPointer]>
+  [638] setprop 184 ............................. thisTileID = gTileIDList[tileIDListPointer]
+  [641] getprop 188 ............................. <tileIDListPointer>
+  [644] pushint8 1 .............................. <1>
+  [647] add ..................................... <tileIDListPointer + 1>
+  [648] setprop 190 ............................. tileHeightListPointer = tileIDListPointer + 1
+  [651] getprop 190 ............................. <tileHeightListPointer>
+  [654] getglobal 182 ........................... <gTileHeightList>
+  [657] getobjprop 183 .......................... <gTileHeightList.count>
+  [660] gt ...................................... <tileHeightListPointer > gTileHeightList.count>
+  [661] jmpifz [677] ............................ if tileHeightListPointer > gTileHeightList.count then
+  [664] getprop 190 ............................. <tileHeightListPointer>
+  [667] getglobal 182 ........................... <gTileHeightList>
+  [670] getobjprop 183 .......................... <gTileHeightList.count>
+  [673] sub ..................................... <tileHeightListPointer - gTileHeightList.count>
+  [674] setprop 190 ............................. tileHeightListPointer = tileHeightListPointer - gTileHeightList.count
+  [677] getglobal 182 ........................... <gTileHeightList>
+  [680] getprop 188 ............................. <tileIDListPointer>
+  [683] pusharglist 2 ........................... <gTileHeightList, tileIDListPointer>
+  [685] objcall 185 ............................. <gTileHeightList[tileIDListPointer]>
+  [688] setprop 189 ............................. leftHeight = gTileHeightList[tileIDListPointer]
+  [691] getglobal 182 ........................... <gTileHeightList>
+  [694] getprop 190 ............................. <tileHeightListPointer>
+  [697] pusharglist 2 ........................... <gTileHeightList, tileHeightListPointer>
+  [699] objcall 185 ............................. <gTileHeightList[tileHeightListPointer]>
+  [702] setprop 191 ............................. rightHeight = gTileHeightList[tileHeightListPointer]
+  [705] getprop 455 ............................. <Scenery>
+  [708] pushint8 280 ............................ <280>
+  [711] getprop 189 ............................. <leftHeight>
+  [714] sub ..................................... <280 - leftHeight>
+  [715] getprop 189 ............................. <leftHeight>
+  [718] getprop 191 ............................. <rightHeight>
+  [721] sub ..................................... <leftHeight - rightHeight>
+  [722] pushcons 136 ............................ <0.5>
+  [724] mul ..................................... <(leftHeight - rightHeight) * 0.5>
+  [725] add ..................................... <280 - leftHeight + ((leftHeight - rightHeight) * 0.5)>
+  [726] setobjprop 37 ........................... Scenery.locV = 280 - leftHeight + ((leftHeight - rightHeight) * 0.5)
+  [729] getglobal 439 ........................... <gSceneryList>
+  [732] getprop 188 ............................. <tileIDListPointer>
+  [735] pusharglist 2 ........................... <gSceneryList, tileIDListPointer>
+  [737] objcall 185 ............................. <gSceneryList[tileIDListPointer]>
+  [740] setprop 456 ............................. SceneryID = gSceneryList[tileIDListPointer]
+  [743] getprop 476 ............................. <thisPickup>
+  [746] pushzero ................................ <0>
+  [747] nteq .................................... <thisPickup <> 0>
+  [748] jmpifz [775] ............................ if thisPickup <> 0 then
+  [751] getprop 476 ............................. <thisPickup>
+  [754] pushsymb 399 ............................ <#NULL>
+  [757] setobjprop 472 .......................... thisPickup.pickupState = #NULL
+  [760] getglobal 475 ........................... <gPickupList>
+  [763] getprop 476 ............................. <thisPickup>
+  [766] pusharglistnoret 2 ...................... <gPickupList, thisPickup>
+  [768] objcall 418 ............................. gPickupList.add(thisPickup)
+  [771] pushzero ................................ <0>
+  [772] setprop 476 ............................. thisPickup = 0
+  [775] getprop 456 ............................. <SceneryID>
+  [778] peek 0 .................................. case SceneryID of
+  [780] pushint8 4 .............................. <4>
+  [783] eq
+  [784] jmpifz [864] ............................ (case) 4:
+  [787] getglobal 475 ........................... <gPickupList>
+  [790] pushint8 1 .............................. <1>
+  [793] pusharglist 2 ........................... <gPickupList, 1>
+  [795] objcall 185 ............................. <gPickupList[1]>
+  [798] setprop 476 ............................. thisPickup = gPickupList[1]
+  [801] getglobal 475 ........................... <gPickupList>
+  [804] pushint8 1 .............................. <1>
+  [807] pusharglistnoret 2 ...................... <gPickupList, 1>
+  [809] objcall 463 ............................. gPickupList.deleteAt(1)
+  [812] getprop 476 ............................. <thisPickup>
+  [815] pushsymb 474 ............................ <#TREASURE>
+  [818] setobjprop 473 .......................... thisPickup.pickupID = #TREASURE
+  [821] getprop 476 ............................. <thisPickup>
+  [824] pushsymb 442 ............................ <#ONGROUND>
+  [827] setobjprop 472 .......................... thisPickup.pickupState = #ONGROUND
+  [830] getprop 476 ............................. <thisPickup>
+  [833] pushint8 84 ............................. <84>
+  [836] pushcons 144 ............................ <"Gfx">
+  [838] pusharglist 2 ........................... <84, "Gfx">
+  [840] extcall 27 .............................. <member(84, "Gfx")>
+  [842] setobjprop 27 ........................... thisPickup.member = member(84, "Gfx")
+  [844] getprop 476 ............................. <thisPickup>
+  [847] getprop 188 ............................. <tileIDListPointer>
+  [850] setobjprop 480 .......................... thisPickup.pickupTile = tileIDListPointer
+  [853] getprop 476 ............................. <thisPickup>
+  [856] getprop 20 .............................. <this>
+  [858] setobjprop 482 .......................... thisPickup.pickupMaster = this
+  [861] jmp [1119]
+  [864] peek 0
+  [866] pushint8 5 .............................. <5>
+  [869] eq
+  [870] jmpifz [950] ............................ (case) 5:
+  [873] getglobal 475 ........................... <gPickupList>
+  [876] pushint8 1 .............................. <1>
+  [879] pusharglist 2 ........................... <gPickupList, 1>
+  [881] objcall 185 ............................. <gPickupList[1]>
+  [884] setprop 476 ............................. thisPickup = gPickupList[1]
+  [887] getglobal 475 ........................... <gPickupList>
+  [890] pushint8 1 .............................. <1>
+  [893] pusharglistnoret 2 ...................... <gPickupList, 1>
+  [895] objcall 463 ............................. gPickupList.deleteAt(1)
+  [898] getprop 476 ............................. <thisPickup>
+  [901] pushsymb 478 ............................ <#FUEL>
+  [904] setobjprop 473 .......................... thisPickup.pickupID = #FUEL
+  [907] getprop 476 ............................. <thisPickup>
+  [910] pushsymb 442 ............................ <#ONGROUND>
+  [913] setobjprop 472 .......................... thisPickup.pickupState = #ONGROUND
+  [916] getprop 476 ............................. <thisPickup>
+  [919] pushint8 85 ............................. <85>
+  [922] pushcons 152 ............................ <"Gfx">
+  [924] pusharglist 2 ........................... <85, "Gfx">
+  [926] extcall 27 .............................. <member(85, "Gfx")>
+  [928] setobjprop 27 ........................... thisPickup.member = member(85, "Gfx")
+  [930] getprop 476 ............................. <thisPickup>
+  [933] getprop 188 ............................. <tileIDListPointer>
+  [936] setobjprop 480 .......................... thisPickup.pickupTile = tileIDListPointer
+  [939] getprop 476 ............................. <thisPickup>
+  [942] getprop 20 .............................. <this>
+  [944] setobjprop 482 .......................... thisPickup.pickupMaster = this
+  [947] jmp [1119]
+  [950] peek 0
+  [952] pushint8 6 .............................. <6>
+  [955] eq
+  [956] jmpifz [1036] ........................... (case) 6:
+  [959] getglobal 475 ........................... <gPickupList>
+  [962] pushint8 1 .............................. <1>
+  [965] pusharglist 2 ........................... <gPickupList, 1>
+  [967] objcall 185 ............................. <gPickupList[1]>
+  [970] setprop 476 ............................. thisPickup = gPickupList[1]
+  [973] getglobal 475 ........................... <gPickupList>
+  [976] pushint8 1 .............................. <1>
+  [979] pusharglistnoret 2 ...................... <gPickupList, 1>
+  [981] objcall 463 ............................. gPickupList.deleteAt(1)
+  [984] getprop 476 ............................. <thisPickup>
+  [987] pushsymb 479 ............................ <#TOOLS>
+  [990] setobjprop 473 .......................... thisPickup.pickupID = #TOOLS
+  [993] getprop 476 ............................. <thisPickup>
+  [996] pushsymb 442 ............................ <#ONGROUND>
+  [999] setobjprop 472 .......................... thisPickup.pickupState = #ONGROUND
+  [1002] getprop 476 ............................ <thisPickup>
+  [1005] pushint8 86 ............................ <86>
+  [1008] pushcons 160 ........................... <"Gfx">
+  [1010] pusharglist 2 .......................... <86, "Gfx">
+  [1012] extcall 27 ............................. <member(86, "Gfx")>
+  [1014] setobjprop 27 .......................... thisPickup.member = member(86, "Gfx")
+  [1016] getprop 476 ............................ <thisPickup>
+  [1019] getprop 188 ............................ <tileIDListPointer>
+  [1022] setobjprop 480 ......................... thisPickup.pickupTile = tileIDListPointer
+  [1025] getprop 476 ............................ <thisPickup>
+  [1028] getprop 20 ............................. <this>
+  [1030] setobjprop 482 ......................... thisPickup.pickupMaster = this
+  [1033] jmp [1119]
+  [1036] peek 0
+  [1038] pushint8 12 ............................ <12>
+  [1041] eq
+  [1042] jmpifz [1119] .......................... (case) 12:
+  [1045] getglobal 475 .......................... <gPickupList>
+  [1048] pushint8 1 ............................. <1>
+  [1051] pusharglist 2 .......................... <gPickupList, 1>
+  [1053] objcall 185 ............................ <gPickupList[1]>
+  [1056] setprop 476 ............................ thisPickup = gPickupList[1]
+  [1059] getglobal 475 .......................... <gPickupList>
+  [1062] pushint8 1 ............................. <1>
+  [1065] pusharglistnoret 2 ..................... <gPickupList, 1>
+  [1067] objcall 463 ............................ gPickupList.deleteAt(1)
+  [1070] getprop 476 ............................ <thisPickup>
+  [1073] pushsymb 922 ........................... <#COCONUTS>
+  [1076] setobjprop 473 ......................... thisPickup.pickupID = #COCONUTS
+  [1079] getprop 476 ............................ <thisPickup>
+  [1082] pushsymb 442 ........................... <#ONGROUND>
+  [1085] setobjprop 472 ......................... thisPickup.pickupState = #ONGROUND
+  [1088] getprop 476 ............................ <thisPickup>
+  [1091] pushint8 199 ........................... <199>
+  [1094] pushcons 168 ........................... <"Gfx">
+  [1096] pusharglist 2 .......................... <199, "Gfx">
+  [1098] extcall 27 ............................. <member(199, "Gfx")>
+  [1100] setobjprop 27 .......................... thisPickup.member = member(199, "Gfx")
+  [1102] getprop 476 ............................ <thisPickup>
+  [1105] getprop 188 ............................ <tileIDListPointer>
+  [1108] setobjprop 480 ......................... thisPickup.pickupTile = tileIDListPointer
+  [1111] getprop 476 ............................ <thisPickup>
+  [1114] getprop 20 ............................. <this>
+  [1116] setobjprop 482 ......................... thisPickup.pickupMaster = this
+  [1119] pop 1 .................................. end case
+  [1121] getprop 20 ............................. <this>
+  [1123] getprop 48 ............................. <Xpos>
+  [1126] setobjprop 36 .......................... this.locH = Xpos
+  [1129] getprop 188 ............................ <tileIDListPointer>
+  [1132] pushint8 1 ............................. <1>
+  [1135] add .................................... <tileIDListPointer + 1>
+  [1136] setprop 190 ............................ tileHeightListPointer = tileIDListPointer + 1
+  [1139] getprop 190 ............................ <tileHeightListPointer>
+  [1142] getglobal 182 .......................... <gTileHeightList>
+  [1145] getobjprop 183 ......................... <gTileHeightList.count>
+  [1148] gt ..................................... <tileHeightListPointer > gTileHeightList.count>
+  [1149] jmpifz [1165] .......................... if tileHeightListPointer > gTileHeightList.count then
+  [1152] getprop 190 ............................ <tileHeightListPointer>
+  [1155] getglobal 182 .......................... <gTileHeightList>
+  [1158] getobjprop 183 ......................... <gTileHeightList.count>
+  [1161] sub .................................... <tileHeightListPointer - gTileHeightList.count>
+  [1162] setprop 190 ............................ tileHeightListPointer = tileHeightListPointer - gTileHeightList.count
+  [1165] getglobal 182 .......................... <gTileHeightList>
+  [1168] getprop 188 ............................ <tileIDListPointer>
+  [1171] pusharglist 2 .......................... <gTileHeightList, tileIDListPointer>
+  [1173] objcall 185 ............................ <gTileHeightList[tileIDListPointer]>
+  [1176] setprop 189 ............................ leftHeight = gTileHeightList[tileIDListPointer]
+  [1179] getglobal 182 .......................... <gTileHeightList>
+  [1182] getprop 190 ............................ <tileHeightListPointer>
+  [1185] pusharglist 2 .......................... <gTileHeightList, tileHeightListPointer>
+  [1187] objcall 185 ............................ <gTileHeightList[tileHeightListPointer]>
+  [1190] setprop 191 ............................ rightHeight = gTileHeightList[tileHeightListPointer]
+  [1193] getprop 58 ............................. <TL>
+  [1196] getprop 48 ............................. <Xpos>
+  [1199] getprop 49 ............................. <thisHalfWidth>
+  [1202] sub .................................... <Xpos - thisHalfWidth>
+  [1203] pusharglist 1 .......................... <Xpos - thisHalfWidth>
+  [1205] extcall 39 ............................. <integer(Xpos - thisHalfWidth)>
+  [1208] setobjprop 36 .......................... TL.locH = integer(Xpos - thisHalfWidth)
+  [1211] getprop 58 ............................. <TL>
+  [1214] pushint8 280 ........................... <280>
+  [1217] getprop 189 ............................ <leftHeight>
+  [1220] sub .................................... <280 - leftHeight>
+  [1221] pusharglist 1 .......................... <280 - leftHeight>
+  [1223] extcall 39 ............................. <integer(280 - leftHeight)>
+  [1226] setobjprop 37 .......................... TL.locV = integer(280 - leftHeight)
+  [1229] getprop 56 ............................. <TR>
+  [1232] getprop 48 ............................. <Xpos>
+  [1235] getprop 49 ............................. <thisHalfWidth>
+  [1238] add .................................... <Xpos + thisHalfWidth>
+  [1239] pusharglist 1 .......................... <Xpos + thisHalfWidth>
+  [1241] extcall 39 ............................. <integer(Xpos + thisHalfWidth)>
+  [1244] setobjprop 36 .......................... TR.locH = integer(Xpos + thisHalfWidth)
+  [1247] getprop 56 ............................. <TR>
+  [1250] pushint8 280 ........................... <280>
+  [1253] getprop 191 ............................ <rightHeight>
+  [1256] sub .................................... <280 - rightHeight>
+  [1257] pusharglist 1 .......................... <280 - rightHeight>
+  [1259] extcall 39 ............................. <integer(280 - rightHeight)>
+  [1262] setobjprop 37 .......................... TR.locV = integer(280 - rightHeight)
+  [1265] getprop 48 ............................. <Xpos>
+  [1268] getprop 49 ............................. <thisHalfWidth>
+  [1271] sub .................................... <Xpos - thisHalfWidth>
+  [1272] pushint8 256 ........................... <256>
+  [1275] sub .................................... <Xpos - thisHalfWidth - 256>
+  [1276] pushint8 1 ............................. <1>
+  [1279] mul .................................... <(Xpos - thisHalfWidth - 256) * 1>
+  [1280] pusharglist 1 .......................... <(Xpos - thisHalfWidth - 256) * 1>
+  [1282] extcall 39 ............................. <integer((Xpos - thisHalfWidth - 256) * 1)>
+  [1285] setprop 30 ............................. calc = integer((Xpos - thisHalfWidth - 256) * 1)
+  [1287] getprop 60 ............................. <BL>
+  [1290] getprop 48 ............................. <Xpos>
+  [1293] getprop 49 ............................. <thisHalfWidth>
+  [1296] sub .................................... <Xpos - thisHalfWidth>
+  [1297] getprop 30 ............................. <calc>
+  [1299] add .................................... <Xpos - thisHalfWidth + calc>
+  [1300] pusharglist 1 .......................... <Xpos - thisHalfWidth + calc>
+  [1302] extcall 39 ............................. <integer(Xpos - thisHalfWidth + calc)>
+  [1305] setobjprop 36 .......................... BL.locH = integer(Xpos - thisHalfWidth + calc)
+  [1308] getprop 48 ............................. <Xpos>
+  [1311] getprop 49 ............................. <thisHalfWidth>
+  [1314] add .................................... <Xpos + thisHalfWidth>
+  [1315] pushint8 256 ........................... <256>
+  [1318] sub .................................... <Xpos + thisHalfWidth - 256>
+  [1319] pushint8 1 ............................. <1>
+  [1322] mul .................................... <(Xpos + thisHalfWidth - 256) * 1>
+  [1323] pusharglist 1 .......................... <(Xpos + thisHalfWidth - 256) * 1>
+  [1325] extcall 39 ............................. <integer((Xpos + thisHalfWidth - 256) * 1)>
+  [1328] setprop 30 ............................. calc = integer((Xpos + thisHalfWidth - 256) * 1)
+  [1330] getprop 59 ............................. <BR>
+  [1333] getprop 48 ............................. <Xpos>
+  [1336] getprop 49 ............................. <thisHalfWidth>
+  [1339] add .................................... <Xpos + thisHalfWidth>
+  [1340] getprop 30 ............................. <calc>
+  [1342] add .................................... <Xpos + thisHalfWidth + calc>
+  [1343] pusharglist 1 .......................... <Xpos + thisHalfWidth + calc>
+  [1345] extcall 39 ............................. <integer(Xpos + thisHalfWidth + calc)>
+  [1348] setobjprop 36 .......................... BR.locH = integer(Xpos + thisHalfWidth + calc)
+  [1351] getprop 20 ............................. <this>
+  [1353] getprop 58 ............................. <TL>
+  [1356] getprop 56 ............................. <TR>
+  [1359] getprop 59 ............................. <BR>
+  [1362] getprop 60 ............................. <BL>
+  [1365] pusharglist 4 .......................... <[TL, TR, BR, BL]>
+  [1367] pushlist ............................... <[TL, TR, BR, BL]>
+  [1368] setobjprop 61 .......................... this.quad = [TL, TR, BR, BL]
+  [1371] getprop 184 ............................ <thisTileID>
+  [1374] peek 0 ................................. case thisTileID of
+  [1376] pushzero ............................... <0>
+  [1377] eq
+  [1378] jmpifz [1389] .......................... (case) 0:
+  [1381] getglobal 274 .......................... <gSeaFrame>
+  [1384] setprop 26 ............................. thisMember = gSeaFrame
+  [1386] jmp [1530]
+  [1389] peek 0
+  [1391] pushint8 1 ............................. <1>
+  [1394] eq
+  [1395] jmpifz [1406] .......................... (case) 1:
+  [1398] pushint8 23 ............................ <23>
+  [1401] setprop 26 ............................. thisMember = 23
+  [1403] jmp [1530]
+  [1406] peek 0
+  [1408] pushint8 2 ............................. <2>
+  [1411] eq
+  [1412] jmpifz [1427] .......................... (case) 2:
+  [1415] pushint8 23 ............................ <23>
+  [1418] getglobal 274 .......................... <gSeaFrame>
+  [1421] add .................................... <23 + gSeaFrame>
+  [1422] setprop 26 ............................. thisMember = 23 + gSeaFrame
+  [1424] jmp [1530]
+  [1427] peek 0
+  [1429] pushint8 3 ............................. <3>
+  [1432] eq
+  [1433] jmpifz [1448] .......................... (case) 3:
+  [1436] pushint8 43 ............................ <43>
+  [1439] getglobal 274 .......................... <gSeaFrame>
+  [1442] add .................................... <43 + gSeaFrame>
+  [1443] setprop 26 ............................. thisMember = 43 + gSeaFrame
+  [1445] jmp [1530]
+  [1448] peek 0
+  [1450] pushint8 4 ............................. <4>
+  [1453] eq
+  [1454] jmpifz [1465] .......................... (case) 4:
+  [1457] pushint8 64 ............................ <64>
+  [1460] setprop 26 ............................. thisMember = 64
+  [1462] jmp [1530]
+  [1465] peek 0
+  [1467] pushint8 5 ............................. <5>
+  [1470] eq
+  [1471] jmpifz [1482] .......................... (case) 5:
+  [1474] pushint8 66 ............................ <66>
+  [1477] setprop 26 ............................. thisMember = 66
+  [1479] jmp [1530]
+  [1482] peek 0
+  [1484] pushint8 6 ............................. <6>
+  [1487] eq
+  [1488] jmpifz [1499] .......................... (case) 6:
+  [1491] pushint8 68 ............................ <68>
+  [1494] setprop 26 ............................. thisMember = 68
+  [1496] jmp [1530]
+  [1499] peek 0
+  [1501] pushint8 7 ............................. <7>
+  [1504] eq
+  [1505] jmpifz [1516] .......................... (case) 7:
+  [1508] pushint8 70 ............................ <70>
+  [1511] setprop 26 ............................. thisMember = 70
+  [1513] jmp [1530]
+  [1516] peek 0
+  [1518] pushint8 8 ............................. <8>
+  [1521] eq
+  [1522] jmpifz [1530] .......................... (case) 8:
+  [1525] pushint8 69 ............................ <69>
+  [1528] setprop 26 ............................. thisMember = 69
+  [1530] pop 1 .................................. end case
+  [1532] getprop 20 ............................. <this>
+  [1534] getprop 26 ............................. <thisMember>
+  [1536] pushcons 176 ........................... <"Tiles">
+  [1538] pusharglist 2 .......................... <thisMember, "Tiles">
+  [1540] extcall 27 ............................. <member(thisMember, "Tiles")>
+  [1542] setobjprop 27 .......................... this.member = member(thisMember, "Tiles")
+  [1544] getprop 456 ............................ <SceneryID>
+  [1547] peek 0 ................................. case SceneryID of
+  [1549] pushzero ............................... <0>
+  [1550] eq
+  [1551] jmpifz [1563] .......................... (case) 0:
+  [1554] pushint8 68 ............................ <68>
+  [1557] setprop 457 ............................ sceneryMember = 68
+  [1560] jmp [1830]
+  [1563] peek 0
+  [1565] pushint8 1 ............................. <1>
+  [1568] eq
+  [1569] jmpifz [1581] .......................... (case) 1:
+  [1572] pushint8 69 ............................ <69>
+  [1575] setprop 457 ............................ sceneryMember = 69
+  [1578] jmp [1830]
+  [1581] peek 0
+  [1583] pushint8 2 ............................. <2>
+  [1586] eq
+  [1587] jmpifz [1599] .......................... (case) 2:
+  [1590] pushint8 70 ............................ <70>
+  [1593] setprop 457 ............................ sceneryMember = 70
+  [1596] jmp [1830]
+  [1599] peek 0
+  [1601] pushint8 3 ............................. <3>
+  [1604] eq
+  [1605] jmpifz [1617] .......................... (case) 3:
+  [1608] pushint8 71 ............................ <71>
+  [1611] setprop 457 ............................ sceneryMember = 71
+  [1614] jmp [1830]
+  [1617] peek 0
+  [1619] pushint8 4 ............................. <4>
+  [1622] eq
+  [1623] jmpifz [1635] .......................... (case) 4:
+  [1626] pushint8 68 ............................ <68>
+  [1629] setprop 457 ............................ sceneryMember = 68
+  [1632] jmp [1830]
+  [1635] peek 0
+  [1637] pushint8 5 ............................. <5>
+  [1640] eq
+  [1641] jmpifz [1653] .......................... (case) 5:
+  [1644] pushint8 68 ............................ <68>
+  [1647] setprop 457 ............................ sceneryMember = 68
+  [1650] jmp [1830]
+  [1653] peek 0
+  [1655] pushint8 6 ............................. <6>
+  [1658] eq
+  [1659] jmpifz [1671] .......................... (case) 6:
+  [1662] pushint8 68 ............................ <68>
+  [1665] setprop 457 ............................ sceneryMember = 68
+  [1668] jmp [1830]
+  [1671] peek 0
+  [1673] pushint8 7 ............................. <7>
+  [1676] eq
+  [1677] jmpifz [1689] .......................... (case) 7:
+  [1680] pushint8 139 ........................... <139>
+  [1683] setprop 457 ............................ sceneryMember = 139
+  [1686] jmp [1830]
+  [1689] peek 0
+  [1691] pushint8 8 ............................. <8>
+  [1694] eq
+  [1695] jmpifz [1707] .......................... (case) 8:
+  [1698] pushint8 148 ........................... <148>
+  [1701] setprop 457 ............................ sceneryMember = 148
+  [1704] jmp [1830]
+  [1707] peek 0
+  [1709] pushint8 9 ............................. <9>
+  [1712] eq
+  [1713] jmpifz [1725] .......................... (case) 9:
+  [1716] pushint8 153 ........................... <153>
+  [1719] setprop 457 ............................ sceneryMember = 153
+  [1722] jmp [1830]
+  [1725] peek 0
+  [1727] pushint8 10 ............................ <10>
+  [1730] eq
+  [1731] jmpifz [1743] .......................... (case) 10:
+  [1734] pushint8 156 ........................... <156>
+  [1737] setprop 457 ............................ sceneryMember = 156
+  [1740] jmp [1830]
+  [1743] peek 0
+  [1745] pushint8 11 ............................ <11>
+  [1748] eq
+  [1749] jmpifz [1761] .......................... (case) 11:
+  [1752] pushint8 188 ........................... <188>
+  [1755] setprop 457 ............................ sceneryMember = 188
+  [1758] jmp [1830]
+  [1761] peek 0
+  [1763] pushint8 12 ............................ <12>
+  [1766] eq
+  [1767] jmpifz [1779] .......................... (case) 12:
+  [1770] pushint8 71 ............................ <71>
+  [1773] setprop 457 ............................ sceneryMember = 71
+  [1776] jmp [1830]
+  [1779] peek 0
+  [1781] pushint8 13 ............................ <13>
+  [1784] eq
+  [1785] jmpifz [1797] .......................... (case) 13:
+  [1788] pushint8 340 ........................... <340>
+  [1791] setprop 457 ............................ sceneryMember = 340
+  [1794] jmp [1830]
+  [1797] peek 0
+  [1799] pushint8 14 ............................ <14>
+  [1802] eq
+  [1803] jmpifz [1815] .......................... (case) 14:
+  [1806] pushint8 341 ........................... <341>
+  [1809] setprop 457 ............................ sceneryMember = 341
+  [1812] jmp [1830]
+  [1815] peek 0
+  [1817] pushint8 15 ............................ <15>
+  [1820] eq
+  [1821] jmpifz [1830] .......................... (case) 15:
+  [1824] pushint8 342 ........................... <342>
+  [1827] setprop 457 ............................ sceneryMember = 342
+  [1830] pop 1 .................................. end case
+  [1832] getprop 455 ............................ <Scenery>
+  [1835] getprop 457 ............................ <sceneryMember>
+  [1838] pushcons 184 ........................... <"Gfx">
+  [1840] pusharglist 2 .......................... <sceneryMember, "Gfx">
+  [1842] extcall 27 ............................. <member(sceneryMember, "Gfx")>
+  [1844] setobjprop 27 .......................... Scenery.member = member(sceneryMember, "Gfx")
+  [1846] getprop 455 ............................ <Scenery>
+  [1849] getprop 20 ............................. <this>
+  [1851] getobjprop 36 .......................... <this.locH>
+  [1854] setobjprop 36 .......................... Scenery.locH = this.locH
+  [1857] getprop 476 ............................ <thisPickup>
+  [1860] pushzero ............................... <0>
+  [1861] nteq ................................... <thisPickup <> 0>
+  [1862] jmpifz [1917] .......................... if thisPickup <> 0 then
+  [1865] getprop 476 ............................ <thisPickup>
+  [1868] getobjprop 473 ......................... <thisPickup.pickupID>
+  [1871] pushsymb 922 ........................... <#COCONUTS>
+  [1874] eq ..................................... <thisPickup.pickupID = #COCONUTS>
+  [1875] jmpifz [1905] .......................... if thisPickup.pickupID = #COCONUTS then / else
+  [1878] getprop 476 ............................ <thisPickup>
+  [1881] getprop 455 ............................ <Scenery>
+  [1884] getobjprop 213 ......................... <Scenery.loc>
+  [1887] pushint8 18 ............................ <18>
+  [1890] pushint8 90 ............................ <90>
+  [1893] pusharglist 2 .......................... <18, 90>
+  [1895] extcall 57 ............................. <point(18, 90)>
+  [1898] sub .................................... <Scenery.loc - point(18, 90)>
+  [1899] setobjprop 213 ......................... thisPickup.loc = Scenery.loc - point(18, 90)
+  [1902] jmp [1917]
+  [1905] getprop 476 ............................ <thisPickup>
+  [1908] getprop 455 ............................ <Scenery>
+  [1911] getobjprop 213 ......................... <Scenery.loc>
+  [1914] setobjprop 213 ......................... thisPickup.loc = Scenery.loc
+  [1917] ret
+end
+
+on doQuadsStart
+  [  0] getglobal 180 ........................... <gTileIDList>
+  [  3] getprop 188 ............................. <tileIDListPointer>
+  [  6] pusharglist 2 ........................... <gTileIDList, tileIDListPointer>
+  [  8] objcall 185 ............................. <gTileIDList[tileIDListPointer]>
+  [ 11] setprop 184 ............................. thisTileID = gTileIDList[tileIDListPointer]
+  [ 14] getprop 188 ............................. <tileIDListPointer>
+  [ 17] pushint8 1 .............................. <1>
+  [ 20] add ..................................... <tileIDListPointer + 1>
+  [ 21] setprop 190 ............................. tileHeightListPointer = tileIDListPointer + 1
+  [ 24] getprop 190 ............................. <tileHeightListPointer>
+  [ 27] getglobal 182 ........................... <gTileHeightList>
+  [ 30] getobjprop 183 .......................... <gTileHeightList.count>
+  [ 33] gt ...................................... <tileHeightListPointer > gTileHeightList.count>
+  [ 34] jmpifz [ 50] ............................ if tileHeightListPointer > gTileHeightList.count then
+  [ 37] getprop 190 ............................. <tileHeightListPointer>
+  [ 40] getglobal 182 ........................... <gTileHeightList>
+  [ 43] getobjprop 183 .......................... <gTileHeightList.count>
+  [ 46] sub ..................................... <tileHeightListPointer - gTileHeightList.count>
+  [ 47] setprop 190 ............................. tileHeightListPointer = tileHeightListPointer - gTileHeightList.count
+  [ 50] getglobal 182 ........................... <gTileHeightList>
+  [ 53] getprop 188 ............................. <tileIDListPointer>
+  [ 56] pusharglist 2 ........................... <gTileHeightList, tileIDListPointer>
+  [ 58] objcall 185 ............................. <gTileHeightList[tileIDListPointer]>
+  [ 61] setprop 189 ............................. leftHeight = gTileHeightList[tileIDListPointer]
+  [ 64] getglobal 182 ........................... <gTileHeightList>
+  [ 67] getprop 190 ............................. <tileHeightListPointer>
+  [ 70] pusharglist 2 ........................... <gTileHeightList, tileHeightListPointer>
+  [ 72] objcall 185 ............................. <gTileHeightList[tileHeightListPointer]>
+  [ 75] setprop 191 ............................. rightHeight = gTileHeightList[tileHeightListPointer]
+  [ 78] getprop 455 ............................. <Scenery>
+  [ 81] pushint8 280 ............................ <280>
+  [ 84] getprop 189 ............................. <leftHeight>
+  [ 87] sub ..................................... <280 - leftHeight>
+  [ 88] getprop 189 ............................. <leftHeight>
+  [ 91] getprop 191 ............................. <rightHeight>
+  [ 94] sub ..................................... <leftHeight - rightHeight>
+  [ 95] pushcons 192 ............................ <0.5>
+  [ 97] mul ..................................... <(leftHeight - rightHeight) * 0.5>
+  [ 98] add ..................................... <280 - leftHeight + ((leftHeight - rightHeight) * 0.5)>
+  [ 99] setobjprop 37 ........................... Scenery.locV = 280 - leftHeight + ((leftHeight - rightHeight) * 0.5)
+  [102] getglobal 439 ........................... <gSceneryList>
+  [105] getprop 188 ............................. <tileIDListPointer>
+  [108] pusharglist 2 ........................... <gSceneryList, tileIDListPointer>
+  [110] objcall 185 ............................. <gSceneryList[tileIDListPointer]>
+  [113] setprop 456 ............................. SceneryID = gSceneryList[tileIDListPointer]
+  [116] getprop 476 ............................. <thisPickup>
+  [119] pushzero ................................ <0>
+  [120] nteq .................................... <thisPickup <> 0>
+  [121] jmpifz [148] ............................ if thisPickup <> 0 then
+  [124] getprop 476 ............................. <thisPickup>
+  [127] pushsymb 399 ............................ <#NULL>
+  [130] setobjprop 472 .......................... thisPickup.pickupState = #NULL
+  [133] getglobal 475 ........................... <gPickupList>
+  [136] getprop 476 ............................. <thisPickup>
+  [139] pusharglistnoret 2 ...................... <gPickupList, thisPickup>
+  [141] objcall 418 ............................. gPickupList.add(thisPickup)
+  [144] pushzero ................................ <0>
+  [145] setprop 476 ............................. thisPickup = 0
+  [148] getprop 456 ............................. <SceneryID>
+  [151] peek 0 .................................. case SceneryID of
+  [153] pushint8 4 .............................. <4>
+  [156] eq
+  [157] jmpifz [237] ............................ (case) 4:
+  [160] getglobal 475 ........................... <gPickupList>
+  [163] pushint8 1 .............................. <1>
+  [166] pusharglist 2 ........................... <gPickupList, 1>
+  [168] objcall 185 ............................. <gPickupList[1]>
+  [171] setprop 476 ............................. thisPickup = gPickupList[1]
+  [174] getglobal 475 ........................... <gPickupList>
+  [177] pushint8 1 .............................. <1>
+  [180] pusharglistnoret 2 ...................... <gPickupList, 1>
+  [182] objcall 463 ............................. gPickupList.deleteAt(1)
+  [185] getprop 476 ............................. <thisPickup>
+  [188] pushsymb 474 ............................ <#TREASURE>
+  [191] setobjprop 473 .......................... thisPickup.pickupID = #TREASURE
+  [194] getprop 476 ............................. <thisPickup>
+  [197] pushsymb 442 ............................ <#ONGROUND>
+  [200] setobjprop 472 .......................... thisPickup.pickupState = #ONGROUND
+  [203] getprop 476 ............................. <thisPickup>
+  [206] pushint8 84 ............................. <84>
+  [209] pushcons 200 ............................ <"Gfx">
+  [211] pusharglist 2 ........................... <84, "Gfx">
+  [213] extcall 27 .............................. <member(84, "Gfx")>
+  [215] setobjprop 27 ........................... thisPickup.member = member(84, "Gfx")
+  [217] getprop 476 ............................. <thisPickup>
+  [220] getprop 188 ............................. <tileIDListPointer>
+  [223] setobjprop 480 .......................... thisPickup.pickupTile = tileIDListPointer
+  [226] getprop 476 ............................. <thisPickup>
+  [229] getprop 20 .............................. <this>
+  [231] setobjprop 482 .......................... thisPickup.pickupMaster = this
+  [234] jmp [492]
+  [237] peek 0
+  [239] pushint8 5 .............................. <5>
+  [242] eq
+  [243] jmpifz [323] ............................ (case) 5:
+  [246] getglobal 475 ........................... <gPickupList>
+  [249] pushint8 1 .............................. <1>
+  [252] pusharglist 2 ........................... <gPickupList, 1>
+  [254] objcall 185 ............................. <gPickupList[1]>
+  [257] setprop 476 ............................. thisPickup = gPickupList[1]
+  [260] getglobal 475 ........................... <gPickupList>
+  [263] pushint8 1 .............................. <1>
+  [266] pusharglistnoret 2 ...................... <gPickupList, 1>
+  [268] objcall 463 ............................. gPickupList.deleteAt(1)
+  [271] getprop 476 ............................. <thisPickup>
+  [274] pushsymb 478 ............................ <#FUEL>
+  [277] setobjprop 473 .......................... thisPickup.pickupID = #FUEL
+  [280] getprop 476 ............................. <thisPickup>
+  [283] pushsymb 442 ............................ <#ONGROUND>
+  [286] setobjprop 472 .......................... thisPickup.pickupState = #ONGROUND
+  [289] getprop 476 ............................. <thisPickup>
+  [292] pushint8 85 ............................. <85>
+  [295] pushcons 208 ............................ <"Gfx">
+  [297] pusharglist 2 ........................... <85, "Gfx">
+  [299] extcall 27 .............................. <member(85, "Gfx")>
+  [301] setobjprop 27 ........................... thisPickup.member = member(85, "Gfx")
+  [303] getprop 476 ............................. <thisPickup>
+  [306] getprop 188 ............................. <tileIDListPointer>
+  [309] setobjprop 480 .......................... thisPickup.pickupTile = tileIDListPointer
+  [312] getprop 476 ............................. <thisPickup>
+  [315] getprop 20 .............................. <this>
+  [317] setobjprop 482 .......................... thisPickup.pickupMaster = this
+  [320] jmp [492]
+  [323] peek 0
+  [325] pushint8 6 .............................. <6>
+  [328] eq
+  [329] jmpifz [409] ............................ (case) 6:
+  [332] getglobal 475 ........................... <gPickupList>
+  [335] pushint8 1 .............................. <1>
+  [338] pusharglist 2 ........................... <gPickupList, 1>
+  [340] objcall 185 ............................. <gPickupList[1]>
+  [343] setprop 476 ............................. thisPickup = gPickupList[1]
+  [346] getglobal 475 ........................... <gPickupList>
+  [349] pushint8 1 .............................. <1>
+  [352] pusharglistnoret 2 ...................... <gPickupList, 1>
+  [354] objcall 463 ............................. gPickupList.deleteAt(1)
+  [357] getprop 476 ............................. <thisPickup>
+  [360] pushsymb 479 ............................ <#TOOLS>
+  [363] setobjprop 473 .......................... thisPickup.pickupID = #TOOLS
+  [366] getprop 476 ............................. <thisPickup>
+  [369] pushsymb 442 ............................ <#ONGROUND>
+  [372] setobjprop 472 .......................... thisPickup.pickupState = #ONGROUND
+  [375] getprop 476 ............................. <thisPickup>
+  [378] pushint8 86 ............................. <86>
+  [381] pushcons 216 ............................ <"Gfx">
+  [383] pusharglist 2 ........................... <86, "Gfx">
+  [385] extcall 27 .............................. <member(86, "Gfx")>
+  [387] setobjprop 27 ........................... thisPickup.member = member(86, "Gfx")
+  [389] getprop 476 ............................. <thisPickup>
+  [392] getprop 188 ............................. <tileIDListPointer>
+  [395] setobjprop 480 .......................... thisPickup.pickupTile = tileIDListPointer
+  [398] getprop 476 ............................. <thisPickup>
+  [401] getprop 20 .............................. <this>
+  [403] setobjprop 482 .......................... thisPickup.pickupMaster = this
+  [406] jmp [492]
+  [409] peek 0
+  [411] pushint8 12 ............................. <12>
+  [414] eq
+  [415] jmpifz [492] ............................ (case) 12:
+  [418] getglobal 475 ........................... <gPickupList>
+  [421] pushint8 1 .............................. <1>
+  [424] pusharglist 2 ........................... <gPickupList, 1>
+  [426] objcall 185 ............................. <gPickupList[1]>
+  [429] setprop 476 ............................. thisPickup = gPickupList[1]
+  [432] getglobal 475 ........................... <gPickupList>
+  [435] pushint8 1 .............................. <1>
+  [438] pusharglistnoret 2 ...................... <gPickupList, 1>
+  [440] objcall 463 ............................. gPickupList.deleteAt(1)
+  [443] getprop 476 ............................. <thisPickup>
+  [446] pushsymb 922 ............................ <#COCONUTS>
+  [449] setobjprop 473 .......................... thisPickup.pickupID = #COCONUTS
+  [452] getprop 476 ............................. <thisPickup>
+  [455] pushsymb 442 ............................ <#ONGROUND>
+  [458] setobjprop 472 .......................... thisPickup.pickupState = #ONGROUND
+  [461] getprop 476 ............................. <thisPickup>
+  [464] pushint8 199 ............................ <199>
+  [467] pushcons 224 ............................ <"Gfx">
+  [469] pusharglist 2 ........................... <199, "Gfx">
+  [471] extcall 27 .............................. <member(199, "Gfx")>
+  [473] setobjprop 27 ........................... thisPickup.member = member(199, "Gfx")
+  [475] getprop 476 ............................. <thisPickup>
+  [478] getprop 188 ............................. <tileIDListPointer>
+  [481] setobjprop 480 .......................... thisPickup.pickupTile = tileIDListPointer
+  [484] getprop 476 ............................. <thisPickup>
+  [487] getprop 20 .............................. <this>
+  [489] setobjprop 482 .......................... thisPickup.pickupMaster = this
+  [492] pop 1 ................................... end case
+  [494] ret
+end

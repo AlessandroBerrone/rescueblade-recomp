@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 329,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 6,
+    "scriptSrcText": "property delayCount\rglobal gSeaFrame\r\ron beginSprite\r  delayCount = 0\r  gSeaFrame = 1\rend\r\ron exitFrame\r  delayCount = delayCount + 1\r  if delayCount > 3 then\r    gSeaFrame = gSeaFrame + 1\r    if gSeaFrame > 20 then\r      gSeaFrame = 1\r    end if\r    delayCount = 0\r  end if\rend\r",
+    "name": "SeaFrameCounter"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

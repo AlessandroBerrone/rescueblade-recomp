@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 2041,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 327,
+    "scriptSrcText": "property this, Xpos, Ypos, claw, guyState, Yvel, grav, mapXPos, mapXTile, Xvel, loopX, loopWidth, jump, jumpVel, blackCopter\rglobal gPaused, gXVel, gXOffset, gTileIDList, gTileHeightList, gRescueCount\r\ron beginSprite\r  this = sprite(the currentSpriteNum)\r  claw = sprite(80)\r  blackCopter = sprite(79)\r  Xpos = this.locH\r  Ypos = this.locV\r  Xvel = 0\r  Yvel = 0\r  guyState = #claw\r  grav = 1\r  loopX = gTileIDList.count * 128 * 0.5\r  loopWidth = gTileIDList.count * 128\r  mapXPos = (gTileIDList.count / 2 * 128) + Xpos - 256 - 64\r  mapXTile = mapXTile = integer(mapXPos / 128)\r  jump = 0\r  puppetSound(4, member(82, \"Sfx\"))\rend\r\ron exitFrame\r  if gPaused = 0 then\r    case guyState of\r      #claw:\r        Xpos = claw.locH\r        Ypos = claw.locV\r        this.locH = Xpos\r        this.locV = Ypos\r        doGroundHeight()\r      #ONGROUND:\r        Xpos = Xpos + gXVel + gXOffset\r        this.locH = Xpos\r        this.locV = Ypos - jump\r        jumpVel = jumpVel - grav\r        jump = jump + jumpVel\r        if jump < 0 then\r          jumpVel = 10\r        end if\r    end case\r  end if\rend\r\ron doGroundHeight\r  mapXPos = mapXPos - gXVel\r  if mapXPos > loopWidth then\r    mapXPos = mapXPos - loopWidth\r  end if\r  if mapXPos < 0 then\r    mapXPos = mapXPos + loopWidth\r  end if\r  temp = (mapXPos - 0.5) mod 128\r  temp1 = mapXPos - temp\r  temp2 = integer(temp1 / 128)\r  mapXTile = temp2 + 1\r  localXPercent = (mapXPos - ((mapXTile - 1) * 128)) / 128\r  tempID = gTileIDList[mapXTile]\r  groundHeightLeft = gTileHeightList[mapXTile]\r  temp = mapXTile + 1\r  if temp > gTileIDList.count then\r    temp = temp - gTileIDList.count\r  end if\r  groundHeightRight = gTileHeightList[temp]\r  groundDiff = groundHeightRight - groundHeightLeft\r  diff = Ypos + 10 - (280 - groundHeightLeft) + (groundDiff * localXPercent)\r  if (diff > 0) and (blackCopter.firedCount >= 10) then\r    Ypos = Ypos - diff\r    this.locV = Ypos\r    guyState = #ONGROUND\r    gRescueCount = 1\r    puppetSound(4, member(85, \"Sfx\"))\r  end if\rend\r",
+    "name": "VolcanoGuy"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

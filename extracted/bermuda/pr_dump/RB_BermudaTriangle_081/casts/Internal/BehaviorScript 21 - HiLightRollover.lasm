@@ -1,0 +1,31 @@
+property thisNum, this
+global gLevel
+
+on beginSprite
+  [  0] getmovieprop 22 ......................... <the currentSpriteNum>
+  [  2] pusharglist 1 ........................... <the currentSpriteNum>
+  [  4] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [  6] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [  8] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 10] setprop 554 ............................. thisNum = the currentSpriteNum
+  [ 13] getprop 20 .............................. <this>
+  [ 15] pushint8 50 ............................. <50>
+  [ 18] setobjprop 173 .......................... this.blend = 50
+  [ 21] ret
+end
+
+on exitFrame
+  [  0] getprop 554 ............................. <thisNum>
+  [  3] pusharglist 0 ........................... <>
+  [  5] thebuiltin 555 .......................... <the rollover>
+  [  8] eq ...................................... <thisNum = the rollover>
+  [  9] jmpifz [ 23] ............................ if thisNum = the rollover then / else
+  [ 12] getprop 20 .............................. <this>
+  [ 14] pushint8 100 ............................ <100>
+  [ 17] setobjprop 173 .......................... this.blend = 100
+  [ 20] jmp [ 31]
+  [ 23] getprop 20 .............................. <this>
+  [ 25] pushint8 50 ............................. <50>
+  [ 28] setobjprop 173 .......................... this.blend = 50
+  [ 31] ret
+end

@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 420,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 19,
+    "scriptSrcText": "global gPaused\r\ron exitFrame me\r  go(the frame)\rend\r\ron keyDown\r  if the keyCode = 35 then\r    if gPaused = 1 then\r      gPaused = 0\r      sound(1).play()\r      sound(2).play()\r      sound(3).play()\r      sound(4).play()\r    else\r      gPaused = 1\r      sound(1).pause()\r      sound(2).pause()\r      sound(3).pause()\r      sound(4).pause()\r    end if\r  end if\rend\r",
+    "name": "frameScriptScrollTest"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

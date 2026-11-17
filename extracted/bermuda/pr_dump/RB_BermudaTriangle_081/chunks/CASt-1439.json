@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 220,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 244,
+    "scriptSrcText": "property this\rglobal gPaused\r\ron beginSprite\r  this = sprite(the currentSpriteNum)\r  this.locZ = 1600\rend\r\ron exitFrame\r  if gPaused = 0 then\r    this.locH = -1000\r  end if\rend\r",
+    "name": "SnowLump"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}

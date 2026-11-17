@@ -1,0 +1,358 @@
+property this, Xpos, swellAngle, radians, Ypos, mapXPos, survivorDelay, thisMember, startMember, Xvel, cableGuy, enemyState, ThisWidth, thisHalfHeight, grabCount, distToHQ, targetSprite, targetOffset, frameDir, xSlide, COPTER, tiltAngle, fireCount, splosh, missile, firedCount
+global gXVel, gXOffset, gPaused, gTileIDList, gCableItem, gCableLength, gRescueCount, gRescuedList, gScore
+
+on getPropertyDescriptionList me
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setlocal 0 .............................. descriptionList = [:]
+  [  5] getlocal 0 .............................. <descriptionList>
+  [  7] pushsymb 612 ............................ <#targetSprite>
+  [ 10] pushsymb 9 .............................. <#default>
+  [ 12] pushint8 1 .............................. <1>
+  [ 15] pushsymb 70 ............................. <#format>
+  [ 18] pushsymb 21 ............................. <#sprite>
+  [ 20] pushsymb 64 ............................. <#comment>
+  [ 23] pushcons 0 .............................. <"targetSprite">
+  [ 25] pusharglist 6 ........................... <[#default: 1, #format: #sprite, #comment: "targetSprite"]>
+  [ 27] pushproplist ............................ <[#default: 1, #format: #sprite, #comment: "targetSprite"]>
+  [ 28] pusharglistnoret 3 ...................... <descriptionList, #targetSprite, [#default: 1, #format: #sprite, #comment: "targetSprite"]>
+  [ 30] extcall 611 ............................. addProp(descriptionList, #targetSprite, [#default: 1, #format: #sprite, #comment: "targetSprite"])
+  [ 33] getlocal 0 .............................. <descriptionList>
+  [ 35] pushsymb 615 ............................ <#targetOffset>
+  [ 38] pushsymb 9 .............................. <#default>
+  [ 40] pushzero ................................ <0>
+  [ 41] pushzero ................................ <0>
+  [ 42] pusharglist 2 ........................... <0, 0>
+  [ 44] extcall 57 .............................. <point(0, 0)>
+  [ 47] pushsymb 70 ............................. <#format>
+  [ 50] pushsymb 57 ............................. <#point>
+  [ 53] pushsymb 64 ............................. <#comment>
+  [ 56] pushcons 8 .............................. <"offSet from targetSprite">
+  [ 58] pusharglist 6 ........................... <[#default: point(0, 0), #format: #point, #comment: "offSet from targetSprite"]>
+  [ 60] pushproplist ............................ <[#default: point(0, 0), #format: #point, #comment: "offSet from targetSprite"]>
+  [ 61] pusharglistnoret 3 ...................... <descriptionList, #targetOffset, [#default: point(0, 0), #format: #point, #comment: "offSet from targetSprite"]>
+  [ 63] extcall 611 ............................. addProp(descriptionList, #targetOffset, [#default: point(0, 0), #format: #point, #comment: "offSet from targetSprite"])
+  [ 66] getlocal 0 .............................. <descriptionList>
+  [ 68] pusharglistnoret 1 ...................... <descriptionList>
+  [ 70] extcall 2 ............................... return descriptionList
+  [ 72] ret
+end
+
+on beginSprite
+  [  0] pusharglist 0 ........................... <>
+  [  2] extcall 41 .............................. <PI>
+  [  5] pushint8 180 ............................ <180>
+  [  8] div ..................................... <PI / 180>
+  [  9] pusharglist 1 ........................... <PI / 180>
+  [ 11] extcall 33 .............................. <float(PI / 180)>
+  [ 14] setprop 40 .............................. radians = float(PI / 180)
+  [ 17] getmovieprop 22 ......................... <the currentSpriteNum>
+  [ 19] pusharglist 1 ........................... <the currentSpriteNum>
+  [ 21] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [ 23] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [ 25] getprop 20 .............................. <this>
+  [ 27] getobjprop 477 .......................... <this.memberNum>
+  [ 30] setprop 616 ............................. startMember = this.memberNum
+  [ 33] pushint8 88 ............................. <88>
+  [ 36] pusharglist 1 ........................... <88>
+  [ 38] extcall 21 .............................. <sprite(88)>
+  [ 40] setprop 810 ............................. missile = sprite(88)
+  [ 43] pushint8 4 .............................. <4>
+  [ 46] pusharglist 1 ........................... <4>
+  [ 48] extcall 21 .............................. <sprite(4)>
+  [ 50] setprop 341 ............................. COPTER = sprite(4)
+  [ 53] pushint8 7 .............................. <7>
+  [ 56] pusharglist 1 ........................... <7>
+  [ 58] extcall 21 .............................. <sprite(7)>
+  [ 60] setprop 808 ............................. splosh = sprite(7)
+  [ 63] pushint8 50 ............................. <50>
+  [ 66] setprop 807 ............................. fireCount = 50
+  [ 69] getglobal 180 ........................... <gTileIDList>
+  [ 72] getobjprop 183 .......................... <gTileIDList.count>
+  [ 75] pushint8 128 ............................ <128>
+  [ 78] mul ..................................... <gTileIDList.count * 128>
+  [ 79] setlocal 0 .............................. loopWidth = gTileIDList.count * 128
+  [ 81] getprop 20 .............................. <this>
+  [ 83] getobjprop 36 ........................... <this.locH>
+  [ 86] pusharglist 1 ........................... <this.locH>
+  [ 88] extcall 33 .............................. <float(this.locH)>
+  [ 91] setprop 48 .............................. Xpos = float(this.locH)
+  [ 94] getprop 20 .............................. <this>
+  [ 96] getobjprop 37 ........................... <this.locV>
+  [ 99] pusharglist 1 ........................... <this.locV>
+  [101] extcall 33 .............................. <float(this.locV)>
+  [104] setprop 38 .............................. Ypos = float(this.locV)
+  [107] getprop 20 .............................. <this>
+  [109] pushint8 1501 ........................... <1501>
+  [112] setobjprop 178 .......................... this.locZ = 1501
+  [115] pushzero ................................ <0>
+  [116] setprop 44 .............................. Xvel = 0
+  [119] getprop 48 .............................. <Xpos>
+  [122] pushint8 256 ............................ <256>
+  [125] sub ..................................... <Xpos - 256>
+  [126] pushint8 64 ............................. <64>
+  [129] sub ..................................... <Xpos - 256 - 64>
+  [130] setprop 366 ............................. mapXPos = Xpos - 256 - 64
+  [133] pushzero ................................ <0>
+  [134] setprop 440 ............................. survivorDelay = 0
+  [137] pushzero ................................ <0>
+  [138] setprop 62 .............................. swellAngle = 0
+  [141] pushint8 6 .............................. <6>
+  [144] pusharglist 1 ........................... <6>
+  [146] extcall 21 .............................. <sprite(6)>
+  [148] setprop 342 ............................. cableGuy = sprite(6)
+  [151] pushsymb 442 ............................ <#ONGROUND>
+  [154] setprop 806 ............................. enemyState = #ONGROUND
+  [157] getprop 20 .............................. <this>
+  [159] getobjprop 50 ........................... <this.width>
+  [162] setprop 51 .............................. ThisWidth = this.width
+  [165] getprop 20 .............................. <this>
+  [167] getobjprop 97 ........................... <this.height>
+  [170] pushint8 2 .............................. <2>
+  [173] div ..................................... <this.height / 2>
+  [174] setprop 443 ............................. thisHalfHeight = this.height / 2
+  [177] pushzero ................................ <0>
+  [178] setprop 445 ............................. grabCount = 0
+  [181] pushzero ................................ <0>
+  [182] setprop 459 ............................. distToHQ = 0
+  [185] pushint8 1 .............................. <1>
+  [188] setprop 471 ............................. frameDir = 1
+  [191] pushzero ................................ <0>
+  [192] setprop 23 .............................. tiltAngle = 0
+  [194] pushzero ................................ <0>
+  [195] setprop 819 ............................. firedCount = 0
+  [198] getprop 20 .............................. <this>
+  [200] pushint8 1000 ........................... <1000>
+  [203] inv ..................................... <-1000>
+  [204] setobjprop 37 ........................... this.locV = -1000
+  [207] getprop 615 ............................. <targetOffset>
+  [210] getobjprop 36 ........................... <targetOffset.locH>
+  [213] setprop 804 ............................. xSlide = targetOffset.locH
+  [216] ret
+end
+
+on exitFrame
+  [  0] getglobal 364 ........................... <gPaused>
+  [  3] pushzero ................................ <0>
+  [  4] eq ...................................... <gPaused = 0>
+  [  5] jmpifz [532] ............................ if gPaused = 0 then
+  [  8] getprop 806 ............................. <enemyState>
+  [ 11] peek 0 .................................. case enemyState of
+  [ 13] pushsymb 442 ............................ <#ONGROUND>
+  [ 16] eq
+  [ 17] jmpifz [473] ............................ (case) #ONGROUND:
+  [ 20] getprop 612 ............................. <targetSprite>
+  [ 23] pusharglist 1 ........................... <targetSprite>
+  [ 25] extcall 21 .............................. <sprite(targetSprite)>
+  [ 27] getobjprop 36 ........................... <sprite(targetSprite).locH>
+  [ 30] pushint8 100 ............................ <100>
+  [ 33] inv ..................................... <-100>
+  [ 34] gt ...................................... <sprite(targetSprite).locH > -100>
+  [ 35] getprop 612 ............................. <targetSprite>
+  [ 38] pusharglist 1 ........................... <targetSprite>
+  [ 40] extcall 21 .............................. <sprite(targetSprite)>
+  [ 42] getobjprop 36 ........................... <sprite(targetSprite).locH>
+  [ 45] pushint8 600 ............................ <600>
+  [ 48] lt ...................................... <sprite(targetSprite).locH < 600>
+  [ 49] and ..................................... <(sprite(targetSprite).locH > -100) and (sprite(targetSprite).locH < 600)>
+  [ 50] jmpifz [470] ............................ if (sprite(targetSprite).locH > -100) and (sprite(targetSprite).locH < 600) then
+  [ 53] getprop 616 ............................. <startMember>
+  [ 56] pushint8 201 ............................ <201>
+  [ 59] eq ...................................... <startMember = 201>
+  [ 60] jmpifz [263] ............................ if startMember = 201 then
+  [ 63] getprop 807 ............................. <fireCount>
+  [ 66] pushint8 1 .............................. <1>
+  [ 69] add ..................................... <fireCount + 1>
+  [ 70] setprop 807 ............................. fireCount = fireCount + 1
+  [ 73] getprop 807 ............................. <fireCount>
+  [ 76] pushint8 80 ............................. <80>
+  [ 79] gt ...................................... <fireCount > 80>
+  [ 80] jmpifz [263] ............................ if fireCount > 80 then
+  [ 83] getprop 810 ............................. <missile>
+  [ 86] getobjprop 811 .......................... <missile.missileState>
+  [ 89] pushsymb 399 ............................ <#NULL>
+  [ 92] eq ...................................... <missile.missileState = #NULL>
+  [ 93] jmpifz [263] ............................ if missile.missileState = #NULL then
+  [ 96] pushzero ................................ <0>
+  [ 97] setprop 807 ............................. fireCount = 0
+  [100] getprop 810 ............................. <missile>
+  [103] getprop 20 .............................. <this>
+  [105] getobjprop 213 .......................... <this.loc>
+  [108] pushzero ................................ <0>
+  [109] pushint8 30 ............................. <30>
+  [112] inv ..................................... <-30>
+  [113] pusharglist 2 ........................... <0, -30>
+  [115] extcall 57 .............................. <point(0, -30)>
+  [118] add ..................................... <this.loc + point(0, -30)>
+  [119] setobjprop 213 .......................... missile.loc = this.loc + point(0, -30)
+  [122] getprop 810 ............................. <missile>
+  [125] pushsymb 363 ............................ <#FLY>
+  [128] setobjprop 811 .......................... missile.missileState = #FLY
+  [131] getprop 819 ............................. <firedCount>
+  [134] pushint8 1 .............................. <1>
+  [137] add ..................................... <firedCount + 1>
+  [138] setprop 819 ............................. firedCount = firedCount + 1
+  [141] pushint8 4 .............................. <4>
+  [144] pusharglist 1 ........................... <4>
+  [146] extcall 394 ............................. <soundBusy(4)>
+  [149] pushzero ................................ <0>
+  [150] eq ...................................... <soundBusy(4) = 0>
+  [151] jmpifz [201] ............................ if soundBusy(4) = 0 then
+  [154] getprop 819 ............................. <firedCount>
+  [157] pushint8 2 .............................. <2>
+  [160] mod ..................................... <firedCount mod 2>
+  [161] jmpifz [184] ............................ if firedCount mod 2 then / else
+  [164] pushint8 4 .............................. <4>
+  [167] pushint8 78 ............................. <78>
+  [170] pushcons 16 ............................. <"Sfx">
+  [172] pusharglist 2 ........................... <78, "Sfx">
+  [174] extcall 27 .............................. <member(78, "Sfx")>
+  [176] pusharglistnoret 2 ...................... <4, member(78, "Sfx")>
+  [178] extcall 395 ............................. puppetSound(4, member(78, "Sfx"))
+  [181] jmp [201]
+  [184] pushint8 4 .............................. <4>
+  [187] pushint8 80 ............................. <80>
+  [190] pushcons 24 ............................. <"Sfx">
+  [192] pusharglist 2 ........................... <80, "Sfx">
+  [194] extcall 27 .............................. <member(80, "Sfx")>
+  [196] pusharglistnoret 2 ...................... <4, member(80, "Sfx")>
+  [198] extcall 395 ............................. puppetSound(4, member(80, "Sfx"))
+  [201] getprop 810 ............................. <missile>
+  [204] getprop 810 ............................. <missile>
+  [207] getobjprop 36 ........................... <missile.locH>
+  [210] setobjprop 48 ........................... missile.Xpos = missile.locH
+  [213] getprop 810 ............................. <missile>
+  [216] getprop 810 ............................. <missile>
+  [219] getobjprop 37 ........................... <missile.locV>
+  [222] setobjprop 38 ........................... missile.Ypos = missile.locV
+  [225] getprop 810 ............................. <missile>
+  [228] pushzero ................................ <0>
+  [229] setobjprop 812 .......................... missile.thisVel = 0
+  [232] getprop 20 .............................. <this>
+  [234] getobjprop 477 .......................... <this.memberNum>
+  [237] pushint8 201 ............................ <201>
+  [240] eq ...................................... <this.memberNum = 201>
+  [241] jmpifz [255] ............................ if this.memberNum = 201 then / else
+  [244] getprop 810 ............................. <missile>
+  [247] pushint8 225 ............................ <225>
+  [250] setobjprop 25 ........................... missile.rotation = 225
+  [252] jmp [263]
+  [255] getprop 810 ............................. <missile>
+  [258] pushint8 315 ............................ <315>
+  [261] setobjprop 25 ........................... missile.rotation = 315
+  [263] getprop 612 ............................. <targetSprite>
+  [266] pusharglist 1 ........................... <targetSprite>
+  [268] extcall 21 .............................. <sprite(targetSprite)>
+  [270] getobjprop 25 ........................... <sprite(targetSprite).rotation>
+  [272] setprop 23 .............................. tiltAngle = sprite(targetSprite).rotation
+  [274] getprop 20 .............................. <this>
+  [276] getprop 23 .............................. <tiltAngle>
+  [278] setobjprop 25 ........................... this.rotation = tiltAngle
+  [280] getprop 804 ............................. <xSlide>
+  [283] getprop 23 .............................. <tiltAngle>
+  [285] pushcons 32 ............................. <0.10000000000000001>
+  [287] mul ..................................... <tiltAngle * 0.10000000000000001>
+  [288] add ..................................... <xSlide + (tiltAngle * 0.10000000000000001)>
+  [289] setprop 804 ............................. xSlide = xSlide + (tiltAngle * 0.10000000000000001)
+  [292] getprop 615 ............................. <targetOffset>
+  [295] getprop 804 ............................. <xSlide>
+  [298] getprop 23 .............................. <tiltAngle>
+  [300] getprop 40 .............................. <radians>
+  [303] mul ..................................... <tiltAngle * radians>
+  [304] pusharglist 1 ........................... <tiltAngle * radians>
+  [306] extcall 45 .............................. <cos(tiltAngle * radians)>
+  [309] mul ..................................... <xSlide * cos(tiltAngle * radians)>
+  [310] setobjprop 36 ........................... targetOffset.locH = xSlide * cos(tiltAngle * radians)
+  [313] getprop 615 ............................. <targetOffset>
+  [316] getprop 804 ............................. <xSlide>
+  [319] getprop 23 .............................. <tiltAngle>
+  [321] getprop 40 .............................. <radians>
+  [324] mul ..................................... <tiltAngle * radians>
+  [325] pusharglist 1 ........................... <tiltAngle * radians>
+  [327] extcall 43 .............................. <sin(tiltAngle * radians)>
+  [330] mul ..................................... <xSlide * sin(tiltAngle * radians)>
+  [331] setobjprop 37 ........................... targetOffset.locV = xSlide * sin(tiltAngle * radians)
+  [334] getprop 20 .............................. <this>
+  [336] getprop 612 ............................. <targetSprite>
+  [339] pusharglist 1 ........................... <targetSprite>
+  [341] extcall 21 .............................. <sprite(targetSprite)>
+  [343] getobjprop 213 .......................... <sprite(targetSprite).loc>
+  [346] getprop 615 ............................. <targetOffset>
+  [349] add ..................................... <sprite(targetSprite).loc + targetOffset>
+  [350] setobjprop 213 .......................... this.loc = sprite(targetSprite).loc + targetOffset
+  [353] getprop 341 ............................. <COPTER>
+  [356] getobjprop 36 ........................... <COPTER.locH>
+  [359] getprop 20 .............................. <this>
+  [361] getobjprop 36 ........................... <this.locH>
+  [364] gteq .................................... <COPTER.locH >= this.locH>
+  [365] jmpifz [388] ............................ if COPTER.locH >= this.locH then / else
+  [368] getprop 20 .............................. <this>
+  [370] getprop 616 ............................. <startMember>
+  [373] pushint8 1 .............................. <1>
+  [376] add ..................................... <startMember + 1>
+  [377] pushcons 40 ............................. <"Gfx">
+  [379] pusharglist 2 ........................... <startMember + 1, "Gfx">
+  [381] extcall 27 .............................. <member(startMember + 1, "Gfx")>
+  [383] setobjprop 27 ........................... this.member = member(startMember + 1, "Gfx")
+  [385] jmp [401]
+  [388] getprop 20 .............................. <this>
+  [390] getprop 616 ............................. <startMember>
+  [393] pushcons 48 ............................. <"Gfx">
+  [395] pusharglist 2 ........................... <startMember, "Gfx">
+  [397] extcall 27 .............................. <member(startMember, "Gfx")>
+  [399] setobjprop 27 ........................... this.member = member(startMember, "Gfx")
+  [401] getprop 804 ............................. <xSlide>
+  [404] pusharglist 1 ........................... <xSlide>
+  [406] extcall 370 ............................. <abs(xSlide)>
+  [409] pushint8 55 ............................. <55>
+  [412] gt ...................................... <abs(xSlide) > 55>
+  [413] jmpifz [470] ............................ if abs(xSlide) > 55 then
+  [416] pushsymb 805 ............................ <#PLOPPED>
+  [419] setprop 806 ............................. enemyState = #PLOPPED
+  [422] pushint8 4 .............................. <4>
+  [425] pushint8 81 ............................. <81>
+  [428] pushcons 56 ............................. <"Sfx">
+  [430] pusharglist 2 ........................... <81, "Sfx">
+  [432] extcall 27 .............................. <member(81, "Sfx")>
+  [434] pusharglistnoret 2 ...................... <4, member(81, "Sfx")>
+  [436] extcall 395 ............................. puppetSound(4, member(81, "Sfx"))
+  [439] getprop 808 ............................. <splosh>
+  [442] pushsymb 402 ............................ <#StartSplash>
+  [445] setobjprop 404 .......................... splosh.overlayState = #StartSplash
+  [448] getprop 808 ............................. <splosh>
+  [451] getprop 20 .............................. <this>
+  [453] getobjprop 36 ........................... <this.locH>
+  [456] setobjprop 48 ........................... splosh.Xpos = this.locH
+  [459] getprop 808 ............................. <splosh>
+  [462] getprop 20 .............................. <this>
+  [464] getobjprop 37 ........................... <this.locV>
+  [467] setobjprop 38 ........................... splosh.Ypos = this.locV
+  [470] jmp [530]
+  [473] peek 0
+  [475] pushsymb 805 ............................ <#PLOPPED>
+  [478] eq
+  [479] jmpifz [530] ............................ (case) #PLOPPED:
+  [482] getprop 20 .............................. <this>
+  [484] getobjprop 37 ........................... <this.locV>
+  [487] pushint8 1000 ........................... <1000>
+  [490] inv ..................................... <-1000>
+  [491] nteq .................................... <this.locV <> -1000>
+  [492] jmpifz [530] ............................ if this.locV <> -1000 then
+  [495] getprop 20 .............................. <this>
+  [497] getprop 20 .............................. <this>
+  [499] getobjprop 37 ........................... <this.locV>
+  [502] pushint8 2 .............................. <2>
+  [505] add ..................................... <this.locV + 2>
+  [506] setobjprop 37 ........................... this.locV = this.locV + 2
+  [509] getprop 20 .............................. <this>
+  [511] getobjprop 37 ........................... <this.locV>
+  [514] pushint8 270 ............................ <270>
+  [517] gt ...................................... <this.locV > 270>
+  [518] jmpifz [530] ............................ if this.locV > 270 then
+  [521] getprop 20 .............................. <this>
+  [523] pushint8 1000 ........................... <1000>
+  [526] inv ..................................... <-1000>
+  [527] setobjprop 37 ........................... this.locV = -1000
+  [530] pop 1 ................................... end case
+  [532] ret
+end

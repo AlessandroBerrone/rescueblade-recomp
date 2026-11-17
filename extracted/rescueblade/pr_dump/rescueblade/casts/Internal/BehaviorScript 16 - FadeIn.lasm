@@ -1,0 +1,27 @@
+property this
+
+on beginSprite
+  [  0] getmovieprop 22 ......................... <the currentSpriteNum>
+  [  2] pusharglist 1 ........................... <the currentSpriteNum>
+  [  4] extcall 21 .............................. <sprite(the currentSpriteNum)>
+  [  6] setprop 20 .............................. this = sprite(the currentSpriteNum)
+  [  8] getprop 20 .............................. <this>
+  [ 10] pushzero ................................ <0>
+  [ 11] setobjprop 173 .......................... this.blend = 0
+  [ 14] ret
+end
+
+on exitFrame
+  [  0] getprop 20 .............................. <this>
+  [  2] getobjprop 173 .......................... <this.blend>
+  [  5] pushint8 100 ............................ <100>
+  [  8] lt ...................................... <this.blend < 100>
+  [  9] jmpifz [ 26] ............................ if this.blend < 100 then
+  [ 12] getprop 20 .............................. <this>
+  [ 14] getprop 20 .............................. <this>
+  [ 16] getobjprop 173 .......................... <this.blend>
+  [ 19] pushint8 5 .............................. <5>
+  [ 22] add ..................................... <this.blend + 5>
+  [ 23] setobjprop 173 .......................... this.blend = this.blend + 5
+  [ 26] ret
+end

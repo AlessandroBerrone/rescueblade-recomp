@@ -1,0 +1,287 @@
+{
+  "totalLength": 3608,
+  "totalLength2": 3608,
+  "headerLength": 92,
+  "scriptNumber": 427,
+  "unk20": 8,
+  "parentNumber": -1,
+  "scriptFlags": 0,
+  "unk42": 0,
+  "castID": 65612,
+  "factoryNameID": -1,
+  "handlerVectorsCount": 16,
+  "handlerVectorsOffset": 3576,
+  "handlerVectorsSize": 32768,
+  "propertiesCount": 27,
+  "propertiesOffset": 92,
+  "globalsCount": 9,
+  "globalsOffset": 146,
+  "handlersCount": 3,
+  "handlersOffset": 164,
+  "literalsCount": 34,
+  "literalsOffset": 2964,
+  "literalsDataCount": 340,
+  "literalsDataOffset": 3236,
+  "propertyNameIDs": [
+    20,
+    26,
+    341,
+    351,
+    347,
+    352,
+    34,
+    48,
+    38,
+    44,
+    32,
+    356,
+    366,
+    367,
+    375,
+    396,
+    397,
+    407,
+    470,
+    471,
+    559,
+    644,
+    616,
+    777,
+    998,
+    999,
+    1002
+  ],
+  "globalNameIDs": [
+    47,
+    55,
+    364,
+    180,
+    182,
+    450,
+    572,
+    510,
+    923
+  ],
+  "handlers": [
+    {
+      "nameID": 18,
+      "vectorPos": 65535,
+      "compiledLen": 298,
+      "compiledOffset": 290,
+      "argumentCount": 0,
+      "argumentOffset": 588,
+      "localsCount": 0,
+      "localsOffset": 588,
+      "globalsCount": 0,
+      "globalsOffset": 588,
+      "unknown1": 405,
+      "unknown2": 6,
+      "lineCount": 33,
+      "lineOffset": 588
+    },
+    {
+      "nameID": 19,
+      "vectorPos": 15,
+      "compiledLen": 941,
+      "compiledOffset": 622,
+      "argumentCount": 0,
+      "argumentOffset": 1564,
+      "localsCount": 5,
+      "localsOffset": 1564,
+      "globalsCount": 0,
+      "globalsOffset": 1574,
+      "unknown1": 1330,
+      "unknown2": 42,
+      "lineCount": 156,
+      "lineOffset": 1574
+    },
+    {
+      "nameID": 378,
+      "vectorPos": 65535,
+      "compiledLen": 1091,
+      "compiledOffset": 1730,
+      "argumentCount": 0,
+      "argumentOffset": 2822,
+      "localsCount": 8,
+      "localsOffset": 2822,
+      "globalsCount": 0,
+      "globalsOffset": 2838,
+      "unknown1": 5254,
+      "unknown2": 202,
+      "lineCount": 125,
+      "lineOffset": 2838
+    }
+  ],
+  "literals": [
+    {
+      "type": 9,
+      "offset": 0,
+      "value": 0.0
+    },
+    {
+      "type": 9,
+      "offset": 12,
+      "value": 0.0
+    },
+    {
+      "type": 9,
+      "offset": 24,
+      "value": 0.5
+    },
+    {
+      "type": 9,
+      "offset": 36,
+      "value": 0.0
+    },
+    {
+      "type": 1,
+      "offset": 48,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 56,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 64,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 72,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 80,
+      "value": 2.5
+    },
+    {
+      "type": 1,
+      "offset": 92,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 100,
+      "value": 1.5
+    },
+    {
+      "type": 9,
+      "offset": 112,
+      "value": 0.90000000000000002
+    },
+    {
+      "type": 9,
+      "offset": 124,
+      "value": 0.92000000000000004
+    },
+    {
+      "type": 9,
+      "offset": 136,
+      "value": 0.97999999999999998
+    },
+    {
+      "type": 1,
+      "offset": 148,
+      "value": "Gfx"
+    },
+    {
+      "type": 9,
+      "offset": 156,
+      "value": 0.5
+    },
+    {
+      "type": 9,
+      "offset": 168,
+      "value": 0.01
+    },
+    {
+      "type": 9,
+      "offset": 180,
+      "value": 0.94999999999999996
+    },
+    {
+      "type": 1,
+      "offset": 192,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 200,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 208,
+      "value": 0.5
+    },
+    {
+      "type": 1,
+      "offset": 220,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 228,
+      "value": 0.5
+    },
+    {
+      "type": 9,
+      "offset": 240,
+      "value": 0.02
+    },
+    {
+      "type": 9,
+      "offset": 252,
+      "value": 0.5
+    },
+    {
+      "type": 1,
+      "offset": 264,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 272,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 280,
+      "value": "Sfx"
+    },
+    {
+      "type": 9,
+      "offset": 288,
+      "value": 0.5
+    },
+    {
+      "type": 1,
+      "offset": 300,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 308,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 316,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 324,
+      "value": "Sfx"
+    },
+    {
+      "type": 1,
+      "offset": 332,
+      "value": "Sfx"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": 11,
+  "infoLen": 833,
+  "specificDataLen": 2,
+  "info": {
+    "dataOffset": 20,
+    "unk1": 0,
+    "unk2": 0,
+    "flags": 0,
+    "scriptId": 19,
+    "scriptSrcText": "property this, Xpos, swellAngle, radians, Ypos, mapXPos, loopWidth, loopX\rglobal gXVel, gXOffset, gPaused, gTileIDList\r\ron beginSprite\r  radians = float(PI / 180)\r  this = sprite(the currentSpriteNum)\r  loopWidth = gTileIDList.count * 128\r  loopX = gTileIDList.count * 128 * 0.5\r  Xpos = float(this.locH)\r  Ypos = float(this.locV)\r  this.locZ = 50\r  mapXPos = Xpos - 256\r  swellAngle = 0\rend\r\ron exitFrame\r  if gPaused = 0 then\r    Xpos = Xpos + gXVel + gXOffset\r    if Xpos > loopX then\r      Xpos = Xpos - loopWidth\r    end if\r    if Xpos < -loopX then\r      Xpos = Xpos + loopWidth\r    end if\r    this.locH = Xpos\r    swellAngle = swellAngle + 2\r    if swellAngle > 360 then\r      swellAngle = swellAngle - 360\r    end if\r    this.locV = Ypos + (10 * cos(swellAngle * radians))\r  end if\rend\r",
+    "name": "Ship"
+  },
+  "member": {
+    "scriptType": 1
+  }
+}
