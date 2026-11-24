@@ -533,3 +533,29 @@ body.launch-mode #app {
     display: none;
   }
 }
+
+.launch-save {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.launch-save button {
+  font: inherit;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #345075;
+  background: #142030;
+  color: #e6eef8;
+  cursor: pointer;
+}
+
+.launch-save button:hover,
+.launch-save button:focus-visible {
+  border-color: #f59e0b;
+}
