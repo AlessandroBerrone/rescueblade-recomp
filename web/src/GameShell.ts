@@ -10,6 +10,7 @@ import { TextTextureCache } from './engine/render/TextTextureCache.ts';
 import { WebGL2StageRenderer } from './engine/render/WebGL2StageRenderer.ts';
 import { MovieRuntime } from './engine/runtime/MovieRuntime.ts';
 import { createBehaviorRegistry } from './games/registry.ts';
+import { gameUrl } from './ui/LaunchScreen.ts';
 import { TouchControls, wantsTouchControls } from './ui/TouchControls.ts';
 
 export class GameShell {
@@ -36,7 +37,7 @@ export class GameShell {
   private readonly touchControls: TouchControls | null = null;
   private lastDevice = '';
 
-  constructor(root: HTMLElement, private readonly input: InputManager) {
+  constructor(root: HTMLElement, private readonly input: InputManager, initialGame: GameId = 'rescueblade') {
     root.innerHTML = `
       <div class="layout">
         <div class="panel stage-wrap">
@@ -55,6 +56,7 @@ export class GameShell {
             <button id="gs-hud" type="button">HUD: HD</button>
             <button id="gs-mute" type="button">Audio: ON</button>
             <button id="gs-fs" type="button">Fullscreen</button>
+            <button id="gs-home" type="button">Cambia gioco</button>
           </div>
           <div class="row hints-row" style="font-size:12px;color:#94a3b8;margin-top:4px">
             <span>Frecce/WASD o Stick: Volo &bull; Spazio/A: Verricello / Acqua / Foto &bull; P/Start: Pausa &bull; R+I+X: Sblocca livelli</span>
@@ -128,8 +130,9 @@ export class GameShell {
       });
     }
 
+    root.querySelector<HTMLSelectElement>('#gs-game')!.value = initialGame;
     this.bindUI(root);
-    void this.switchGame('rescueblade');
+    void this.switchGame(initialGame);
   }
 
   private bindUI(root: HTMLElement): void {
@@ -141,7 +144,14 @@ export class GameShell {
 
     const gameSel = root.querySelector<HTMLSelectElement>('#gs-game')!;
     gameSel.addEventListener('change', () => {
-      void this.switchGame(gameSel.value as GameId);
+      const gameId = gameSel.value as GameId;
+      history.replaceState(null, '', gameUrl(gameId, window.location));
+      void this.switchGame(gameId);
+    });
+
+    root.querySelector<HTMLButtonElement>('#gs-home')!.addEventListener('click', () => {
+      this.sound.stopAll();
+      window.location.href = gameUrl(null, window.location);
     });
 
     this.controlsBtn.addEventListener('click', () => {
