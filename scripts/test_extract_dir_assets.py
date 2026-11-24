@@ -53,5 +53,20 @@ class DecodeBitmapAlphaTest(unittest.TestCase):
         self.assertEqual(list(img.getchannel("A").getdata()), [1, 2, 3, 4])
 
 
+class DecodeBitmap32Test(unittest.TestCase):
+    def test_uncompressed_32bit_is_pixel_interleaved_argb(self):
+        # A BITD exactly bytesPerRow*height long is stored raw, one A,R,G,B quad per pixel.
+        pixels = [(255, 10, 20, 30), (255, 40, 50, 60), (255, 70, 80, 90), (255, 1, 2, 3)]
+        bitd = b"".join(bytes(p) for p in pixels)
+        img, _ = E.decode_bitmap(bitmap_spec(2, 2), None, bitd, None)
+        self.assertEqual([px[:3] for px in img.getdata()], [p[1:] for p in pixels])
+
+    def test_packbits_32bit_rows_are_channel_planes(self):
+        # Compressed rows hold the A plane, then R, G and B planes.
+        row = bytes([255, 255, 10, 40, 20, 50, 30, 60])
+        img, _ = E.decode_bitmap(bitmap_spec(2, 1), None, literal_packbits(row), None)
+        self.assertEqual([px[:3] for px in img.getdata()], [(10, 20, 30), (40, 50, 60)])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -196,3 +196,23 @@ describe('score counter', () => {
     }
   });
 });
+
+describe('graphics check fixes', () => {
+  it('keys the submarine warheads on their magenta back colour, not white', () => {
+    const { rt, input } = createHeadlessRuntime('rescueblade');
+    enterLevelGameplay(rt, input, 8);
+    const warheads = rt.toRenderSprites().filter((sp) => sp.ink === 36 && rt.sprite(sp.spriteNum).member === 191);
+    expect(warheads.length).toBeGreaterThan(0);
+    for (const w of warheads) expect(w.keyColor).toEqual([255, 0, 255]);
+  });
+
+  it('draws the Bermuda underwater backdrop at its natural size so it meets the surface at y=80', () => {
+    const { rt, input } = createHeadlessRuntime('bermuda');
+    enterLevelGameplay(rt, input, 4);
+    const backdrop = rt.sprite(1);
+    expect(backdrop.member).toBe(153);
+    const rect = rt.getSpriteRect(backdrop);
+    expect(rect.top).toBeLessThanOrEqual(80);
+    expect(rect.bottom).toBeGreaterThanOrEqual(255);
+  });
+});

@@ -69,6 +69,8 @@ export interface ScoreSpriteEntry {
   /** Score rotation in degrees. */
   rotation?: number;
   skew?: number;
+  /** Back colour as RGB, when the score stores one (colour code bit 0x20). */
+  backColorRGB?: [number, number, number];
   behaviors: { castLib: number; member: number; name?: string; params?: Record<string, unknown> }[];
   memberName?: string;
   memberType?: number;
@@ -86,25 +88,82 @@ export interface LoadedGameBundle {
   score: ScoreFrameEntry[];
   membersByKey: Map<string, CastMemberEntry>;
   texturesByKey: Map<string, TextureEntry>;
+  /** Bitmaps exactly as extracted. */
   originalTexturesByKey?: Map<string, TextureEntry>;
+  /** Procedurally drawn high-resolution HUD pieces. */
   hdTexturesByKey?: Map<string, TextureEntry>;
+  /** Upscaled bitmaps for the HD graphics mode, loaded on first use. */
+  hdBitmapTexturesByKey?: Map<string, TextureEntry>;
+  hdBitmapsLoading?: Promise<void>;
   mapsByLevel: Map<number, { tileIds: number[]; tileHeights: number[]; sceneryIds: number[] }>;
 }
 
-export function applyHudTextures(bundle: LoadedGameBundle, hd: boolean): void {
-  const source = hd ? bundle.hdTexturesByKey : bundle.originalTexturesByKey;
-  if (!source) return;
-  if (hd) {
-    for (const [key, tex] of source) {
-      bundle.texturesByKey.set(key, tex);
-    }
-  } else if (bundle.hdTexturesByKey) {
-    for (const key of bundle.hdTexturesByKey.keys()) {
-      const orig = source.get(key);
-      if (orig) bundle.texturesByKey.set(key, orig);
-      else bundle.texturesByKey.delete(key);
-    }
+export interface TextureModes {
+  /** Procedural high-resolution HUD instead of the original HUD bitmaps. */
+  hdHud: boolean;
+  /** Upscaled bitmaps (when loaded) instead of the original ones. */
+  hdGraphics: boolean;
+}
+
+/** Rebuilds the active texture map: original bitmaps, then HD bitmaps, then the HD HUD. */
+export function applyTextureModes(bundle: LoadedGameBundle, modes: TextureModes): void {
+  if (!bundle.originalTexturesByKey) return;
+  bundle.texturesByKey.clear();
+  for (const [key, tex] of bundle.originalTexturesByKey) bundle.texturesByKey.set(key, tex);
+  if (modes.hdGraphics && bundle.hdBitmapTexturesByKey) {
+    for (const [key, tex] of bundle.hdBitmapTexturesByKey) bundle.texturesByKey.set(key, tex);
   }
+  if (modes.hdHud && bundle.hdTexturesByKey) {
+    for (const [key, tex] of bundle.hdTexturesByKey) bundle.texturesByKey.set(key, tex);
+  }
+}
+
+/** @deprecated kept for callers that only switch the HUD. */
+export function applyHudTextures(bundle: LoadedGameBundle, hd: boolean): void {
+  applyTextureModes(bundle, { hdHud: hd, hdGraphics: false });
+}
+
+interface HdIndexEntry {
+  file: string;
+  scale: number;
+}
+
+/**
+ * Loads the upscaled bitmap set (see scripts/upscale_hd_assets.py). Resolves once every
+ * HD texture is ready; a missing index or file leaves that member on its original bitmap.
+ */
+export function loadHdBitmaps(bundle: LoadedGameBundle, renderer: WebGL2StageRenderer): Promise<void> {
+  if (bundle.hdBitmapsLoading) return bundle.hdBitmapsLoading;
+  const base = `${import.meta.env.BASE_URL}assets/${bundle.gameId}`;
+  const out = new Map<string, TextureEntry>();
+  bundle.hdBitmapsLoading = (async () => {
+    const res = await fetch(`${base}/hd.json`);
+    if (!res.ok) return;
+    const index = (await res.json()) as Record<string, HdIndexEntry>;
+    const tasks: Promise<void>[] = [];
+    for (const m of bundle.manifest.members) {
+      const hd = m.type === 1 && m.file && m.bitmap ? index[m.file] : undefined;
+      if (!hd || !m.bitmap) continue;
+      const bmp = m.bitmap;
+      const key = memberKey(m.castLib, m.member);
+      tasks.push(
+        loadImage(`${base}/${hd.file}`)
+          .then((img) => {
+            out.set(
+              key,
+              renderer.createImageTexture(img, bmp.regPoint[0], bmp.regPoint[1], bmp.hasAlpha, {
+                logicalWidth: bmp.width,
+                logicalHeight: bmp.height,
+              })
+            );
+          })
+          .catch(() => undefined)
+      );
+    }
+    await Promise.all(tasks);
+    bundle.hdBitmapTexturesByKey = out;
+  })();
+  return bundle.hdBitmapsLoading;
 }
 
 export function memberKey(castLib: number, member: number): string {
@@ -196,6 +255,6 @@ export async function loadGameAssets(
     mapsByLevel,
   };
 
-  applyHudTextures(bundle, hdHud);
+  applyTextureModes(bundle, { hdHud, hdGraphics: false });
   return bundle;
 }

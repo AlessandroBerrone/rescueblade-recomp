@@ -2028,6 +2028,11 @@
             "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 10 - CableGuy.ls"
           }
         ],
+        "backColorRGB": [
+          0,
+          0,
+          0
+        ],
         "memberName": "",
         "memberType": 1
       },
@@ -5007,6 +5012,11 @@
             "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 10 - CableGuy.ls"
           }
         ],
+        "backColorRGB": [
+          0,
+          0,
+          0
+        ],
         "memberName": "",
         "memberType": 1
       },
@@ -6637,6 +6647,16 @@
             "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
+        ],
         "memberName": "FLAMES~1",
         "memberType": 1
       },
@@ -6668,6 +6688,16 @@
             "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
+        ],
         "memberName": "FLAMES~1",
         "memberType": 1
       },
@@ -6698,6 +6728,16 @@
             "name": "Flames",
             "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
+        ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
         ],
         "memberName": "FLAMES~1",
         "memberType": 1
@@ -7975,6 +8015,11 @@
             "name": "CableGuy",
             "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 10 - CableGuy.ls"
           }
+        ],
+        "backColorRGB": [
+          0,
+          0,
+          0
         ],
         "memberName": "",
         "memberType": 1
@@ -10907,6 +10952,16 @@
             "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
+        ],
         "memberName": "FLAMES~1",
         "memberType": 1
       },
@@ -11187,6 +11242,16 @@
             "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
+        ],
         "memberName": "FLAMES~1",
         "memberType": 1
       },
@@ -11217,6 +11282,16 @@
             "name": "Flames",
             "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
+        ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
         ],
         "memberName": "FLAMES~1",
         "memberType": 1
@@ -11646,6 +11721,11 @@
             "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
+        "backColorRGB": [
+          0,
+          0,
+          255
+        ],
         "memberName": "",
         "memberType": 1
       },
@@ -11768,6 +11848,11 @@
         "skew": 0.0,
         "intervalIdx": 9244,
         "behaviors": [],
+        "backColorRGB": [
+          0,
+          0,
+          255
+        ],
         "memberName": "",
         "memberType": 1
       },
@@ -11877,6 +11962,11 @@
             "name": "SubmarineCableGuy",
             "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 76 - SubmarineCableGuy.ls"
           }
+        ],
+        "backColorRGB": [
+          0,
+          0,
+          0
         ],
         "memberName": "",
         "memberType": 1

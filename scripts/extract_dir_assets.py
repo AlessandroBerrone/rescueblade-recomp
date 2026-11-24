@@ -301,8 +301,9 @@ def parse_vwsc(buf: bytes):
             # 22 thickness/flags, 24..27 fore/back RGB extras,
             # 28..31 rotation and 32..35 skew, both in hundredths of a degree.
             blend_byte = sd[21]
+            color_code = sd[20]
             rot_raw, skew_raw = struct.unpack(">ii", sd[28:36])
-            sprites.append({
+            sprite = {
                 "spriteNum": ch - 5,
                 "spriteType": sprite_type,
                 "ink": ink_raw & 0x3F,
@@ -323,7 +324,15 @@ def parse_vwsc(buf: bytes):
                 "skew": skew_raw / 100,
                 "intervalIdx": interval_idx,
                 "behaviors": get_behaviors_for_interval(interval_idx),
-            })
+            }
+            # Colour code bit 0x20: the back colour is an RGB value, with red in the
+            # palette-index byte and green/blue in bytes 26..27. Background Transparent
+            # ink keys out this colour (e.g. the magenta behind the submarine warheads).
+            if color_code & 0x20:
+                sprite["backColorRGB"] = [back_color, sd[26], sd[27]]
+            if color_code & 0x10:
+                sprite["foreColorRGB"] = [fore_color, sd[24], sd[25]]
+            sprites.append(sprite)
 
         frames.append({
             "frame": fr,
@@ -365,8 +374,22 @@ def decode_bitmap(spec_raw: bytes, edim_bytes, bitd_bytes, alfa_bytes):
     elif bitd_bytes is not None:
         bpr = bpr_raw & 0x0FFF
         expected = bpr * h
-        raw = bitd_bytes if len(bitd_bytes) == expected else unpack_packbits(bitd_bytes, expected)
-        if bpp == 32:
+        uncompressed = len(bitd_bytes) == expected
+        raw = bitd_bytes if uncompressed else unpack_packbits(bitd_bytes, expected)
+        if bpp == 32 and uncompressed:
+            # Uncompressed 32-bit BITD is stored pixel by pixel as A,R,G,B, not as the
+            # per-row channel planes that PackBits-compressed bitmaps use. Reading it as
+            # planes turned small sprites (survivors, warheads) into coloured noise.
+            rgba = bytearray(w * h * 4)
+            for y in range(h):
+                ro = y * bpr
+                for x in range(w):
+                    si = ro + x * 4
+                    oi = (y * w + x) * 4
+                    rgba[oi : oi + 3] = raw[si + 1 : si + 4]
+                    rgba[oi + 3] = 255
+            img = Image.frombytes("RGBA", (w, h), bytes(rgba))
+        elif bpp == 32:
             plane_w = bpr // 4
             rgba = bytearray(w * h * 4)
             for y in range(h):
