@@ -1,0 +1,10 @@
+{
+  "name": "RescueBlade Recomp",
+  "short_name": "RescueBlade",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#000000",
+  "theme_color": "#000000"
+}

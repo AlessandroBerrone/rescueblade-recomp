@@ -1,6 +1,7 @@
 import { memberKey, type LoadedGameBundle } from '../assets/AssetLoader.ts';
 import type { SoundEngine } from '../audio/SoundEngine.ts';
 import type { InputManager, InputState } from '../InputManager.ts';
+import { hasInputEdges, mergeInputEdges, withoutInputEdges } from '../input/edges.ts';
 import type { TextTextureCache } from '../render/TextTextureCache.ts';
 import { DIRECTOR_INK, type RenderSprite, type TextureEntry } from '../render/types.ts';
 import { sortSpritesForRender } from '../render/quadMath.ts';
@@ -31,6 +32,8 @@ export class MovieRuntime implements MovieRuntimeContext {
   private lastRolloverSprite = 0;
   private latestInput: InputState;
   private accumulatorSec = 0;
+  /** Input edges from display frames that ran no score tick, waiting for the next tick. */
+  private carriedInput: InputState | null = null;
   private readonly prefStore = new Map<string, string>();
 
   constructor(
@@ -381,10 +384,16 @@ export class MovieRuntime implements MovieRuntimeContext {
   public updateFixedTimestep(dtSec: number, inputState: InputState): void {
     const step = 1 / this.getFrameRate();
     this.accumulatorSec = Math.min(this.accumulatorSec + dtSec, step * 4);
+    const withEdges = this.carriedInput ? mergeInputEdges(this.carriedInput, inputState) : inputState;
+    let ticked = false;
     while (this.accumulatorSec >= step) {
-      this.stepTick(inputState);
+      // Only the first tick of this display frame sees the edges, so a tap or key press
+      // fires once: never lost on 60-120 Hz screens, never doubled on slow frames.
+      this.stepTick(ticked ? withoutInputEdges(inputState) : withEdges);
+      ticked = true;
       this.accumulatorSec -= step;
     }
+    this.carriedInput = !ticked && hasInputEdges(withEdges) ? withEdges : null;
   }
 
   public toRenderSprites(): RenderSprite[] {
