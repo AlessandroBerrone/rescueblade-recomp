@@ -16,7 +16,7 @@ body {
   width: 100%;
   max-width: 1080px;
   display: grid;
-  grid-template-columns: 520px 1fr;
+  grid-template-columns: 542px 1fr;
   gap: 20px;
   align-items: start;
 }
@@ -42,8 +42,9 @@ h1 {
 .stage-wrap canvas {
   display: block;
   width: 512px;
-  height: 330px;
   max-width: 100%;
+  height: auto;
+  aspect-ratio: 512 / 330;
   border-radius: 6px;
   border: 1px solid #355070;
   background: #77bbff;

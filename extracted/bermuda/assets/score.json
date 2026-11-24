@@ -26,7 +26,7 @@
       "member": 2,
       "intervalIdx": 1128,
       "name": "StartScreenFrameScript",
-      "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\frameScripts\\BehaviorScript 2 - StartScreenFrameScript.ls"
+      "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/frameScripts/BehaviorScript 2 - StartScreenFrameScript.ls"
     },
     "sprites": [
       {
@@ -48,7 +48,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 1131,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          }
+        ],
         "memberName": "COPTER~1",
         "memberType": 1
       },
@@ -76,7 +89,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "",
@@ -106,7 +119,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "WHITEL~1",
@@ -131,7 +144,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 9350,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          }
+        ],
         "memberName": "BO5483~1",
         "memberType": 1
       },
@@ -154,7 +180,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 9341,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          }
+        ],
         "memberName": "BODZIL~2",
         "memberType": 1
       },
@@ -177,7 +216,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 9344,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          }
+        ],
         "memberName": "BO6079~1",
         "memberType": 1
       },
@@ -200,7 +252,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 9347,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          }
+        ],
         "memberName": "BODZIL~4",
         "memberType": 1
       },
@@ -223,7 +288,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 9377,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          }
+        ],
         "memberName": "UFO_GR~4",
         "memberType": 1
       },
@@ -246,7 +324,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 9371,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          }
+        ],
         "memberName": "UFO_GR~3",
         "memberType": 1
       },
@@ -269,7 +360,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 9365,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          }
+        ],
         "memberName": "UFO_GR~1",
         "memberType": 1
       },
@@ -292,7 +396,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 9359,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          }
+        ],
         "memberName": "UFO_GR~2",
         "memberType": 1
       }
@@ -325,7 +442,7 @@
       "member": 3,
       "intervalIdx": 1137,
       "name": "MenuScreen",
-      "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\frameScripts\\BehaviorScript 3 - MenuScreen.ls"
+      "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/frameScripts/BehaviorScript 3 - MenuScreen.ls"
     },
     "sprites": [
       {
@@ -347,7 +464,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 1176,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          }
+        ],
         "memberName": "COPTER~2",
         "memberType": 1
       },
@@ -370,7 +500,33 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 4666,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 3,
+            "params": {
+              "pFunction": "submit",
+              "pScoreMem": {
+                "castLib": 3,
+                "member": 159
+              },
+              "pGameID": "rescueblade_gb",
+              "pTitle1": "RescueBlade-Bermuda Triangle",
+              "pScreenW": 512,
+              "pScreenH": 330,
+              "pMarker": "Submitting",
+              "pScoreDes": "points"
+            },
+            "name": "High Score Hub - Standard.",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 3 - High Score Hub - Standard..ls"
+          },
+          {
+            "castLib": 1,
+            "member": 21,
+            "name": "HiLightRollover",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 21 - HiLightRollover.ls"
+          }
+        ],
         "memberName": "",
         "memberType": 15
       },
@@ -398,7 +554,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "WHITEL~1",
@@ -428,7 +584,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "",
@@ -458,7 +614,7 @@
             "castLib": 1,
             "member": 17,
             "name": "ChooseLevelButtons",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 17 - ChooseLevelButtons.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 17 - ChooseLevelButtons.ls"
           }
         ],
         "memberName": "",
@@ -488,7 +644,7 @@
             "castLib": 1,
             "member": 17,
             "name": "ChooseLevelButtons",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 17 - ChooseLevelButtons.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 17 - ChooseLevelButtons.ls"
           }
         ],
         "memberName": "",
@@ -518,7 +674,7 @@
             "castLib": 1,
             "member": 17,
             "name": "ChooseLevelButtons",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 17 - ChooseLevelButtons.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 17 - ChooseLevelButtons.ls"
           }
         ],
         "memberName": "",
@@ -548,7 +704,7 @@
             "castLib": 1,
             "member": 17,
             "name": "ChooseLevelButtons",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 17 - ChooseLevelButtons.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 17 - ChooseLevelButtons.ls"
           }
         ],
         "memberName": "",
@@ -601,7 +757,7 @@
             "castLib": 1,
             "member": 23,
             "name": "Hi-Scores",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 23 - Hi-Scores.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 23 - Hi-Scores.ls"
           }
         ],
         "memberName": "scoreBoard",
@@ -631,7 +787,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "",
@@ -646,7 +802,7 @@
       "member": 3,
       "intervalIdx": 4669,
       "name": "MenuScreen",
-      "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\frameScripts\\BehaviorScript 3 - MenuScreen.ls"
+      "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/frameScripts/BehaviorScript 3 - MenuScreen.ls"
     },
     "sprites": [
       {
@@ -668,7 +824,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 9286,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          }
+        ],
         "memberName": "COPTER~2",
         "memberType": 1
       },
@@ -719,7 +888,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "WHITEL~1",
@@ -749,7 +918,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "",
@@ -779,7 +948,7 @@
             "castLib": 1,
             "member": 17,
             "name": "ChooseLevelButtons",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 17 - ChooseLevelButtons.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 17 - ChooseLevelButtons.ls"
           }
         ],
         "memberName": "",
@@ -809,7 +978,7 @@
             "castLib": 1,
             "member": 17,
             "name": "ChooseLevelButtons",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 17 - ChooseLevelButtons.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 17 - ChooseLevelButtons.ls"
           }
         ],
         "memberName": "",
@@ -839,7 +1008,7 @@
             "castLib": 1,
             "member": 17,
             "name": "ChooseLevelButtons",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 17 - ChooseLevelButtons.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 17 - ChooseLevelButtons.ls"
           }
         ],
         "memberName": "",
@@ -869,7 +1038,7 @@
             "castLib": 1,
             "member": 17,
             "name": "ChooseLevelButtons",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 17 - ChooseLevelButtons.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 17 - ChooseLevelButtons.ls"
           }
         ],
         "memberName": "",
@@ -922,7 +1091,7 @@
             "castLib": 1,
             "member": 23,
             "name": "Hi-Scores",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 23 - Hi-Scores.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 23 - Hi-Scores.ls"
           }
         ],
         "memberName": "scoreBoard",
@@ -952,7 +1121,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "",
@@ -1003,7 +1172,7 @@
             "castLib": 1,
             "member": 8,
             "name": "Ship",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 8 - Ship.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 8 - Ship.ls"
           }
         ],
         "memberName": "Ship_Wreck_1",
@@ -1040,7 +1209,7 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
           }
         ]
       },
@@ -1075,7 +1244,7 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
           }
         ]
       },
@@ -1110,7 +1279,7 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
           }
         ]
       }
@@ -1138,7 +1307,7 @@
       "member": 6,
       "intervalIdx": 1869,
       "name": "MissionBriefingScript",
-      "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\frameScripts\\BehaviorScript 6 - MissionBriefingScript.ls"
+      "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/frameScripts/BehaviorScript 6 - MissionBriefingScript.ls"
     },
     "sprites": [
       {
@@ -1160,7 +1329,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 1875,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          }
+        ],
         "memberName": "COPTER~1",
         "memberType": 1
       },
@@ -1188,7 +1370,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "",
@@ -1213,7 +1395,32 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 1881,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 21,
+            "name": "HiLightRollover",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 21 - HiLightRollover.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 20,
+            "name": "BackButton",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 20 - BackButton.ls"
+          }
+        ],
         "memberName": "",
         "memberType": 15
       },
@@ -1236,7 +1443,32 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 1884,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 21,
+            "name": "HiLightRollover",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 21 - HiLightRollover.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 22,
+            "name": "TakeOffButton",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 22 - TakeOffButton.ls"
+          }
+        ],
         "memberName": "",
         "memberType": 15
       },
@@ -1264,7 +1496,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "",
@@ -1294,7 +1526,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "",
@@ -1324,7 +1556,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "",
@@ -1354,7 +1586,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "TO3DBD~1",
@@ -1384,7 +1616,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "TOAEA6~1",
@@ -1414,7 +1646,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "TOD11D~1",
@@ -1444,7 +1676,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "TO3DCD~1",
@@ -1474,7 +1706,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "TOD7A8~1",
@@ -1504,7 +1736,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "TO7E01~1",
@@ -1534,7 +1766,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "TO0D31~1",
@@ -1564,7 +1796,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "TOE990~1",
@@ -1594,7 +1826,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "TOD478~1",
@@ -1609,7 +1841,7 @@
       "member": 1,
       "intervalIdx": 798,
       "name": "frameScriptScrollTest",
-      "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\frameScripts\\BehaviorScript 1 - frameScriptScrollTest.ls"
+      "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/frameScripts/BehaviorScript 1 - frameScriptScrollTest.ls"
     },
     "sprites": [
       {
@@ -1682,7 +1914,7 @@
             "castLib": 1,
             "member": 5,
             "name": "Copter",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 5 - Copter.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 5 - Copter.ls"
           }
         ],
         "memberName": "COASTG~4",
@@ -1735,7 +1967,7 @@
             "castLib": 1,
             "member": 10,
             "name": "CableGuy",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 10 - CableGuy.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 10 - CableGuy.ls"
           }
         ],
         "memberName": "",
@@ -1765,7 +1997,7 @@
             "castLib": 1,
             "member": 11,
             "name": "GuyOverlay",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 11 - GuyOverlay.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 11 - GuyOverlay.ls"
           }
         ],
         "memberName": "",
@@ -1795,7 +2027,7 @@
             "castLib": 1,
             "member": 12,
             "name": "Score&Bars",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 12 - Score&Bars.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 12 - Score&Bars.ls"
           }
         ],
         "memberName": "SCOREN~1",
@@ -2055,7 +2287,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -2085,7 +2317,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -2115,7 +2347,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -2145,7 +2377,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -2175,7 +2407,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -2205,7 +2437,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -2235,7 +2467,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -2265,7 +2497,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -2295,7 +2527,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -2325,7 +2557,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -2355,7 +2587,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -2385,7 +2617,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "FUELBA~2",
@@ -2415,7 +2647,7 @@
             "castLib": 1,
             "member": 59,
             "name": "Tornado",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 59 - Tornado.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 59 - Tornado.ls"
           }
         ],
         "memberName": "TORNAD~1",
@@ -2583,7 +2815,7 @@
             "castLib": 1,
             "member": 58,
             "name": "VolcanoLightning",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 58 - VolcanoLightning.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 58 - VolcanoLightning.ls"
           }
         ],
         "memberName": "LIGHTN~1",
@@ -2613,7 +2845,7 @@
             "castLib": 1,
             "member": 60,
             "name": "TornadoDebris",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 60 - TornadoDebris.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 60 - TornadoDebris.ls"
           }
         ],
         "memberName": "TOD868~1",
@@ -2643,7 +2875,7 @@
             "castLib": 1,
             "member": 60,
             "name": "TornadoDebris",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 60 - TornadoDebris.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 60 - TornadoDebris.ls"
           }
         ],
         "memberName": "TOD990~1",
@@ -2673,7 +2905,7 @@
             "castLib": 1,
             "member": 60,
             "name": "TornadoDebris",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 60 - TornadoDebris.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 60 - TornadoDebris.ls"
           }
         ],
         "memberName": "TO0D31~1",
@@ -2703,7 +2935,7 @@
             "castLib": 1,
             "member": 60,
             "name": "TornadoDebris",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 60 - TornadoDebris.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 60 - TornadoDebris.ls"
           }
         ],
         "memberName": "TO7E01~1",
@@ -2733,7 +2965,7 @@
             "castLib": 1,
             "member": 60,
             "name": "TornadoDebris",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 60 - TornadoDebris.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 60 - TornadoDebris.ls"
           }
         ],
         "memberName": "TODF88~1",
@@ -2763,7 +2995,7 @@
             "castLib": 1,
             "member": 60,
             "name": "TornadoDebris",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 60 - TornadoDebris.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 60 - TornadoDebris.ls"
           }
         ],
         "memberName": "TOD119~1",
@@ -2793,7 +3025,7 @@
             "castLib": 1,
             "member": 60,
             "name": "TornadoDebris",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 60 - TornadoDebris.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 60 - TornadoDebris.ls"
           }
         ],
         "memberName": "TO39BD~1",
@@ -2823,7 +3055,7 @@
             "castLib": 1,
             "member": 60,
             "name": "TornadoDebris",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 60 - TornadoDebris.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 60 - TornadoDebris.ls"
           }
         ],
         "memberName": "TO39BD~1",
@@ -2853,7 +3085,7 @@
             "castLib": 1,
             "member": 60,
             "name": "TornadoDebris",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 60 - TornadoDebris.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 60 - TornadoDebris.ls"
           }
         ],
         "memberName": "TORNAD~1",
@@ -2883,7 +3115,7 @@
             "castLib": 1,
             "member": 40,
             "name": "SnowBlow",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 40 - SnowBlow.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 40 - SnowBlow.ls"
           }
         ],
         "memberName": "SNOWBL~1",
@@ -2913,7 +3145,79 @@
             "castLib": 1,
             "member": 24,
             "name": "Bell Buoy",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 24 - Bell Buoy.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 24 - Bell Buoy.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 12588,
+            "member": 8227
+          },
+          {
+            "castLib": 25972,
+            "member": 20326
+          },
+          {
+            "castLib": 14880,
+            "member": 28783
+          },
+          {
+            "castLib": 12332,
+            "member": 8240
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 12588,
+            "member": 8227
+          },
+          {
+            "castLib": 25972,
+            "member": 20326
+          },
+          {
+            "castLib": 14880,
+            "member": 28783
+          },
+          {
+            "castLib": 12332,
+            "member": 8240
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 12588,
+            "member": 8227
+          },
+          {
+            "castLib": 25972,
+            "member": 20326
+          },
+          {
+            "castLib": 14880,
+            "member": 28783
+          },
+          {
+            "castLib": 12332,
+            "member": 8240
           }
         ],
         "memberName": "Buoy_001",
@@ -2943,7 +3247,7 @@
             "castLib": 1,
             "member": 24,
             "name": "Bell Buoy",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 24 - Bell Buoy.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 24 - Bell Buoy.ls"
           }
         ],
         "memberName": "Buoy_001",
@@ -2973,7 +3277,7 @@
             "castLib": 1,
             "member": 18,
             "name": "Mission",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 18 - Mission.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 18 - Mission.ls"
           }
         ],
         "memberName": "",
@@ -3010,7 +3314,31 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 13878,
+            "member": 11296
+          },
+          {
+            "castLib": 26469,
+            "member": 29775
+          },
+          {
+            "castLib": 29754,
+            "member": 8304
+          },
+          {
+            "castLib": 10288,
+            "member": 11296
           }
         ],
         "memberName": "",
@@ -3047,7 +3375,31 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 13879,
+            "member": 11296
+          },
+          {
+            "castLib": 26469,
+            "member": 29775
+          },
+          {
+            "castLib": 29754,
+            "member": 8304
+          },
+          {
+            "castLib": 10288,
+            "member": 11296
           }
         ],
         "memberName": "",
@@ -3084,7 +3436,31 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 13880,
+            "member": 11296
+          },
+          {
+            "castLib": 26469,
+            "member": 29775
+          },
+          {
+            "castLib": 29754,
+            "member": 8304
+          },
+          {
+            "castLib": 10288,
+            "member": 11296
           }
         ],
         "memberName": "",
@@ -3121,7 +3497,31 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 13881,
+            "member": 11296
+          },
+          {
+            "castLib": 26469,
+            "member": 29775
+          },
+          {
+            "castLib": 29754,
+            "member": 8304
+          },
+          {
+            "castLib": 10288,
+            "member": 11296
           }
         ],
         "memberName": "",
@@ -3158,7 +3558,31 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 14128,
+            "member": 11296
+          },
+          {
+            "castLib": 26469,
+            "member": 29775
+          },
+          {
+            "castLib": 29754,
+            "member": 8304
+          },
+          {
+            "castLib": 10288,
+            "member": 11296
           }
         ],
         "memberName": "",
@@ -3195,7 +3619,31 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 14129,
+            "member": 11296
+          },
+          {
+            "castLib": 26469,
+            "member": 29775
+          },
+          {
+            "castLib": 29754,
+            "member": 8304
+          },
+          {
+            "castLib": 10288,
+            "member": 11296
           }
         ],
         "memberName": "",
@@ -3232,7 +3680,31 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 14130,
+            "member": 11296
+          },
+          {
+            "castLib": 26469,
+            "member": 29775
+          },
+          {
+            "castLib": 29754,
+            "member": 8304
+          },
+          {
+            "castLib": 10288,
+            "member": 11296
           }
         ],
         "memberName": "",
@@ -3269,7 +3741,31 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 14131,
+            "member": 11296
+          },
+          {
+            "castLib": 26469,
+            "member": 29775
+          },
+          {
+            "castLib": 29754,
+            "member": 8304
+          },
+          {
+            "castLib": 10288,
+            "member": 11296
           }
         ],
         "memberName": "",
@@ -3306,7 +3802,31 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 14132,
+            "member": 11296
+          },
+          {
+            "castLib": 26469,
+            "member": 29775
+          },
+          {
+            "castLib": 29754,
+            "member": 8304
+          },
+          {
+            "castLib": 10288,
+            "member": 11296
           }
         ],
         "memberName": "",
@@ -3343,7 +3863,31 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 13881,
+            "member": 11296
+          },
+          {
+            "castLib": 26469,
+            "member": 29775
+          },
+          {
+            "castLib": 29754,
+            "member": 8304
+          },
+          {
+            "castLib": 10288,
+            "member": 11296
           }
         ],
         "memberName": "",
@@ -3373,7 +3917,7 @@
             "castLib": 1,
             "member": 26,
             "name": "SeaGull",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 26 - SeaGull.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 26 - SeaGull.ls"
           }
         ],
         "memberName": "SEAGUL~1",
@@ -3403,7 +3947,7 @@
             "castLib": 1,
             "member": 49,
             "name": "Whale",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 49 - Whale.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 49 - Whale.ls"
           }
         ],
         "memberName": "WHALE_~1",
@@ -3433,7 +3977,7 @@
             "castLib": 1,
             "member": 25,
             "name": "TornadoPickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 25 - TornadoPickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 25 - TornadoPickups.ls"
           }
         ],
         "memberName": "FUELBA~2",
@@ -3463,7 +4007,7 @@
             "castLib": 1,
             "member": 25,
             "name": "TornadoPickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 25 - TornadoPickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 25 - TornadoPickups.ls"
           }
         ],
         "memberName": "TOOLBO~1",
@@ -3493,7 +4037,7 @@
             "castLib": 1,
             "member": 25,
             "name": "TornadoPickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 25 - TornadoPickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 25 - TornadoPickups.ls"
           }
         ],
         "memberName": "FUELBA~2",
@@ -3523,7 +4067,7 @@
             "castLib": 1,
             "member": 25,
             "name": "TornadoPickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 25 - TornadoPickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 25 - TornadoPickups.ls"
           }
         ],
         "memberName": "TOOLBO~1",
@@ -3553,7 +4097,7 @@
             "castLib": 1,
             "member": 25,
             "name": "TornadoPickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 25 - TornadoPickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 25 - TornadoPickups.ls"
           }
         ],
         "memberName": "FUELBA~2",
@@ -3583,7 +4127,7 @@
             "castLib": 1,
             "member": 25,
             "name": "TornadoPickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 25 - TornadoPickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 25 - TornadoPickups.ls"
           }
         ],
         "memberName": "TOOLBO~1",
@@ -3598,7 +4142,7 @@
       "member": 6,
       "intervalIdx": 8306,
       "name": "MissionBriefingScript",
-      "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\frameScripts\\BehaviorScript 6 - MissionBriefingScript.ls"
+      "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/frameScripts/BehaviorScript 6 - MissionBriefingScript.ls"
     },
     "sprites": [
       {
@@ -3625,7 +4169,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "UFO_BE~1",
@@ -3650,7 +4194,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 9062,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          }
+        ],
         "memberName": "COPTER~1",
         "memberType": 1
       },
@@ -3696,7 +4253,32 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 9068,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 21,
+            "name": "HiLightRollover",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 21 - HiLightRollover.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 20,
+            "name": "BackButton",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 20 - BackButton.ls"
+          }
+        ],
         "memberName": "",
         "memberType": 15
       },
@@ -3719,7 +4301,32 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 9071,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 21,
+            "name": "HiLightRollover",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 21 - HiLightRollover.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 22,
+            "name": "TakeOffButton",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 22 - TakeOffButton.ls"
+          }
+        ],
         "memberName": "",
         "memberType": 15
       },
@@ -3742,7 +4349,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 9074,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          }
+        ],
         "memberName": "UFO_GU~1",
         "memberType": 1
       },
@@ -3765,7 +4385,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 9077,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          }
+        ],
         "memberName": "",
         "memberType": 1
       },
@@ -3793,7 +4426,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "UFO_GR~4",
@@ -3823,7 +4456,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "UFO_GR~3",
@@ -3853,7 +4486,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "UFO_GR~1",
@@ -3883,7 +4516,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "UFO_GR~2",
@@ -3913,7 +4546,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "HOTELB~2",
@@ -3943,7 +4576,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "COCONU~3",
@@ -3973,7 +4606,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "HOTELB~1",
@@ -4003,7 +4636,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "PALMTR~1",
@@ -4033,7 +4666,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "COCONU~2",
@@ -4063,7 +4696,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "UFO_MO~1",
@@ -4078,7 +4711,7 @@
       "member": 1,
       "intervalIdx": 8309,
       "name": "frameScriptScrollTest",
-      "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\frameScripts\\BehaviorScript 1 - frameScriptScrollTest.ls"
+      "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/frameScripts/BehaviorScript 1 - frameScriptScrollTest.ls"
     },
     "sprites": [
       {
@@ -4174,7 +4807,7 @@
             "castLib": 1,
             "member": 5,
             "name": "Copter",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 5 - Copter.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 5 - Copter.ls"
           }
         ],
         "memberName": "COASTG~4",
@@ -4227,7 +4860,7 @@
             "castLib": 1,
             "member": 10,
             "name": "CableGuy",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 10 - CableGuy.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 10 - CableGuy.ls"
           }
         ],
         "memberName": "",
@@ -4257,7 +4890,7 @@
             "castLib": 1,
             "member": 32,
             "name": "WaterNozzle",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 32 - WaterNozzle.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 32 - WaterNozzle.ls"
           }
         ],
         "memberName": "",
@@ -4310,7 +4943,7 @@
             "castLib": 1,
             "member": 12,
             "name": "Score&Bars",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 12 - Score&Bars.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 12 - Score&Bars.ls"
           }
         ],
         "memberName": "SCOREN~1",
@@ -4570,7 +5203,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -4600,7 +5233,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -4630,7 +5263,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -4660,7 +5293,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -4690,7 +5323,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -4720,7 +5353,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -4750,7 +5383,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -4780,7 +5413,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -4810,7 +5443,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -4840,7 +5473,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -4870,7 +5503,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -4900,7 +5533,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "FUELBA~2",
@@ -4925,7 +5558,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 8444,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 9,
+            "name": "SeaFrameCounter",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 9 - SeaFrameCounter.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 7,
+            "name": "QuadTileFar",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
+          }
+        ],
         "memberName": "SEARIP~2",
         "memberType": 1
       },
@@ -4953,7 +5599,7 @@
             "castLib": 1,
             "member": 7,
             "name": "QuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -4983,7 +5629,7 @@
             "castLib": 1,
             "member": 7,
             "name": "QuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -5013,7 +5659,7 @@
             "castLib": 1,
             "member": 7,
             "name": "QuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -5043,7 +5689,7 @@
             "castLib": 1,
             "member": 7,
             "name": "QuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -5073,7 +5719,7 @@
             "castLib": 1,
             "member": 7,
             "name": "QuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -5103,7 +5749,7 @@
             "castLib": 1,
             "member": 7,
             "name": "QuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -5133,7 +5779,7 @@
             "castLib": 1,
             "member": 7,
             "name": "QuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -5163,7 +5809,7 @@
             "castLib": 1,
             "member": 7,
             "name": "QuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -5193,7 +5839,7 @@
             "castLib": 1,
             "member": 6,
             "name": "QuadTileNear",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 6 - QuadTileNear.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 6 - QuadTileNear.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -5223,7 +5869,7 @@
             "castLib": 1,
             "member": 6,
             "name": "QuadTileNear",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 6 - QuadTileNear.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 6 - QuadTileNear.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -5253,7 +5899,7 @@
             "castLib": 1,
             "member": 6,
             "name": "QuadTileNear",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 6 - QuadTileNear.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 6 - QuadTileNear.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -5283,7 +5929,7 @@
             "castLib": 1,
             "member": 6,
             "name": "QuadTileNear",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 6 - QuadTileNear.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 6 - QuadTileNear.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -5313,7 +5959,7 @@
             "castLib": 1,
             "member": 6,
             "name": "QuadTileNear",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 6 - QuadTileNear.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 6 - QuadTileNear.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -5458,7 +6104,7 @@
             "castLib": 1,
             "member": 18,
             "name": "Mission",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 18 - Mission.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 18 - Mission.ls"
           }
         ],
         "memberName": "",
@@ -5488,7 +6134,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -5518,7 +6164,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -5548,7 +6194,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -5578,7 +6224,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -5608,7 +6254,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -5638,7 +6284,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -5668,7 +6314,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -5698,7 +6344,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -5728,7 +6374,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -5758,7 +6404,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -5788,7 +6434,7 @@
             "castLib": 1,
             "member": 34,
             "name": "Flames",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 34 - Flames.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
         "memberName": "FLAMES~1",
@@ -5818,7 +6464,7 @@
             "castLib": 1,
             "member": 34,
             "name": "Flames",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 34 - Flames.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
         "memberName": "FLAMES~1",
@@ -5848,7 +6494,7 @@
             "castLib": 1,
             "member": 34,
             "name": "Flames",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 34 - Flames.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
         "memberName": "FLAMES~1",
@@ -5924,7 +6570,7 @@
             "castLib": 1,
             "member": 69,
             "name": "UFO",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 69 - UFO.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 69 - UFO.ls"
           }
         ],
         "memberName": "UFO_GR~2",
@@ -5954,7 +6600,7 @@
             "castLib": 1,
             "member": 68,
             "name": "Gray",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 68 - Gray.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 68 - Gray.ls"
           }
         ],
         "memberName": "UFO_GR~1",
@@ -6007,7 +6653,7 @@
             "castLib": 1,
             "member": 72,
             "name": "LaserBlast",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 72 - LaserBlast.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 72 - LaserBlast.ls"
           }
         ],
         "memberName": "UFO_LA~3",
@@ -6037,7 +6683,7 @@
             "castLib": 1,
             "member": 71,
             "name": "UFOGun",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 71 - UFOGun.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 71 - UFOGun.ls"
           }
         ],
         "memberName": "UFO_GU~1",
@@ -6062,7 +6708,32 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 8980,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 23331,
+            "member": 29559
+          },
+          {
+            "castLib": 25961,
+            "member": 26472
+          },
+          {
+            "castLib": 12332,
+            "member": 8227
+          },
+          {
+            "castLib": 27724,
+            "member": 26995
+          },
+          {
+            "castLib": 28276,
+            "member": 25970
+          },
+          {
+            "castLib": 29754,
+            "member": 8241
+          }
+        ],
         "memberName": "UFO_BE~1",
         "memberType": 1
       },
@@ -6094,7 +6765,7 @@
               "swellListPointerStart": 1
             },
             "name": "MotherShip",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 70 - MotherShip.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 70 - MotherShip.ls"
           }
         ],
         "memberName": "UFO_MO~1",
@@ -6131,7 +6802,7 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
           }
         ],
         "memberName": "",
@@ -6168,7 +6839,7 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
           }
         ],
         "memberName": "",
@@ -6205,7 +6876,79 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 12592,
+            "member": 12332
+          },
+          {
+            "castLib": 29287,
+            "member": 25972
+          },
+          {
+            "castLib": 25972,
+            "member": 14880
+          },
+          {
+            "castLib": 29736,
+            "member": 12332
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 12592,
+            "member": 12332
+          },
+          {
+            "castLib": 29287,
+            "member": 25972
+          },
+          {
+            "castLib": 25972,
+            "member": 14880
+          },
+          {
+            "castLib": 29736,
+            "member": 11573
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 12592,
+            "member": 12332
+          },
+          {
+            "castLib": 29287,
+            "member": 25972
+          },
+          {
+            "castLib": 25972,
+            "member": 14880
+          },
+          {
+            "castLib": 29736,
+            "member": 13612
           }
         ],
         "memberName": "",
@@ -6262,7 +7005,31 @@
               "swellListPointerStart": 1
             },
             "name": "MotherShip",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 70 - MotherShip.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 70 - MotherShip.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29559
+          },
+          {
+            "castLib": 25961,
+            "member": 26472
+          },
+          {
+            "castLib": 12332,
+            "member": 8227
+          },
+          {
+            "castLib": 27724,
+            "member": 26995
+          },
+          {
+            "castLib": 28276,
+            "member": 25970
+          },
+          {
+            "castLib": 29754,
+            "member": 8241
           }
         ],
         "memberName": "UFO_MO~1",
@@ -6299,7 +7066,31 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 12592,
+            "member": 13868
+          },
+          {
+            "castLib": 29287,
+            "member": 25972
+          },
+          {
+            "castLib": 25972,
+            "member": 14880
+          },
+          {
+            "castLib": 29736,
+            "member": 12332
           }
         ],
         "memberName": "",
@@ -6336,7 +7127,31 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 12592,
+            "member": 13868
+          },
+          {
+            "castLib": 29287,
+            "member": 25972
+          },
+          {
+            "castLib": 25972,
+            "member": 14880
+          },
+          {
+            "castLib": 29736,
+            "member": 11573
           }
         ],
         "memberName": "",
@@ -6373,7 +7188,39 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 12592,
+            "member": 13868
+          },
+          {
+            "castLib": 29287,
+            "member": 25972
+          },
+          {
+            "castLib": 25972,
+            "member": 14880
+          },
+          {
+            "castLib": 29736,
+            "member": 13612
+          },
+          {
+            "castLib": 23331,
+            "member": 29559
+          },
+          {
+            "castLib": 25961,
+            "member": 26472
           }
         ],
         "memberName": "",
@@ -6388,7 +7235,7 @@
       "member": 6,
       "intervalIdx": 7911,
       "name": "MissionBriefingScript",
-      "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\frameScripts\\BehaviorScript 6 - MissionBriefingScript.ls"
+      "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/frameScripts/BehaviorScript 6 - MissionBriefingScript.ls"
     },
     "sprites": [
       {
@@ -6410,7 +7257,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 7917,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          }
+        ],
         "memberName": "COPTER~1",
         "memberType": 1
       },
@@ -6438,7 +7298,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "",
@@ -6463,7 +7323,32 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 7929,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 21,
+            "name": "HiLightRollover",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 21 - HiLightRollover.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 20,
+            "name": "BackButton",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 20 - BackButton.ls"
+          }
+        ],
         "memberName": "",
         "memberType": 15
       },
@@ -6486,7 +7371,32 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 7935,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 21,
+            "name": "HiLightRollover",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 21 - HiLightRollover.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 22,
+            "name": "TakeOffButton",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 22 - TakeOffButton.ls"
+          }
+        ],
         "memberName": "",
         "memberType": 15
       },
@@ -6514,7 +7424,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "BO5483~1",
@@ -6544,7 +7454,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "BODZIL~2",
@@ -6574,7 +7484,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "BOD4F3~1",
@@ -6604,7 +7514,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "BODZIL~4",
@@ -6634,7 +7544,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "BODZIL~3",
@@ -6664,7 +7574,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "COCONU~2",
@@ -6679,7 +7589,7 @@
       "member": 1,
       "intervalIdx": 7914,
       "name": "frameScriptScrollTest",
-      "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\frameScripts\\BehaviorScript 1 - frameScriptScrollTest.ls"
+      "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/frameScripts/BehaviorScript 1 - frameScriptScrollTest.ls"
     },
     "sprites": [
       {
@@ -6775,7 +7685,7 @@
             "castLib": 1,
             "member": 5,
             "name": "Copter",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 5 - Copter.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 5 - Copter.ls"
           }
         ],
         "memberName": "COASTG~4",
@@ -6828,7 +7738,7 @@
             "castLib": 1,
             "member": 10,
             "name": "CableGuy",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 10 - CableGuy.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 10 - CableGuy.ls"
           }
         ],
         "memberName": "",
@@ -6858,7 +7768,7 @@
             "castLib": 1,
             "member": 11,
             "name": "GuyOverlay",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 11 - GuyOverlay.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 11 - GuyOverlay.ls"
           }
         ],
         "memberName": "",
@@ -6888,7 +7798,7 @@
             "castLib": 1,
             "member": 32,
             "name": "WaterNozzle",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 32 - WaterNozzle.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 32 - WaterNozzle.ls"
           }
         ],
         "memberName": "",
@@ -6941,7 +7851,7 @@
             "castLib": 1,
             "member": 12,
             "name": "Score&Bars",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 12 - Score&Bars.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 12 - Score&Bars.ls"
           }
         ],
         "memberName": "SCOREN~1",
@@ -7201,7 +8111,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -7231,7 +8141,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -7261,7 +8171,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -7291,7 +8201,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -7321,7 +8231,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -7351,7 +8261,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -7381,7 +8291,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -7411,7 +8321,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -7441,7 +8351,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -7471,7 +8381,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -7501,7 +8411,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -7531,7 +8441,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "FUELBA~2",
@@ -7561,7 +8471,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -7586,7 +8496,37 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 8046,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 9,
+            "name": "SeaFrameCounter",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 9 - SeaFrameCounter.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 45,
+            "params": {
+              "swellHeight": 10
+            },
+            "name": "SeaSwell",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 45 - SeaSwell.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 7,
+            "name": "QuadTileFar",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29559
+          },
+          {
+            "castLib": 25961,
+            "member": 26472
+          }
+        ],
         "memberName": "SEARIP~2",
         "memberType": 1
       },
@@ -7614,7 +8554,7 @@
             "castLib": 1,
             "member": 7,
             "name": "QuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -7644,7 +8584,7 @@
             "castLib": 1,
             "member": 7,
             "name": "QuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -7674,7 +8614,7 @@
             "castLib": 1,
             "member": 7,
             "name": "QuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -7704,7 +8644,7 @@
             "castLib": 1,
             "member": 7,
             "name": "QuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -7734,7 +8674,7 @@
             "castLib": 1,
             "member": 7,
             "name": "QuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -7764,7 +8704,7 @@
             "castLib": 1,
             "member": 7,
             "name": "QuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -7794,7 +8734,7 @@
             "castLib": 1,
             "member": 7,
             "name": "QuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -7824,7 +8764,7 @@
             "castLib": 1,
             "member": 7,
             "name": "QuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 7 - QuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -7854,7 +8794,7 @@
             "castLib": 1,
             "member": 6,
             "name": "QuadTileNear",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 6 - QuadTileNear.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 6 - QuadTileNear.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -7884,7 +8824,7 @@
             "castLib": 1,
             "member": 6,
             "name": "QuadTileNear",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 6 - QuadTileNear.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 6 - QuadTileNear.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -7914,7 +8854,7 @@
             "castLib": 1,
             "member": 6,
             "name": "QuadTileNear",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 6 - QuadTileNear.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 6 - QuadTileNear.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -7944,7 +8884,7 @@
             "castLib": 1,
             "member": 6,
             "name": "QuadTileNear",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 6 - QuadTileNear.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 6 - QuadTileNear.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -7974,7 +8914,7 @@
             "castLib": 1,
             "member": 6,
             "name": "QuadTileNear",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 6 - QuadTileNear.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 6 - QuadTileNear.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -8119,7 +9059,7 @@
             "castLib": 1,
             "member": 18,
             "name": "Mission",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 18 - Mission.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 18 - Mission.ls"
           }
         ],
         "memberName": "",
@@ -8149,7 +9089,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -8179,7 +9119,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -8209,7 +9149,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -8239,7 +9179,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -8269,7 +9209,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -8299,7 +9239,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -8329,7 +9269,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -8359,7 +9299,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -8389,7 +9329,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -8419,7 +9359,7 @@
             "castLib": 1,
             "member": 33,
             "name": "WaterPlosh",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 33 - WaterPlosh.ls"
           }
         ],
         "memberName": "HOSEPL~2",
@@ -8449,7 +9389,7 @@
             "castLib": 1,
             "member": 26,
             "name": "SeaGull",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 26 - SeaGull.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 26 - SeaGull.ls"
           }
         ],
         "memberName": "SEAGUL~1",
@@ -8502,7 +9442,7 @@
             "castLib": 1,
             "member": 26,
             "name": "SeaGull",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 26 - SeaGull.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 26 - SeaGull.ls"
           }
         ],
         "memberName": "SEAGUL~1",
@@ -8555,7 +9495,7 @@
             "castLib": 1,
             "member": 62,
             "name": "FireBall",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 62 - FireBall.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 62 - FireBall.ls"
           }
         ],
         "memberName": "BODZIL~1",
@@ -8611,7 +9551,15 @@
               "bodzillaScale": 1
             },
             "name": "Bodzilla",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 61 - Bodzilla.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 61 - Bodzilla.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 25199
+          },
+          {
+            "castLib": 27745,
+            "member": 21347
           }
         ],
         "memberName": "BODZIL~2",
@@ -8710,7 +9658,7 @@
             "castLib": 1,
             "member": 62,
             "name": "FireBall",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 62 - FireBall.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 62 - FireBall.ls"
           }
         ],
         "memberName": "BODZIL~1",
@@ -8766,7 +9714,19 @@
               "bodzillaScale": 0.8
             },
             "name": "Bodzilla",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 61 - Bodzilla.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 61 - Bodzilla.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 25199
+          },
+          {
+            "castLib": 27745,
+            "member": 21347
+          },
+          {
+            "castLib": 8240,
+            "member": 11832
           }
         ],
         "memberName": "BODZIL~2",
@@ -8865,7 +9825,7 @@
             "castLib": 1,
             "member": 62,
             "name": "FireBall",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 62 - FireBall.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 62 - FireBall.ls"
           }
         ],
         "memberName": "BODZIL~1",
@@ -8921,7 +9881,19 @@
               "bodzillaScale": 0.4
             },
             "name": "Bodzilla",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 61 - Bodzilla.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 61 - Bodzilla.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 25199
+          },
+          {
+            "castLib": 27745,
+            "member": 21347
+          },
+          {
+            "castLib": 8240,
+            "member": 11828
           }
         ],
         "memberName": "BODZIL~2",
@@ -9020,7 +9992,7 @@
             "castLib": 1,
             "member": 62,
             "name": "FireBall",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 62 - FireBall.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 62 - FireBall.ls"
           }
         ],
         "memberName": "BODZIL~1",
@@ -9076,7 +10048,19 @@
               "bodzillaScale": 0.5
             },
             "name": "Bodzilla",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 61 - Bodzilla.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 61 - Bodzilla.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 25199
+          },
+          {
+            "castLib": 27745,
+            "member": 21347
+          },
+          {
+            "castLib": 8240,
+            "member": 11829
           }
         ],
         "memberName": "BODZIL~2",
@@ -9175,7 +10159,7 @@
             "castLib": 1,
             "member": 63,
             "name": "BigSquid",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 63 - BigSquid.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 63 - BigSquid.ls"
           }
         ],
         "memberName": "BID71E~1",
@@ -9228,7 +10212,7 @@
             "castLib": 1,
             "member": 65,
             "name": "TentacleSurvivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 65 - TentacleSurvivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 65 - TentacleSurvivor.ls"
           }
         ],
         "memberName": "",
@@ -9258,7 +10242,7 @@
             "castLib": 1,
             "member": 64,
             "name": "Tentacles",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 64 - Tentacles.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 64 - Tentacles.ls"
           }
         ],
         "memberName": "BIGSQU~1",
@@ -9288,7 +10272,7 @@
             "castLib": 1,
             "member": 65,
             "name": "TentacleSurvivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 65 - TentacleSurvivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 65 - TentacleSurvivor.ls"
           }
         ],
         "memberName": "",
@@ -9318,7 +10302,7 @@
             "castLib": 1,
             "member": 64,
             "name": "Tentacles",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 64 - Tentacles.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 64 - Tentacles.ls"
           }
         ],
         "memberName": "BIGSQU~1",
@@ -9348,7 +10332,7 @@
             "castLib": 1,
             "member": 65,
             "name": "TentacleSurvivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 65 - TentacleSurvivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 65 - TentacleSurvivor.ls"
           }
         ],
         "memberName": "",
@@ -9378,7 +10362,7 @@
             "castLib": 1,
             "member": 64,
             "name": "Tentacles",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 64 - Tentacles.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 64 - Tentacles.ls"
           }
         ],
         "memberName": "BIGSQU~1",
@@ -9408,7 +10392,7 @@
             "castLib": 1,
             "member": 65,
             "name": "TentacleSurvivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 65 - TentacleSurvivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 65 - TentacleSurvivor.ls"
           }
         ],
         "memberName": "",
@@ -9438,7 +10422,7 @@
             "castLib": 1,
             "member": 64,
             "name": "Tentacles",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 64 - Tentacles.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 64 - Tentacles.ls"
           }
         ],
         "memberName": "BIGSQU~1",
@@ -9468,7 +10452,7 @@
             "castLib": 1,
             "member": 65,
             "name": "TentacleSurvivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 65 - TentacleSurvivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 65 - TentacleSurvivor.ls"
           }
         ],
         "memberName": "",
@@ -9498,7 +10482,7 @@
             "castLib": 1,
             "member": 64,
             "name": "Tentacles",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 64 - Tentacles.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 64 - Tentacles.ls"
           }
         ],
         "memberName": "BIGSQU~1",
@@ -9532,7 +10516,31 @@
               "swellListPointerStart": 45
             },
             "name": "Pleasure Vessel",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 29 - Pleasure Vessel.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 29 - Pleasure Vessel.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29559
+          },
+          {
+            "castLib": 25961,
+            "member": 26472
+          },
+          {
+            "castLib": 12332,
+            "member": 8227
+          },
+          {
+            "castLib": 27724,
+            "member": 26995
+          },
+          {
+            "castLib": 28276,
+            "member": 25970
+          },
+          {
+            "castLib": 29754,
+            "member": 8244
           }
         ],
         "memberName": "CATAMA~1",
@@ -9562,7 +10570,7 @@
             "castLib": 1,
             "member": 34,
             "name": "Flames",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 34 - Flames.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
         "memberName": "FLAMES~1",
@@ -9599,7 +10607,35 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 12594,
+            "member": 13612
+          },
+          {
+            "castLib": 29287,
+            "member": 25972
+          },
+          {
+            "castLib": 25972,
+            "member": 14880
+          },
+          {
+            "castLib": 29736,
+            "member": 11569
+          },
+          {
+            "castLib": 12594,
+            "member": 10589
           }
         ],
         "memberName": "",
@@ -9636,7 +10672,31 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 12594,
+            "member": 13612
+          },
+          {
+            "castLib": 29287,
+            "member": 25972
+          },
+          {
+            "castLib": 25972,
+            "member": 14880
+          },
+          {
+            "castLib": 29736,
+            "member": 12332
           }
         ],
         "memberName": "",
@@ -9673,7 +10733,31 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 12594,
+            "member": 13612
+          },
+          {
+            "castLib": 29287,
+            "member": 25972
+          },
+          {
+            "castLib": 25972,
+            "member": 14880
+          },
+          {
+            "castLib": 29736,
+            "member": 12592
           }
         ],
         "memberName": "",
@@ -9707,7 +10791,31 @@
               "swellListPointerStart": 45
             },
             "name": "Pleasure Vessel",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 29 - Pleasure Vessel.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 29 - Pleasure Vessel.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29559
+          },
+          {
+            "castLib": 25961,
+            "member": 26472
+          },
+          {
+            "castLib": 11296,
+            "member": 9075
+          },
+          {
+            "castLib": 19561,
+            "member": 29556
+          },
+          {
+            "castLib": 29797,
+            "member": 29267
+          },
+          {
+            "castLib": 14880,
+            "member": 13365
           }
         ],
         "memberName": "LINER_~1",
@@ -9737,7 +10845,7 @@
             "castLib": 1,
             "member": 34,
             "name": "Flames",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 34 - Flames.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
         "memberName": "FLAMES~1",
@@ -9767,7 +10875,7 @@
             "castLib": 1,
             "member": 34,
             "name": "Flames",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 34 - Flames.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
         "memberName": "FLAMES~1",
@@ -9804,7 +10912,35 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 12595,
+            "member": 12588
+          },
+          {
+            "castLib": 29287,
+            "member": 25972
+          },
+          {
+            "castLib": 25972,
+            "member": 14880
+          },
+          {
+            "castLib": 29736,
+            "member": 11573
+          },
+          {
+            "castLib": 13104,
+            "member": 10589
           }
         ],
         "memberName": "",
@@ -9841,7 +10977,35 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 12595,
+            "member": 12588
+          },
+          {
+            "castLib": 29287,
+            "member": 25972
+          },
+          {
+            "castLib": 25972,
+            "member": 14880
+          },
+          {
+            "castLib": 29736,
+            "member": 11570
+          },
+          {
+            "castLib": 13368,
+            "member": 10589
           }
         ],
         "memberName": "",
@@ -9878,7 +11042,31 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 12595,
+            "member": 12588
+          },
+          {
+            "castLib": 29287,
+            "member": 25972
+          },
+          {
+            "castLib": 25972,
+            "member": 14880
+          },
+          {
+            "castLib": 29736,
+            "member": 13104
           }
         ],
         "memberName": "",
@@ -9915,7 +11103,31 @@
               ]
             },
             "name": "Survivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 13 - Survivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 13 - Survivor.ls"
+          },
+          {
+            "castLib": 23331,
+            "member": 29793
+          },
+          {
+            "castLib": 21360,
+            "member": 29289
+          },
+          {
+            "castLib": 12595,
+            "member": 12588
+          },
+          {
+            "castLib": 29287,
+            "member": 25972
+          },
+          {
+            "castLib": 25972,
+            "member": 14880
+          },
+          {
+            "castLib": 29736,
+            "member": 13872
           }
         ],
         "memberName": "",
@@ -9930,7 +11142,7 @@
       "member": 6,
       "intervalIdx": 8635,
       "name": "MissionBriefingScript",
-      "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\frameScripts\\BehaviorScript 6 - MissionBriefingScript.ls"
+      "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/frameScripts/BehaviorScript 6 - MissionBriefingScript.ls"
     },
     "sprites": [
       {
@@ -9952,7 +11164,32 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 8911,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 21,
+            "name": "HiLightRollover",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 21 - HiLightRollover.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 22,
+            "name": "TakeOffButton",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 22 - TakeOffButton.ls"
+          }
+        ],
         "memberName": "",
         "memberType": 15
       },
@@ -9980,7 +11217,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "",
@@ -10005,7 +11242,32 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 8653,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 21,
+            "name": "HiLightRollover",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 21 - HiLightRollover.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 20,
+            "name": "BackButton",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 20 - BackButton.ls"
+          }
+        ],
         "memberName": "",
         "memberType": 15
       },
@@ -10033,7 +11295,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "",
@@ -10063,7 +11325,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "SU9A55~1",
@@ -10093,7 +11355,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "SU894E~1",
@@ -10108,7 +11370,7 @@
       "member": 1,
       "intervalIdx": 8638,
       "name": "frameScriptScrollTest",
-      "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\frameScripts\\BehaviorScript 1 - frameScriptScrollTest.ls"
+      "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/frameScripts/BehaviorScript 1 - frameScriptScrollTest.ls"
     },
     "sprites": [
       {
@@ -10204,7 +11466,7 @@
             "castLib": 1,
             "member": 75,
             "name": "CopterSubmarine",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 75 - CopterSubmarine.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 75 - CopterSubmarine.ls"
           }
         ],
         "memberName": "COASTG~4",
@@ -10257,7 +11519,7 @@
             "castLib": 1,
             "member": 76,
             "name": "SubmarineCableGuy",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 76 - SubmarineCableGuy.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 76 - SubmarineCableGuy.ls"
           }
         ],
         "memberName": "",
@@ -10333,7 +11595,7 @@
             "castLib": 1,
             "member": 12,
             "name": "Score&Bars",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 12 - Score&Bars.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 12 - Score&Bars.ls"
           }
         ],
         "memberName": "SCOREN~1",
@@ -10593,7 +11855,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -10623,7 +11885,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -10653,7 +11915,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -10683,7 +11945,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -10713,7 +11975,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -10743,7 +12005,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -10773,7 +12035,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -10803,7 +12065,7 @@
             "castLib": 1,
             "member": 14,
             "name": "Smoke",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 14 - Smoke.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 14 - Smoke.ls"
           }
         ],
         "memberName": "Smoke",
@@ -10833,7 +12095,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -10863,7 +12125,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -10893,7 +12155,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -10923,7 +12185,7 @@
             "castLib": 1,
             "member": 15,
             "name": "Pickups",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 15 - Pickups.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 15 - Pickups.ls"
           }
         ],
         "memberName": "FUELBA~2",
@@ -10948,7 +12210,29 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 8770,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 9,
+            "name": "SeaFrameCounter",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 9 - SeaFrameCounter.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 73,
+            "name": "UnderSeaQuadTileFar",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 73 - UnderSeaQuadTileFar.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 74,
+            "params": {
+              "swellHeight": 20
+            },
+            "name": "UnderSeaSwell",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 74 - UnderSeaSwell.ls"
+          }
+        ],
         "memberName": "SEARIP~2",
         "memberType": 1
       },
@@ -10976,7 +12260,7 @@
             "castLib": 1,
             "member": 73,
             "name": "UnderSeaQuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 73 - UnderSeaQuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 73 - UnderSeaQuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -11006,7 +12290,7 @@
             "castLib": 1,
             "member": 73,
             "name": "UnderSeaQuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 73 - UnderSeaQuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 73 - UnderSeaQuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -11036,7 +12320,7 @@
             "castLib": 1,
             "member": 73,
             "name": "UnderSeaQuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 73 - UnderSeaQuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 73 - UnderSeaQuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -11066,7 +12350,7 @@
             "castLib": 1,
             "member": 73,
             "name": "UnderSeaQuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 73 - UnderSeaQuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 73 - UnderSeaQuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -11096,7 +12380,7 @@
             "castLib": 1,
             "member": 73,
             "name": "UnderSeaQuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 73 - UnderSeaQuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 73 - UnderSeaQuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -11126,7 +12410,7 @@
             "castLib": 1,
             "member": 73,
             "name": "UnderSeaQuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 73 - UnderSeaQuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 73 - UnderSeaQuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -11156,7 +12440,7 @@
             "castLib": 1,
             "member": 73,
             "name": "UnderSeaQuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 73 - UnderSeaQuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 73 - UnderSeaQuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -11186,7 +12470,7 @@
             "castLib": 1,
             "member": 73,
             "name": "UnderSeaQuadTileFar",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 73 - UnderSeaQuadTileFar.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 73 - UnderSeaQuadTileFar.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -11216,7 +12500,7 @@
             "castLib": 1,
             "member": 6,
             "name": "QuadTileNear",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 6 - QuadTileNear.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 6 - QuadTileNear.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -11246,7 +12530,7 @@
             "castLib": 1,
             "member": 6,
             "name": "QuadTileNear",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 6 - QuadTileNear.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 6 - QuadTileNear.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -11276,7 +12560,7 @@
             "castLib": 1,
             "member": 6,
             "name": "QuadTileNear",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 6 - QuadTileNear.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 6 - QuadTileNear.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -11306,7 +12590,7 @@
             "castLib": 1,
             "member": 6,
             "name": "QuadTileNear",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 6 - QuadTileNear.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 6 - QuadTileNear.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -11336,7 +12620,7 @@
             "castLib": 1,
             "member": 6,
             "name": "QuadTileNear",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 6 - QuadTileNear.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 6 - QuadTileNear.ls"
           }
         ],
         "memberName": "SEARIP~2",
@@ -11481,7 +12765,7 @@
             "castLib": 1,
             "member": 82,
             "name": "BlueMarlin",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 82 - BlueMarlin.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 82 - BlueMarlin.ls"
           }
         ],
         "memberName": "SUBMAR~1",
@@ -11511,7 +12795,7 @@
             "castLib": 1,
             "member": 18,
             "name": "Mission",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 18 - Mission.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 18 - Mission.ls"
           }
         ],
         "memberName": "",
@@ -11541,7 +12825,7 @@
             "castLib": 1,
             "member": 81,
             "name": "TBMAvenger",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 81 - TBMAvenger.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 81 - TBMAvenger.ls"
           }
         ],
         "memberName": "TBM_AV~1",
@@ -11571,7 +12855,7 @@
             "castLib": 1,
             "member": 81,
             "name": "TBMAvenger",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 81 - TBMAvenger.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 81 - TBMAvenger.ls"
           }
         ],
         "memberName": "TBM_AV~2",
@@ -11601,7 +12885,7 @@
             "castLib": 1,
             "member": 81,
             "name": "TBMAvenger",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 81 - TBMAvenger.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 81 - TBMAvenger.ls"
           }
         ],
         "memberName": "TBM_AV~3",
@@ -11631,7 +12915,7 @@
             "castLib": 1,
             "member": 81,
             "name": "TBMAvenger",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 81 - TBMAvenger.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 81 - TBMAvenger.ls"
           }
         ],
         "memberName": "TBM_AV~4",
@@ -11661,7 +12945,7 @@
             "castLib": 1,
             "member": 81,
             "name": "TBMAvenger",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 81 - TBMAvenger.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 81 - TBMAvenger.ls"
           }
         ],
         "memberName": "TBC82A~1",
@@ -11691,7 +12975,7 @@
             "castLib": 1,
             "member": 63,
             "name": "BigSquid",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 63 - BigSquid.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 63 - BigSquid.ls"
           }
         ],
         "memberName": "BID71E~1",
@@ -11744,7 +13028,7 @@
             "castLib": 1,
             "member": 78,
             "name": "submarineSurvivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 78 - submarineSurvivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 78 - submarineSurvivor.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -11774,7 +13058,7 @@
             "castLib": 1,
             "member": 79,
             "name": "SubmarineTentacles",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 79 - SubmarineTentacles.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 79 - SubmarineTentacles.ls"
           }
         ],
         "memberName": "BIGSQU~1",
@@ -11804,7 +13088,7 @@
             "castLib": 1,
             "member": 78,
             "name": "submarineSurvivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 78 - submarineSurvivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 78 - submarineSurvivor.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -11834,7 +13118,7 @@
             "castLib": 1,
             "member": 79,
             "name": "SubmarineTentacles",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 79 - SubmarineTentacles.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 79 - SubmarineTentacles.ls"
           }
         ],
         "memberName": "BIGSQU~1",
@@ -11864,7 +13148,7 @@
             "castLib": 1,
             "member": 78,
             "name": "submarineSurvivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 78 - submarineSurvivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 78 - submarineSurvivor.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -11894,7 +13178,7 @@
             "castLib": 1,
             "member": 79,
             "name": "SubmarineTentacles",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 79 - SubmarineTentacles.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 79 - SubmarineTentacles.ls"
           }
         ],
         "memberName": "BIGSQU~1",
@@ -11924,7 +13208,7 @@
             "castLib": 1,
             "member": 78,
             "name": "submarineSurvivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 78 - submarineSurvivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 78 - submarineSurvivor.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -11954,7 +13238,7 @@
             "castLib": 1,
             "member": 79,
             "name": "SubmarineTentacles",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 79 - SubmarineTentacles.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 79 - SubmarineTentacles.ls"
           }
         ],
         "memberName": "BIGSQU~1",
@@ -11984,7 +13268,7 @@
             "castLib": 1,
             "member": 78,
             "name": "submarineSurvivor",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 78 - submarineSurvivor.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 78 - submarineSurvivor.ls"
           }
         ],
         "memberName": "TREASU~1",
@@ -12014,7 +13298,7 @@
             "castLib": 1,
             "member": 79,
             "name": "SubmarineTentacles",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 79 - SubmarineTentacles.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 79 - SubmarineTentacles.ls"
           }
         ],
         "memberName": "BIGSQU~1",
@@ -12119,7 +13403,7 @@
       "member": 6,
       "intervalIdx": 4830,
       "name": "MissionBriefingScript",
-      "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\frameScripts\\BehaviorScript 6 - MissionBriefingScript.ls"
+      "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/frameScripts/BehaviorScript 6 - MissionBriefingScript.ls"
     },
     "sprites": [
       {
@@ -12146,7 +13430,7 @@
             "castLib": 1,
             "member": 19,
             "name": "ZReset",
-            "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\Internal\\BehaviorScript 19 - ZReset.ls"
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
         "memberName": "COPTER~2",
@@ -12171,7 +13455,20 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 4839,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 4,
+            "name": "Stolen Link button",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 4 - Stolen Link button.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          }
+        ],
         "memberName": "",
         "memberType": 15
       }
@@ -12204,7 +13501,7 @@
       "member": 4,
       "intervalIdx": 4833,
       "name": "GameOverScreenScript",
-      "lsFile": "extracted\\bermuda\\pr_dump\\RB_BermudaTriangle_081\\casts\\frameScripts\\BehaviorScript 4 - GameOverScreenScript.ls"
+      "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/frameScripts/BehaviorScript 4 - GameOverScreenScript.ls"
     },
     "sprites": [
       {
@@ -12226,7 +13523,32 @@
         "rotationRaw": 0,
         "skewRaw": 0,
         "intervalIdx": 4842,
-        "behaviors": [],
+        "behaviors": [
+          {
+            "castLib": 1,
+            "member": 19,
+            "name": "ZReset",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 19 - ZReset.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 16,
+            "name": "FadeIn",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 16 - FadeIn.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 21,
+            "name": "HiLightRollover",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 21 - HiLightRollover.ls"
+          },
+          {
+            "castLib": 1,
+            "member": 20,
+            "name": "BackButton",
+            "lsFile": "extracted/bermuda/pr_dump/RB_BermudaTriangle_081/casts/Internal/BehaviorScript 20 - BackButton.ls"
+          }
+        ],
         "memberName": "",
         "memberType": 15
       }

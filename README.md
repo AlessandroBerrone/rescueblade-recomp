@@ -87,6 +87,18 @@ npm run build
 npm run preview
 ```
 
+`npm run build` copies `extracted/*/assets` into `web/dist/assets/`, so `web/dist` is a self-contained static site. To host it under a sub-path (as GitHub Pages does), set `BASE_PATH`, e.g. `BASE_PATH=/rescueblade-recomp/ npm run build`.
+
+Asset extractor tests (needs Pillow), from the repository root:
+
+```bash
+python -m unittest discover -s scripts
+```
+
+### Continuous Integration & GitHub Pages
+
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs typecheck, tests (Vitest + extractor tests) and the build on every push and pull request. On pushes to `main` it also deploys `web/dist` to GitHub Pages. To enable it once: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
 ### Controls & Gameplay
 
 The browser UI ([`GameShell.ts`](web/src/GameShell.ts)) provides a game switcher (`rescueblade` / `bermuda`), **Simplified / Pro** control mode toggle, **HD / Originale** HUD toggle, audio mute/volume controls, fullscreen mode, gamepad deadzone slider, and a live input monitor.
@@ -141,13 +153,15 @@ python scripts/extract_dir_assets.py
 
 ```text
 rescueblade-recomp/
+├── .github/workflows/ci.yml   # CI (typecheck, tests, build) + GitHub Pages deploy
 ├── dcr/                       # Original compressed Shockwave (.dcr) movies
 ├── dir/                       # Uncompressed Director (.dir) movie sources
 ├── extracted/                 # Extracted PNGs, WAVs, texts, manifests, scores, and Lingo dumps
 │   ├── rescueblade/
 │   └── bermuda/
 ├── scripts/
-│   └── extract_dir_assets.py  # RIFX/.dir asset & score extractor (Python + Pillow)
+│   ├── extract_dir_assets.py  # RIFX/.dir asset & score extractor (Python + Pillow)
+│   └── test_extract_dir_assets.py
 ├── tools/
 │   └── projectorrays-0.2.0.exe  # Shockwave/Director decompiler used for script dumps
 └── web/                       # TypeScript + Vite + WebGL2 + WebAudio application

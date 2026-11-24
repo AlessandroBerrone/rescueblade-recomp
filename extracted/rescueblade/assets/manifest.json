@@ -1,5 +1,5 @@
 {
-  "sourceDir": "c:\\Users\\Alessandro\\Downloads\\RescueCopter\\dir\\rescueblade.dir",
+  "sourceDir": "dir/rescueblade.dir",
   "stage": {
     "width": 512,
     "height": 330,
@@ -148,7 +148,7 @@
       "scriptId": 203,
       "associatedChunks": {},
       "scriptType": 3,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\MovieScript 2 - Initialization.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/MovieScript 2 - Initialization.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -161,7 +161,7 @@
       "scriptId": 200,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 3 - High Score Hub - Standard..ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 3 - High Score Hub - Standard..ls",
       "hasEmbeddedSource": true
     },
     {
@@ -174,7 +174,7 @@
       "scriptId": 201,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 4 - Stolen Link button.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 4 - Stolen Link button.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -187,7 +187,7 @@
       "scriptId": 101,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 5 - Copter.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 5 - Copter.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -200,7 +200,7 @@
       "scriptId": 91,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 6 - QuadTileNear.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 6 - QuadTileNear.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -213,7 +213,7 @@
       "scriptId": 5,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 7 - QuadTileFar.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 7 - QuadTileFar.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -226,7 +226,7 @@
       "scriptId": 19,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 8 - Ship.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 8 - Ship.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -239,7 +239,7 @@
       "scriptId": 6,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 9 - SeaFrameCounter.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 9 - SeaFrameCounter.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -252,7 +252,7 @@
       "scriptId": 282,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 10 - CableGuy.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 10 - CableGuy.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -265,7 +265,7 @@
       "scriptId": 45,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 11 - GuyOverlay.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 11 - GuyOverlay.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -278,7 +278,7 @@
       "scriptId": 76,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 12 - Score&Bars.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 12 - Score&Bars.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -291,7 +291,7 @@
       "scriptId": 138,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 13 - Survivor.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 13 - Survivor.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -304,7 +304,7 @@
       "scriptId": 85,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 14 - Smoke.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 14 - Smoke.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -317,7 +317,7 @@
       "scriptId": 83,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 15 - Pickups.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 15 - Pickups.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -330,7 +330,7 @@
       "scriptId": 25,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 16 - FadeIn.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 16 - FadeIn.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -343,7 +343,7 @@
       "scriptId": 213,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 17 - ChooseLevelButtons.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 17 - ChooseLevelButtons.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -356,7 +356,7 @@
       "scriptId": 215,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 18 - Mission.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 18 - Mission.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -369,7 +369,7 @@
       "scriptId": 107,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 19 - ZReset.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 19 - ZReset.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -382,7 +382,7 @@
       "scriptId": 111,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 20 - BackButton.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 20 - BackButton.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -395,7 +395,7 @@
       "scriptId": 109,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 21 - HiLightRollover.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 21 - HiLightRollover.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -408,7 +408,7 @@
       "scriptId": 110,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 22 - TakeOffButton.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 22 - TakeOffButton.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -421,7 +421,7 @@
       "scriptId": 219,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 23 - Hi-Scores.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 23 - Hi-Scores.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -434,7 +434,7 @@
       "scriptId": 99,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 24 - Bell Buoy.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 24 - Bell Buoy.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -447,7 +447,7 @@
       "scriptId": 126,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 26 - SeaGull.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 26 - SeaGull.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -460,7 +460,7 @@
       "scriptId": 132,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 27 - OilRig.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 27 - OilRig.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -473,7 +473,7 @@
       "scriptId": 129,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 28 - YellowCopter.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 28 - YellowCopter.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -486,7 +486,7 @@
       "scriptId": 271,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 29 - LifeRaft.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 29 - LifeRaft.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -499,7 +499,7 @@
       "scriptId": 151,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 30 - ShipWreck.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 30 - ShipWreck.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -512,7 +512,7 @@
       "scriptId": 145,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 31 - Lightning.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 31 - Lightning.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -525,7 +525,7 @@
       "scriptId": 175,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 32 - WaterNozzle.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 32 - WaterNozzle.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -538,7 +538,7 @@
       "scriptId": 161,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 33 - WaterPlosh.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 33 - WaterPlosh.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -551,7 +551,7 @@
       "scriptId": 178,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 34 - Flames.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -564,7 +564,7 @@
       "scriptId": 204,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 35 - Transformer.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 35 - Transformer.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -577,7 +577,7 @@
       "scriptId": 224,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 36 - FuelRod.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 36 - FuelRod.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -590,7 +590,7 @@
       "scriptId": 186,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 37 - FuelRodPods.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 37 - FuelRodPods.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -603,7 +603,7 @@
       "scriptId": 222,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 38 - SteamValve.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 38 - SteamValve.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -616,7 +616,7 @@
       "scriptId": 245,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 39 - CommTower.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 39 - CommTower.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -629,7 +629,7 @@
       "scriptId": 223,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 40 - SnowBlow.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 40 - SnowBlow.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -642,7 +642,7 @@
       "scriptId": 243,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 41 - SnowSurvivor.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 41 - SnowSurvivor.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -655,7 +655,7 @@
       "scriptId": 244,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 42 - SnowLump.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 42 - SnowLump.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -668,7 +668,7 @@
       "scriptId": 267,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 43 - SnowBall.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 43 - SnowBall.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -681,7 +681,7 @@
       "scriptId": 265,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 44 - SeaBumph.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 44 - SeaBumph.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -694,7 +694,7 @@
       "scriptId": 273,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 45 - SeaSwell.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 45 - SeaSwell.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -707,7 +707,7 @@
       "scriptId": 279,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 46 - WarHead.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 46 - WarHead.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -720,7 +720,7 @@
       "scriptId": 275,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 47 - Submarine.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 47 - Submarine.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -733,7 +733,7 @@
       "scriptId": 274,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 48 - ShipGreenPace.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 48 - ShipGreenPace.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -746,7 +746,7 @@
       "scriptId": 288,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 49 - Whale.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 49 - Whale.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -759,7 +759,7 @@
       "scriptId": 290,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 50 - IceBerg.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 50 - IceBerg.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -772,7 +772,7 @@
       "scriptId": 301,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 51 - BergEnemy.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 51 - BergEnemy.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -785,7 +785,7 @@
       "scriptId": 295,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 52 - BlackCopter.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 52 - BlackCopter.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -798,7 +798,7 @@
       "scriptId": 303,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 53 - Missile.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 53 - Missile.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -811,7 +811,7 @@
       "scriptId": 296,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 54 - BackButtonToControls.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 54 - BackButtonToControls.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -824,7 +824,7 @@
       "scriptId": 309,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 55 - VolcanoCopter.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 55 - VolcanoCopter.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -837,7 +837,7 @@
       "scriptId": 327,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 56 - VolcanoGuy.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 56 - VolcanoGuy.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -850,7 +850,7 @@
       "scriptId": 306,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 57 - VolcanoMissile.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 57 - VolcanoMissile.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -863,7 +863,7 @@
       "scriptId": 311,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\Internal\\BehaviorScript 58 - VolcanoLightning.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 58 - VolcanoLightning.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -11438,7 +11438,7 @@
       "scriptId": 19,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\frameScripts\\BehaviorScript 1 - frameScriptScrollTest.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/frameScripts/BehaviorScript 1 - frameScriptScrollTest.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -11451,7 +11451,7 @@
       "scriptId": 2,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\frameScripts\\BehaviorScript 2 - StartScreenFrameScript.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/frameScripts/BehaviorScript 2 - StartScreenFrameScript.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -11464,7 +11464,7 @@
       "scriptId": 3,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\frameScripts\\BehaviorScript 3 - MenuScreen.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/frameScripts/BehaviorScript 3 - MenuScreen.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -11477,7 +11477,7 @@
       "scriptId": 4,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\frameScripts\\BehaviorScript 4 - GameOverScreenScript.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/frameScripts/BehaviorScript 4 - GameOverScreenScript.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -11490,7 +11490,7 @@
       "scriptId": 17,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\frameScripts\\BehaviorScript 5.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/frameScripts/BehaviorScript 5.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -11503,7 +11503,7 @@
       "scriptId": 6,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\frameScripts\\BehaviorScript 6 - MissionBriefingScript.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/frameScripts/BehaviorScript 6 - MissionBriefingScript.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -11516,7 +11516,7 @@
       "scriptId": 7,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\frameScripts\\BehaviorScript 7 - ControlScreenScript.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/frameScripts/BehaviorScript 7 - ControlScreenScript.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -11529,7 +11529,7 @@
       "scriptId": 8,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\frameScripts\\BehaviorScript 8.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/frameScripts/BehaviorScript 8.ls",
       "hasEmbeddedSource": true
     },
     {
@@ -11542,7 +11542,7 @@
       "scriptId": 18,
       "associatedChunks": {},
       "scriptType": 1,
-      "lsFile": "extracted\\rescueblade\\pr_dump\\rescueblade\\casts\\frameScripts\\BehaviorScript 9 - PresentsScreenFrameScript.ls",
+      "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/frameScripts/BehaviorScript 9 - PresentsScreenFrameScript.ls",
       "hasEmbeddedSource": true
     },
     {

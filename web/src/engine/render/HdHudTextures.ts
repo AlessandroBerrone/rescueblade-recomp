@@ -142,13 +142,7 @@ function drawFuelFill(renderer: WebGL2StageRenderer, scale: number): TextureEntr
     gloss.addColorStop(0, 'rgba(255, 255, 255, 0.45)');
     gloss.addColorStop(1, 'rgba(255, 255, 255, 0.08)');
     ctx.fillStyle = gloss;
-    ctx.beginPath();
-    ctx.moveTo(4, 2);
-    ctx.lineTo(w - 2, 2);
-    ctx.lineTo(w - 2, 7.5);
-    ctx.lineTo(8, 7.5);
-    ctx.closePath();
-    ctx.fill();
+    ctx.fillRect(2, 2, w - 4, 5.5);
   });
 }
 
@@ -177,15 +171,6 @@ function drawDamageBezel(renderer: WebGL2StageRenderer, scale: number): TextureE
     ctx.lineWidth = 0.8;
     ctx.strokeStyle = 'rgba(15, 23, 42, 0.55)';
     ctx.stroke();
-
-    ctx.save();
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.78)';
-    ctx.lineWidth = 1.6;
-    ctx.beginPath();
-    ctx.moveTo(1.5, 1.2);
-    ctx.lineTo(14.5, 23.8);
-    ctx.stroke();
-    ctx.restore();
 
     ctx.save();
     ctx.translate(48, 12.8);
