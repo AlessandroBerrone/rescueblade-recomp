@@ -1,0 +1,128 @@
+import { describe, expect, it } from 'vitest';
+import { createHeadlessRuntime, enterLevelGameplay, frameOfLabel, loadBundleFromDisk } from './helpers.ts';
+
+type PadState = { axes: number[]; buttons: number[] };
+
+function mockPad(state: PadState): Gamepad {
+  return {
+    index: 0,
+    id: 'Mock Standard Gamepad',
+    connected: true,
+    mapping: 'standard',
+    axes: state.axes,
+    buttons: Array.from({ length: 17 }, (_, i) => {
+      const v = state.buttons[i] ?? 0;
+      return { pressed: v >= 0.5, touched: v > 0, value: v };
+    }),
+    timestamp: 0,
+    vibrationActuator: null as unknown as GamepadHapticActuator,
+  };
+}
+
+describe('score extraction', () => {
+  for (const gameId of ['rescueblade', 'bermuda'] as const) {
+    it(`keeps every behavior on sprites that carry more than one (${gameId})`, () => {
+      const bundle = loadBundleFromDisk(gameId);
+      const multi = bundle.score.flatMap((f) => f.sprites).filter((sp) => (sp.behaviors?.length ?? 0) >= 2);
+      expect(multi.length).toBeGreaterThan(0);
+
+      // The sea frame counter only ever lives next to QuadTileFar on one sprite,
+      // so it disappears entirely when multi-behavior entries are dropped.
+      const names = new Set(bundle.score.flatMap((f) => f.sprites).flatMap((sp) => sp.behaviors ?? []).map((b) => b.name));
+      expect(names.has('SeaFrameCounter')).toBe(true);
+      expect(names.has('QuadTileFar')).toBe(true);
+    });
+  }
+});
+
+describe('sea animation', () => {
+  it('cycles gSeaFrame through all 20 sea tiles during RescueBlade level 1', () => {
+    const { rt, input } = createHeadlessRuntime('rescueblade');
+    rt.stepTick(input.update());
+    enterLevelGameplay(rt, input, 1);
+
+    const seen = new Set<number>();
+    for (let t = 0; t < 4 * 21; t++) {
+      rt.stepTick(input.update());
+      seen.add(rt.globals.gSeaFrame);
+    }
+    expect([...seen].sort((a, b) => a - b)).toEqual(Array.from({ length: 20 }, (_, i) => i + 1));
+  });
+});
+
+describe('MovieRuntime.go between ticks', () => {
+  it('honours a go() issued outside a tick, like the shell Menu button', () => {
+    const { rt, input } = createHeadlessRuntime('rescueblade');
+    rt.stepTick(input.update());
+    enterLevelGameplay(rt, input, 1);
+
+    rt.go('MenuScreen');
+    rt.stepTick(input.update());
+    expect(rt.currentFrame).toBe(frameOfLabel(rt, 'MenuScreen'));
+  });
+});
+
+describe('gamepad drives the game', () => {
+  it('confirms menus with A, flies with the stick and pauses with Start', () => {
+    const pad: PadState = { axes: [0, 0, 0, 0], buttons: [] };
+    const { rt, input } = createHeadlessRuntime('rescueblade', () => [mockPad(pad)]);
+    const tick = (n = 1) => {
+      for (let i = 0; i < n; i++) rt.stepTick(input.update());
+    };
+    const tap = (btn: number) => {
+      pad.buttons[btn] = 1;
+      tick();
+      pad.buttons[btn] = 0;
+      tick();
+    };
+
+    tick();
+    tap(0); // A on the start screen
+    expect(rt.currentFrame).toBe(frameOfLabel(rt, 'MenuScreen') + 1);
+
+    rt.globals.gLevel = 1;
+    rt.go('Level1');
+    tick();
+    const gameplay = frameOfLabel(rt, 'Level1') + 1;
+    for (let i = 0; i < 40 && rt.currentFrame !== gameplay; i++) tap(0);
+    expect(rt.currentFrame).toBe(gameplay);
+    expect(input.getState().lastActiveDevice).toBe('gamepad');
+
+    // Stick inside the deadzone must not move anything.
+    pad.axes[0] = 0.1;
+    tick();
+    expect(input.getState().axes.moveX).toBe(0);
+
+    // Full right stick: the world scrolls (gXVel) the way the keyboard does.
+    pad.axes[0] = 1;
+    pad.axes[1] = -1;
+    tick(45);
+    expect(Math.abs(rt.globals.gXVel)).toBeGreaterThan(0);
+    pad.axes[0] = 0;
+    pad.axes[1] = 0;
+
+    expect(rt.globals.gPaused).toBe(0);
+    tap(9); // Start
+    expect(rt.globals.gPaused).toBe(1);
+    tap(9);
+    expect(rt.globals.gPaused).toBe(0);
+  });
+
+  it('maps the analog right trigger and X to the action button, B to cancel', () => {
+    const pad: PadState = { axes: [0, 0, 0, 0], buttons: [] };
+    const { input } = createHeadlessRuntime('rescueblade', () => [mockPad(pad)]);
+
+    pad.buttons[7] = 0.2; // light trigger touch: below threshold
+    expect(input.update().actions.action.isPressed).toBe(false);
+    pad.buttons[7] = 0.6;
+    expect(input.update().actions.action.isPressed).toBe(true);
+    pad.buttons[7] = 0;
+    pad.buttons[2] = 1;
+    expect(input.update().actions.action.isPressed).toBe(true);
+    pad.buttons[2] = 0;
+    pad.buttons[1] = 1;
+    const st = input.update();
+    expect(st.actions.cancel.justPressed).toBe(true);
+    expect(st.actions.action.isPressed).toBe(false);
+  });
+});

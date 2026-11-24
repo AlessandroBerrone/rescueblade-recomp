@@ -135,7 +135,7 @@ export async function loadGameAssets(
   renderer: WebGL2StageRenderer,
   hdHud = true
 ): Promise<LoadedGameBundle> {
-  const base = `/assets/${gameId}`;
+  const base = `${import.meta.env.BASE_URL}assets/${gameId}`;
   const [manifestRes, scoreRes] = await Promise.all([
     fetch(`${base}/manifest.json`),
     fetch(`${base}/score.json`),
