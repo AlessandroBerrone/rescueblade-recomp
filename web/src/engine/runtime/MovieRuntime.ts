@@ -25,6 +25,9 @@ export class MovieRuntime implements MovieRuntimeContext {
   private readonly sprites = new Map<number, SpriteInstance>();
   private frameScript: BehaviorInstance | null = null;
   private pendingGoto: number | null = null;
+  /** go() requested from outside a tick (e.g. the shell's Menu button). */
+  private externalGoto: number | null = null;
+  private inTick = false;
   private lastRolloverSprite = 0;
   private latestInput: InputState;
   private accumulatorSec = 0;
@@ -53,7 +56,9 @@ export class MovieRuntime implements MovieRuntimeContext {
     }
 
     // Start at StartScreen (frame 4 -> naturally steps into 5, or jump straight to StartScreen)
+    this.inTick = true;
     this.enterFrame(this.labelMap.get('startscreen') ?? 1);
+    this.inTick = false;
   }
 
   public getFrameRate(): number {
@@ -68,6 +73,12 @@ export class MovieRuntime implements MovieRuntimeContext {
       resolved = this.labelMap.get(target.trim().toLowerCase());
     }
     if (resolved === undefined) return;
+    if (!this.inTick) {
+      // stepTick() clears pendingGoto when it starts, so a request made between
+      // ticks would be silently dropped. Queue it and apply it on the next tick.
+      this.externalGoto = resolved;
+      return;
+    }
     // Do not let a frame-loop `go(the frame)` overwrite an already-queued scene transition
     if (this.pendingGoto !== null && this.pendingGoto !== this.currentFrame && resolved === this.currentFrame) {
       return;
@@ -287,8 +298,24 @@ export class MovieRuntime implements MovieRuntimeContext {
 
 
   public stepTick(inputState: InputState): void {
+    this.inTick = true;
+    try {
+      this.runTick(inputState);
+    } finally {
+      this.inTick = false;
+    }
+  }
+
+  private runTick(inputState: InputState): void {
     this.latestInput = inputState;
     this.pendingGoto = null;
+
+    if (this.externalGoto !== null) {
+      const target = this.externalGoto;
+      this.externalGoto = null;
+      this.enterFrame(target);
+      return;
+    }
 
     const rolloverNum = this.getRollover();
     if (this.lastRolloverSprite !== 0 && this.lastRolloverSprite !== rolloverNum) {
