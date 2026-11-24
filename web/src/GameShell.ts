@@ -10,6 +10,7 @@ import { TextTextureCache } from './engine/render/TextTextureCache.ts';
 import { WebGL2StageRenderer } from './engine/render/WebGL2StageRenderer.ts';
 import { MovieRuntime } from './engine/runtime/MovieRuntime.ts';
 import { createBehaviorRegistry } from './games/registry.ts';
+import { downloadSave, pickAndImportSave } from './engine/runtime/SaveData.ts';
 import { gameUrl } from './ui/LaunchScreen.ts';
 import { TouchControls, wantsTouchControls } from './ui/TouchControls.ts';
 
@@ -57,6 +58,8 @@ export class GameShell {
             <button id="gs-mute" type="button">Audio: ON</button>
             <button id="gs-fs" type="button">Fullscreen</button>
             <button id="gs-home" type="button">Cambia gioco</button>
+            <button id="gs-export" type="button" title="Scarica i progressi in un file">Esporta salvataggi</button>
+            <button id="gs-import" type="button" title="Carica i progressi da un file">Importa salvataggi</button>
           </div>
           <div class="row hints-row" style="font-size:12px;color:#94a3b8;margin-top:4px">
             <span>Frecce/WASD o Stick: Volo &bull; Spazio/A: Verricello / Acqua / Foto &bull; P/Start: Pausa &bull; R+I+X: Sblocca livelli</span>
@@ -153,6 +156,9 @@ export class GameShell {
       this.sound.stopAll();
       window.location.href = gameUrl(null, window.location);
     });
+
+    root.querySelector<HTMLButtonElement>('#gs-export')!.addEventListener('click', () => downloadSave());
+    root.querySelector<HTMLButtonElement>('#gs-import')!.addEventListener('click', () => pickAndImportSave());
 
     this.controlsBtn.addEventListener('click', () => {
       if (!this.runtime) return;

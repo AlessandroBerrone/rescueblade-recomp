@@ -174,4 +174,25 @@ describe('score counter', () => {
     const digits = [17, 16, 15, 14, 13, 12, 11].map((n) => rt.sprite(n).member - 50).join('');
     expect(digits).toBe('0000500');
   });
+
+  it('never stretches the 1x1 "no scenery" pixel into a block on the horizon, in any level', () => {
+    for (const [gameId, levels] of [['rescueblade', 9], ['bermuda', 4]] as const) {
+      const { rt, input } = createHeadlessRuntime(gameId);
+      rt.stepTick(input.update());
+      for (let lv = 1; lv <= levels; lv++) {
+        enterLevelGameplay(rt, input, lv);
+        input.keyboard.setKeyForTest('ArrowUp', true);
+        input.keyboard.setKeyForTest('ArrowRight', true);
+        for (let t = 0; t < 90; t++) {
+          rt.stepTick(input.update());
+          const blocks = rt
+            .toRenderSprites()
+            .filter((s) => s.texture?.width === 1 && s.texture.height === 1 && s.width * s.height > 1);
+          expect(blocks.map((s) => s.spriteNum), `${gameId} level ${lv}`).toEqual([]);
+        }
+        input.keyboard.setKeyForTest('ArrowUp', false);
+        input.keyboard.setKeyForTest('ArrowRight', false);
+      }
+    }
+  });
 });

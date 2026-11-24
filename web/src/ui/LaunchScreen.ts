@@ -1,4 +1,5 @@
 import type { GameId } from '../engine/assets/AssetLoader.ts';
+import { downloadSave, pickAndImportSave } from '../engine/runtime/SaveData.ts';
 
 export interface LaunchEntry {
   id: GameId;
@@ -68,8 +69,16 @@ export function showLaunchScreen(root: HTMLElement): void {
           </a>`).join('')}
       </nav>
       <p class="launch-hint">Tastiera: frecce e Invio &bull; Controller: stick e A</p>
+      <p class="launch-save">
+        I progressi si salvano da soli in questo browser.
+        <button type="button" id="ls-export">Esporta salvataggi</button>
+        <button type="button" id="ls-import">Importa salvataggi</button>
+      </p>
     </main>
   `;
+
+  root.querySelector('#ls-export')!.addEventListener('click', () => downloadSave());
+  root.querySelector('#ls-import')!.addEventListener('click', () => pickAndImportSave());
 
   const cards = Array.from(root.querySelectorAll<HTMLAnchorElement>('.launch-card'));
   cards[0]?.focus({ preventScroll: true });
