@@ -38,7 +38,6 @@ export class GameShell {
   private readonly actionEls = new Map<ActionId, HTMLElement>();
   private readonly axisEls: Record<'moveX' | 'moveY' | 'throttle', { val: HTMLElement; fill: HTMLElement }>;
   private readonly stageWrap: HTMLElement;
-  private readonly stageBox: HTMLElement;
   private readonly touchControls: TouchControls | null = null;
   private lastDevice = '';
 
@@ -58,6 +57,7 @@ export class GameShell {
             </select>
             <button id="gs-controls" type="button">Controlli: Simplified</button>
             <button id="gs-menu" type="button">Menu</button>
+            <button id="gs-gfx" type="button" title="Grafica originale o ridisegnata in alta risoluzione (tasto G)">Grafica: HD</button>
             <button id="gs-hud" type="button">HUD: HD</button>
             <button id="gs-mute" type="button">Audio: ON</button>
             <button id="gs-fs" type="button">Fullscreen</button>
@@ -120,7 +120,6 @@ export class GameShell {
     }
 
     this.stageWrap = root.querySelector<HTMLElement>('.stage-wrap')!;
-    this.stageBox = root.querySelector<HTMLElement>('.stage-box')!;
     if (wantsTouchControls()) {
       document.body.classList.add('touch-mode');
       this.touchControls = new TouchControls({
@@ -138,20 +137,7 @@ export class GameShell {
       });
     }
 
-    // Graphics switch on the game screen itself (also in fullscreen): bottom-right corner
-    // of the stage, or next to the options/fullscreen icons on touch screens.
-    this.gfxBtn = document.createElement('button');
-    this.gfxBtn.type = 'button';
-    this.gfxBtn.id = 'gs-gfx';
-    this.gfxBtn.title = 'Cambia grafica: originale o HD (tasto G)';
-    const touchTop = root.querySelector<HTMLElement>('.tc-top');
-    if (touchTop) {
-      this.gfxBtn.className = 'tc-icon tc-gfx';
-      touchTop.prepend(this.gfxBtn);
-    } else {
-      this.gfxBtn.className = 'stage-gfx';
-      root.querySelector<HTMLElement>('.stage-box')!.appendChild(this.gfxBtn);
-    }
+    this.gfxBtn = root.querySelector<HTMLButtonElement>('#gs-gfx')!;
     this.updateGraphicsButton();
 
     root.querySelector<HTMLSelectElement>('#gs-game')!.value = initialGame;
@@ -238,7 +224,7 @@ export class GameShell {
   }
 
   /**
-   * Desktop: the stage box (canvas + graphics button) goes fullscreen. Touch: the whole stage panel does, so the
+   * Desktop: the canvas alone goes fullscreen. Touch: the whole stage panel does, so the
    * on-screen controls stay visible, and phones are asked to stay in landscape.
    */
   private toggleFullscreen(): void {
@@ -246,7 +232,7 @@ export class GameShell {
       void document.exitFullscreen?.();
       return;
     }
-    const target = this.touchControls ? this.stageWrap : this.stageBox;
+    const target = this.touchControls ? this.stageWrap : this.stageCanvas;
     const req = target.requestFullscreen?.({ navigationUI: 'hide' });
     if (this.touchControls && req) {
       void req
@@ -285,7 +271,7 @@ export class GameShell {
     const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
     const isFs =
       typeof document !== 'undefined' &&
-      (document.fullscreenElement === this.stageBox || document.fullscreenElement === this.stageWrap);
+      (document.fullscreenElement === this.stageCanvas || document.fullscreenElement === this.stageWrap);
     return isFs ? 4 : Math.max(3, Math.min(4, Math.ceil(dpr * 2)));
   }
 
@@ -312,9 +298,7 @@ export class GameShell {
   }
 
   private updateGraphicsButton(): void {
-    this.gfxBtn.textContent = this.hdGraphics ? 'HD' : 'ORIG';
-    this.gfxBtn.classList.toggle('is-hd', this.hdGraphics);
-    this.gfxBtn.setAttribute('aria-label', `Grafica: ${this.hdGraphics ? 'HD' : 'originale'}. Premi per cambiare.`);
+    this.gfxBtn.textContent = `Grafica: ${this.hdGraphics ? 'HD' : 'Originale'}`;
   }
 
   /** Switches every loaded game between original and upscaled bitmaps (loading them once). */
@@ -324,7 +308,7 @@ export class GameShell {
       const bundle = this.bundles.get(this.activeGame);
       if (bundle && !bundle.hdBitmapTexturesByKey) {
         this.gfxBtn.disabled = true;
-        this.gfxBtn.textContent = '…';
+        this.gfxBtn.textContent = 'Grafica: carico HD...';
         await loadHdBitmaps(bundle, this.renderer);
         this.gfxBtn.disabled = false;
         this.updateGraphicsButton();
