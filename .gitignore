@@ -1,0 +1,14 @@
+# Dependencies and build output
+node_modules/
+web/dist/
+web/.vite/
+
+# Test / tooling caches
+coverage/
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
