@@ -64,7 +64,11 @@ export interface ScoreSpriteEntry {
   width: number;
   height: number;
   blendByte: number;
-  rotationRaw: number;
+  /** Score blend in percent (Director stores it inverted in blendByte: 0 = 100%). */
+  blend?: number;
+  /** Score rotation in degrees. */
+  rotation?: number;
+  skew?: number;
   behaviors: { castLib: number; member: number; name?: string; params?: Record<string, unknown> }[];
   memberName?: string;
   memberType?: number;

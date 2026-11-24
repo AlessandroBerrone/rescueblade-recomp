@@ -1,6 +1,7 @@
 import { memberKey, type LoadedGameBundle } from '../assets/AssetLoader.ts';
 import type { SoundEngine } from '../audio/SoundEngine.ts';
 import type { InputManager, InputState } from '../InputManager.ts';
+import { hasInputEdges, mergeInputEdges, withoutInputEdges } from '../input/edges.ts';
 import type { TextTextureCache } from '../render/TextTextureCache.ts';
 import { DIRECTOR_INK, type RenderSprite, type TextureEntry } from '../render/types.ts';
 import { sortSpritesForRender } from '../render/quadMath.ts';
@@ -13,6 +14,14 @@ import {
   type SpriteInstance,
 } from './DirectorTypes.ts';
 import { angleGrind, createInitialGlobals, directorRandom } from './MovieGlobals.ts';
+import {
+  applyProgress,
+  browserStorage,
+  parseProgress,
+  PREF_PREFIX,
+  progressKey,
+  snapshotProgress,
+} from './SaveData.ts';
 
 export type BehaviorRegistry = ReadonlyMap<string, BehaviorFactory>;
 
@@ -31,7 +40,10 @@ export class MovieRuntime implements MovieRuntimeContext {
   private lastRolloverSprite = 0;
   private latestInput: InputState;
   private accumulatorSec = 0;
+  /** Input edges from display frames that ran no score tick, waiting for the next tick. */
+  private carriedInput: InputState | null = null;
   private readonly prefStore = new Map<string, string>();
+  private lastSavedProgress = '';
 
   constructor(
     public readonly bundle: LoadedGameBundle,
@@ -54,6 +66,9 @@ export class MovieRuntime implements MovieRuntimeContext {
     if (savedLock === null) {
       this.setPref(gameName, '0');
     }
+    const progress = parseProgress(this.getPref(progressKey(gameName)), this.numLevels);
+    if (progress) applyProgress(this.globals, progress);
+    this.lastSavedProgress = JSON.stringify(snapshotProgress(this.globals, this.numLevels));
 
     // Start at StartScreen (frame 4 -> naturally steps into 5, or jump straight to StartScreen)
     this.inTick = true;
@@ -200,22 +215,37 @@ export class MovieRuntime implements MovieRuntimeContext {
     }
   }
 
+  /** Prefs live in localStorage; where the browser blocks it they last for the session only. */
   public getPref(key: string): string | null {
-    if (this.storage) return this.storage.getItem(`rc_pref_${key}`);
-    if (typeof localStorage !== 'undefined') return localStorage.getItem(`rc_pref_${key}`);
+    const store = this.storage ?? browserStorage();
+    try {
+      if (store) return store.getItem(`${PREF_PREFIX}${key}`);
+    } catch {
+      // fall through to the in-memory copy
+    }
     return this.prefStore.get(key) ?? null;
   }
 
   public setPref(key: string, val: string): void {
-    if (this.storage) {
-      this.storage.setItem(`rc_pref_${key}`, val);
-      return;
-    }
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem(`rc_pref_${key}`, val);
-      return;
-    }
     this.prefStore.set(key, val);
+    const store = this.storage ?? browserStorage();
+    try {
+      store?.setItem(`${PREF_PREFIX}${key}`, val);
+    } catch {
+      // quota or privacy mode: keep the in-memory copy
+    }
+  }
+
+  private get numLevels(): number {
+    return this.bundle.gameId === 'bermuda' ? 4 : 9;
+  }
+
+  /** Writes level reached, per-level scores and control mode whenever they change. */
+  private saveProgressIfChanged(): void {
+    const snap = JSON.stringify(snapshotProgress(this.globals, this.numLevels));
+    if (snap === this.lastSavedProgress) return;
+    this.lastSavedProgress = snap;
+    this.setPref(progressKey(this.globals.gGameName), snap);
   }
 
   public random(max: number): number {
@@ -273,8 +303,8 @@ export class MovieRuntime implements MovieRuntimeContext {
         width: raw.width,
         height: raw.height,
         locZ: raw.spriteNum,
-        blend: 100,
-        rotation: raw.rotationRaw / 65536 || 0,
+        blend: raw.blend ?? 100,
+        rotation: raw.rotation ?? 0,
         flipH: false,
         flipV: false,
         ink: raw.ink,
@@ -381,10 +411,17 @@ export class MovieRuntime implements MovieRuntimeContext {
   public updateFixedTimestep(dtSec: number, inputState: InputState): void {
     const step = 1 / this.getFrameRate();
     this.accumulatorSec = Math.min(this.accumulatorSec + dtSec, step * 4);
+    const withEdges = this.carriedInput ? mergeInputEdges(this.carriedInput, inputState) : inputState;
+    let ticked = false;
     while (this.accumulatorSec >= step) {
-      this.stepTick(inputState);
+      // Only the first tick of this display frame sees the edges, so a tap or key press
+      // fires once: never lost on 60-120 Hz screens, never doubled on slow frames.
+      this.stepTick(ticked ? withoutInputEdges(inputState) : withEdges);
+      ticked = true;
       this.accumulatorSec -= step;
     }
+    this.carriedInput = !ticked && hasInputEdges(withEdges) ? withEdges : null;
+    if (ticked) this.saveProgressIfChanged();
   }
 
   public toRenderSprites(): RenderSprite[] {
@@ -395,6 +432,12 @@ export class MovieRuntime implements MovieRuntimeContext {
       const mem = this.bundle.membersByKey.get(key);
       let tex = this.bundle.texturesByKey.get(key) ?? null;
       let maskTex: TextureEntry | null = null;
+
+      // Gfx member 68 is a 1x1 pixel that the terrain scripts use as "no scenery here".
+      // The scenery sprites keep their 128x100 score rect, so it was stretched into a
+      // grey (teal in Bermuda) block on the horizon. A single pixel is never real art:
+      // skip it instead of scaling it up.
+      if (tex && tex.width === 1 && tex.height === 1 && (sp.width > 1 || sp.height > 1)) continue;
 
       if (!tex && mem?.type === 15) {
         const txt = sp.text ?? this.getMemberText(sp.castLib, sp.member);

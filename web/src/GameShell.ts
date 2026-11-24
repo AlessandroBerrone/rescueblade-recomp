@@ -10,6 +10,9 @@ import { TextTextureCache } from './engine/render/TextTextureCache.ts';
 import { WebGL2StageRenderer } from './engine/render/WebGL2StageRenderer.ts';
 import { MovieRuntime } from './engine/runtime/MovieRuntime.ts';
 import { createBehaviorRegistry } from './games/registry.ts';
+import { downloadSave, pickAndImportSave } from './engine/runtime/SaveData.ts';
+import { gameUrl } from './ui/LaunchScreen.ts';
+import { TouchControls, wantsTouchControls } from './ui/TouchControls.ts';
 
 export class GameShell {
   public readonly stageCanvas: HTMLCanvasElement;
@@ -31,8 +34,11 @@ export class GameShell {
   private readonly hudBtn: HTMLButtonElement;
   private readonly actionEls = new Map<ActionId, HTMLElement>();
   private readonly axisEls: Record<'moveX' | 'moveY' | 'throttle', { val: HTMLElement; fill: HTMLElement }>;
+  private readonly stageWrap: HTMLElement;
+  private readonly touchControls: TouchControls | null = null;
+  private lastDevice = '';
 
-  constructor(root: HTMLElement, private readonly input: InputManager) {
+  constructor(root: HTMLElement, private readonly input: InputManager, initialGame: GameId = 'rescueblade') {
     root.innerHTML = `
       <div class="layout">
         <div class="panel stage-wrap">
@@ -40,8 +46,8 @@ export class GameShell {
             <h1>RescueBlade Recomp (WebGL2 + WebAudio)</h1>
             <span id="gs-status" class="badge">Caricamento...</span>
           </div>
-          <canvas id="stage-canvas" width="512" height="330"></canvas>
-          <div class="row" style="margin-top:10px;flex-wrap:wrap">
+          <div class="stage-box"><canvas id="stage-canvas" width="512" height="330"></canvas></div>
+          <div id="gs-options" class="row options-row" style="margin-top:10px;flex-wrap:wrap">
             <select id="gs-game">
               <option value="rescueblade">RescueBlade (9 Livelli)</option>
               <option value="bermuda">RescueBlade: Bermuda Triangle (4 Livelli)</option>
@@ -51,8 +57,11 @@ export class GameShell {
             <button id="gs-hud" type="button">HUD: HD</button>
             <button id="gs-mute" type="button">Audio: ON</button>
             <button id="gs-fs" type="button">Fullscreen</button>
+            <button id="gs-home" type="button">Cambia gioco</button>
+            <button id="gs-export" type="button" title="Scarica i progressi in un file">Esporta salvataggi</button>
+            <button id="gs-import" type="button" title="Carica i progressi da un file">Importa salvataggi</button>
           </div>
-          <div class="row" style="font-size:12px;color:#94a3b8;margin-top:4px">
+          <div class="row hints-row" style="font-size:12px;color:#94a3b8;margin-top:4px">
             <span>Frecce/WASD o Stick: Volo &bull; Spazio/A: Verricello / Acqua / Foto &bull; P/Start: Pausa &bull; R+I+X: Sblocca livelli</span>
             <span id="gs-frame">F1</span>
           </div>
@@ -106,19 +115,50 @@ export class GameShell {
       this.actionEls.set(a, el);
     }
 
+    this.stageWrap = root.querySelector<HTMLElement>('.stage-wrap')!;
+    if (wantsTouchControls()) {
+      document.body.classList.add('touch-mode');
+      this.touchControls = new TouchControls({
+        host: root.querySelector<HTMLElement>('.stage-box')!,
+        canvas: this.stageCanvas,
+        touch: this.input.touch,
+        stageWidth: 512,
+        stageHeight: 330,
+        onToggleOptions: () => this.stageWrap.classList.toggle('show-options'),
+        onToggleFullscreen: () => this.toggleFullscreen(),
+        fullscreenSupported: Boolean(document.fullscreenEnabled),
+      });
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) this.touchControls?.releaseAll();
+      });
+    }
+
+    root.querySelector<HTMLSelectElement>('#gs-game')!.value = initialGame;
     this.bindUI(root);
-    void this.switchGame('rescueblade');
+    void this.switchGame(initialGame);
   }
 
   private bindUI(root: HTMLElement): void {
     const unlockAudio = () => { void this.sound.unlock(); };
     window.addEventListener('pointerdown', unlockAudio, { passive: true });
+    // iOS Safari only lets audio start from touchend/click, not pointerdown.
+    window.addEventListener('touchend', unlockAudio, { passive: true });
     window.addEventListener('keydown', unlockAudio, { passive: true });
 
     const gameSel = root.querySelector<HTMLSelectElement>('#gs-game')!;
     gameSel.addEventListener('change', () => {
-      void this.switchGame(gameSel.value as GameId);
+      const gameId = gameSel.value as GameId;
+      history.replaceState(null, '', gameUrl(gameId, window.location));
+      void this.switchGame(gameId);
     });
+
+    root.querySelector<HTMLButtonElement>('#gs-home')!.addEventListener('click', () => {
+      this.sound.stopAll();
+      window.location.href = gameUrl(null, window.location);
+    });
+
+    root.querySelector<HTMLButtonElement>('#gs-export')!.addEventListener('click', () => downloadSave());
+    root.querySelector<HTMLButtonElement>('#gs-import')!.addEventListener('click', () => pickAndImportSave());
 
     this.controlsBtn.addEventListener('click', () => {
       if (!this.runtime) return;
@@ -149,8 +189,7 @@ export class GameShell {
     });
 
     root.querySelector<HTMLButtonElement>('#gs-fs')!.addEventListener('click', () => {
-      if (document.fullscreenElement) void document.exitFullscreen?.();
-      else void this.stageCanvas.requestFullscreen?.();
+      this.toggleFullscreen();
     });
 
     const dzSlider = root.querySelector<HTMLInputElement>('#dbg-dz')!;
@@ -164,6 +203,24 @@ export class GameShell {
     root.querySelector<HTMLInputElement>('#gs-vol')!.addEventListener('input', (e) => {
       this.sound.setMasterVolume(Number((e.target as HTMLInputElement).value));
     });
+  }
+
+  /**
+   * Desktop: the canvas alone goes fullscreen. Touch: the whole stage panel does, so the
+   * on-screen controls stay visible, and phones are asked to stay in landscape.
+   */
+  private toggleFullscreen(): void {
+    if (document.fullscreenElement) {
+      void document.exitFullscreen?.();
+      return;
+    }
+    const target = this.touchControls ? this.stageWrap : this.stageCanvas;
+    const req = target.requestFullscreen?.({ navigationUI: 'hide' });
+    if (this.touchControls && req) {
+      void req
+        .then(() => (screen.orientation as ScreenOrientation & { lock?: (o: string) => Promise<void> }).lock?.('landscape'))
+        .catch(() => undefined);
+    }
   }
 
   private async switchGame(gameId: GameId): Promise<void> {
@@ -191,7 +248,9 @@ export class GameShell {
 
   private getTargetHdScale(): number {
     const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
-    const isFs = typeof document !== 'undefined' && document.fullscreenElement === this.stageCanvas;
+    const isFs =
+      typeof document !== 'undefined' &&
+      (document.fullscreenElement === this.stageCanvas || document.fullscreenElement === this.stageWrap);
     return isFs ? 4 : Math.max(3, Math.min(4, Math.ceil(dpr * 2)));
   }
 
@@ -215,7 +274,14 @@ export class GameShell {
       this.renderer.renderFrame([119, 187, 255], []);
     }
 
-    this.deviceEl.textContent = state.lastActiveDevice;
+    if (state.lastActiveDevice !== this.lastDevice) {
+      this.lastDevice = state.lastActiveDevice;
+      this.deviceEl.textContent = state.lastActiveDevice;
+      // A controller paired to the phone takes over: hide the on-screen controls until touched again.
+      if (this.touchControls && state.lastActiveDevice !== 'keyboard') {
+        document.body.classList.toggle('touch-hidden', state.lastActiveDevice === 'gamepad');
+      }
+    }
     this.padEl.textContent = state.activeGamepad
       ? `Gamepad #${state.activeGamepad.index}: ${state.activeGamepad.id.slice(0, 24)}`
       : `Gamepad: nessuno (${state.connectedGamepads})`;

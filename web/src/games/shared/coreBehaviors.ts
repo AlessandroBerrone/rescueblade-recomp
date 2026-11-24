@@ -1,5 +1,6 @@
 import type { BehaviorFactory, MovieRuntimeContext, SpriteInstance } from '../../engine/runtime/DirectorTypes.ts';
 import type { Quad2D } from '../../engine/render/types.ts';
+import { lingoInteger } from '../../engine/runtime/MovieGlobals.ts';
 
 export function wrapWorldX(x: number, loopX: number, loopWidth: number): number {
   if (loopWidth <= 0) return x;
@@ -348,6 +349,29 @@ export function registerSharedCoreBehaviors(map: Map<string, BehaviorFactory>): 
     let fuelFlashToggle = 1;
     let damageBarDelay = 0;
     let damageFlashToggle = 1;
+    const updateDamageBar = (ctx: MovieRuntimeContext, sp: SpriteInstance, isBermuda: boolean) => {
+      const g = ctx.globals;
+      if (g.gDamagePercent > 100) g.gDamagePercent = 100;
+      displayDamage += (g.gDamagePercent - displayDamage) * 0.05;
+      const damageBar = ctx.sprite(sp.spriteNum + 7);
+      damageBar.locH = (displayDamage / 100) * 92;
+      if (g.gDamagePercent > 80) {
+        damageBarDelay++;
+        if (damageBarDelay === 4) {
+          damageBarDelay = 0;
+          damageBar.blend = 55 + 45 * damageFlashToggle;
+          damageFlashToggle = -damageFlashToggle;
+          if (!ctx.soundBusy(3)) ctx.puppetSound(3, 13);
+        } else if (isBermuda) {
+          // Bermuda: only one frame in four is dimmed.
+          damageBar.blend = 100;
+        }
+      } else if (!isBermuda) {
+        // RescueBlade: the bar blinks 100/10 every four frames and goes back to
+        // full when the damage drops (e.g. after the tools pickup).
+        damageBar.blend = 100;
+      }
+    };
     return {
       name: 'Score&Bars',
       spriteNum: 0,
@@ -381,10 +405,17 @@ export function registerSharedCoreBehaviors(map: Map<string, BehaviorFactory>): 
       },
       exitFrame(ctx, sp) {
         const g = ctx.globals;
-        if (g.gPaused !== 0) return;
+        const isBermuda = ctx.bundle.gameId === 'bermuda';
+        if (g.gPaused !== 0) {
+          // RescueBlade's original keeps updating the damage bar while paused.
+          if (!isBermuda) updateDamageBar(ctx, sp, false);
+          return;
+        }
         if (g.gScore > 9999999) g.gScore = 9999999;
         displayScore += (g.gScore - displayScore) * 0.2;
-        let calc = Math.floor(displayScore);
+        // Lingo integer() rounds: with floor the counter sat one point below the
+        // real score (e.g. 499 for 500) for several seconds after every pickup.
+        let calc = lingoInteger(displayScore);
         for (let i = 7; i >= 1; i--) {
           const p10 = Math.pow(10, i - 1);
           const rem = calc % p10;
@@ -408,22 +439,8 @@ export function registerSharedCoreBehaviors(map: Map<string, BehaviorFactory>): 
         } else {
           fuelBar.blend = 100;
         }
-        if (g.gDamagePercent > 100) g.gDamagePercent = 100;
-        displayDamage += (g.gDamagePercent - displayDamage) * 0.05;
-        const damageBar = ctx.sprite(sp.spriteNum + 7);
-        damageBar.locH = (displayDamage / 100) * 92;
-        if (g.gDamagePercent > 80) {
-          damageBarDelay++;
-          if (damageBarDelay === 4) {
-            damageBarDelay = 0;
-            damageBar.blend = 55 + 45 * damageFlashToggle;
-            damageFlashToggle = -damageFlashToggle;
-            if (!ctx.soundBusy(3)) ctx.puppetSound(3, 13);
-          } else {
-            damageBar.blend = 100;
-          }
-        }
-        if (ctx.bundle.gameId === 'bermuda') {
+        updateDamageBar(ctx, sp, isBermuda);
+        if (isBermuda) {
           ctx.sprite(2).locH = g.gCoconuts * 9;
         }
       },
@@ -568,7 +585,7 @@ export function registerSharedCoreBehaviors(map: Map<string, BehaviorFactory>): 
         thisHalfWidth = sp.width / 2;
         sp.locZ = 2;
         const calc = xpos - 256 - 64 + sp.width / 2;
-        ptr = Math.trunc(cnt / 2) + Math.trunc(calc / 128);
+        ptr = Math.trunc(cnt / 2) + lingoInteger(calc / 128);
         ptr = ((ptr - 1) % cnt + cnt) % cnt + 1;
         thisTileID = g.gTileIDList[ptr - 1] ?? 0;
       },
@@ -577,13 +594,13 @@ export function registerSharedCoreBehaviors(map: Map<string, BehaviorFactory>): 
         if (g.gPaused !== 0) return;
         const cnt = g.gTileIDList.length || 1;
         xpos += g.gXVel + g.gXOffset;
-        if (Math.trunc(xpos) > rightLoopX) {
+        if (lingoInteger(xpos) > rightLoopX) {
           xpos -= loopWidth;
           ptr -= 9;
           while (ptr < 1) ptr += cnt;
           thisTileID = g.gTileIDList[ptr - 1] ?? 0;
         }
-        if (Math.trunc(xpos) < leftLoopX) {
+        if (lingoInteger(xpos) < leftLoopX) {
           xpos += loopWidth;
           ptr += 9;
           while (ptr > cnt) ptr -= cnt;
@@ -596,10 +613,10 @@ export function registerSharedCoreBehaviors(map: Map<string, BehaviorFactory>): 
         const xL = xpos - thisHalfWidth;
         const xR = xpos + thisHalfWidth;
         const quad: Quad2D = [
-          { x: Math.trunc(xL + (256 - xL) * 0.5), y: 256 },
-          { x: Math.trunc(xR + (256 - xR) * 0.5), y: 256 },
-          { x: Math.trunc(xR), y: Math.trunc(280 - hR) },
-          { x: Math.trunc(xL), y: Math.trunc(280 - hL) },
+          { x: lingoInteger(xL + (256 - xL) * 0.5), y: 256 },
+          { x: lingoInteger(xR + (256 - xR) * 0.5), y: 256 },
+          { x: lingoInteger(xR), y: lingoInteger(280 - hR) },
+          { x: lingoInteger(xL), y: lingoInteger(280 - hL) },
         ];
         sp.quad = quad;
         sp.member = tileMember(thisTileID, g.gSeaFrame, true);
@@ -678,10 +695,10 @@ export function registerSharedCoreBehaviors(map: Map<string, BehaviorFactory>): 
       const xL = xpos - thisHalfWidth;
       const xR = xpos + thisHalfWidth;
       sp.quad = [
-        { x: Math.trunc(xL), y: Math.trunc(280 - hL) },
-        { x: Math.trunc(xR), y: Math.trunc(280 - hR) },
-        { x: Math.trunc(xR + (xR - 256)), y: 330 },
-        { x: Math.trunc(xL + (xL - 256)), y: 330 },
+        { x: lingoInteger(xL), y: lingoInteger(280 - hL) },
+        { x: lingoInteger(xR), y: lingoInteger(280 - hR) },
+        { x: lingoInteger(xR + (xR - 256)), y: 330 },
+        { x: lingoInteger(xL + (xL - 256)), y: 330 },
       ];
       sp.member = tileMember(thisTileID, g.gSeaFrame, false);
       scenerySprite.member = sceneryMemberFor(sceneryID);
@@ -709,7 +726,7 @@ export function registerSharedCoreBehaviors(map: Map<string, BehaviorFactory>): 
         xpos = sp.locH;
         thisHalfWidth = sp.width / 2;
         const calc = xpos - 256 - 64 + sp.width / 2;
-        ptr = Math.trunc(cnt / 2) + Math.trunc(calc / 128);
+        ptr = Math.trunc(cnt / 2) + lingoInteger(calc / 128);
         ptr = ((ptr - 1) % cnt + cnt) % cnt + 1;
         thisTileID = g.gTileIDList[ptr - 1] ?? 0;
         scenerySprite = ctx.sprite(sp.spriteNum + 5);
@@ -724,14 +741,14 @@ export function registerSharedCoreBehaviors(map: Map<string, BehaviorFactory>): 
         if (g.gPaused !== 0) return;
         const cnt = g.gTileIDList.length || 1;
         xpos += g.gXVel + g.gXOffset;
-        if (Math.trunc(xpos) > rightLoopX) {
+        if (lingoInteger(xpos) > rightLoopX) {
           xpos -= loopWidth;
           ptr -= 5;
           while (ptr < 1) ptr += cnt;
           thisTileID = g.gTileIDList[ptr - 1] ?? 0;
           refreshTileAndPickup(ctx);
         }
-        if (Math.trunc(xpos) < leftLoopX) {
+        if (lingoInteger(xpos) < leftLoopX) {
           xpos += loopWidth;
           ptr += 5;
           while (ptr > cnt) ptr -= cnt;

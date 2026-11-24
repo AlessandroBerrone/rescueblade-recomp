@@ -1,6 +1,7 @@
 import type { BehaviorFactory, MovieRuntimeContext, SpriteInstance } from '../../engine/runtime/DirectorTypes.ts';
 import type { Quad2D } from '../../engine/render/types.ts';
 import { wrapWorldX } from '../shared/coreBehaviors.ts';
+import { lingoInteger } from '../../engine/runtime/MovieGlobals.ts';
 
 export function registerBermudaBossAndSubBehaviors(map: Map<string, BehaviorFactory>): void {
   const rad = Math.PI / 180;
@@ -159,7 +160,7 @@ export function registerBermudaBossAndSubBehaviors(map: Map<string, BehaviorFact
               if (head.locV > 290) {
                 state = 'Sink';
                 g.gRescueCount += 1;
-                g.gScore += Math.trunc(2000 * scale);
+                g.gScore += lingoInteger(2000 * scale);
                 ctx.puppetSound(4, 1);
               } else if (fireBall.vars.fireBallState !== 'FLY') {
                 state = 'EXHALE';
@@ -473,25 +474,25 @@ export function registerBermudaBossAndSubBehaviors(map: Map<string, BehaviorFact
         rightLoopX = 256 + sp.width * 4.5; leftLoopX = 256 - sp.width * 4.5; loopWidth = 512 + sp.width * 5;
         xpos = sp.locH; halfW = sp.width / 2; sp.locZ = 2;
         const calc = xpos - 256 - 64 + sp.width / 2;
-        ptr = ((Math.trunc(cnt / 2) + Math.trunc(calc / 128) - 1) % cnt + cnt) % cnt + 1;
+        ptr = ((Math.trunc(cnt / 2) + lingoInteger(calc / 128) - 1) % cnt + cnt) % cnt + 1;
       },
       exitFrame(ctx, sp) {
         const g = ctx.globals;
         if (g.gPaused !== 0) return;
         const cnt = g.gTileIDList.length || 1;
         xpos += g.gXVel + g.gXOffset;
-        if (Math.trunc(xpos) > rightLoopX) { xpos -= loopWidth; ptr -= 9; while (ptr < 1) ptr += cnt; }
-        if (Math.trunc(xpos) < leftLoopX) { xpos += loopWidth; ptr += 9; while (ptr > cnt) ptr -= cnt; }
+        if (lingoInteger(xpos) > rightLoopX) { xpos -= loopWidth; ptr -= 9; while (ptr < 1) ptr += cnt; }
+        if (lingoInteger(xpos) < leftLoopX) { xpos += loopWidth; ptr += 9; while (ptr > cnt) ptr -= cnt; }
         sp.locH = xpos;
         const nextPtr = ptr + 1 > cnt ? 1 : ptr + 1;
         const hL = g.gUnderSeaHeightList[ptr - 1] ?? 0;
         const hR = g.gUnderSeaHeightList[nextPtr - 1] ?? 0;
         const xL = xpos - halfW; const xR = xpos + halfW;
         const quad: Quad2D = [
-          { x: Math.trunc(xL + (256 - xL) * 0.5), y: Math.trunc(80 - hL * 0.2) },
-          { x: Math.trunc(xR + (256 - xR) * 0.5), y: Math.trunc(80 - hR * 0.2) },
-          { x: Math.trunc(xR), y: Math.trunc(-20 - hR) },
-          { x: Math.trunc(xL), y: Math.trunc(-20 - hL) },
+          { x: lingoInteger(xL + (256 - xL) * 0.5), y: lingoInteger(80 - hL * 0.2) },
+          { x: lingoInteger(xR + (256 - xR) * 0.5), y: lingoInteger(80 - hR * 0.2) },
+          { x: lingoInteger(xR), y: lingoInteger(-20 - hR) },
+          { x: lingoInteger(xL), y: lingoInteger(-20 - hL) },
         ];
         sp.quad = quad;
         sp.member = g.gSeaFrame;
