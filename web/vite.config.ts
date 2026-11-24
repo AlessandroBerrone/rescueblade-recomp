@@ -50,8 +50,28 @@ function serveExtractedAssets(): Plugin {
   };
 }
 
+/** Copies ../extracted/<game>/assets into dist/assets/<game> so the build is self-contained. */
+function copyExtractedAssets(): Plugin {
+  let outDir = 'dist';
+  return {
+    name: 'copy-extracted-assets',
+    apply: 'build',
+    configResolved(config) {
+      outDir = path.resolve(config.root, config.build.outDir);
+    },
+    writeBundle() {
+      const extractedRoot = path.resolve(__dirname, '../extracted');
+      for (const game of ['rescueblade', 'bermuda'] as const) {
+        fs.cpSync(path.join(extractedRoot, game, 'assets'), path.join(outDir, 'assets', game), { recursive: true });
+      }
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [serveExtractedAssets()],
+  // GitHub Pages serves the site from /<repo>/; set BASE_PATH there.
+  base: process.env.BASE_PATH ?? '/',
+  plugins: [serveExtractedAssets(), copyExtractedAssets()],
   server: {
     port: 5173,
   },

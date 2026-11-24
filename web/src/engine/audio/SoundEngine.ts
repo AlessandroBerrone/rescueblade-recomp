@@ -104,7 +104,7 @@ export class SoundEngine {
     const ctx = this.ensureContext();
     if (!ctx) return;
 
-    const base = `/assets/${gameId}`;
+    const base = `${import.meta.env.BASE_URL}assets/${gameId}`;
     const tasks: Promise<void>[] = [];
     for (const m of manifest.members) {
       if (m.type === 6 && m.file) {
