@@ -34,10 +34,11 @@ export class GameShell {
   private readonly controlsBtn: HTMLButtonElement;
   private readonly muteBtn: HTMLButtonElement;
   private readonly hudBtn: HTMLButtonElement;
-  private readonly gfxBtn: HTMLButtonElement;
+  private gfxBtn!: HTMLButtonElement;
   private readonly actionEls = new Map<ActionId, HTMLElement>();
   private readonly axisEls: Record<'moveX' | 'moveY' | 'throttle', { val: HTMLElement; fill: HTMLElement }>;
   private readonly stageWrap: HTMLElement;
+  private readonly stageBox: HTMLElement;
   private readonly touchControls: TouchControls | null = null;
   private lastDevice = '';
 
@@ -57,7 +58,6 @@ export class GameShell {
             </select>
             <button id="gs-controls" type="button">Controlli: Simplified</button>
             <button id="gs-menu" type="button">Menu</button>
-            <button id="gs-gfx" type="button" title="Grafica originale o ridisegnata in alta risoluzione">Grafica: HD</button>
             <button id="gs-hud" type="button">HUD: HD</button>
             <button id="gs-mute" type="button">Audio: ON</button>
             <button id="gs-fs" type="button">Fullscreen</button>
@@ -66,7 +66,7 @@ export class GameShell {
             <button id="gs-import" type="button" title="Carica i progressi da un file">Importa salvataggi</button>
           </div>
           <div class="row hints-row" style="font-size:12px;color:#94a3b8;margin-top:4px">
-            <span>Frecce/WASD o Stick: Volo &bull; Spazio/A: Verricello / Acqua / Foto &bull; P/Start: Pausa &bull; R+I+X: Sblocca livelli</span>
+            <span>Frecce/WASD o Stick: Volo &bull; Spazio/A: Verricello / Acqua / Foto &bull; P/Start: Pausa &bull; G: Grafica HD/originale &bull; R+I+X: Sblocca livelli</span>
             <span id="gs-frame">F1</span>
           </div>
         </div>
@@ -104,8 +104,6 @@ export class GameShell {
     this.controlsBtn = root.querySelector('#gs-controls')!;
     this.muteBtn = root.querySelector('#gs-mute')!;
     this.hudBtn = root.querySelector('#gs-hud')!;
-    this.gfxBtn = root.querySelector('#gs-gfx')!;
-    this.updateGraphicsButton();
     this.axisEls = {
       moveX: { val: root.querySelector('#val-moveX')!, fill: root.querySelector('#fill-moveX')! },
       moveY: { val: root.querySelector('#val-moveY')!, fill: root.querySelector('#fill-moveY')! },
@@ -122,6 +120,7 @@ export class GameShell {
     }
 
     this.stageWrap = root.querySelector<HTMLElement>('.stage-wrap')!;
+    this.stageBox = root.querySelector<HTMLElement>('.stage-box')!;
     if (wantsTouchControls()) {
       document.body.classList.add('touch-mode');
       this.touchControls = new TouchControls({
@@ -138,6 +137,22 @@ export class GameShell {
         if (document.hidden) this.touchControls?.releaseAll();
       });
     }
+
+    // Graphics switch on the game screen itself (also in fullscreen): bottom-right corner
+    // of the stage, or next to the options/fullscreen icons on touch screens.
+    this.gfxBtn = document.createElement('button');
+    this.gfxBtn.type = 'button';
+    this.gfxBtn.id = 'gs-gfx';
+    this.gfxBtn.title = 'Cambia grafica: originale o HD (tasto G)';
+    const touchTop = root.querySelector<HTMLElement>('.tc-top');
+    if (touchTop) {
+      this.gfxBtn.className = 'tc-icon tc-gfx';
+      touchTop.prepend(this.gfxBtn);
+    } else {
+      this.gfxBtn.className = 'stage-gfx';
+      root.querySelector<HTMLElement>('.stage-box')!.appendChild(this.gfxBtn);
+    }
+    this.updateGraphicsButton();
 
     root.querySelector<HTMLSelectElement>('#gs-game')!.value = initialGame;
     this.bindUI(root);
@@ -183,11 +198,15 @@ export class GameShell {
       this.applyHudMode();
     });
 
-    this.gfxBtn.addEventListener('click', () => {
-      this.hdGraphics = !this.hdGraphics;
-      writeGraphicsPref(this.hdGraphics);
-      this.updateGraphicsButton();
-      void this.applyGraphicsMode();
+    this.gfxBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.gfxBtn.blur(); // keep Space/Enter going to the game, not to this button
+      this.toggleGraphics();
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.code !== 'KeyG' || e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement) return;
+      this.toggleGraphics();
     });
 
     document.addEventListener('fullscreenchange', () => {
@@ -219,7 +238,7 @@ export class GameShell {
   }
 
   /**
-   * Desktop: the canvas alone goes fullscreen. Touch: the whole stage panel does, so the
+   * Desktop: the stage box (canvas + graphics button) goes fullscreen. Touch: the whole stage panel does, so the
    * on-screen controls stay visible, and phones are asked to stay in landscape.
    */
   private toggleFullscreen(): void {
@@ -227,7 +246,7 @@ export class GameShell {
       void document.exitFullscreen?.();
       return;
     }
-    const target = this.touchControls ? this.stageWrap : this.stageCanvas;
+    const target = this.touchControls ? this.stageWrap : this.stageBox;
     const req = target.requestFullscreen?.({ navigationUI: 'hide' });
     if (this.touchControls && req) {
       void req
@@ -266,7 +285,7 @@ export class GameShell {
     const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
     const isFs =
       typeof document !== 'undefined' &&
-      (document.fullscreenElement === this.stageCanvas || document.fullscreenElement === this.stageWrap);
+      (document.fullscreenElement === this.stageBox || document.fullscreenElement === this.stageWrap);
     return isFs ? 4 : Math.max(3, Math.min(4, Math.ceil(dpr * 2)));
   }
 
@@ -284,8 +303,18 @@ export class GameShell {
     return { hdHud: this.hdHud, hdGraphics: this.hdGraphics };
   }
 
+  private toggleGraphics(): void {
+    if (this.gfxBtn.disabled) return;
+    this.hdGraphics = !this.hdGraphics;
+    writeGraphicsPref(this.hdGraphics);
+    this.updateGraphicsButton();
+    void this.applyGraphicsMode();
+  }
+
   private updateGraphicsButton(): void {
-    this.gfxBtn.textContent = `Grafica: ${this.hdGraphics ? 'HD' : 'Originale'}`;
+    this.gfxBtn.textContent = this.hdGraphics ? 'HD' : 'ORIG';
+    this.gfxBtn.classList.toggle('is-hd', this.hdGraphics);
+    this.gfxBtn.setAttribute('aria-label', `Grafica: ${this.hdGraphics ? 'HD' : 'originale'}. Premi per cambiare.`);
   }
 
   /** Switches every loaded game between original and upscaled bitmaps (loading them once). */
@@ -295,7 +324,7 @@ export class GameShell {
       const bundle = this.bundles.get(this.activeGame);
       if (bundle && !bundle.hdBitmapTexturesByKey) {
         this.gfxBtn.disabled = true;
-        this.gfxBtn.textContent = 'Grafica: carico HD...';
+        this.gfxBtn.textContent = '…';
         await loadHdBitmaps(bundle, this.renderer);
         this.gfxBtn.disabled = false;
         this.updateGraphicsButton();
