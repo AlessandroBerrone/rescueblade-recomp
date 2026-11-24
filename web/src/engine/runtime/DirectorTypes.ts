@@ -22,6 +22,8 @@ export interface SpriteInstance {
   flipH: boolean;
   flipV: boolean;
   ink: number;
+  /** Score back colour as RGB 0..255, keyed out by Background Transparent ink. White when unset. */
+  bgColor?: readonly [number, number, number];
   quad: Quad2D | null;
   visible: boolean;
   /** Mutable text override for TextXtra sprites (e.g. Mission, Score, SubmitScore). */

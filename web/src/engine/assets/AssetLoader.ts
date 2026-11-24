@@ -69,6 +69,8 @@ export interface ScoreSpriteEntry {
   /** Score rotation in degrees. */
   rotation?: number;
   skew?: number;
+  /** Back colour as RGB, when the score stores one (colour code bit 0x20). */
+  backColorRGB?: [number, number, number];
   behaviors: { castLib: number; member: number; name?: string; params?: Record<string, unknown> }[];
   memberName?: string;
   memberType?: number;

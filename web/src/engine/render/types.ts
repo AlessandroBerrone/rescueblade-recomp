@@ -40,6 +40,8 @@ export interface RenderSprite {
   readonly flipV: boolean;
   readonly blend: number;
   readonly ink: number;
+  /** Colour keyed out by Background Transparent / Matte ink (RGB 0..255). Defaults to white. */
+  readonly keyColor?: readonly [number, number, number];
   readonly quad: Quad2D | null;
   readonly visible?: boolean;
 }

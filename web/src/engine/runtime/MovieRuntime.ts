@@ -25,6 +25,20 @@ import {
 
 export type BehaviorRegistry = ReadonlyMap<string, BehaviorFactory>;
 
+/**
+ * Unstretched score sprites whose stored rect is stale: Director draws an unstretched
+ * sprite at its member's own size, and these members were redrawn larger after being
+ * placed. Bermuda level 4: the underwater backdrop is 512x200 (score says 512x150) and
+ * the surface shade 512x64 (score says 32). At the stored size the backdrop stops at
+ * y=105 while the water surface quads end at y=80, leaving a band of light-blue stage
+ * colour; at natural size it spans exactly 80..280. Not applied to every unstretched
+ * sprite, because the tornado debris are also flagged unstretched but are drawn at the
+ * smaller score size.
+ */
+const NATURAL_SIZE_MEMBERS: Partial<Record<string, ReadonlySet<string>>> = {
+  bermuda: new Set(['3:153', '3:144']),
+};
+
 export class MovieRuntime implements MovieRuntimeContext {
   public readonly globals: MovieGlobals;
   public currentFrame = 1;
@@ -294,20 +308,23 @@ export class MovieRuntime implements MovieRuntimeContext {
         }
       }
 
+      const natural = NATURAL_SIZE_MEMBERS[this.bundle.gameId]?.has(key) ? mem?.bitmap : undefined;
+
       const sp: SpriteInstance = {
         spriteNum: raw.spriteNum,
         castLib: raw.castLib,
         member: raw.member,
         locH: raw.locH,
         locV: raw.locV,
-        width: raw.width,
-        height: raw.height,
+        width: natural?.width ?? raw.width,
+        height: natural?.height ?? raw.height,
         locZ: raw.spriteNum,
         blend: raw.blend ?? 100,
         rotation: raw.rotation ?? 0,
         flipH: false,
         flipV: false,
         ink: raw.ink,
+        bgColor: raw.backColorRGB,
         quad: null,
         visible: true,
         text: initialText,
@@ -472,6 +489,7 @@ export class MovieRuntime implements MovieRuntimeContext {
         flipV: sp.flipV,
         blend: sp.blend,
         ink: sp.ink,
+        keyColor: sp.bgColor,
         quad: sp.quad,
         visible: sp.visible,
       });

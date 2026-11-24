@@ -25,6 +25,7 @@ uniform sampler2D u_maskTex;
 uniform float u_alpha;
 uniform int u_ink;
 uniform int u_hasAlpha;
+uniform vec3 u_keyColor;
 out vec4 outColor;
 void main() {
   vec2 uv = v_uvq.xy / v_uvq.z;
@@ -36,7 +37,7 @@ void main() {
     float maskLuma = dot(m.rgb, vec3(0.299, 0.587, 0.114));
     a = (1.0 - maskLuma) * m.a;
   } else if (u_ink == 36 || (u_ink == 8 && u_hasAlpha == 0)) {
-    if (texel.r > 0.96 && texel.g > 0.96 && texel.b > 0.96) {
+    if (all(lessThan(abs(texel.rgb - u_keyColor), vec3(0.04)))) {
       a = 0.0;
     }
   }
@@ -51,6 +52,8 @@ void main() {
   outColor = vec4(texel.rgb, a);
 }
 `;
+
+const WHITE = [255, 255, 255] as const;
 
 function compileShader(gl: WebGL2RenderingContext, type: number, src: string): WebGLShader {
   const sh = gl.createShader(type);
@@ -85,6 +88,7 @@ export class WebGL2StageRenderer {
   private readonly uAlpha: WebGLUniformLocation;
   private readonly uInk: WebGLUniformLocation;
   private readonly uHasAlpha: WebGLUniformLocation;
+  private readonly uKeyColor: WebGLUniformLocation;
 
   constructor(canvas: HTMLCanvasElement, stageWidth = 512, stageHeight = 330, renderScale = 1) {
     this.canvas = canvas;
@@ -124,6 +128,7 @@ export class WebGL2StageRenderer {
     this.uAlpha = gl.getUniformLocation(prog, 'u_alpha')!;
     this.uInk = gl.getUniformLocation(prog, 'u_ink')!;
     this.uHasAlpha = gl.getUniformLocation(prog, 'u_hasAlpha')!;
+    this.uKeyColor = gl.getUniformLocation(prog, 'u_keyColor')!;
 
     this.vao = gl.createVertexArray()!;
     this.vbo = gl.createBuffer()!;
@@ -287,6 +292,8 @@ export class WebGL2StageRenderer {
       gl.uniform1f(this.uAlpha, Math.max(0, Math.min(100, sp.blend)) / 100);
       gl.uniform1i(this.uInk, sp.ink);
       gl.uniform1i(this.uHasAlpha, sp.texture.hasAlpha ? 1 : 0);
+      const key = sp.keyColor ?? WHITE;
+      gl.uniform3f(this.uKeyColor, key[0] / 255, key[1] / 255, key[2] / 255);
 
       gl.bufferSubData(gl.ARRAY_BUFFER, 0, vd);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
