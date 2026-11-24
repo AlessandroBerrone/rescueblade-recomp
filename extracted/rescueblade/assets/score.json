@@ -5401,6 +5401,16 @@
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
+        "backColorRGB": [
+          128,
+          0,
+          0
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          0
+        ],
         "memberName": "FLAMES~1",
         "memberType": 1
       }
@@ -7177,6 +7187,16 @@
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
+        ],
         "memberName": "FLAMES~1",
         "memberType": 1
       },
@@ -7207,6 +7227,16 @@
             "name": "Flames",
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
+        ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
         ],
         "memberName": "FLAMES~1",
         "memberType": 1
@@ -7239,6 +7269,16 @@
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
+        ],
         "memberName": "FLAMES~1",
         "memberType": 1
       },
@@ -7270,6 +7310,16 @@
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
+        ],
         "memberName": "FLAMES~1",
         "memberType": 1
       },
@@ -7300,6 +7350,16 @@
             "name": "Flames",
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
+        ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
         ],
         "memberName": "FLAMES~1",
         "memberType": 1
@@ -15057,6 +15117,16 @@
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
+        ],
         "memberName": "FLAMES~1",
         "memberType": 1
       },
@@ -15087,6 +15157,16 @@
             "name": "Flames",
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
+        ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
         ],
         "memberName": "FLAMES~1",
         "memberType": 1
@@ -15119,6 +15199,16 @@
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
+        ],
         "memberName": "FLAMES~1",
         "memberType": 1
       },
@@ -15149,6 +15239,16 @@
             "name": "Flames",
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
+        ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
         ],
         "memberName": "FLAMES~1",
         "memberType": 1
@@ -15181,6 +15281,16 @@
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
+        ],
         "memberName": "FLAMES~1",
         "memberType": 1
       },
@@ -15212,6 +15322,16 @@
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
+        ],
         "memberName": "FLAMES~1",
         "memberType": 1
       },
@@ -15242,6 +15362,16 @@
             "name": "Flames",
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
+        ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
         ],
         "memberName": "FLAMES~1",
         "memberType": 1
@@ -18447,6 +18577,16 @@
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
+        ],
         "memberName": "FLAMES~1",
         "memberType": 1
       },
@@ -18477,6 +18617,16 @@
             "name": "Flames",
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
+        ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
         ],
         "memberName": "FLAMES~1",
         "memberType": 1
@@ -18509,6 +18659,16 @@
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
+        ],
         "memberName": "FLAMES~1",
         "memberType": 1
       },
@@ -18539,6 +18699,16 @@
             "name": "Flames",
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 34 - Flames.ls"
           }
+        ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
+        "foreColorRGB": [
+          0,
+          0,
+          255
         ],
         "memberName": "FLAMES~1",
         "memberType": 1
@@ -19020,6 +19190,11 @@
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
         "memberName": "SUBMAR~2",
         "memberType": 1
       },
@@ -19050,6 +19225,11 @@
             "name": "ZReset",
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
+        ],
+        "backColorRGB": [
+          255,
+          0,
+          255
         ],
         "memberName": "SUBMAR~2",
         "memberType": 1
@@ -19082,6 +19262,11 @@
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
         "memberName": "SUBMAR~2",
         "memberType": 1
       },
@@ -19113,6 +19298,11 @@
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
         "memberName": "SUBMAR~2",
         "memberType": 1
       },
@@ -19143,6 +19333,11 @@
             "name": "ZReset",
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 19 - ZReset.ls"
           }
+        ],
+        "backColorRGB": [
+          255,
+          0,
+          255
         ],
         "memberName": "DECONS~1",
         "memberType": 1
@@ -21012,6 +21207,11 @@
         "skew": 0.0,
         "intervalIdx": 5802,
         "behaviors": [],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
         "memberName": "DECONS~2",
         "memberType": 1
       },
@@ -21042,6 +21242,11 @@
             "name": "ShipGreenPace",
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 48 - ShipGreenPace.ls"
           }
+        ],
+        "backColorRGB": [
+          255,
+          0,
+          255
         ],
         "memberName": "DECONS~1",
         "memberType": 1
@@ -21705,6 +21910,11 @@
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 46 - WarHead.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
         "memberName": "SUBMAR~2",
         "memberType": 1
       },
@@ -21736,6 +21946,11 @@
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 46 - WarHead.ls"
           }
         ],
+        "backColorRGB": [
+          255,
+          0,
+          255
+        ],
         "memberName": "SUBMAR~2",
         "memberType": 1
       },
@@ -21766,6 +21981,11 @@
             "name": "WarHead",
             "lsFile": "extracted/rescueblade/pr_dump/rescueblade/casts/Internal/BehaviorScript 46 - WarHead.ls"
           }
+        ],
+        "backColorRGB": [
+          255,
+          0,
+          255
         ],
         "memberName": "SUBMAR~2",
         "memberType": 1

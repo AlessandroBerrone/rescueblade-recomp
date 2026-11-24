@@ -31,6 +31,8 @@ The repository includes:
 - **Faithful WebGL2 Rendering + Optional HD HUD**:
   - Supports Director ink modes (`COPY`, `MATTE`, `MASK`, `ADD_PIN`, `ADD`, `BG_TRANSPARENT`, `TRANSPARENT`), `locZ` sorting, registration-point transforms, and projective 2.5D quad warping ([`quadMath.ts`](web/src/engine/render/quadMath.ts)).
   - Procedurally renders crisp high-DPI HUD elements and text ([`HdHudTextures.ts`](web/src/engine/render/HdHudTextures.ts)) with a live toggle between **HD** and **Original** modes.
+- **Styled Director Text**: text members keep their authored character and paragraph styles, decoded from the XMED data by the extractor (size, colour, alignment including justify, fixed line spacing, tabs, word wrap). Agency FB is drawn with the bundled Saira Extra Condensed ([SIL OFL 1.1](web/src/assets/fonts/OFL-SairaExtraCondensed.txt)), squeezed to Agency FB's width.
+- **Optional HD Graphics**: every bitmap also ships upscaled 4x (2x for full-screen backgrounds) with Real-ESRGAN's compact general model, built offline by [`scripts/upscale_hd_assets.py`](scripts/upscale_hd_assets.py) into `extracted/<game>/assets/bitmaps_hd/`. The **Grafica: HD / Originale** option button (or the G key) switches live; sprite sizes, reg points and collisions stay those of the original members. `?gfx=orig` forces the original art.
 - **Unified Multi-Device Input**: [`InputManager`](web/src/engine/InputManager.ts) blends keyboard/mouse, standard gamepads (with configurable radial deadzone), and virtual touch inputs, supporting both **Simplified** and **Pro** helicopter flight models.
 - **Pre-Extracted Assets Included**: Ready to run immediately after `npm install` without needing to re-run asset extraction.
 

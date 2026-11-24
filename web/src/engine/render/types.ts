@@ -24,6 +24,8 @@ export interface TextureEntry {
   readonly regX: number;
   readonly regY: number;
   readonly hasAlpha: boolean;
+  /** Upscaled bitmap from the HD graphics set: width/height/reg are still the member's own. */
+  readonly hd?: boolean;
 }
 
 export interface RenderSprite {
@@ -40,6 +42,8 @@ export interface RenderSprite {
   readonly flipV: boolean;
   readonly blend: number;
   readonly ink: number;
+  /** Colour keyed out by Background Transparent / Matte ink (RGB 0..255). Defaults to white. */
+  readonly keyColor?: readonly [number, number, number];
   readonly quad: Quad2D | null;
   readonly visible?: boolean;
 }

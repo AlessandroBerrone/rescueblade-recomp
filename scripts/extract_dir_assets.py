@@ -301,8 +301,9 @@ def parse_vwsc(buf: bytes):
             # 22 thickness/flags, 24..27 fore/back RGB extras,
             # 28..31 rotation and 32..35 skew, both in hundredths of a degree.
             blend_byte = sd[21]
+            color_code = sd[20]
             rot_raw, skew_raw = struct.unpack(">ii", sd[28:36])
-            sprites.append({
+            sprite = {
                 "spriteNum": ch - 5,
                 "spriteType": sprite_type,
                 "ink": ink_raw & 0x3F,
@@ -323,7 +324,15 @@ def parse_vwsc(buf: bytes):
                 "skew": skew_raw / 100,
                 "intervalIdx": interval_idx,
                 "behaviors": get_behaviors_for_interval(interval_idx),
-            })
+            }
+            # Colour code bit 0x20: the back colour is an RGB value, with red in the
+            # palette-index byte and green/blue in bytes 26..27. Background Transparent
+            # ink keys out this colour (e.g. the magenta behind the submarine warheads).
+            if color_code & 0x20:
+                sprite["backColorRGB"] = [back_color, sd[26], sd[27]]
+            if color_code & 0x10:
+                sprite["foreColorRGB"] = [fore_color, sd[24], sd[25]]
+            sprites.append(sprite)
 
         frames.append({
             "frame": fr,
@@ -365,8 +374,22 @@ def decode_bitmap(spec_raw: bytes, edim_bytes, bitd_bytes, alfa_bytes):
     elif bitd_bytes is not None:
         bpr = bpr_raw & 0x0FFF
         expected = bpr * h
-        raw = bitd_bytes if len(bitd_bytes) == expected else unpack_packbits(bitd_bytes, expected)
-        if bpp == 32:
+        uncompressed = len(bitd_bytes) == expected
+        raw = bitd_bytes if uncompressed else unpack_packbits(bitd_bytes, expected)
+        if bpp == 32 and uncompressed:
+            # Uncompressed 32-bit BITD is stored pixel by pixel as A,R,G,B, not as the
+            # per-row channel planes that PackBits-compressed bitmaps use. Reading it as
+            # planes turned small sprites (survivors, warheads) into coloured noise.
+            rgba = bytearray(w * h * 4)
+            for y in range(h):
+                ro = y * bpr
+                for x in range(w):
+                    si = ro + x * 4
+                    oi = (y * w + x) * 4
+                    rgba[oi : oi + 3] = raw[si + 1 : si + 4]
+                    rgba[oi + 3] = 255
+            img = Image.frombytes("RGBA", (w, h), bytes(rgba))
+        elif bpp == 32:
             plane_w = bpr // 4
             rgba = bytearray(w * h * 4)
             for y in range(h):
@@ -513,6 +536,108 @@ def decode_xmed_text(xmed_bytes: bytes):
 
 
 
+_XMED_HEX = b"0123456789ABCDEF-"
+
+
+def _xmed_sections(b: bytes) -> dict:
+    """XMED sections: \x03 + 4 hex id + 8 hex byte length + 8 hex record count."""
+    out = {}
+    for m in re.finditer(rb"\x03([0-9A-F]{4})([0-9A-F]{8})([0-9A-F]{8})", b):
+        ln = int(m.group(2), 16)
+        out.setdefault(m.group(1).decode(), (int(m.group(3), 16), b[m.end() : m.end() + ln]))
+    return out
+
+
+def _xmed_fields(body: bytes) -> list:
+    """Flattens a record section into fields. Tokens: \x01/\x02 + hex = a value,
+    \x81/\x82 = same as the previous field, \xc1/\xc2 n = n fields unchanged from the
+    previous record."""
+    out, i = [], 0
+    while i < len(body):
+        c = body[i]
+        if c in (1, 2):
+            j = i + 1
+            while j < len(body) and body[j] in _XMED_HEX:
+                j += 1
+            txt = body[i + 1 : j].decode()
+            v = int(txt, 16) if txt and txt != "-" else 0
+            if v >= 0x80000000:
+                v -= 1 << 32
+            out.append(("v", v))
+            i = j
+        elif c in (0x81, 0x82):
+            out.append(("prev",))
+            i += 1
+        elif c in (0xC1, 0xC2) and i + 1 < len(body):
+            out += [("keep",)] * body[i + 1]
+            i += 2
+        else:
+            i += 1
+    return out
+
+
+def _xmed_records(body: bytes, count: int, width: int, prelude: int = 0) -> list:
+    fields = _xmed_fields(body)[prelude:]
+    prev, recs = [0] * width, []
+    for r in range(count):
+        rec = list(prev)
+        for f in range(width):
+            k = r * width + f
+            if k >= len(fields):
+                break
+            t = fields[k]
+            if t[0] == "v":
+                rec[f] = t[1]
+            elif t[0] == "prev":
+                rec[f] = rec[f - 1] if f else prev[-1]
+        recs.append(rec)
+        prev = rec
+    return recs
+
+
+def _xmed_pairs(body: bytes) -> list:
+    vals = []
+    for t in _xmed_fields(body):
+        if t[0] == "v":
+            vals.append(t[1])
+        elif t[0] == "prev":
+            vals.append(vals[-1] if vals else 0)
+        else:
+            vals.append(vals[-2] if len(vals) >= 2 else 0)
+    return list(zip(vals[0::2], vals[1::2]))
+
+
+_XMED_ALIGN = {0: "left", 1: "center", 2: "right", 3: "justify"}
+
+
+def decode_xmed_styles(xmed_bytes: bytes):
+    """Character and paragraph styles of a Director text member.
+
+    0004: (char offset, style) runs; 0006: char styles, 77 fields each after a 1-field
+    prelude (0 font index into 0008, 3 ascent, 4 descent, 9-11 16-bit RGB, 18 size in
+    16.16); 0005: (char offset, paragraph) runs; 0007: paragraphs, 54 fields each
+    (0 alignment, 8 fixed line spacing in px, 0 = automatic); 0008: font names.
+    """
+    s = _xmed_sections(xmed_bytes)
+    if not all(k in s for k in ("0004", "0005", "0006", "0007")):
+        return None
+    fonts = [f.decode("latin1") for f in re.findall(rb"40,[\x01-\x3f]([A-Za-z][^\x00]*)", s.get("0008", (0, b""))[1])]
+    styles = []
+    for r in _xmed_records(s["0006"][1], s["0006"][0], 77, 1):
+        styles.append({
+            "font": fonts[r[0]] if 0 <= r[0] < len(fonts) else "",
+            "size": round(r[18] / 65536, 2),
+            "ascent": r[3],
+            "descent": r[4],
+            "color": [(r[9] >> 8) & 255, (r[10] >> 8) & 255, (r[11] >> 8) & 255],
+        })
+    paras = [{"align": _XMED_ALIGN.get(r[0], "left"), "lineSpacing": r[8]}
+             for r in _xmed_records(s["0007"][1], s["0007"][0], 54)]
+    runs = [dict(start=o, **styles[i]) for o, i in _xmed_pairs(s["0004"][1]) if 0 <= i < len(styles)]
+    pruns = [dict(start=o, **paras[i]) for o, i in _xmed_pairs(s["0005"][1]) if 0 <= i < len(paras)]
+    return {"runs": runs, "paras": pruns}
+
+
 def extract_game(dir_path: Path, pr_movie_dir: Path, out_dir: Path):
     out_dir.mkdir(parents=True, exist_ok=True)
     bmp_dir = out_dir / "bitmaps"
@@ -618,6 +743,9 @@ def extract_game(dir_path: Path, pr_movie_dir: Path, out_dir: Path):
                         fname = f"{clib}_{mem_num:03d}__{safe_filename(mname)}.txt"
                         (txt_dir / fname).write_text(xres["text"], encoding="utf-8")
                         entry["xtra"] = {"kind": "text", "text": xres["text"]}
+                        styles = decode_xmed_styles(xmed_raw)
+                        if styles:
+                            entry["xtra"].update(styles)
                         entry["file"] = f"texts/{fname}"
                     else:
                         entry["xtra"] = xres

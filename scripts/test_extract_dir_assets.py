@@ -6,6 +6,7 @@ Run from the repository root:  python -m unittest discover -s scripts
 import struct
 import unittest
 from io import BytesIO
+from pathlib import Path
 
 from PIL import Image
 
@@ -51,6 +52,47 @@ class DecodeBitmapAlphaTest(unittest.TestCase):
         rows = [bytes([1, 2]), bytes([3, 4])]
         img, _ = self._decode(2, 2, rows)
         self.assertEqual(list(img.getchannel("A").getdata()), [1, 2, 3, 4])
+
+
+class DecodeBitmap32Test(unittest.TestCase):
+    def test_uncompressed_32bit_is_pixel_interleaved_argb(self):
+        # A BITD exactly bytesPerRow*height long is stored raw, one A,R,G,B quad per pixel.
+        pixels = [(255, 10, 20, 30), (255, 40, 50, 60), (255, 70, 80, 90), (255, 1, 2, 3)]
+        bitd = b"".join(bytes(p) for p in pixels)
+        img, _ = E.decode_bitmap(bitmap_spec(2, 2), None, bitd, None)
+        self.assertEqual([px[:3] for px in img.getdata()], [p[1:] for p in pixels])
+
+    def test_packbits_32bit_rows_are_channel_planes(self):
+        # Compressed rows hold the A plane, then R, G and B planes.
+        row = bytes([255, 255, 10, 40, 20, 50, 30, 60])
+        img, _ = E.decode_bitmap(bitmap_spec(2, 1), None, literal_packbits(row), None)
+        self.assertEqual([px[:3] for px in img.getdata()], [(10, 20, 30), (40, 50, 60)])
+
+
+class XmedStylesTest(unittest.TestCase):
+    def test_field_tokens(self):
+        # value, "same as previous field", then 2 fields kept from the previous record
+        body = b"\x0230000\x81\xc1\x02\x01FF00"
+        recs = E._xmed_records(body + b"\x011\x81\x01A\x01B\x01C", 2, 4)
+        self.assertEqual(recs[0], [0x30000, 0x30000, 0, 0])
+        self.assertEqual(recs[1][:1], [0xFF00])
+
+    def test_pairs_repeat_previous_value(self):
+        # "PRO" + paragraph mark: (0, style 3), (3 = same as previous value, style 4)
+        self.assertEqual(E._xmed_pairs(b"\x020\x013\x82\x014\x0254\x014"), [(0, 3), (3, 4), (0x54, 4)])
+
+    def test_briefing_styles(self):
+        movie = Path(__file__).resolve().parent.parent / "dir" / "rescueblade.dir"
+        if not movie.exists():
+            self.skipTest("movie not available")
+        chunks, by_tag = E.parse_rifx(movie)
+        st = E.decode_xmed_styles(dict(by_tag["XMED"])[3744])  # MISSION 001 briefing
+        first, tip = st["runs"][0], st["runs"][6]
+        self.assertEqual((first["start"], first["size"], first["color"]), (0, 36.0, [255, 255, 255]))
+        self.assertEqual(first["font"], "Agency FB Bold *")
+        self.assertEqual((tip["start"], tip["size"], tip["color"]), (323, 14.0, [0, 0, 255]))
+        self.assertEqual([(p["start"], p["align"], p["lineSpacing"]) for p in st["paras"]][:3],
+                         [(0, "left", 40), (35, "justify", 20), (36, "justify", 16)])
 
 
 if __name__ == "__main__":

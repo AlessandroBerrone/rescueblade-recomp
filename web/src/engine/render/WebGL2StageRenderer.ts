@@ -25,10 +25,27 @@ uniform sampler2D u_maskTex;
 uniform float u_alpha;
 uniform int u_ink;
 uniform int u_hasAlpha;
+uniform vec3 u_keyColor;
+uniform int u_softKey;
 out vec4 outColor;
 void main() {
   vec2 uv = v_uvq.xy / v_uvq.z;
-  vec4 texel = texture(u_tex, uv);
+  vec4 texel;
+  if (u_softKey == 1) {
+    // HD art is mipmapped. The terrain tiles are strongly squashed quads, and the mip
+    // level follows the most squashed direction, so a whole tile came out blurrier than
+    // the unmipmapped original. Cap the footprint at 2:1 to keep the detail along the
+    // other direction (anisotropic filtering, where available, does the rest).
+    vec2 sz = vec2(textureSize(u_tex, 0));
+    vec2 gx = dFdx(uv), gy = dFdy(uv);
+    float lx = length(gx * sz), ly = length(gy * sz);
+    float lmin = max(min(lx, ly), 1e-6);
+    if (lx > 2.0 * lmin) gx *= 2.0 * lmin / lx;
+    if (ly > 2.0 * lmin) gy *= 2.0 * lmin / ly;
+    texel = textureGrad(u_tex, uv, gx, gy);
+  } else {
+    texel = texture(u_tex, uv);
+  }
   float a = texel.a;
 
   if (u_ink == 9) {
@@ -36,7 +53,17 @@ void main() {
     float maskLuma = dot(m.rgb, vec3(0.299, 0.587, 0.114));
     a = (1.0 - maskLuma) * m.a;
   } else if (u_ink == 36 || (u_ink == 8 && u_hasAlpha == 0)) {
-    if (texel.r > 0.96 && texel.g > 0.96 && texel.b > 0.96) {
+    vec3 diff = abs(texel.rgb - u_keyColor);
+    if (u_softKey == 1) {
+      // Upscaled art blends the key colour into the sprite's edge pixels. Key those
+      // softly and take the key colour back out of their RGB, so no white or magenta
+      // rim is left around the sprite.
+      float k = smoothstep(0.04, 0.22, max(diff.r, max(diff.g, diff.b)));
+      if (k > 0.0 && k < 1.0) {
+        texel.rgb = clamp((texel.rgb - u_keyColor * (1.0 - k)) / k, 0.0, 1.0);
+      }
+      a *= k;
+    } else if (all(lessThan(diff, vec3(0.04)))) {
       a = 0.0;
     }
   }
@@ -51,6 +78,8 @@ void main() {
   outColor = vec4(texel.rgb, a);
 }
 `;
+
+const WHITE = [255, 255, 255] as const;
 
 function compileShader(gl: WebGL2RenderingContext, type: number, src: string): WebGLShader {
   const sh = gl.createShader(type);
@@ -78,6 +107,7 @@ export class WebGL2StageRenderer {
   private readonly vertexData = new Float32Array(6 * 5);
   private readonly whiteFallbackTex: WebGLTexture;
   private readonly ownedTextures = new Set<WebGLTexture>();
+  private readonly anisotropy: { ext: EXT_texture_filter_anisotropic; max: number } | null;
 
   private readonly uStageSize: WebGLUniformLocation;
   private readonly uTex: WebGLUniformLocation;
@@ -85,6 +115,8 @@ export class WebGL2StageRenderer {
   private readonly uAlpha: WebGLUniformLocation;
   private readonly uInk: WebGLUniformLocation;
   private readonly uHasAlpha: WebGLUniformLocation;
+  private readonly uKeyColor: WebGLUniformLocation;
+  private readonly uSoftKey: WebGLUniformLocation;
 
   constructor(canvas: HTMLCanvasElement, stageWidth = 512, stageHeight = 330, renderScale = 1) {
     this.canvas = canvas;
@@ -124,6 +156,8 @@ export class WebGL2StageRenderer {
     this.uAlpha = gl.getUniformLocation(prog, 'u_alpha')!;
     this.uInk = gl.getUniformLocation(prog, 'u_ink')!;
     this.uHasAlpha = gl.getUniformLocation(prog, 'u_hasAlpha')!;
+    this.uKeyColor = gl.getUniformLocation(prog, 'u_keyColor')!;
+    this.uSoftKey = gl.getUniformLocation(prog, 'u_softKey')!;
 
     this.vao = gl.createVertexArray()!;
     this.vbo = gl.createBuffer()!;
@@ -138,6 +172,11 @@ export class WebGL2StageRenderer {
     gl.enableVertexAttribArray(aUvq);
     gl.vertexAttribPointer(aUvq, 3, gl.FLOAT, false, 20, 8);
     gl.bindVertexArray(null);
+
+    const aniso = gl.getExtension('EXT_texture_filter_anisotropic');
+    this.anisotropy = aniso
+      ? { ext: aniso, max: Math.min(16, gl.getParameter(aniso.MAX_TEXTURE_MAX_ANISOTROPY_EXT) as number) }
+      : null;
 
     this.whiteFallbackTex = this.createSolidTexture(255, 255, 255, 255);
     gl.enable(gl.BLEND);
@@ -160,7 +199,8 @@ export class WebGL2StageRenderer {
     source: HTMLImageElement | HTMLCanvasElement | ImageBitmap | OffscreenCanvas,
     regX: number,
     regY: number,
-    hasAlpha: boolean
+    hasAlpha: boolean,
+    hd?: { logicalWidth: number; logicalHeight: number }
   ): TextureEntry {
     const gl = this.gl;
     const tex = gl.createTexture()!;
@@ -169,10 +209,28 @@ export class WebGL2StageRenderer {
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    if (hd) {
+      // Upscaled art is often drawn smaller than its pixel size (far sprites, 2x
+      // backgrounds on small screens): mipmaps keep it from shimmering.
+      gl.generateMipmap(gl.TEXTURE_2D);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+      // The terrain tiles are drawn as strongly slanted quads. Plain trilinear filtering
+      // picks the mip level from the most squashed direction and blurs the whole tile,
+      // so near tiles looked low-res next to their neighbours: filter anisotropically.
+      if (this.anisotropy) {
+        gl.texParameterf(gl.TEXTURE_2D, this.anisotropy.ext.TEXTURE_MAX_ANISOTROPY_EXT, this.anisotropy.max);
+      }
+    } else {
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    }
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
     this.ownedTextures.add(tex);
 
+    if (hd) {
+      // Report the member's own size, so sprite rects, collisions and reg points are
+      // exactly those of the original bitmap; only the sampled image is sharper.
+      return { texture: tex, width: hd.logicalWidth, height: hd.logicalHeight, regX, regY, hasAlpha, hd: true };
+    }
     const w = 'naturalWidth' in source ? source.naturalWidth : source.width;
     const h = 'naturalHeight' in source ? source.naturalHeight : source.height;
     return { texture: tex, width: w, height: h, regX, regY, hasAlpha };
@@ -287,6 +345,9 @@ export class WebGL2StageRenderer {
       gl.uniform1f(this.uAlpha, Math.max(0, Math.min(100, sp.blend)) / 100);
       gl.uniform1i(this.uInk, sp.ink);
       gl.uniform1i(this.uHasAlpha, sp.texture.hasAlpha ? 1 : 0);
+      const key = sp.keyColor ?? WHITE;
+      gl.uniform3f(this.uKeyColor, key[0] / 255, key[1] / 255, key[2] / 255);
+      gl.uniform1i(this.uSoftKey, sp.texture.hd ? 1 : 0);
 
       gl.bufferSubData(gl.ARRAY_BUFFER, 0, vd);
       gl.drawArrays(gl.TRIANGLES, 0, 6);

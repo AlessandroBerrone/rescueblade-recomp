@@ -902,8 +902,6 @@ export function registerSharedCopterBehaviors(map: Map<string, BehaviorFactory>)
         }
         sp.locZ = 2100;
         sp.blend = 0;
-        sp.textColor = '#0f172a';
-        sp.textAlign = 'center';
         missionCounter = 0;
       },
       exitFrame(ctx, sp) {
