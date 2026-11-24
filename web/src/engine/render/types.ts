@@ -13,7 +13,8 @@ export const DIRECTOR_INK = {
   ADD_PIN: 33,
   ADD: 34,
   BG_TRANSPARENT: 36,
-  TRANSPARENT: 37,
+  /** Director ink 37: per channel max(sprite, stage). Used by flames, snow and glows. */
+  LIGHTEST: 37,
 } as const;
 
 export interface TextureEntry {
