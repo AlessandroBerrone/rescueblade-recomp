@@ -43,6 +43,11 @@ void main() {
 
   a *= u_alpha;
   if (a <= 0.002) discard;
+  if (u_ink == 37) {
+    // Lightest: blended with a MAX equation, so fold the alpha into the colour.
+    outColor = vec4(texel.rgb * a, a);
+    return;
+  }
   outColor = vec4(texel.rgb, a);
 }
 `;
@@ -261,10 +266,16 @@ export class WebGL2StageRenderer {
       // v5: BL
       vd[25] = p3.x; vd[26] = p3.y; vd[27] = u0 * q3; vd[28] = v1 * q3; vd[29] = q3;
 
-      const isAdd = sp.ink === DIRECTOR_INK.ADD || sp.ink === DIRECTOR_INK.ADD_PIN ? 1 : 0;
-      if (isAdd !== currentBlendMode) {
-        currentBlendMode = isAdd;
-        gl.blendFunc(gl.SRC_ALPHA, isAdd ? gl.ONE : gl.ONE_MINUS_SRC_ALPHA);
+      const blendMode =
+        sp.ink === DIRECTOR_INK.LIGHTEST
+          ? 2
+          : sp.ink === DIRECTOR_INK.ADD || sp.ink === DIRECTOR_INK.ADD_PIN
+            ? 1
+            : 0;
+      if (blendMode !== currentBlendMode) {
+        currentBlendMode = blendMode;
+        gl.blendEquation(blendMode === 2 ? gl.MAX : gl.FUNC_ADD);
+        gl.blendFunc(gl.SRC_ALPHA, blendMode === 1 ? gl.ONE : gl.ONE_MINUS_SRC_ALPHA);
       }
 
       gl.activeTexture(gl.TEXTURE0);
@@ -281,6 +292,7 @@ export class WebGL2StageRenderer {
       gl.drawArrays(gl.TRIANGLES, 0, 6);
     }
 
+    gl.blendEquation(gl.FUNC_ADD);
     gl.bindVertexArray(null);
   }
 

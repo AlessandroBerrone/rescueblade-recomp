@@ -30,7 +30,7 @@ function makeMinimalBundle(): LoadedGameBundle {
         sprites: [
           {
             spriteNum: 1, spriteType: 16, ink: 0, castLib: 3, member: 1,
-            locH: 256, locV: 165, width: 100, height: 40, blendByte: 0, rotationRaw: 0,
+            locH: 256, locV: 165, width: 100, height: 40, blendByte: 0, blend: 100, rotation: 0,
             behaviors: [{ castLib: 1, member: 19, name: 'TestBtn' }],
           },
         ],

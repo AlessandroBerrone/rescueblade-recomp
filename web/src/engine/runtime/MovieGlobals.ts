@@ -56,6 +56,14 @@ export function angleGrind(originX: number, originY: number, targetX: number, ta
   return grind;
 }
 
+/**
+ * Lingo integer(): rounds to the nearest integer, halves away from zero.
+ * Not the same as Math.trunc for negative or fractional values.
+ */
+export function lingoInteger(value: number): number {
+  return value < 0 ? -Math.round(-value) : Math.round(value);
+}
+
 /** Director random(N) returns an integer in [1, N] inclusive. */
 export function directorRandom(max: number): number {
   const n = Math.floor(max);

@@ -297,8 +297,11 @@ def parse_vwsc(buf: bytes):
             if sprite_type == 0 and cast_lib == 0 and cast_mem == 0:
                 continue
             loc_v, loc_h, height, width = struct.unpack(">hhhh", sd[12:20])
+            # D7 sprite channel: 20 colorcode, 21 blend (inverted: 0 = 100%),
+            # 22 thickness/flags, 24..27 fore/back RGB extras,
+            # 28..31 rotation and 32..35 skew, both in hundredths of a degree.
             blend_byte = sd[21]
-            rot_raw, skew_raw = struct.unpack(">ii", sd[24:32])
+            rot_raw, skew_raw = struct.unpack(">ii", sd[28:36])
             sprites.append({
                 "spriteNum": ch - 5,
                 "spriteType": sprite_type,
@@ -315,8 +318,9 @@ def parse_vwsc(buf: bytes):
                 "width": width,
                 "height": height,
                 "blendByte": blend_byte,
-                "rotationRaw": rot_raw,
-                "skewRaw": skew_raw,
+                "blend": round((255 - blend_byte) * 100 / 255) if blend_byte else 100,
+                "rotation": rot_raw / 100,
+                "skew": skew_raw / 100,
                 "intervalIdx": interval_idx,
                 "behaviors": get_behaviors_for_interval(interval_idx),
             })

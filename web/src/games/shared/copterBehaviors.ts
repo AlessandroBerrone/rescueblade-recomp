@@ -818,7 +818,8 @@ export function registerSharedCopterBehaviors(map: Map<string, BehaviorFactory>)
       sp.locV = 32;
       sp.text = `MISSION COMPLETE\n${msg}\nTimeBonus = ${g.gTimeBonus}`;
       g.gScore += g.gTimeBonus;
-      g.gFlyingPoints = g.gTimeBonus;
+      // Only level 1 of each game shows the time bonus as flying points.
+      if (g.gLevel === 1) g.gFlyingPoints = g.gTimeBonus;
       ctx.puppetSound(1, 23);
       if ((g.gLevelScoreList[g.gLevel - 1] ?? 0) < g.gScore) {
         g.gLevelScoreList[g.gLevel - 1] = g.gScore;
@@ -929,7 +930,9 @@ export function registerSharedCopterBehaviors(map: Map<string, BehaviorFactory>)
             if (g.gLevel === 1 && g.gRescueCount >= 9) completeMission(ctx, sp, 'You saved all the guests!');
             else if (g.gLevel === 2 && g.gRescueCount >= 16) completeMission(ctx, sp, 'Alien Invaders Repelled!');
             else if (g.gLevel === 3 && g.gRescueCount >= 36) completeMission(ctx, sp, 'Brilliant Bodzilla Bonking!');
-            else if (g.gLevel === 4 && g.gRescueCount >= 9) completeMission(ctx, sp, 'Superb submarine skill skipper!');
+            else if (g.gLevel === 4 && g.gRescueCount >= 9) {
+              completeMission(ctx, sp, 'cableGuy has ample holiday cash to splash!\nSuperb submarine skill skipper!');
+            }
           } else {
             if (g.gLevel === 1) {
               const prevLen = tileVisitList.length;
@@ -965,6 +968,9 @@ export function registerSharedCopterBehaviors(map: Map<string, BehaviorFactory>)
             }
           }
 
+          // The original runs these four checks one after another, so when more
+          // than one applies the last one wins (e.g. no fuel + wrecked copter
+          // reads "OUT OF FUEL!").
           if (g.gDamagePercent >= 100) {
             g.gLevelResult = 'DAMAGE';
             missionState = 'FAILED';
@@ -972,13 +978,15 @@ export function registerSharedCopterBehaviors(map: Map<string, BehaviorFactory>)
             sp.text = 'MISSION FAILED\nEXTREME DAMAGE!';
             ctx.puppetSound(1, 24);
             ctx.puppetSound(4, 84);
-          } else if (g.gfuelPercent <= 0) {
+          }
+          if (g.gfuelPercent <= 0) {
             g.gLevelResult = 'FUEL';
             missionState = 'FAILED';
             sp.locH = 78; sp.locV = 32;
             sp.text = 'MISSION FAILED\nOUT OF FUEL!';
             ctx.puppetSound(1, 24);
-          } else if (g.gGuyDoom === 'SHARK') {
+          }
+          if (g.gGuyDoom === 'SHARK') {
             g.gLevelResult = 'SHARK';
             missionState = 'FAILED';
             sp.locH = 78; sp.locV = 32;
@@ -986,7 +994,8 @@ export function registerSharedCopterBehaviors(map: Map<string, BehaviorFactory>)
               ctx.bundle.gameId === 'bermuda'
                 ? 'MISSION FAILED\nA blue Marlin ate cableGuy!\n(Nice catch though)'
                 : "MISSION FAILED\nDon't dunk your cableGuy!";
-          } else if (g.gGuyDoom === 'ICECUBE') {
+          }
+          if (g.gGuyDoom === 'ICECUBE') {
             g.gLevelResult = 'ICECUBE';
             missionState = 'FAILED';
             sp.locH = 78; sp.locV = 32;
