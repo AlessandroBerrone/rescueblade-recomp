@@ -3,6 +3,7 @@ import type { SoundEngine } from '../audio/SoundEngine.ts';
 import type { InputManager, InputState } from '../InputManager.ts';
 import { hasInputEdges, mergeInputEdges, withoutInputEdges } from '../input/edges.ts';
 import type { TextTextureCache } from '../render/TextTextureCache.ts';
+import { collapseStyles, type TextAlign, type TextStyles } from '../render/textLayout.ts';
 import { DIRECTOR_INK, type RenderSprite, type TextureEntry } from '../render/types.ts';
 import { sortSpritesForRender } from '../render/quadMath.ts';
 import {
@@ -46,6 +47,7 @@ export class MovieRuntime implements MovieRuntimeContext {
   private readonly labelMap = new Map<string, number>();
   private readonly memberTextOverrides = new Map<string, string>();
   private readonly sprites = new Map<number, SpriteInstance>();
+  private readonly textStyleCache = new Map<string, TextStyles>();
   private frameScript: BehaviorInstance | null = null;
   private pendingGoto: number | null = null;
   /** go() requested from outside a tick (e.g. the shell's Menu button). */
@@ -217,6 +219,36 @@ export class MovieRuntime implements MovieRuntimeContext {
     const override = this.memberTextOverrides.get(key);
     if (override !== undefined) return override;
     return this.bundle.membersByKey.get(key)?.xtra?.text ?? '';
+  }
+
+  /**
+   * Character/paragraph styles to draw a text sprite with: the member's own runs while
+   * it shows its authored text, the first run and paragraph once a script replaced it
+   * (as Director does), with any colour/alignment/size a behaviour set on the sprite.
+   */
+  private textStylesFor(key: string, text: string, sp: SpriteInstance): TextStyles | undefined {
+    const xtra = this.bundle.membersByKey.get(key)?.xtra;
+    if (!xtra?.runs?.length || !xtra.paras?.length) return undefined;
+    const authored = text === (xtra.text ?? '');
+    const cacheKey = `${key}|${authored ? 1 : 0}|${sp.textColor ?? ''}|${sp.textAlign ?? ''}|${sp.textFontSize ?? ''}`;
+    let st = this.textStyleCache.get(cacheKey);
+    if (!st) {
+      st = authored ? { runs: xtra.runs, paras: xtra.paras } : collapseStyles({ runs: xtra.runs, paras: xtra.paras });
+      if (sp.textColor || sp.textAlign || sp.textFontSize) {
+        const color = sp.textColor ? parseCssColor(sp.textColor) : null;
+        const align = sp.textAlign === 'start' ? 'left' : sp.textAlign === 'end' ? 'right' : sp.textAlign;
+        st = {
+          runs: st.runs.map((r) => ({
+            ...r,
+            ...(color ? { color } : {}),
+            ...(sp.textFontSize ? { size: sp.textFontSize, ascent: sp.textFontSize, descent: Math.round(sp.textFontSize * 0.22) } : {}),
+          })),
+          paras: st.paras.map((p) => (align ? { ...p, align: align as TextAlign } : p)),
+        };
+      }
+      this.textStyleCache.set(cacheKey, st);
+    }
+    return st;
   }
 
   public setMemberText(castLib: number, memberNum: number, text: string): void {
@@ -456,6 +488,7 @@ export class MovieRuntime implements MovieRuntimeContext {
       // skip it instead of scaling it up.
       if (tex && tex.width === 1 && tex.height === 1 && (sp.width > 1 || sp.height > 1)) continue;
 
+      let height = sp.height;
       if (!tex && mem?.type === 15) {
         const txt = sp.text ?? this.getMemberText(sp.castLib, sp.member);
         tex = this.textCache.getOrCreate(
@@ -467,8 +500,10 @@ export class MovieRuntime implements MovieRuntimeContext {
             fontSize: sp.textFontSize,
             color: sp.textColor,
             align: sp.textAlign,
+            styles: this.textStylesFor(key, txt, sp),
           }
         );
+        height = Math.max(sp.height, this.textCache.heightOf(tex));
       }
 
       if (sp.ink === DIRECTOR_INK.MASK) {
@@ -482,13 +517,15 @@ export class MovieRuntime implements MovieRuntimeContext {
         locH: sp.locH,
         locV: sp.locV,
         width: sp.width,
-        height: sp.height,
+        height,
         locZ: sp.locZ,
         rotation: sp.rotation,
         flipH: sp.flipH,
         flipV: sp.flipV,
         blend: sp.blend,
-        ink: sp.ink,
+        // Text is drawn on a transparent canvas, so Background Transparent / Matte have
+        // nothing left to key out (keying white would erase the white text itself).
+        ink: mem?.type === 15 && (sp.ink === DIRECTOR_INK.BG_TRANSPARENT || sp.ink === DIRECTOR_INK.MATTE) ? DIRECTOR_INK.COPY : sp.ink,
         keyColor: sp.bgColor,
         quad: sp.quad,
         visible: sp.visible,
@@ -498,3 +535,9 @@ export class MovieRuntime implements MovieRuntimeContext {
   }
 }
 
+function parseCssColor(c: string): [number, number, number] | null {
+  const m = /^#([0-9a-f]{6})$/i.exec(c.trim());
+  if (!m) return null;
+  const n = parseInt(m[1], 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+}
