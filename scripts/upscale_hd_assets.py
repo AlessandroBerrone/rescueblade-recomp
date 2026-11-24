@@ -37,6 +37,9 @@ DENOISE_STRENGTH = 0.5
 MAX_SIDE = 1024
 WEBP_QUALITY = 90
 TILE = 192  # input tile size; keeps memory flat on the 512x330 backgrounds
+# Tiny bitmaps that the score blows up far beyond their size (the tornado's beach ball is
+# 16x16 and reaches 128x100 on stage): run the model twice, for 16x.
+TWO_PASSES = {"bermuda": {"3_342__TORNAD_4"}}
 
 
 def fetch(name: str) -> Path:
@@ -144,23 +147,31 @@ def bleed_colour(img: Image.Image) -> np.ndarray:
     return np.where(known[..., None], rgb, filled)
 
 
-def process(sess, src: Path, dst: Path) -> int:
+def upscale_rgba(sess, img: Image.Image) -> Image.Image:
+    alpha = np.asarray(img.getchannel("A"))
+    rgb = upscale4(sess, bleed_colour(img))
+    out = Image.fromarray((rgb * 255 + 0.5).astype(np.uint8), "RGB")
+    if alpha.min() < 255:
+        a3 = np.repeat((alpha.astype(np.float32) / 255)[..., None], 3, axis=2)
+        a_up = upscale4(sess, a3).mean(axis=2)
+        out.putalpha(Image.fromarray((a_up * 255 + 0.5).astype(np.uint8), "L"))
+    else:
+        out.putalpha(255)
+    return out
+
+
+def process(sess, src: Path, dst: Path, two_passes: bool = False) -> int:
     img = Image.open(src).convert("RGBA")
     w, h = img.size
     scale = 4 if max(w, h) * 4 <= MAX_SIDE else 2
-    if min(w, h) < 2:
+    if two_passes:
+        out = upscale_rgba(sess, upscale_rgba(sess, img))
+        scale = 16
+    elif min(w, h) < 2:
         # Lines and single pixels: nothing for the model to work with.
         out = img.resize((w * scale, h * scale), Image.NEAREST)
     else:
-        alpha = np.asarray(img.getchannel("A"))
-        rgb = upscale4(sess, bleed_colour(img))
-        out = Image.fromarray((rgb * 255 + 0.5).astype(np.uint8), "RGB")
-        if alpha.min() < 255:
-            a3 = np.repeat((alpha.astype(np.float32) / 255)[..., None], 3, axis=2)
-            a_up = upscale4(sess, a3).mean(axis=2)
-            out.putalpha(Image.fromarray((a_up * 255 + 0.5).astype(np.uint8), "L"))
-        else:
-            out.putalpha(255)
+        out = upscale_rgba(sess, img)
         if scale != 4:
             out = out.resize((w * scale, h * scale), Image.LANCZOS)
     dst.parent.mkdir(parents=True, exist_ok=True)
@@ -171,6 +182,7 @@ def process(sess, src: Path, dst: Path) -> int:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", choices=["rescueblade", "bermuda"])
+    ap.add_argument("--files", nargs="*", help="redo only these bitmaps (file stems); keeps the rest of hd.json")
     args = ap.parse_args()
     sess = build_session()
     done: dict[str, tuple[Path, int]] = {}
@@ -180,6 +192,9 @@ def main() -> None:
         assets = ROOT / "extracted" / game / "assets"
         index = {}
         files = sorted((assets / "bitmaps").glob("*.png"))
+        if args.files:
+            index = json.loads((assets / "hd.json").read_text())
+            files = [f for f in files if f.stem in args.files]
         for n, src in enumerate(files, 1):
             dst = assets / "bitmaps_hd" / (src.stem + ".webp")
             digest = hashlib.sha1(src.read_bytes()).hexdigest()
@@ -188,7 +203,7 @@ def main() -> None:
                 dst.parent.mkdir(parents=True, exist_ok=True)
                 dst.write_bytes(prev.read_bytes())
             else:
-                scale = process(sess, src, dst)
+                scale = process(sess, src, dst, src.stem in TWO_PASSES.get(game, set()))
                 done[digest] = (dst, scale)
             index[f"bitmaps/{src.name}"] = {"file": f"bitmaps_hd/{dst.name}", "scale": scale}
             if n % 50 == 0:

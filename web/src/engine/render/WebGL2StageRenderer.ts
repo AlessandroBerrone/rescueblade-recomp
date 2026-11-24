@@ -30,7 +30,22 @@ uniform int u_softKey;
 out vec4 outColor;
 void main() {
   vec2 uv = v_uvq.xy / v_uvq.z;
-  vec4 texel = texture(u_tex, uv);
+  vec4 texel;
+  if (u_softKey == 1) {
+    // HD art is mipmapped. The terrain tiles are strongly squashed quads, and the mip
+    // level follows the most squashed direction, so a whole tile came out blurrier than
+    // the unmipmapped original. Cap the footprint at 2:1 to keep the detail along the
+    // other direction (anisotropic filtering, where available, does the rest).
+    vec2 sz = vec2(textureSize(u_tex, 0));
+    vec2 gx = dFdx(uv), gy = dFdy(uv);
+    float lx = length(gx * sz), ly = length(gy * sz);
+    float lmin = max(min(lx, ly), 1e-6);
+    if (lx > 2.0 * lmin) gx *= 2.0 * lmin / lx;
+    if (ly > 2.0 * lmin) gy *= 2.0 * lmin / ly;
+    texel = textureGrad(u_tex, uv, gx, gy);
+  } else {
+    texel = texture(u_tex, uv);
+  }
   float a = texel.a;
 
   if (u_ink == 9) {
@@ -92,6 +107,7 @@ export class WebGL2StageRenderer {
   private readonly vertexData = new Float32Array(6 * 5);
   private readonly whiteFallbackTex: WebGLTexture;
   private readonly ownedTextures = new Set<WebGLTexture>();
+  private readonly anisotropy: { ext: EXT_texture_filter_anisotropic; max: number } | null;
 
   private readonly uStageSize: WebGLUniformLocation;
   private readonly uTex: WebGLUniformLocation;
@@ -157,6 +173,11 @@ export class WebGL2StageRenderer {
     gl.vertexAttribPointer(aUvq, 3, gl.FLOAT, false, 20, 8);
     gl.bindVertexArray(null);
 
+    const aniso = gl.getExtension('EXT_texture_filter_anisotropic');
+    this.anisotropy = aniso
+      ? { ext: aniso, max: Math.min(16, gl.getParameter(aniso.MAX_TEXTURE_MAX_ANISOTROPY_EXT) as number) }
+      : null;
+
     this.whiteFallbackTex = this.createSolidTexture(255, 255, 255, 255);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
@@ -193,6 +214,12 @@ export class WebGL2StageRenderer {
       // backgrounds on small screens): mipmaps keep it from shimmering.
       gl.generateMipmap(gl.TEXTURE_2D);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+      // The terrain tiles are drawn as strongly slanted quads. Plain trilinear filtering
+      // picks the mip level from the most squashed direction and blurs the whole tile,
+      // so near tiles looked low-res next to their neighbours: filter anisotropically.
+      if (this.anisotropy) {
+        gl.texParameterf(gl.TEXTURE_2D, this.anisotropy.ext.TEXTURE_MAX_ANISOTROPY_EXT, this.anisotropy.max);
+      }
     } else {
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
     }
