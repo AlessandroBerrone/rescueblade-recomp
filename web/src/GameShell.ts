@@ -1,3 +1,4 @@
+import { loadTextFonts } from './engine/render/textFonts.ts';
 import { ALL_ACTIONS, type ActionId, type InputManager, type InputState } from './engine/InputManager.ts';
 import {
   applyTextureModes,
@@ -249,6 +250,7 @@ export class GameShell {
 
     let bundle = this.bundles.get(gameId);
     if (!bundle) {
+      await loadTextFonts();
       bundle = await loadGameAssets(gameId, this.renderer, this.hdHud);
       this.bundles.set(gameId, bundle);
     }

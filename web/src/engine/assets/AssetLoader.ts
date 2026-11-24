@@ -1,3 +1,4 @@
+import type { TextParaStyle, TextRunStyle } from '../render/textLayout.ts';
 import { buildHdHudTextures } from '../render/HdHudTextures.ts';
 import type { TextureEntry } from '../render/types.ts';
 import type { WebGL2StageRenderer } from '../render/WebGL2StageRenderer.ts';
@@ -33,6 +34,9 @@ export interface CastMemberEntry {
   xtra?: {
     kind: string;
     text?: string;
+    /** Text members: character style runs and paragraph styles from the XMED data. */
+    runs?: TextRunStyle[];
+    paras?: TextParaStyle[];
   };
 }
 

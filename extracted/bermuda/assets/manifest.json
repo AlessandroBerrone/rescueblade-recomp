@@ -8160,7 +8160,91 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "RescueBlade\nBERMUDA\nTRIANGLE\nClick to Start\n"
+        "text": "RescueBlade\nBERMUDA\nTRIANGLE\nClick to Start\n",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 11,
+            "font": "Agency FB Bold *",
+            "size": 48.0,
+            "ascent": 46,
+            "descent": 10,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 28,
+            "font": "Agency FB Bold *",
+            "size": 12.0,
+            "ascent": 12,
+            "descent": 2,
+            "color": [
+              153,
+              212,
+              255
+            ]
+          },
+          {
+            "start": 29,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              153,
+              212,
+              255
+            ]
+          },
+          {
+            "start": 46,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              153,
+              212,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "center",
+            "lineSpacing": 27
+          },
+          {
+            "start": 12,
+            "align": "center",
+            "lineSpacing": 49
+          },
+          {
+            "start": 29,
+            "align": "center",
+            "lineSpacing": 20
+          },
+          {
+            "start": 46,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_088__unnamed.txt"
     },
@@ -8215,7 +8299,96 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "RescueBlade\nBermuda Triangle\n\n\n\n\n\nGAME TOTAL..."
+        "text": "RescueBlade\nBermuda Triangle\n\n\n\n\n\nGAME TOTAL...",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 12,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 28,
+            "font": "Agency FB Bold *",
+            "size": 48.0,
+            "ascent": 46,
+            "descent": 10,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 29,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 49,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "right",
+            "lineSpacing": 20
+          },
+          {
+            "start": 12,
+            "align": "right",
+            "lineSpacing": 40
+          },
+          {
+            "start": 29,
+            "align": "left",
+            "lineSpacing": 19
+          },
+          {
+            "start": 34,
+            "align": "right",
+            "lineSpacing": 19
+          },
+          {
+            "start": 49,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_090__unnamed.txt"
     },
@@ -8233,7 +8406,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": " cableGuy's Tornado of Terror DAY 1"
+        "text": " cableGuy's Tornado of Terror DAY 1",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 37,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "right",
+            "lineSpacing": 20
+          },
+          {
+            "start": 37,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_091__unnamed.txt"
     },
@@ -8251,7 +8462,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": " Evil Alien Abductathon  DAY 2 "
+        "text": " Evil Alien Abductathon  DAY 2 ",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 33,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "right",
+            "lineSpacing": 20
+          },
+          {
+            "start": 33,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_092__unnamed.txt"
     },
@@ -8268,7 +8517,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "Save all survivors.\nTry to get rid of the Bodzillas!"
+        "text": "Save all survivors.\nTry to get rid of the Bodzillas!",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 24.0,
+            "ascent": 23,
+            "descent": 5,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 54,
+            "font": "Agency FB Bold *",
+            "size": 24.0,
+            "ascent": 23,
+            "descent": 5,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "center",
+            "lineSpacing": 0
+          },
+          {
+            "start": 54,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_093__unnamed.txt"
     },
@@ -8323,7 +8610,110 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "DAY 1  Tornado of Terror\nA giant F5 tornado has torn through CableGuy's luxury holiday resort, stripping it of guests!\n\nIn a daring attempt to save your fellow holiday makers, fly deep into the heart of the tornado and rescue the people from mid air!\n\nTIP: Don't fly at full speed. Take your time to weave through the swirling hazards.\n\nGood Luck Pilot!"
+        "text": "DAY 1  Tornado of Terror\nA giant F5 tornado has torn through CableGuy's luxury holiday resort, stripping it of guests!\n\nIn a daring attempt to save your fellow holiday makers, fly deep into the heart of the tornado and rescue the people from mid air!\n\nTIP: Don't fly at full speed. Take your time to weave through the swirling hazards.\n\nGood Luck Pilot!",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 5,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 24,
+            "font": "Agency FB Bold *",
+            "size": 48.0,
+            "ascent": 46,
+            "descent": 10,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 25,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 251,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "start": 337,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 355,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "left",
+            "lineSpacing": 40
+          },
+          {
+            "start": 25,
+            "align": "justify",
+            "lineSpacing": 16
+          },
+          {
+            "start": 355,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_095__unnamed.txt"
     },
@@ -8341,7 +8731,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "<< BACK"
+        "text": "<< BACK",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 9,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "left",
+            "lineSpacing": 38
+          },
+          {
+            "start": 9,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_096__unnamed.txt"
     },
@@ -8359,7 +8787,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "TAKEOFF >>"
+        "text": "TAKEOFF >>",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 12,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "left",
+            "lineSpacing": 38
+          },
+          {
+            "start": 12,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_097__unnamed.txt"
     },
@@ -8377,7 +8843,110 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "DAY 3 Monster Movie Mayhem\nThings are really going crazy in the Bermuda Triangle. Several  ferocious monsters of the deep have been sighted off the resort's coast!\n\nFly out and douse the burning pleasure vessels and rescue the crews. Then ferry them to the Hotel.\n\nDodge the fearsome flaming flumes of fire! Can you find a way to fight back against these  mad, malevolent monstrosities? Force feed the Bodzillas some water to choke them mid flame blast.\n\nTIP: Bodzillas hate coconut concussion!"
+        "text": "DAY 3 Monster Movie Mayhem\nThings are really going crazy in the Bermuda Triangle. Several  ferocious monsters of the deep have been sighted off the resort's coast!\n\nFly out and douse the burning pleasure vessels and rescue the crews. Then ferry them to the Hotel.\n\nDodge the fearsome flaming flumes of fire! Can you find a way to fight back against these  mad, malevolent monstrosities? Force feed the Bodzillas some water to choke them mid flame blast.\n\nTIP: Bodzillas hate coconut concussion!",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 5,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 26,
+            "font": "Agency FB Bold *",
+            "size": 48.0,
+            "ascent": 46,
+            "descent": 10,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 27,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 164,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 455,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "start": 496,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "left",
+            "lineSpacing": 40
+          },
+          {
+            "start": 27,
+            "align": "left",
+            "lineSpacing": 18
+          },
+          {
+            "start": 496,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_098__unnamed.txt"
     },
@@ -8395,7 +8964,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "HI-SCORES"
+        "text": "HI-SCORES",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 11,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "center",
+            "lineSpacing": 20
+          },
+          {
+            "start": 11,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_099__unnamed.txt"
     },
@@ -8412,7 +9019,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "0000000\n0000000\n0000000\n0000000\n\n0000000"
+        "text": "0000000\n0000000\n0000000\n0000000\n\n0000000",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 42,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "justify",
+            "lineSpacing": 19
+          },
+          {
+            "start": 42,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_100__scoreBoard.txt"
     },
@@ -8467,7 +9112,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "100"
+        "text": "100",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              136,
+              136,
+              136
+            ]
+          },
+          {
+            "start": 5,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              136,
+              136,
+              136
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "center",
+            "lineSpacing": 0
+          },
+          {
+            "start": 5,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_102__FlyingPoints.txt"
     },
@@ -8668,7 +9351,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "Submarine Cash Dash  DAY 4"
+        "text": "Submarine Cash Dash  DAY 4",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 28,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "right",
+            "lineSpacing": 20
+          },
+          {
+            "start": 28,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_108__unnamed.txt"
     },
@@ -8686,7 +9407,134 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "DAY 4 Submarine Cash Dash\nNo fair! cableGuy has spent his whole holiday rescuing  other people and has run out of holiday money. Help cableGuy plunge beneath the waves and go in search of sunken treasure.\n\nIf you see any of the famous missing Flight 19 plane-wrecks down there, make sure you take some pictures. They could be worth something! The closer you are, the more your pictures will be worth. cableGuy's film has 12 frames, so try to take 2 good shots per plane.\n\nHOLD DOWN SPACEBAR to photograph each wreck.\n\nWARNING : Dodge the hungry Blue Marlin Fish!"
+        "text": "DAY 4 Submarine Cash Dash\nNo fair! cableGuy has spent his whole holiday rescuing  other people and has run out of holiday money. Help cableGuy plunge beneath the waves and go in search of sunken treasure.\n\nIf you see any of the famous missing Flight 19 plane-wrecks down there, make sure you take some pictures. They could be worth something! The closer you are, the more your pictures will be worth. cableGuy's film has 12 frames, so try to take 2 good shots per plane.\n\nHOLD DOWN SPACEBAR to photograph each wreck.\n\nWARNING : Dodge the hungry Blue Marlin Fish!",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 6,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 25,
+            "font": "Agency FB Bold *",
+            "size": 48.0,
+            "ascent": 46,
+            "descent": 10,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 26,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 472,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 516,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 517,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 518,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "start": 564,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "left",
+            "lineSpacing": 40
+          },
+          {
+            "start": 26,
+            "align": "justify",
+            "lineSpacing": 16
+          },
+          {
+            "start": 564,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_109__unnamed.txt"
     },
@@ -8704,7 +9552,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "Storm Force 005"
+        "text": "Storm Force 005",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 17,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "right",
+            "lineSpacing": 20
+          },
+          {
+            "start": 17,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_114__unnamed.txt"
     },
@@ -8796,7 +9682,134 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "MISSION 005 Storm Force\nA cargo ship has run aground on hazardous rocks near  the coastline.\n\nMany lives hang in the balance! Can you save them all without running out of fuel?\n\nGood Luck pilot!\n\nWARNING: Take care when approaching the ship, as the huge waves may knock you sideways.\n"
+        "text": "MISSION 005 Storm Force\nA cargo ship has run aground on hazardous rocks near  the coastline.\n\nMany lives hang in the balance! Can you save them all without running out of fuel?\n\nGood Luck pilot!\n\nWARNING: Take care when approaching the ship, as the huge waves may knock you sideways.\n",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 12,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 23,
+            "font": "Agency FB Bold *",
+            "size": 48.0,
+            "ascent": 46,
+            "descent": 10,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 24,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 94,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 176,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 196,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "start": 283,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 286,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "left",
+            "lineSpacing": 40
+          },
+          {
+            "start": 24,
+            "align": "justify",
+            "lineSpacing": 16
+          },
+          {
+            "start": 286,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_117__unnamed.txt"
     },
@@ -8814,7 +9827,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "CHOOSE CONTROL METHOD"
+        "text": "CHOOSE CONTROL METHOD",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 23,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "center",
+            "lineSpacing": 40
+          },
+          {
+            "start": 23,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_120__unnamed.txt"
     },
@@ -8832,7 +9883,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "  Manic Monster Movie Mayhem DAY 3"
+        "text": "  Manic Monster Movie Mayhem DAY 3",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 36,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "right",
+            "lineSpacing": 20
+          },
+          {
+            "start": 36,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_121__unnamed.txt"
     },
@@ -8850,7 +9939,62 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "Simplified controls with fly-by-wire auto-hover.\nUse this mode at first.\nNOVICE"
+        "text": "Simplified controls with fly-by-wire auto-hover.\nUse this mode at first.\nNOVICE",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 73,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 81,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "center",
+            "lineSpacing": 18
+          },
+          {
+            "start": 73,
+            "align": "center",
+            "lineSpacing": 40
+          },
+          {
+            "start": 81,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_122__unnamed.txt"
     },
@@ -8868,7 +10012,62 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "PRO\nSubtle throttle and  pitch physics combine to provide the ultimate challenge !"
+        "text": "PRO\nSubtle throttle and  pitch physics combine to provide the ultimate challenge !",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 3,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 84,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "center",
+            "lineSpacing": 40
+          },
+          {
+            "start": 4,
+            "align": "center",
+            "lineSpacing": 18
+          },
+          {
+            "start": 84,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_123__unnamed.txt"
     },
@@ -8886,7 +10085,110 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "DAY 2 Evil Alien Abductathon!\n\nJust as cableGuy was settling down to enjoy a relaxing sunbath, evil aliens, disturbed by the tornado incident,  emerged from their underwater lair.\n\nProtect the guests from these malicious Martian marauders! Rescue them from the anti-gravity beams, then return them to the Hotel. Put out any beach fires.\n\nTIP: Smash the UFO dome with 7 well aimed coconuts, then swoop down and abduct the alien from his UFO!\n\nWARNING: Avoid the UFO's lethal automated gun pod.\n"
+        "text": "DAY 2 Evil Alien Abductathon!\n\nJust as cableGuy was settling down to enjoy a relaxing sunbath, evil aliens, disturbed by the tornado incident,  emerged from their underwater lair.\n\nProtect the guests from these malicious Martian marauders! Rescue them from the anti-gravity beams, then return them to the Hotel. Put out any beach fires.\n\nTIP: Smash the UFO dome with 7 well aimed coconuts, then swoop down and abduct the alien from his UFO!\n\nWARNING: Avoid the UFO's lethal automated gun pod.\n",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 6,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 29,
+            "font": "Agency FB Bold *",
+            "size": 48.0,
+            "ascent": 46,
+            "descent": 10,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 30,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 338,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "start": 492,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 495,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "left",
+            "lineSpacing": 40
+          },
+          {
+            "start": 30,
+            "align": "justify",
+            "lineSpacing": 16
+          },
+          {
+            "start": 495,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_124__unnamed.txt"
     },
@@ -9422,7 +10724,62 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "INSTRUCTIONS:\nUP/DOWN cursor keys = Climb / Descend\nLEFT/RIGHT cursor keys = Lean Left / Right\nTAP SPACEBAR = Raise / Lower cableGuy\nHOLD SPACEBAR = Spray / Fire / Snapshot \nP key = Pause / Resume"
+        "text": "INSTRUCTIONS:\nUP/DOWN cursor keys = Climb / Descend\nLEFT/RIGHT cursor keys = Lean Left / Right\nTAP SPACEBAR = Raise / Lower cableGuy\nHOLD SPACEBAR = Spray / Fire / Snapshot \nP key = Pause / Resume",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "start": 14,
+            "font": "Agency FB Bold *",
+            "size": 16.0,
+            "ascent": 15,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "start": 198,
+            "font": "Agency FB Bold *",
+            "size": 16.0,
+            "ascent": 15,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "right",
+            "lineSpacing": 20
+          },
+          {
+            "start": 14,
+            "align": "right",
+            "lineSpacing": 18
+          },
+          {
+            "start": 198,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_140__unnamed.txt"
     },
@@ -9440,7 +10797,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "SUBMERGE >>"
+        "text": "SUBMERGE >>",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 13,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "left",
+            "lineSpacing": 38
+          },
+          {
+            "start": 13,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_141__unnamed.txt"
     },
@@ -9569,7 +10964,122 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "MISSION 006 Nuclear Combustion\nThe local nuclear test facility is in serious trouble!\nCan you avoid total meltdown?\n\nDouse all the flames, and rescue the workers and scientists.\n\nLock down the burst steam vents with your water jet to get past them safely. Don't take too long!\n\nUse the cableGuy to pull every reactor fuel rod up into the raised position, then douse the rod to cool it down.\n\nCaution: Do not fly too close to the large power transformers!"
+        "text": "MISSION 006 Nuclear Combustion\nThe local nuclear test facility is in serious trouble!\nCan you avoid total meltdown?\n\nDouse all the flames, and rescue the workers and scientists.\n\nLock down the burst steam vents with your water jet to get past them safely. Don't take too long!\n\nUse the cableGuy to pull every reactor fuel rod up into the raised position, then douse the rod to cool it down.\n\nCaution: Do not fly too close to the large power transformers!",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 12,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 30,
+            "font": "Agency FB Bold *",
+            "size": 48.0,
+            "ascent": 46,
+            "descent": 10,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 31,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 117,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 391,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 392,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "start": 456,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "left",
+            "lineSpacing": 40
+          },
+          {
+            "start": 31,
+            "align": "justify",
+            "lineSpacing": 16
+          },
+          {
+            "start": 456,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_147__unnamed.txt"
     },
@@ -9732,7 +11242,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "CLICK HERE\nGO TO SHOCKWAVE.COM !"
+        "text": "CLICK HERE\nGO TO SHOCKWAVE.COM !",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 34,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "center",
+            "lineSpacing": 0
+          },
+          {
+            "start": 34,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_157__unnamed.txt"
     },
@@ -9750,7 +11298,57 @@
       },
       "xtra": {
         "kind": "text",
-        "text": " CLICK TO SUBMIT SCORE!"
+        "text": " CLICK TO SUBMIT SCORE!",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 1,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "start": 25,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "right",
+            "lineSpacing": 0
+          },
+          {
+            "start": 25,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_158__unnamed.txt"
     },
@@ -9767,7 +11365,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "0"
+        "text": "0",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 3,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "center",
+            "lineSpacing": 0
+          },
+          {
+            "start": 3,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_159__SubmitScore.txt"
     },
@@ -9785,7 +11421,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "Ice Station 007"
+        "text": "Ice Station 007",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 17,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "right",
+            "lineSpacing": 20
+          },
+          {
+            "start": 17,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_164__unnamed.txt"
     },
@@ -9803,7 +11477,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "Sub Zero Sub 008"
+        "text": "Sub Zero Sub 008",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 18,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "right",
+            "lineSpacing": 20
+          },
+          {
+            "start": 18,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_165__unnamed.txt"
     },
@@ -9821,7 +11533,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": " Manic Volcanic 009"
+        "text": " Manic Volcanic 009",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 21,
+            "font": "Agency FB Bold *",
+            "size": 18.0,
+            "ascent": 17,
+            "descent": 4,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "right",
+            "lineSpacing": 20
+          },
+          {
+            "start": 21,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_166__unnamed.txt"
     },
@@ -9839,7 +11589,122 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "MISSION 007 Ice Station\nYou have been sent on assignment to gain experience in the harsh extremes of Iceland. An SOS has been received from the local weather research station.\n\nYour hose will not work in the sub zero temperatures. Find a novel way to extinguish the fires!\n\nUse your down thrust to blow away snow drifts that have burried researchers. Then pull them to safety.\n\nUse cableGuy to pull the comm towers back up into position whilst avoiding the escaped weather balloons!\n\nWARNING: You must work at speed as there is ONLY ONE FUEL BARREL on this level!\n"
+        "text": "MISSION 007 Ice Station\nYou have been sent on assignment to gain experience in the harsh extremes of Iceland. An SOS has been received from the local weather research station.\n\nYour hose will not work in the sub zero temperatures. Find a novel way to extinguish the fires!\n\nUse your down thrust to blow away snow drifts that have burried researchers. Then pull them to safety.\n\nUse cableGuy to pull the comm towers back up into position whilst avoiding the escaped weather balloons!\n\nWARNING: You must work at speed as there is ONLY ONE FUEL BARREL on this level!\n",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 12,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 23,
+            "font": "Agency FB Bold *",
+            "size": 48.0,
+            "ascent": 46,
+            "descent": 10,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 24,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 177,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 484,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "start": 563,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 566,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "left",
+            "lineSpacing": 40
+          },
+          {
+            "start": 24,
+            "align": "justify",
+            "lineSpacing": 16
+          },
+          {
+            "start": 566,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_167__unnamed.txt"
     },
@@ -9857,7 +11722,122 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "MISSION 008 Sub Zero Sub\nA foreign nuclear submarine has surfaced through the ice after experiencing electrical systems failure!\n\nRescue the sailors from the submarine. Unscrew each warhead then deliver it to the nuclear incident decontamination ship. Lower each warhead carefully into the ship's hold!\n\nWARNING: Terrorists are trying to steal the nuclear warheads. Avoid their menacing black helicopters and dodge the ground to air missiles!\n\nFIGHT BACK: Can you find a way to tilt the terrorists from their icebergs?"
+        "text": "MISSION 008 Sub Zero Sub\nA foreign nuclear submarine has surfaced through the ice after experiencing electrical systems failure!\n\nRescue the sailors from the submarine. Unscrew each warhead then deliver it to the nuclear incident decontamination ship. Lower each warhead carefully into the ship's hold!\n\nWARNING: Terrorists are trying to steal the nuclear warheads. Avoid their menacing black helicopters and dodge the ground to air missiles!\n\nFIGHT BACK: Can you find a way to tilt the terrorists from their icebergs?",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 12,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 24,
+            "font": "Agency FB Bold *",
+            "size": 48.0,
+            "ascent": 46,
+            "descent": 10,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 25,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 130,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 303,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 304,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "start": 520,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "left",
+            "lineSpacing": 40
+          },
+          {
+            "start": 25,
+            "align": "justify",
+            "lineSpacing": 16
+          },
+          {
+            "start": 520,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_168__unnamed.txt"
     },
@@ -9875,7 +11855,110 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "MISSION 009 Manic Volcanic\nOh-oh, you have angered some dangerous people protecting those warheads! In a despicable act of revenge they have KIDNAPPED CABLEGUY!!!!\n\nChase the black helicopter, dodging until it has used up its TEN missile payload. Then skilfully manouvre above them and use your down draught to force them to land. Use the high ground to force them down quicker! \n\nTIP: Chase the black helicopter full speed and JINK up and down to avoid the homing missiles.\n\nQUICK GET GOING! CableGuy can't hold on much longer!"
+        "text": "MISSION 009 Manic Volcanic\nOh-oh, you have angered some dangerous people protecting those warheads! In a despicable act of revenge they have KIDNAPPED CABLEGUY!!!!\n\nChase the black helicopter, dodging until it has used up its TEN missile payload. Then skilfully manouvre above them and use your down draught to force them to land. Use the high ground to force them down quicker! \n\nTIP: Chase the black helicopter full speed and JINK up and down to avoid the homing missiles.\n\nQUICK GET GOING! CableGuy can't hold on much longer!",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Agency FB Bold *",
+            "size": 36.0,
+            "ascent": 35,
+            "descent": 7,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 12,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 26,
+            "font": "Agency FB Bold *",
+            "size": 48.0,
+            "ascent": 46,
+            "descent": 10,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 27,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 165,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": 380,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "start": 530,
+            "font": "Agency FB Bold *",
+            "size": 14.0,
+            "ascent": 14,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              255
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "left",
+            "lineSpacing": 40
+          },
+          {
+            "start": 27,
+            "align": "justify",
+            "lineSpacing": 16
+          },
+          {
+            "start": 530,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/3_169__unnamed.txt"
     },
@@ -20303,7 +22386,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1\n-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"
+        "text": "1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1\n-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90,-90\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Arial",
+            "size": 12.0,
+            "ascent": 12,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "start": 273,
+            "font": "Arial",
+            "size": 12.0,
+            "ascent": 12,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "left",
+            "lineSpacing": 0
+          },
+          {
+            "start": 273,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/6_001__Level1.txt"
     },
@@ -20321,7 +22442,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1\n50,50,48,30,20,0,-20,10,20,50,70,80,70,50,20,25,40,50,20,0,0,0,0,20,10,0,10,20,25,10,10,-20,-25,-20,-10,0,0,10,20,10,0,0,10,30\n5,0,13,5,12,6,12,0,5,15,5,12,5,3,5,0,0,4,0,1,2,0,0,13,0,0,14,7,15,13,3,13,6,5,14,12,13,0,12,15,13,6,5,14"
+        "text": "1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1\n50,50,48,30,20,0,-20,10,20,50,70,80,70,50,20,25,40,50,20,0,0,0,0,20,10,0,10,20,25,10,10,-20,-25,-20,-10,0,0,10,20,10,0,0,10,30\n5,0,13,5,12,6,12,0,5,15,5,12,5,3,5,0,0,4,0,1,2,0,0,13,0,0,14,7,15,13,3,13,6,5,14,12,13,0,12,15,13,6,5,14",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Arial",
+            "size": 12.0,
+            "ascent": 12,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "start": 321,
+            "font": "Arial",
+            "size": 12.0,
+            "ascent": 12,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "left",
+            "lineSpacing": 0
+          },
+          {
+            "start": 321,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/6_002__Level2.txt"
     },
@@ -20339,7 +22498,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "0,0,0,0,0,3,1,2,0,3,1,2,3,1,1,1,1,1,1,1,5,4,1,1,1,1,1,1,2,0,0,0,0,0,0,3,1,1,2,0,0,0,0,0\n0,0,0,0,0,0,0,10,20,0,10,20,0,0,-20,25,40,50,20,0,0,0,0,10,30,40,40,30,10,0,0,0,0,0,0,0,10,20,10,0,0,0,0,0\n5,0,0,0,0,4,12,5,0,0,12,4,0,0,0,0,0,3,0,1,2,0,3,0,0,0,0,0,0,0,0,0,0,0,0,5,12,6,0,0,0,0,0,5"
+        "text": "0,0,0,0,0,3,1,2,0,3,1,2,3,1,1,1,1,1,1,1,5,4,1,1,1,1,1,1,2,0,0,0,0,0,0,3,1,1,2,0,0,0,0,0\n0,0,0,0,0,0,0,10,20,0,10,20,0,0,-20,25,40,50,20,0,0,0,0,10,30,40,40,30,10,0,0,0,0,0,0,0,10,20,10,0,0,0,0,0\n5,0,0,0,0,4,12,5,0,0,12,4,0,0,0,0,0,3,0,1,2,0,3,0,0,0,0,0,0,0,0,0,0,0,0,5,12,6,0,0,0,0,0,5",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Arial",
+            "size": 12.0,
+            "ascent": 12,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "start": 287,
+            "font": "Arial",
+            "size": 12.0,
+            "ascent": 12,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "left",
+            "lineSpacing": 0
+          },
+          {
+            "start": 287,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/6_003__Level3.txt"
     },
@@ -20357,7 +22554,45 @@
       },
       "xtra": {
         "kind": "text",
-        "text": "6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6\n0,0,0,0,0,0,0,10,10,0,0,0,0,10,20,25,40,50,20,10,0,5,0,10,30,40,40,30,10,0,10,20,25,30,40,45,25,10,20,10,0,0,0,0\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,4,0,0,0,0,0,0,0,5,0,0,0"
+        "text": "6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6\n0,0,0,0,0,0,0,10,10,0,0,0,0,10,20,25,40,50,20,10,0,5,0,10,30,40,40,30,10,0,10,20,25,30,40,45,25,10,20,10,0,0,0,0\n0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,4,0,0,0,0,0,0,0,5,0,0,0",
+        "runs": [
+          {
+            "start": 0,
+            "font": "Arial",
+            "size": 12.0,
+            "ascent": 12,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "start": 290,
+            "font": "Arial",
+            "size": 12.0,
+            "ascent": 12,
+            "descent": 3,
+            "color": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "paras": [
+          {
+            "start": 0,
+            "align": "left",
+            "lineSpacing": 0
+          },
+          {
+            "start": 290,
+            "align": "left",
+            "lineSpacing": 0
+          }
+        ]
       },
       "file": "texts/6_004__Level4.txt"
     }

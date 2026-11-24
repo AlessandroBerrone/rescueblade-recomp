@@ -47,6 +47,7 @@ export function loadBundleFromDisk(gameId: 'rescueblade' | 'bermuda'): LoadedGam
 export function makeFakeTextCache(): TextTextureCache {
   return {
     getOrCreate: () => ({ texture: {} as WebGLTexture, width: 64, height: 16, regX: 0, regY: 0, hasAlpha: true }),
+    heightOf: () => 16,
   } as unknown as TextTextureCache;
 }
 
