@@ -134,6 +134,71 @@ h1 {
   position: relative;
 }
 
+body:not(.touch-mode) .stage-box {
+  width: fit-content;
+  max-width: 100%;
+}
+
+/* Desktop fullscreen: the stage box, so the graphics button stays on screen. */
+.stage-box:fullscreen {
+  width: 100vw;
+  max-width: none;
+  height: 100vh;
+  background: #000;
+}
+
+.stage-box:fullscreen canvas {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  border: none;
+  border-radius: 0;
+  object-fit: contain;
+}
+
+/* Graphics switch drawn over the game: bottom-right corner of the stage. */
+.stage-gfx {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 5;
+  min-width: 46px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font: 700 12px/1.2 system-ui, sans-serif;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.stage-gfx:hover,
+.stage-gfx:focus-visible {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.stage-gfx.is-hd,
+.tc-gfx.is-hd {
+  border-color: rgba(255, 196, 64, 0.85);
+  color: #ffd27a;
+}
+
+.stage-box:fullscreen .stage-gfx {
+  right: 16px;
+  bottom: 16px;
+  font-size: 14px;
+}
+
+.tc-icon.tc-gfx {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
 .touch-ui {
   display: none;
 }
