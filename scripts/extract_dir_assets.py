@@ -243,8 +243,11 @@ def parse_vwsc(buf: bytes):
         k = p_idx + 1
         while k < end_idx:
             ent = get_entry(k)
-            if len(ent) == 8:
-                clib, mem, pidx = struct.unpack(">HHI", ent)
+            # A behavior entry is a list of 8-byte records (castLib, member,
+            # params index): sprites with several behaviors attached carry
+            # 16/24/... byte entries, so walk every record, not just len == 8.
+            for r in range(0, len(ent) - len(ent) % 8, 8):
+                clib, mem, pidx = struct.unpack(">HHI", ent[r : r + 8])
                 if clib > 0 and mem > 0:
                     b_obj = {"castLib": clib, "member": mem}
                     if 0 < pidx < n1:
@@ -396,7 +399,14 @@ def decode_bitmap(spec_raw: bytes, edim_bytes, bitd_bytes, alfa_bytes):
             raise ValueError(f"Unsupported BITD bpp={bpp}")
 
     if img is not None and alfa_bytes is not None:
-        alpha_plane = unpack_packbits(alfa_bytes, w * h)
+        # ALFA rows are padded to an even number of bytes (like BITD rows):
+        # for odd widths, reading them as w*h shifts every row by one pixel.
+        alpha_stride = w + (w & 1)
+        alpha_plane = unpack_packbits(alfa_bytes, alpha_stride * h)
+        if alpha_stride != w:
+            alpha_plane = b"".join(
+                alpha_plane[y * alpha_stride : y * alpha_stride + w] for y in range(h)
+            )
         alpha_img = Image.frombytes("L", (w, h), alpha_plane)
         r, g, b, _ = img.split()
         img = Image.merge("RGBA", (r, g, b, alpha_img))
@@ -587,7 +597,7 @@ def extract_game(dir_path: Path, pr_movie_dir: Path, out_dir: Path):
                             matched_ls = cand
                             break
                 if matched_ls:
-                    entry["lsFile"] = str(matched_ls.relative_to(dir_path.parent.parent))
+                    entry["lsFile"] = matched_ls.relative_to(dir_path.parent.parent).as_posix()
                 if info.get("scriptSrcText"):
                     entry["hasEmbeddedSource"] = True
 
@@ -634,7 +644,7 @@ def extract_game(dir_path: Path, pr_movie_dir: Path, out_dir: Path):
                         b["lsFile"] = bm["lsFile"]
 
     manifest = {
-        "sourceDir": str(dir_path),
+        "sourceDir": f"dir/{dir_path.name}",
         "stage": {
             "width": right - left,
             "height": bottom - top,
