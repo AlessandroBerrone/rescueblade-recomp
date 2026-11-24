@@ -5,6 +5,7 @@ import { defineConfig, type Plugin } from 'vite';
 const MIME: Record<string, string> = {
   '.json': 'application/json',
   '.png': 'image/png',
+  '.webp': 'image/webp',
   '.wav': 'audio/wav',
   '.txt': 'text/plain; charset=utf-8',
   '.pfr': 'application/octet-stream',

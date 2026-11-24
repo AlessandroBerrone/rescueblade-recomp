@@ -1,7 +1,8 @@
 import { ALL_ACTIONS, type ActionId, type InputManager, type InputState } from './engine/InputManager.ts';
 import {
-  applyHudTextures,
+  applyTextureModes,
   loadGameAssets,
+  loadHdBitmaps,
   type GameId,
   type LoadedGameBundle,
 } from './engine/assets/AssetLoader.ts';
@@ -24,6 +25,7 @@ export class GameShell {
   private activeGame: GameId = 'rescueblade';
   private loading = false;
   private hdHud = true;
+  private hdGraphics = readGraphicsPref();
 
   private readonly statusEl: HTMLElement;
   private readonly frameEl: HTMLElement;
@@ -32,6 +34,7 @@ export class GameShell {
   private readonly controlsBtn: HTMLButtonElement;
   private readonly muteBtn: HTMLButtonElement;
   private readonly hudBtn: HTMLButtonElement;
+  private readonly gfxBtn: HTMLButtonElement;
   private readonly actionEls = new Map<ActionId, HTMLElement>();
   private readonly axisEls: Record<'moveX' | 'moveY' | 'throttle', { val: HTMLElement; fill: HTMLElement }>;
   private readonly stageWrap: HTMLElement;
@@ -54,6 +57,7 @@ export class GameShell {
             </select>
             <button id="gs-controls" type="button">Controlli: Simplified</button>
             <button id="gs-menu" type="button">Menu</button>
+            <button id="gs-gfx" type="button" title="Grafica originale o ridisegnata in alta risoluzione">Grafica: HD</button>
             <button id="gs-hud" type="button">HUD: HD</button>
             <button id="gs-mute" type="button">Audio: ON</button>
             <button id="gs-fs" type="button">Fullscreen</button>
@@ -100,6 +104,8 @@ export class GameShell {
     this.controlsBtn = root.querySelector('#gs-controls')!;
     this.muteBtn = root.querySelector('#gs-mute')!;
     this.hudBtn = root.querySelector('#gs-hud')!;
+    this.gfxBtn = root.querySelector('#gs-gfx')!;
+    this.updateGraphicsButton();
     this.axisEls = {
       moveX: { val: root.querySelector('#val-moveX')!, fill: root.querySelector('#fill-moveX')! },
       moveY: { val: root.querySelector('#val-moveY')!, fill: root.querySelector('#fill-moveY')! },
@@ -177,6 +183,13 @@ export class GameShell {
       this.applyHudMode();
     });
 
+    this.gfxBtn.addEventListener('click', () => {
+      this.hdGraphics = !this.hdGraphics;
+      writeGraphicsPref(this.hdGraphics);
+      this.updateGraphicsButton();
+      void this.applyGraphicsMode();
+    });
+
     document.addEventListener('fullscreenchange', () => {
       if (this.hdHud) {
         this.applyHudMode();
@@ -233,9 +246,12 @@ export class GameShell {
     if (!bundle) {
       bundle = await loadGameAssets(gameId, this.renderer, this.hdHud);
       this.bundles.set(gameId, bundle);
-    } else {
-      applyHudTextures(bundle, this.hdHud);
     }
+    if (this.hdGraphics) {
+      this.statusEl.textContent = 'Carico la grafica HD...';
+      await loadHdBitmaps(bundle, this.renderer);
+    }
+    applyTextureModes(bundle, this.textureModes());
     await this.sound.loadGameSounds(gameId, bundle.manifest);
     if (this.activeGame !== gameId) return;
 
@@ -259,9 +275,37 @@ export class GameShell {
     this.renderer.setRenderScale(scale);
     this.textCache.setScale(scale);
     for (const bundle of this.bundles.values()) {
-      applyHudTextures(bundle, this.hdHud);
+      applyTextureModes(bundle, this.textureModes());
     }
     this.hudBtn.textContent = `HUD: ${this.hdHud ? 'HD' : 'Originale'}`;
+  }
+
+  private textureModes() {
+    return { hdHud: this.hdHud, hdGraphics: this.hdGraphics };
+  }
+
+  private updateGraphicsButton(): void {
+    this.gfxBtn.textContent = `Grafica: ${this.hdGraphics ? 'HD' : 'Originale'}`;
+  }
+
+  /** Switches every loaded game between original and upscaled bitmaps (loading them once). */
+  private async applyGraphicsMode(): Promise<void> {
+    const want = this.hdGraphics;
+    if (want) {
+      const bundle = this.bundles.get(this.activeGame);
+      if (bundle && !bundle.hdBitmapTexturesByKey) {
+        this.gfxBtn.disabled = true;
+        this.gfxBtn.textContent = 'Grafica: carico HD...';
+        await loadHdBitmaps(bundle, this.renderer);
+        this.gfxBtn.disabled = false;
+        this.updateGraphicsButton();
+      }
+    }
+    if (this.hdGraphics !== want) return;
+    for (const bundle of this.bundles.values()) {
+      if (want && !bundle.hdBitmapTexturesByKey) await loadHdBitmaps(bundle, this.renderer);
+      applyTextureModes(bundle, this.textureModes());
+    }
   }
 
   public tick(dtSec: number, state: InputState): void {
@@ -304,3 +348,26 @@ export class GameShell {
   }
 }
 
+
+const GFX_PREF_KEY = 'rc_graphics';
+
+/** HD unless the player chose the original graphics, or the URL asks for them (?gfx=orig). */
+function readGraphicsPref(): boolean {
+  if (typeof window === 'undefined') return false;
+  const param = new URLSearchParams(window.location.search).get('gfx');
+  if (param === 'orig' || param === 'original') return false;
+  if (param === 'hd') return true;
+  try {
+    return window.localStorage.getItem(GFX_PREF_KEY) !== 'original';
+  } catch {
+    return true;
+  }
+}
+
+function writeGraphicsPref(hd: boolean): void {
+  try {
+    window.localStorage.setItem(GFX_PREF_KEY, hd ? 'hd' : 'original');
+  } catch {
+    // Private mode or blocked storage: the choice just isn't remembered.
+  }
+}

@@ -24,6 +24,8 @@ export interface TextureEntry {
   readonly regX: number;
   readonly regY: number;
   readonly hasAlpha: boolean;
+  /** Upscaled bitmap from the HD graphics set: width/height/reg are still the member's own. */
+  readonly hd?: boolean;
 }
 
 export interface RenderSprite {
