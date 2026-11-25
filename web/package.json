@@ -2,6 +2,10 @@
   "name": "rescueblade-recomp",
   "private": true,
   "version": "0.1.0",
+  "author": "Alessandro Berrone (https://github.com/AlessandroBerrone)",
+  "contributors": [
+    "lcp97 (https://github.com/lcp97)"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",
