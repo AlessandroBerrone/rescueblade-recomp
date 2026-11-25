@@ -205,6 +205,10 @@ rescueblade-recomp/
 
 - **Alessandro Berrone** (`@AlessandroBerrone`)
 
+### Contributors
+
+- **Luca** ([`@lcp97`](https://github.com/lcp97)): HD HUD cleanup and animated sea, mobile support (touch controls and phone layout), launch page with level select, save games with export/import, gray horizon block fix, fidelity fixes against the original Lingo, styled Director text, CI and the GitHub Pages build.
+
 ### Contributing
 
 Contributions are welcome! To contribute:
